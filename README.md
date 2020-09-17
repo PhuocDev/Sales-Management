@@ -1,4 +1,4 @@
-# Sales-Management - Quản lý bán hàng siêu thị.
+# Sales-Management - Quản lý bán hàng siêu thị
 ## Mô tả
 Mở cửa hàng kinh doanh thì dễ những làm thế nào để cửa hàng vận hành một cách ổn định, giúp tăng doanh số bán hàng mà không tốn nhiều thời gian và công sức thì đây là một câu hỏi khó dành cho nhiều người kinh doanh. Việc quản lý theo phương pháp truyền thống gây mất nhiều thời gian và công sức mà hiệu quả đạt được lại không hề cao. Chính vì vậy hiện nay trên thị trường có đưa ra phần mềm quản lý bán hàng giúp tối ưu công việc quản lý kinh doanh cho những người chủ kinh doanh.
 
