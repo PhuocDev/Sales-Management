@@ -1,2 +1,3 @@
 # Sales-Management
-Ứng dụng quản lý bán hàng siêu thị.
+## Quản lý bán hàng siêu thị.
+
