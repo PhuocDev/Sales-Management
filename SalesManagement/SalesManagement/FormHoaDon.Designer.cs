@@ -229,7 +229,7 @@
             this.ColDonGia,
             this.ColThanhTien,
             this.ColCheckbox});
-            this.dgvHoaDon.Location = new System.Drawing.Point(28, 286);
+            this.dgvHoaDon.Location = new System.Drawing.Point(29, 286);
             this.dgvHoaDon.Name = "dgvHoaDon";
             this.dgvHoaDon.RowHeadersVisible = false;
             this.dgvHoaDon.RowHeadersWidth = 51;
