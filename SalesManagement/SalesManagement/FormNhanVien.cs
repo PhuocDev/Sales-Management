@@ -16,10 +16,5 @@ namespace SalesManagement
         {
             InitializeComponent();
         }
-
-        private void FormNhanVien_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

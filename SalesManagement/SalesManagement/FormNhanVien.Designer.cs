@@ -288,6 +288,7 @@
             this.ColGioiTinh.HeaderText = "Giới tính";
             this.ColGioiTinh.MinimumWidth = 6;
             this.ColGioiTinh.Name = "ColGioiTinh";
+            this.ColGioiTinh.Width = 125;
             // 
             // ColSDT
             // 
@@ -342,7 +343,6 @@
             this.Name = "FormNhanVien";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nhân viên";
-            this.Load += new System.EventHandler(this.FormNhanVien_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
