@@ -7,14 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace SalesManagement
 {
     public partial class Login : Form
     {
+        SqlConnection con = new SqlConnection();
+        SqlCommand com = new SqlCommand();
+
         public Login()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
