@@ -38,7 +38,8 @@ namespace SalesManagement
                     sqlCmd.Parameters.AddWithValue("@MANV", textBox5_MaNV.Text.Trim());
                     sqlCmd.Parameters.AddWithValue("@PASSWORD", textBox2_matKhau.Text.Trim());
                     sqlCmd.Parameters.AddWithValue("@TEN", textBox4_HoTen.Text.Trim());
-                    sqlCmd.Parameters.AddWithValue("@NGAYSINH ", textBox_daytime.Text.Trim());
+                    string date = textBox_nam.Text + "-" + textBox_thang.Text + "-" + textBox_ngay.Text;
+                    sqlCmd.Parameters.AddWithValue("@NGAYSINH ", date.Trim());
                     sqlCmd.Parameters.AddWithValue("@GIOITINH", this.comboBox2.SelectedItem.ToString().Trim());
                     sqlCmd.Parameters.AddWithValue("@SDT", textBox_DienThoai.Text.Trim());
                     sqlCmd.Parameters.AddWithValue("@DIACHI", textBox_diaChi.Text.Trim());
@@ -52,6 +53,14 @@ namespace SalesManagement
         private void button2_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.Application.ExitThread();
+        }
+
+        private void textBox3_laiMK_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button1.PerformClick();
+            }
         }
     }
 }

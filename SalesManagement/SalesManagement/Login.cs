@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace SalesManagement
 {
@@ -15,7 +16,7 @@ namespace SalesManagement
     {
         SqlConnection con = new SqlConnection();
         SqlCommand com = new SqlCommand();
-
+        SqlDataReader dr;
 
         public Login()
         {
@@ -27,39 +28,73 @@ namespace SalesManagement
         {
             
         }
-
-        private void button1_Click_1(object sender, EventArgs e)
+        private bool VerifyUser(string name, string pass)
         {
             con.Open();
-            com.Connection = con;
-            if (textBox1.Text.Substring(0, 1) == "Q")
+            if (name.Substring(0, 1) == "N")
             {
-                com.CommandText = "select MAQL, PASSWORD from QUANLY";
-                SqlDataReader quanLy = com.ExecuteReader();
-                if (quanLy.Read())
+                
+                string query = "select * from NHANVIEN where MANV= '" + name.Trim() + "' and PASSWORD = '" + pass.Trim() + "'";
+                SqlDataAdapter sda = new SqlDataAdapter(query, con);
+                DataTable dttb = new DataTable();
+                sda.Fill(dttb);
+                if (dttb.Rows.Count == 1)
                 {
-                    if (textBox1.Text.Equals(quanLy["MAQL"].ToString()) && textBox2.Text.Equals(quanLy["PASSWORD"].ToString()))
-                    {
-                        MessageBox.Show("Login successfully, welcom Manager");
-                    }
-                    else MessageBox.Show("No manager");
+                    return true;
+                }
+                else
+                {
+                    return false;
                 }
             }
-            else
+            else 
             {
-                com.CommandText = "select MANV, PASSWORD from NHANVIEN";
-                SqlDataReader nhanvien = com.ExecuteReader();
-                if (nhanvien.Read())
+                string query = "select * from QUANLY where MAQL= '" + name.Trim() + "' and PASSWORD = '" + pass.Trim() + "'";
+                SqlDataAdapter sda = new SqlDataAdapter(query, con);
+                DataTable dttb = new DataTable();
+                sda.Fill(dttb);
+                if (dttb.Rows.Count == 1)
                 {
-                    if (textBox1.Text.Equals(nhanvien["MANV"].ToString()) && textBox2.Text.Equals(nhanvien["PASSWORD"].ToString()))
-                    {
-                        MessageBox.Show("Login successfully, welcom Staff");
-                    }
-                    else MessageBox.Show("No staff");
+                    return true;
                 }
-
+                else
+                {
+                    return false;
+                }
             }
             con.Close();
+        }
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            if (VerifyUser(textBox1.Text, textBox2.Text))
+            {
+                MessageBox.Show("Login Successfully!");
+            }
+            else MessageBox.Show("ERROR!");
+        }
+
+        private void UsernamEnter(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Equals("Username"))
+            {
+                textBox1.Text = "";
+            }
+        }
+
+        private void UsernamLeave(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Equals(""))
+            {
+                textBox1.Text = "Username";
+            }
+        }
+
+        private void textBox2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button1.PerformClick();
+            }
         }
     }
 }
