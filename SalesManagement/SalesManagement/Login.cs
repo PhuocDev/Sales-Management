@@ -140,6 +140,11 @@ namespace SalesManagement
 
         private void button_dangNhap_Click(object sender, EventArgs e)
         {
+            if (textBox1.Text == "" || textBox_passWord.Text == "")
+            {
+                MessageBox.Show("Chưa nhập đủ thông tin");
+                return;
+            } 
             if (VerifyUser(textBox1.Text, textBox_passWord.Text))
             {
                 menu mn = new menu();
@@ -147,7 +152,7 @@ namespace SalesManagement
                 mn.Show();
                 this.Hide();
             }
-            else MessageBox.Show("ERROR!");
+            else MessageBox.Show("Tài khoản hoặc mật khẩu không đúng");
 
             /*menu mn = new menu();
             mn.FormClosed += new FormClosedEventHandler(menu_FormClose);
