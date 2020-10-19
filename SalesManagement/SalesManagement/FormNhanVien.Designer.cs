@@ -180,6 +180,7 @@
             this.btnChinhSua.TabIndex = 21;
             this.btnChinhSua.Text = "Chỉnh sửa";
             this.btnChinhSua.UseVisualStyleBackColor = false;
+            this.btnChinhSua.Click += new System.EventHandler(this.btnChinhSua_Click);
             // 
             // btnKhachHang
             // 

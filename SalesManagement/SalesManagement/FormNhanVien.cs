@@ -75,13 +75,24 @@ namespace SalesManagement
         {
             DataGridViewCell cell = dataGridView1.CurrentCell;
             int index = cell.RowIndex;
-            if (index == -1) return;
             txbMaNV.Text = dataGridView1.Rows[index].Cells[1].Value.ToString();
             txbHoTen.Text = dataGridView1.Rows[index].Cells[2].Value.ToString();
             txbNgaySinh.Text = dataGridView1.Rows[index].Cells[3].Value.ToString();
             txbGioiTinh.Text = dataGridView1.Rows[index].Cells[4].Value.ToString();
             txbSDT.Text = dataGridView1.Rows[index].Cells[5].Value.ToString();
             txbDiaChi.Text = dataGridView1.Rows[index].Cells[6].Value.ToString();
+        }
+
+        private void btnChinhSua_Click(object sender, EventArgs e)
+        {
+            DataGridViewCell cell = dataGridView1.CurrentCell;
+            int index = cell.RowIndex;
+            dataGridView1.Rows[index].Cells[1].Value = txbMaNV.Text;
+            dataGridView1.Rows[index].Cells[2].Value = txbHoTen.Text;
+            dataGridView1.Rows[index].Cells[3].Value = txbNgaySinh.Text;
+            dataGridView1.Rows[index].Cells[4].Value = txbGioiTinh.Text;
+            dataGridView1.Rows[index].Cells[5].Value = txbSDT.Text;
+            dataGridView1.Rows[index].Cells[6].Value = txbDiaChi.Text;
         }
     }
 }
