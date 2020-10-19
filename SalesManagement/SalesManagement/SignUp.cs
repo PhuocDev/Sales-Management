@@ -123,7 +123,7 @@ namespace SalesManagement
 
         private void button2_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.Application.ExitThread();
+            this.Close();
         }
 
         private void textBox3_laiMK_KeyDown(object sender, KeyEventArgs e)
@@ -132,6 +132,11 @@ namespace SalesManagement
             {
                 button1.PerformClick();
             }
+        }
+
+        private void textBox4_HoTen_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

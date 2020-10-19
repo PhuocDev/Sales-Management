@@ -25,10 +25,6 @@ namespace SalesManagement
             con.ConnectionString = @"Data Source=DESKTOP-STUS076\SQLEXPRESS;Initial Catalog=SALES_MANAGEMENT;Integrated Security=True";
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
-        }
         private string Hash_pass(string pass)
         {
             //Tạo MD5 
@@ -83,14 +79,6 @@ namespace SalesManagement
             }
             con.Close();
         }
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            if (VerifyUser(textBox1.Text, textBox2.Text))
-            {
-                MessageBox.Show("Login Successfully!");
-            }
-            else MessageBox.Show("ERROR!");
-        }
 
         private void UsernamEnter(object sender, EventArgs e)
         {
@@ -108,11 +96,31 @@ namespace SalesManagement
             }
         }
 
-        private void textBox2_KeyDown(object sender, KeyEventArgs e)
+        private void button_dangNhap_Click(object sender, EventArgs e)
+        {
+/*            if (VerifyUser(textBox1.Text, textBox_passWord.Text))
+            {
+                menu mn = new menu();
+                mn.FormClosed += new FormClosedEventHandler(menu_FormClose);
+                MessageBox.Show("Login Successfully!");
+            }
+            else MessageBox.Show("ERROR!");*/
+
+            menu mn = new menu();
+            mn.FormClosed += new FormClosedEventHandler(menu_FormClose);
+            mn.Show();
+            this.Hide();
+        }
+        private void menu_FormClose(object sender, FormClosedEventArgs e)
+        {
+            this.Show();
+        }
+
+        private void textBox_passWord_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                button1.PerformClick();
+                button_dangNhap.PerformClick();
             }
         }
     }

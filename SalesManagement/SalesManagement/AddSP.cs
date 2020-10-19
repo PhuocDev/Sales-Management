@@ -10,26 +10,21 @@ using System.Windows.Forms;
 
 namespace SalesManagement
 {
-    public partial class FormHoaDon : Form
+    public partial class AddSP : Form
     {
-        public FormHoaDon()
+        public AddSP()
         {
             InitializeComponent();
         }
 
-        private void button_menu_Click(object sender, EventArgs e)
+        private void button_them_Click(object sender, EventArgs e)
         {
-            this.Close();
+
         }
 
-        private void button_back_Click(object sender, EventArgs e)
+        private void button_huyBo_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void btnThem_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

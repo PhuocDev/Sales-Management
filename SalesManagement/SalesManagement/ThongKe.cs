@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SalesManagement
 {
-    public partial class FormHoaDon : Form
+    public partial class ThongKe : Form
     {
-        public FormHoaDon()
+        public ThongKe()
         {
             InitializeComponent();
         }
@@ -25,11 +25,6 @@ namespace SalesManagement
         private void button_back_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void btnThem_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
