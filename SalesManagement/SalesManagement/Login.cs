@@ -15,19 +15,20 @@ namespace SalesManagement
 {
     public partial class Login : Form
     {
-        SqlConnection con = new SqlConnection();
-        SqlCommand com = new SqlCommand();
-        SqlDataReader dr;
+        static string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
+        SqlConnection connection = new SqlConnection(conString);
+        /*SqlCommand com = new SqlCommand();
+        SqlDataReader dr;*/
 
         public Login()
         {
             InitializeComponent();
-            con.ConnectionString = @"Data Source=DESKTOP-STUS076\SQLEXPRESS;Initial Catalog=SALES_MANAGEMENT;Integrated Security=True";
+            //con.ConnectionString = @"Data Source=DESKTOP-STUS076\SQLEXPRESS;Initial Catalog=SALES_MANAGEMENT;Integrated Security=True";
         }
 
         private string Hash_pass(string pass)
         {
-            //Tạo MD5 
+            /*//Tạo MD5 
             MD5 mh = MD5.Create();
             //Chuyển kiểu chuổi thành kiểu byte
             byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(pass);
@@ -41,15 +42,24 @@ namespace SalesManagement
             }
             string repass = Convert.ToString(sb);
             repass = repass.Substring(0, 7);
-            return repass;
+            return repass;*/
+            byte[] temp = ASCIIEncoding.ASCII.GetBytes(pass);
+            byte[] hasData = new MD5CryptoServiceProvider().ComputeHash(temp);
+
+            string hasPass = "";
+
+            foreach (byte item in hasData)
+            {
+                hasPass += item;
+            }
+            return hasPass;
         }
         private bool VerifyUser(string name, string pass)
         {
-            con.Open();
-            if (name.Substring(0, 1) == "N")
+            connection.Open();
+            if (name.Substring(0, 2) == "NV")
             {
-                
-                string query = "select * from NHANVIEN where MANV= '" + name.Trim() + "' and PASSWORD = '" + Hash_pass(pass).Trim() + "'";
+                /*string query = "select * from NHANVIEN where MANV= '" + name.Trim() + "' and PASSWORD = '" + Hash_pass(pass).Trim() + "'";
                 SqlDataAdapter sda = new SqlDataAdapter(query, con);
                 DataTable dttb = new DataTable();
                 sda.Fill(dttb);
@@ -60,11 +70,25 @@ namespace SalesManagement
                 else
                 {
                     return false;
+                }*/
+                string sqlQuery = "select MANV, PASSWORD from NHANVIEN";
+                SqlCommand command = new SqlCommand(sqlQuery, connection);
+                SqlDataReader dataReader = command.ExecuteReader();
+                while (dataReader.HasRows)
+                {
+                    if (dataReader.Read() == false) break;
+                    if (dataReader.GetString(0) == name && dataReader.GetString(1) == Hash_pass(pass))
+                    {
+                        connection.Close();
+                        return true;
+                    }
                 }
+                connection.Close();
+                return false;
             }
-            else 
+            else if (name.Substring(0, 2) == "QL")
             {
-                string query = "select * from QUANLY where MAQL= '" + name.Trim() + "' and PASSWORD = '" + Hash_pass(pass).Trim() + "'";
+                /*string query = "select * from QUANLY where MAQL= '" + name.Trim() + "' and PASSWORD = '" + Hash_pass(pass).Trim() + "'";
                 SqlDataAdapter sda = new SqlDataAdapter(query, con);
                 DataTable dttb = new DataTable();
                 sda.Fill(dttb);
@@ -75,9 +99,27 @@ namespace SalesManagement
                 else
                 {
                     return false;
+                }*/
+                string sqlQuery = "select MAQL, PASSWORD from QUANLY";
+                SqlCommand command = new SqlCommand(sqlQuery, connection);
+                SqlDataReader dataReader = command.ExecuteReader();
+                while (dataReader.HasRows)
+                {
+                    if (dataReader.Read() == false) break;
+                    if (dataReader.GetString(0) == name && dataReader.GetString(1) == Hash_pass(pass))
+                    {
+                        connection.Close();
+                        return true;
+                    }
                 }
+                connection.Close();
+                return false;
             }
-            con.Close();
+            else
+            {
+                connection.Close();
+                return false;
+            }
         }
 
         private void UsernamEnter(object sender, EventArgs e)
@@ -98,18 +140,19 @@ namespace SalesManagement
 
         private void button_dangNhap_Click(object sender, EventArgs e)
         {
-/*            if (VerifyUser(textBox1.Text, textBox_passWord.Text))
+            if (VerifyUser(textBox1.Text, textBox_passWord.Text))
             {
                 menu mn = new menu();
                 mn.FormClosed += new FormClosedEventHandler(menu_FormClose);
-                MessageBox.Show("Login Successfully!");
+                mn.Show();
+                this.Hide();
             }
-            else MessageBox.Show("ERROR!");*/
+            else MessageBox.Show("ERROR!");
 
-            menu mn = new menu();
+            /*menu mn = new menu();
             mn.FormClosed += new FormClosedEventHandler(menu_FormClose);
             mn.Show();
-            this.Hide();
+            this.Hide();*/
         }
         private void menu_FormClose(object sender, FormClosedEventArgs e)
         {
