@@ -12,9 +12,32 @@ namespace SalesManagement
 {
     public partial class FormKhachHang : Form
     {
+        public changeform change;
         public FormKhachHang()
         {
             InitializeComponent();
+        }
+        public FormKhachHang(changeform change)
+        {
+            InitializeComponent();
+            this.change = change;
+        }
+
+        private void button_menu_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button_back_Click(object sender, EventArgs e)
+        {
+            this.change();
+            this.Hide();
+        }
+
+        private void btnNhanVien_Click(object sender, EventArgs e)
+        {
+            this.change();
+            this.Hide();
         }
     }
 }

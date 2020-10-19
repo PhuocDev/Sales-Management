@@ -30,17 +30,6 @@
         {
             this.button_them = new System.Windows.Forms.Button();
             this.dataGridView_danhSachSanPham = new System.Windows.Forms.DataGridView();
-            this.label_boLoc = new System.Windows.Forms.Label();
-            this.label_maSanPham = new System.Windows.Forms.Label();
-            this.comboBox_boLoc = new System.Windows.Forms.ComboBox();
-            this.textBox_tenSanPham = new System.Windows.Forms.TextBox();
-            this.textBox_maSanPham = new System.Windows.Forms.TextBox();
-            this.button_chinhSua = new System.Windows.Forms.Button();
-            this.button_timKiem = new System.Windows.Forms.Button();
-            this.button_xuatFile = new System.Windows.Forms.Button();
-            this.button_menu = new System.Windows.Forms.Button();
-            this.button_back = new System.Windows.Forms.Button();
-            this.label_tenSanPham = new System.Windows.Forms.Label();
             this.Column_stt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_maSanPham = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_ten = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,16 +41,28 @@
             this.Column_nhaCungCap = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_ngayNhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_ghiChu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label_boLoc = new System.Windows.Forms.Label();
+            this.label_maSanPham = new System.Windows.Forms.Label();
+            this.comboBox_boLoc = new System.Windows.Forms.ComboBox();
+            this.textBox_tenSanPham = new System.Windows.Forms.TextBox();
+            this.textBox_maSanPham = new System.Windows.Forms.TextBox();
+            this.button_chinhSua = new System.Windows.Forms.Button();
+            this.button_timKiem = new System.Windows.Forms.Button();
+            this.button_xuatFile = new System.Windows.Forms.Button();
+            this.button_menu = new System.Windows.Forms.Button();
+            this.button_back = new System.Windows.Forms.Button();
+            this.label_tenSanPham = new System.Windows.Forms.Label();
+            this.button_luuKho = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_danhSachSanPham)).BeginInit();
             this.SuspendLayout();
             // 
             // button_them
             // 
-            this.button_them.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.button_them.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.button_them.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_them.Location = new System.Drawing.Point(1096, 645);
+            this.button_them.Location = new System.Drawing.Point(825, 508);
             this.button_them.Name = "button_them";
-            this.button_them.Size = new System.Drawing.Size(160, 40);
+            this.button_them.Size = new System.Drawing.Size(125, 35);
             this.button_them.TabIndex = 54;
             this.button_them.Text = "Thêm";
             this.button_them.UseVisualStyleBackColor = false;
@@ -82,111 +83,10 @@
             this.Column_nhaCungCap,
             this.Column_ngayNhap,
             this.Column_ghiChu});
-            this.dataGridView_danhSachSanPham.Location = new System.Drawing.Point(62, 166);
+            this.dataGridView_danhSachSanPham.Location = new System.Drawing.Point(27, 141);
             this.dataGridView_danhSachSanPham.Name = "dataGridView_danhSachSanPham";
-            this.dataGridView_danhSachSanPham.Size = new System.Drawing.Size(1194, 446);
+            this.dataGridView_danhSachSanPham.Size = new System.Drawing.Size(1054, 347);
             this.dataGridView_danhSachSanPham.TabIndex = 53;
-            // 
-            // label_boLoc
-            // 
-            this.label_boLoc.AutoSize = true;
-            this.label_boLoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_boLoc.Location = new System.Drawing.Point(718, 70);
-            this.label_boLoc.Name = "label_boLoc";
-            this.label_boLoc.Size = new System.Drawing.Size(46, 16);
-            this.label_boLoc.TabIndex = 52;
-            this.label_boLoc.Text = "Bộ lọc";
-            // 
-            // label_maSanPham
-            // 
-            this.label_maSanPham.AutoSize = true;
-            this.label_maSanPham.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_maSanPham.Location = new System.Drawing.Point(61, 70);
-            this.label_maSanPham.Name = "label_maSanPham";
-            this.label_maSanPham.Size = new System.Drawing.Size(89, 16);
-            this.label_maSanPham.TabIndex = 50;
-            this.label_maSanPham.Text = "Mã sản phẩm";
-            // 
-            // comboBox_boLoc
-            // 
-            this.comboBox_boLoc.FormattingEnabled = true;
-            this.comboBox_boLoc.Location = new System.Drawing.Point(720, 87);
-            this.comboBox_boLoc.Name = "comboBox_boLoc";
-            this.comboBox_boLoc.Size = new System.Drawing.Size(199, 21);
-            this.comboBox_boLoc.TabIndex = 49;
-            // 
-            // textBox_tenSanPham
-            // 
-            this.textBox_tenSanPham.Location = new System.Drawing.Point(274, 88);
-            this.textBox_tenSanPham.Name = "textBox_tenSanPham";
-            this.textBox_tenSanPham.Size = new System.Drawing.Size(432, 20);
-            this.textBox_tenSanPham.TabIndex = 48;
-            // 
-            // textBox_maSanPham
-            // 
-            this.textBox_maSanPham.Location = new System.Drawing.Point(62, 88);
-            this.textBox_maSanPham.Name = "textBox_maSanPham";
-            this.textBox_maSanPham.Size = new System.Drawing.Size(200, 20);
-            this.textBox_maSanPham.TabIndex = 47;
-            // 
-            // button_chinhSua
-            // 
-            this.button_chinhSua.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.button_chinhSua.Location = new System.Drawing.Point(1042, 501);
-            this.button_chinhSua.Name = "button_chinhSua";
-            this.button_chinhSua.Size = new System.Drawing.Size(125, 35);
-            this.button_chinhSua.TabIndex = 46;
-            this.button_chinhSua.Text = "Chỉnh sửa";
-            this.button_chinhSua.UseVisualStyleBackColor = false;
-            // 
-            // button_timKiem
-            // 
-            this.button_timKiem.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.button_timKiem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_timKiem.Location = new System.Drawing.Point(949, 68);
-            this.button_timKiem.Name = "button_timKiem";
-            this.button_timKiem.Size = new System.Drawing.Size(91, 40);
-            this.button_timKiem.TabIndex = 45;
-            this.button_timKiem.Text = "Tìm kiếm";
-            this.button_timKiem.UseVisualStyleBackColor = false;
-            // 
-            // button_xuatFile
-            // 
-            this.button_xuatFile.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.button_xuatFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_xuatFile.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.button_xuatFile.Location = new System.Drawing.Point(1096, 66);
-            this.button_xuatFile.Name = "button_xuatFile";
-            this.button_xuatFile.Size = new System.Drawing.Size(160, 40);
-            this.button_xuatFile.TabIndex = 44;
-            this.button_xuatFile.Text = "Xuất file";
-            this.button_xuatFile.UseVisualStyleBackColor = false;
-            // 
-            // button_menu
-            // 
-            this.button_menu.Location = new System.Drawing.Point(0, 0);
-            this.button_menu.Name = "button_menu";
-            this.button_menu.Size = new System.Drawing.Size(46, 42);
-            this.button_menu.TabIndex = 43;
-            this.button_menu.UseVisualStyleBackColor = true;
-            // 
-            // button_back
-            // 
-            this.button_back.Location = new System.Drawing.Point(45, 0);
-            this.button_back.Name = "button_back";
-            this.button_back.Size = new System.Drawing.Size(47, 42);
-            this.button_back.TabIndex = 42;
-            this.button_back.UseVisualStyleBackColor = true;
-            // 
-            // label_tenSanPham
-            // 
-            this.label_tenSanPham.AutoSize = true;
-            this.label_tenSanPham.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_tenSanPham.Location = new System.Drawing.Point(273, 70);
-            this.label_tenSanPham.Name = "label_tenSanPham";
-            this.label_tenSanPham.Size = new System.Drawing.Size(94, 16);
-            this.label_tenSanPham.TabIndex = 51;
-            this.label_tenSanPham.Text = "Tên sản phẩm";
             // 
             // Column_stt
             // 
@@ -265,11 +165,138 @@
             this.Column_ghiChu.Name = "Column_ghiChu";
             this.Column_ghiChu.Width = 110;
             // 
+            // label_boLoc
+            // 
+            this.label_boLoc.AutoSize = true;
+            this.label_boLoc.BackColor = System.Drawing.Color.Transparent;
+            this.label_boLoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_boLoc.Location = new System.Drawing.Point(686, 77);
+            this.label_boLoc.Name = "label_boLoc";
+            this.label_boLoc.Size = new System.Drawing.Size(46, 16);
+            this.label_boLoc.TabIndex = 52;
+            this.label_boLoc.Text = "Bộ lọc";
+            // 
+            // label_maSanPham
+            // 
+            this.label_maSanPham.AutoSize = true;
+            this.label_maSanPham.BackColor = System.Drawing.Color.Transparent;
+            this.label_maSanPham.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_maSanPham.Location = new System.Drawing.Point(29, 77);
+            this.label_maSanPham.Name = "label_maSanPham";
+            this.label_maSanPham.Size = new System.Drawing.Size(89, 16);
+            this.label_maSanPham.TabIndex = 50;
+            this.label_maSanPham.Text = "Mã sản phẩm";
+            // 
+            // comboBox_boLoc
+            // 
+            this.comboBox_boLoc.FormattingEnabled = true;
+            this.comboBox_boLoc.Location = new System.Drawing.Point(686, 94);
+            this.comboBox_boLoc.Name = "comboBox_boLoc";
+            this.comboBox_boLoc.Size = new System.Drawing.Size(199, 21);
+            this.comboBox_boLoc.TabIndex = 49;
+            // 
+            // textBox_tenSanPham
+            // 
+            this.textBox_tenSanPham.Location = new System.Drawing.Point(240, 95);
+            this.textBox_tenSanPham.Name = "textBox_tenSanPham";
+            this.textBox_tenSanPham.Size = new System.Drawing.Size(432, 20);
+            this.textBox_tenSanPham.TabIndex = 48;
+            // 
+            // textBox_maSanPham
+            // 
+            this.textBox_maSanPham.Location = new System.Drawing.Point(28, 95);
+            this.textBox_maSanPham.Name = "textBox_maSanPham";
+            this.textBox_maSanPham.Size = new System.Drawing.Size(200, 20);
+            this.textBox_maSanPham.TabIndex = 47;
+            // 
+            // button_chinhSua
+            // 
+            this.button_chinhSua.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.button_chinhSua.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_chinhSua.Location = new System.Drawing.Point(956, 508);
+            this.button_chinhSua.Name = "button_chinhSua";
+            this.button_chinhSua.Size = new System.Drawing.Size(125, 35);
+            this.button_chinhSua.TabIndex = 46;
+            this.button_chinhSua.Text = "Chỉnh sửa";
+            this.button_chinhSua.UseVisualStyleBackColor = false;
+            this.button_chinhSua.Click += new System.EventHandler(this.button_chinhSua_Click);
+            // 
+            // button_timKiem
+            // 
+            this.button_timKiem.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.button_timKiem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_timKiem.Location = new System.Drawing.Point(956, 77);
+            this.button_timKiem.Name = "button_timKiem";
+            this.button_timKiem.Size = new System.Drawing.Size(125, 38);
+            this.button_timKiem.TabIndex = 45;
+            this.button_timKiem.Text = "Tìm kiếm";
+            this.button_timKiem.UseVisualStyleBackColor = false;
+            // 
+            // button_xuatFile
+            // 
+            this.button_xuatFile.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.button_xuatFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_xuatFile.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.button_xuatFile.Location = new System.Drawing.Point(956, 25);
+            this.button_xuatFile.Name = "button_xuatFile";
+            this.button_xuatFile.Size = new System.Drawing.Size(125, 39);
+            this.button_xuatFile.TabIndex = 44;
+            this.button_xuatFile.Text = "Xuất file";
+            this.button_xuatFile.UseVisualStyleBackColor = false;
+            this.button_xuatFile.Click += new System.EventHandler(this.button_xuatFile_Click);
+            // 
+            // button_menu
+            // 
+            this.button_menu.BackgroundImage = global::SalesManagement.Properties.Resources.home;
+            this.button_menu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button_menu.Location = new System.Drawing.Point(0, 0);
+            this.button_menu.Name = "button_menu";
+            this.button_menu.Size = new System.Drawing.Size(46, 42);
+            this.button_menu.TabIndex = 43;
+            this.button_menu.UseVisualStyleBackColor = true;
+            this.button_menu.Click += new System.EventHandler(this.button_menu_Click);
+            // 
+            // button_back
+            // 
+            this.button_back.BackgroundImage = global::SalesManagement.Properties.Resources.back1;
+            this.button_back.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button_back.Location = new System.Drawing.Point(44, 0);
+            this.button_back.Name = "button_back";
+            this.button_back.Size = new System.Drawing.Size(47, 42);
+            this.button_back.TabIndex = 42;
+            this.button_back.UseVisualStyleBackColor = true;
+            this.button_back.Click += new System.EventHandler(this.button_back_Click);
+            // 
+            // label_tenSanPham
+            // 
+            this.label_tenSanPham.AutoSize = true;
+            this.label_tenSanPham.BackColor = System.Drawing.Color.Transparent;
+            this.label_tenSanPham.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_tenSanPham.Location = new System.Drawing.Point(241, 77);
+            this.label_tenSanPham.Name = "label_tenSanPham";
+            this.label_tenSanPham.Size = new System.Drawing.Size(94, 16);
+            this.label_tenSanPham.TabIndex = 51;
+            this.label_tenSanPham.Text = "Tên sản phẩm";
+            // 
+            // button_luuKho
+            // 
+            this.button_luuKho.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.button_luuKho.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_luuKho.Location = new System.Drawing.Point(677, 508);
+            this.button_luuKho.Name = "button_luuKho";
+            this.button_luuKho.Size = new System.Drawing.Size(140, 35);
+            this.button_luuKho.TabIndex = 55;
+            this.button_luuKho.Text = "Lưu kho";
+            this.button_luuKho.UseVisualStyleBackColor = false;
+            // 
             // NhapHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1344, 729);
+            this.BackgroundImage = global::SalesManagement.Properties.Resources.background2;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(1106, 565);
+            this.Controls.Add(this.button_luuKho);
             this.Controls.Add(this.button_them);
             this.Controls.Add(this.dataGridView_danhSachSanPham);
             this.Controls.Add(this.label_boLoc);
@@ -284,8 +311,8 @@
             this.Controls.Add(this.button_back);
             this.Controls.Add(this.label_tenSanPham);
             this.Name = "NhapHang";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nhập hàng";
-            this.Load += new System.EventHandler(this.NhapHang_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_danhSachSanPham)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -318,5 +345,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_nhaCungCap;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_ngayNhap;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_ghiChu;
+        private System.Windows.Forms.Button button_luuKho;
     }
 }
