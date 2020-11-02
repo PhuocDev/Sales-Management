@@ -72,7 +72,7 @@ namespace SalesManagement
 
         private void button_chinhSua_Click(object sender, EventArgs e)
         {
-            ChinhSuaDSSP cs = new ChinhSuaDSSP();
+            ChinhSuaDSSP cs = new ChinhSuaDSSP(this);
             cs.ShowDialog();
         }
     }

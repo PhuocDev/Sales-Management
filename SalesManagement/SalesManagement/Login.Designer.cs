@@ -43,7 +43,7 @@
             this.button_dangNhap.Margin = new System.Windows.Forms.Padding(2);
             this.button_dangNhap.Name = "button_dangNhap";
             this.button_dangNhap.Size = new System.Drawing.Size(162, 42);
-            this.button_dangNhap.TabIndex = 21;
+            this.button_dangNhap.TabIndex = 2;
             this.button_dangNhap.Text = "Đăng nhập";
             this.button_dangNhap.UseVisualStyleBackColor = false;
             this.button_dangNhap.Click += new System.EventHandler(this.button_dangNhap_Click);
@@ -63,8 +63,8 @@
             this.textBox_passWord.Location = new System.Drawing.Point(106, 210);
             this.textBox_passWord.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textBox_passWord.Name = "textBox_passWord";
-            this.textBox_passWord.Size = new System.Drawing.Size(224, 29);
-            this.textBox_passWord.TabIndex = 26;
+            this.textBox_passWord.Size = new System.Drawing.Size(224, 30);
+            this.textBox_passWord.TabIndex = 1;
             this.textBox_passWord.Text = "Password";
             this.textBox_passWord.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.textBox_passWord.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_passWord_KeyDown);
@@ -84,14 +84,14 @@
             this.textBox1.Location = new System.Drawing.Point(106, 145);
             this.textBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(224, 29);
-            this.textBox1.TabIndex = 26;
+            this.textBox1.Size = new System.Drawing.Size(224, 30);
+            this.textBox1.TabIndex = 0;
             this.textBox1.Text = "Username";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.BackgroundImage = global::SalesManagement.Properties.Resources.background2;

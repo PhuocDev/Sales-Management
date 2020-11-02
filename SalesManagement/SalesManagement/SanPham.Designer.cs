@@ -312,7 +312,7 @@
         #endregion
 
         private System.Windows.Forms.Button button_nhapHang;
-        private System.Windows.Forms.DataGridView dataGridView_danhSachSanPham;
+        public System.Windows.Forms.DataGridView dataGridView_danhSachSanPham;
         private System.Windows.Forms.Label label_boLoc;
         private System.Windows.Forms.Label label_tenSanPham;
         private System.Windows.Forms.Label label_maSanPham;
