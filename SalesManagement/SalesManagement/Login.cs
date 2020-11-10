@@ -15,6 +15,7 @@ namespace SalesManagement
 {
     public partial class Login : Form
     {
+        public bool isQL = false;
         static string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
         SqlConnection connection = new SqlConnection(conString);
         /*SqlCommand com = new SqlCommand();
@@ -80,6 +81,7 @@ namespace SalesManagement
                     if (dataReader.GetString(0) == name && dataReader.GetString(1) == Hash_pass(pass))
                     {
                         connection.Close();
+                        isQL = false;
                         return true;
                     }
                 }
@@ -109,6 +111,7 @@ namespace SalesManagement
                     if (dataReader.GetString(0) == name && dataReader.GetString(1) == Hash_pass(pass))
                     {
                         connection.Close();
+                        isQL = true;
                         return true;
                     }
                 }

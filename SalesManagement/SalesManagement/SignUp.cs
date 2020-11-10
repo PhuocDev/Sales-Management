@@ -14,7 +14,8 @@ namespace SalesManagement
 {
     public partial class SignUp : Form
     {
-        string connectionString = @"Data Source=DESKTOP-STUS076\SQLEXPRESS;Initial Catalog=SALES_MANAGEMENT;Integrated Security=True";
+        static string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
+        SqlConnection connection = new SqlConnection(conString);
         public SignUp()
         {
             InitializeComponent();
@@ -22,7 +23,7 @@ namespace SalesManagement
         }
         private bool Check_Used_name(string name)
         {
-            SqlConnection con = new SqlConnection();
+            /*SqlConnection con = new SqlConnection();
             con.ConnectionString = @"Data Source=DESKTOP-STUS076\SQLEXPRESS;Initial Catalog=SALES_MANAGEMENT;Integrated Security=True";
             con.Open();
             if (name.Substring(0, 1) == "N")
@@ -41,7 +42,47 @@ namespace SalesManagement
                 }
             }
             else return false;
-            con.Close();
+            con.Close();*/
+            connection.Open();
+            if (name.Substring(0, 2) == "NV")
+            {
+                string sqlQuery = "select MANV from NHANVIEN";
+                SqlCommand command = new SqlCommand(sqlQuery, connection);
+                SqlDataReader dataReader = command.ExecuteReader();
+                while (dataReader.HasRows)
+                {
+                    if (dataReader.Read() == false) break;
+                    if (dataReader.GetString(0) == name)
+                    {
+                        connection.Close();
+                        return true;
+                    }
+                }
+                connection.Close();
+                return false;
+            }
+            else if (name.Substring(0, 2) == "QL")
+            {
+                string sqlQuery = "select MAQL from QUANLY";
+                SqlCommand command = new SqlCommand(sqlQuery, connection);
+                SqlDataReader dataReader = command.ExecuteReader();
+                while (dataReader.HasRows)
+                {
+                    if (dataReader.Read() == false) break;
+                    if (dataReader.GetString(0) == name)
+                    {
+                        connection.Close();
+                        return true;
+                    }
+                }
+                connection.Close();
+                return false;
+            }
+            else
+            {
+                connection.Close();
+                return false;
+            }
         }
         private bool fillCondition()
         {
@@ -76,33 +117,33 @@ namespace SalesManagement
         }
         private string Hash_pass(string pass)
         {
-            //Tạo MD5 
-            MD5 mh = MD5.Create();
-            //Chuyển kiểu chuổi thành kiểu byte
-            byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(pass);
-            //mã hóa chuỗi đã chuyển
-            byte[] hash = mh.ComputeHash(inputBytes);
-            //tạo đối tượng StringBuilder (làm việc với kiểu dữ liệu lớn)
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < hash.Length; i++)
+            byte[] temp = ASCIIEncoding.ASCII.GetBytes(pass);
+            byte[] hasData = new MD5CryptoServiceProvider().ComputeHash(temp);
+
+            string hasPass = "";
+
+            foreach (byte item in hasData)
             {
-                sb.Append(hash[i].ToString("x2"));
+                hasPass += item;
             }
-            string repass = Convert.ToString(sb);
-            repass = repass.Substring(0, 7);
-            return repass;
+            return hasPass;
         }
         
         
         private void button1_Click(object sender, EventArgs e)
         {
-            using (SqlConnection sqlCon = new SqlConnection(connectionString))
+            /*if (isQL == false)
+            {
+                MessageBox.Show("Không có quyền thêm nhân viên");
+            }*/
+            using (SqlConnection sqlCon = new SqlConnection(conString))
             {
                 if (fillCondition())
                 {
                     sqlCon.Open();
-                    SqlCommand sqlCmd = new SqlCommand("NHANVIEN_ADD", sqlCon);
-                    sqlCmd.CommandType = CommandType.StoredProcedure;
+                    string commandString = "INSERT INTO NHANVIEN VALUES('" + textBox5_MaNV.Text + "', '" + Hash_pass(textBox2_matKhau.Text) + "', N'" + textBox4_HoTen.Text + "', '" + textBox_nam.Text + "-" + textBox_thang.Text + "-" + textBox_ngay.Text + "', N'" + comboBox2.SelectedItem.ToString() + "', '" + textBox_DienThoai.Text + "', N'" + textBox_diaChi.Text + "')";
+                    SqlCommand sqlCmd = new SqlCommand(commandString, sqlCon);
+                    /*sqlCmd.CommandType = CommandType.StoredProcedure;
                     sqlCmd.Parameters.AddWithValue("@MANV", textBox5_MaNV.Text.Trim());
                     sqlCmd.Parameters.AddWithValue("@PASSWORD", Hash_pass(textBox2_matKhau.Text).Trim());  // hashed password
                     sqlCmd.Parameters.AddWithValue("@TEN", textBox4_HoTen.Text.Trim());
@@ -110,13 +151,13 @@ namespace SalesManagement
                     sqlCmd.Parameters.AddWithValue("@NGAYSINH ", date.Trim());
                     sqlCmd.Parameters.AddWithValue("@GIOITINH", this.comboBox2.SelectedItem.ToString().Trim());
                     sqlCmd.Parameters.AddWithValue("@SDT", textBox_DienThoai.Text.Trim());
-                    sqlCmd.Parameters.AddWithValue("@DIACHI", textBox_diaChi.Text.Trim());
+                    sqlCmd.Parameters.AddWithValue("@DIACHI", textBox_diaChi.Text.Trim());*/
                     sqlCmd.ExecuteNonQuery();
                     MessageBox.Show("Dang ki thanh cong");
                     sqlCon.Close();
                     Login test = new Login();
                     this.Hide();
-                    test.Show();
+                    //test.Show();
                 }
             }
         }
