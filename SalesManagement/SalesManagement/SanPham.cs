@@ -20,7 +20,7 @@ namespace SalesManagement
         }
         private void ImportSanPham()
         {
-            string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
+            string conString = @"Server=DESKTOP-IRREIHM\SQLEXPRESS;Database=SALES_MANAGEMENT;User Id=sa;Password=thanh08052001;";
             SqlConnection connection = new SqlConnection(conString);
             connection.Open();
             string sqlQuery = "select * from SANPHAM";

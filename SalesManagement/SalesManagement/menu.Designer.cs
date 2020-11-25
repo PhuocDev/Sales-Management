@@ -28,33 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(menu));
             this.button_SanPham = new System.Windows.Forms.Button();
             this.button_nhanVien = new System.Windows.Forms.Button();
             this.button_TKTC = new System.Windows.Forms.Button();
             this.button_QLD = new System.Windows.Forms.Button();
             this.label_trangChu = new System.Windows.Forms.Label();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button_SanPham
             // 
             this.button_SanPham.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.button_SanPham.BackgroundImage = global::SalesManagement.Properties.Resources.sản_phẩm_2;
+            this.button_SanPham.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button_SanPham.Font = new System.Drawing.Font("Lucida Fax", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_SanPham.ForeColor = System.Drawing.Color.Black;
-            this.button_SanPham.Location = new System.Drawing.Point(683, 276);
-            this.button_SanPham.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_SanPham.Location = new System.Drawing.Point(240, 75);
+            this.button_SanPham.Margin = new System.Windows.Forms.Padding(2);
             this.button_SanPham.Name = "button_SanPham";
-            this.button_SanPham.Size = new System.Drawing.Size(311, 44);
+            this.button_SanPham.Size = new System.Drawing.Size(180, 160);
             this.button_SanPham.TabIndex = 52;
-            this.button_SanPham.Text = "Sản phẩm";
             this.button_SanPham.UseVisualStyleBackColor = false;
             this.button_SanPham.Click += new System.EventHandler(this.button_SanPham_Click);
             // 
@@ -62,42 +58,45 @@
             // 
             this.button_nhanVien.AutoSize = true;
             this.button_nhanVien.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.button_nhanVien.BackgroundImage = global::SalesManagement.Properties.Resources.khach_hang;
+            this.button_nhanVien.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button_nhanVien.Font = new System.Drawing.Font("Lucida Fax", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_nhanVien.ForeColor = System.Drawing.Color.Black;
-            this.button_nhanVien.Location = new System.Drawing.Point(683, 575);
-            this.button_nhanVien.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_nhanVien.Location = new System.Drawing.Point(240, 284);
+            this.button_nhanVien.Margin = new System.Windows.Forms.Padding(2);
             this.button_nhanVien.Name = "button_nhanVien";
-            this.button_nhanVien.Size = new System.Drawing.Size(311, 44);
+            this.button_nhanVien.Size = new System.Drawing.Size(180, 160);
             this.button_nhanVien.TabIndex = 53;
-            this.button_nhanVien.Text = "Nhân viên - Khách hàng";
             this.button_nhanVien.UseVisualStyleBackColor = false;
             this.button_nhanVien.Click += new System.EventHandler(this.button_nhanVien_Click);
             // 
             // button_TKTC
             // 
             this.button_TKTC.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.button_TKTC.BackgroundImage = global::SalesManagement.Properties.Resources.chart;
+            this.button_TKTC.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button_TKTC.Font = new System.Drawing.Font("Lucida Fax", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_TKTC.ForeColor = System.Drawing.Color.Black;
-            this.button_TKTC.Location = new System.Drawing.Point(128, 571);
-            this.button_TKTC.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_TKTC.Location = new System.Drawing.Point(37, 284);
+            this.button_TKTC.Margin = new System.Windows.Forms.Padding(2);
             this.button_TKTC.Name = "button_TKTC";
-            this.button_TKTC.Size = new System.Drawing.Size(311, 44);
+            this.button_TKTC.Size = new System.Drawing.Size(180, 160);
             this.button_TKTC.TabIndex = 54;
-            this.button_TKTC.Text = "Thống kê";
             this.button_TKTC.UseVisualStyleBackColor = false;
             this.button_TKTC.Click += new System.EventHandler(this.button_TKTC_Click);
             // 
             // button_QLD
             // 
-            this.button_QLD.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.button_QLD.BackColor = System.Drawing.Color.White;
+            this.button_QLD.BackgroundImage = global::SalesManagement.Properties.Resources.icon_đơn_hàng_1;
+            this.button_QLD.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button_QLD.Font = new System.Drawing.Font("Lucida Fax", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_QLD.ForeColor = System.Drawing.Color.Black;
-            this.button_QLD.Location = new System.Drawing.Point(127, 274);
-            this.button_QLD.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_QLD.Location = new System.Drawing.Point(37, 75);
+            this.button_QLD.Margin = new System.Windows.Forms.Padding(2);
             this.button_QLD.Name = "button_QLD";
-            this.button_QLD.Size = new System.Drawing.Size(312, 44);
+            this.button_QLD.Size = new System.Drawing.Size(180, 160);
             this.button_QLD.TabIndex = 55;
-            this.button_QLD.Text = "Quản lý đơn hàng";
             this.button_QLD.UseVisualStyleBackColor = false;
             this.button_QLD.Click += new System.EventHandler(this.button_QLD_Click);
             // 
@@ -107,99 +106,100 @@
             this.label_trangChu.BackColor = System.Drawing.Color.Transparent;
             this.label_trangChu.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_trangChu.ForeColor = System.Drawing.Color.Black;
-            this.label_trangChu.Location = new System.Drawing.Point(469, 22);
+            this.label_trangChu.Location = new System.Drawing.Point(419, 18);
+            this.label_trangChu.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label_trangChu.Name = "label_trangChu";
-            this.label_trangChu.Size = new System.Drawing.Size(161, 29);
+            this.label_trangChu.Size = new System.Drawing.Size(129, 25);
             this.label_trangChu.TabIndex = 0;
             this.label_trangChu.Text = "TRANG CHỦ";
             // 
-            // pictureBox4
+            // label1
             // 
-            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(683, 65);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(311, 214);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 4;
-            this.pictureBox4.TabStop = false;
-            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
+            this.label1.AutoEllipsis = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label1.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(240, 233);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(180, 24);
+            this.label1.TabIndex = 56;
+            this.label1.Text = "Sản phẩm";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pictureBox3
+            // label2
             // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(128, 366);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(311, 213);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 3;
-            this.pictureBox3.TabStop = false;
-            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
+            this.label2.AutoEllipsis = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label2.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(37, 233);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(180, 24);
+            this.label2.TabIndex = 57;
+            this.label2.Text = "Bán hàng";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pictureBox2
+            // label3
             // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(683, 364);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(311, 214);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 2;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            this.label3.AutoEllipsis = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label3.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(37, 443);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(180, 24);
+            this.label3.TabIndex = 58;
+            this.label3.Text = "Thống kê";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pictureBox1
+            // label4
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(128, 65);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(311, 213);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.label4.AutoEllipsis = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label4.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(240, 443);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(180, 24);
+            this.label4.TabIndex = 59;
+            this.label4.Text = "NV - KH";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // menu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::SalesManagement.Properties.Resources.background2;
+            this.BackgroundImage = global::SalesManagement.Properties.Resources.bgtest4;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1124, 645);
+            this.ClientSize = new System.Drawing.Size(924, 524);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.label_trangChu);
             this.Controls.Add(this.button_QLD);
             this.Controls.Add(this.button_TKTC);
             this.Controls.Add(this.button_nhanVien);
             this.Controls.Add(this.button_SanPham);
-            this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "menu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Button button_SanPham;
         private System.Windows.Forms.Button button_nhanVien;
         private System.Windows.Forms.Button button_TKTC;
         private System.Windows.Forms.Button button_QLD;
         private System.Windows.Forms.Label label_trangChu;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }
