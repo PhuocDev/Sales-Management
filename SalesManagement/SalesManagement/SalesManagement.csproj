@@ -199,5 +199,23 @@
   <ItemGroup>
     <None Include="Resources\nhan vien.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon đơn hàng 1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sản phẩm 2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chart.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bgtest4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\acc.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login3.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
