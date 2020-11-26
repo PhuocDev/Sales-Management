@@ -97,7 +97,7 @@
             this.button_QLD.Name = "button_QLD";
             this.button_QLD.Size = new System.Drawing.Size(312, 44);
             this.button_QLD.TabIndex = 55;
-            this.button_QLD.Text = "Quản lý đơn hàng";
+            this.button_QLD.Text = "Tạo đơn hàng";
             this.button_QLD.UseVisualStyleBackColor = false;
             this.button_QLD.Click += new System.EventHandler(this.button_QLD_Click);
             // 
