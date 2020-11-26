@@ -14,8 +14,8 @@ namespace SalesManagement
 {
     public partial class SignUp : Form
     {
-        static string conString = @"Server=DESKTOP-IRREIHM\SQLEXPRESS;Database=SALES_MANAGEMENT;User Id=sa;Password=thanh08052001;";
-        SqlConnection connection = new SqlConnection(conString);
+        //static string conString = @"Server=DESKTOP-IRREIHM\SQLEXPRESS;Database=SALES_MANAGEMENT;User Id=sa;Password=thanh08052001;";
+        SqlConnection connection = new SqlConnection(global.conString);
         public SignUp()
         {
             InitializeComponent();
@@ -136,7 +136,7 @@ namespace SalesManagement
             {
                 MessageBox.Show("Không có quyền thêm nhân viên");
             }*/
-            using (SqlConnection sqlCon = new SqlConnection(conString))
+            using (SqlConnection sqlCon = new SqlConnection(global.conString))
             {
                 if (fillCondition())
                 {

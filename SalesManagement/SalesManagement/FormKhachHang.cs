@@ -21,8 +21,8 @@ namespace SalesManagement
         }
         private void UpdateKhachHang()
         {
-            string conString = @"Server=DESKTOP-IRREIHM\SQLEXPRESS;Database=SALES_MANAGEMENT;User Id=sa;Password=thanh08052001;";
-            SqlConnection connection = new SqlConnection(conString);
+            //string conString = @"Server=DESKTOP-IRREIHM\SQLEXPRESS;Database=SALES_MANAGEMENT;User Id=sa;Password=thanh08052001;";
+            SqlConnection connection = new SqlConnection(global.conString);
             connection.Open();
             string sqlQuery = "select * from KHACHHANG";
             SqlCommand command = new SqlCommand(sqlQuery, connection);
