@@ -26,7 +26,10 @@ namespace SalesManagement
             UpdateDanhSachKH();
             txbThoiGian.Text = DateTime.Now.ToString();
             txbMaHD.Text = GetMaHD();
-            //txbNhanVien.Text == GetUser();    //Them function GetUser() tra ve string ten User
+            txbTongThanhToan.Text = string.Format(CultureInfo.CreateSpecificCulture("vi-VN"), "{0:C0}", 0);
+            // ----------------------------------------------------------------------------------------------------------
+            //txbNhanVien.Text = user.name;    //Them function tra ve string ten User
+            // ----------------------------------------------------------------------------------------------------------
         }
 
         private void button_menu_Click(object sender, EventArgs e)
@@ -55,6 +58,7 @@ namespace SalesManagement
                     dataReader.GetString(7), dataReader.GetString(8));
                 listSanPham.Add(sanPham);
                 cbbTenSP.Items.Add(dataReader.GetString(1));
+                cbbMaSP.Items.Add(dataReader.GetString(0));
             }
             connection.Close();
         }
@@ -70,7 +74,7 @@ namespace SalesManagement
             {
                 if (dataReader.Read() == false) break;
                 listMaKH.Add(dataReader.GetString(0));
-                cbbKH.Items.Add(dataReader.GetString(0));
+                cbbMaKH.Items.Add(dataReader.GetString(0));
             }
             connection.Close();
         }
@@ -113,8 +117,32 @@ namespace SalesManagement
             {
                 tongThanhToan += Convert.ToInt32(dgvHoaDon.Rows[i].Cells[6].Value);
             }
-            //txbTongThanhToan.Text = tongThanhToan.ToString();
             txbTongThanhToan.Text = string.Format(CultureInfo.CreateSpecificCulture("vi-VN"), "{0:C0}", tongThanhToan);
+        }
+        private int GetSoLuong(string maSP)
+        {
+            foreach(var sanPham in listSanPham)
+            {
+                if (sanPham.maSP == maSP) return sanPham.soLuong;
+            }
+            return 0;
+        }
+        private bool KiemTraSoLuong(string maSP, int soLuong)
+        {
+            foreach (var sanPham in listSanPham)
+            {
+                if (sanPham.maSP == maSP)
+                {
+                    if (soLuong <= sanPham.soLuong) return true;
+                    else
+                    {
+                        MessageBox.Show("Số lượng sản phẩm còn lại không đủ\nSản phẩm: " + sanPham.tenSP
+                            + "\nSố lượng còn lại: " + sanPham.soLuong.ToString());
+                        return false;
+                    }
+                }
+            }
+            return false;
         }
         private void btnThem_Click(object sender, EventArgs e)
         {
@@ -122,6 +150,10 @@ namespace SalesManagement
             {
                 if (dgvHoaDon.Rows[i].Cells[2].Value.ToString() == cbbTenSP.Text)
                 {
+                    if (KiemTraSoLuong(dgvHoaDon.Rows[i].Cells[1].Value.ToString(), Convert.ToInt32(dgvHoaDon.Rows[i].Cells[3].Value) + Convert.ToInt32(nudSoLuong.Value)) == false)
+                    {
+                        return;
+                    }
                     dgvHoaDon.Rows[i].Cells[3].Value = Convert.ToInt32(dgvHoaDon.Rows[i].Cells[3].Value) + Convert.ToInt32(nudSoLuong.Value);
                     dgvHoaDon.Rows[i].Cells[6].Value = Convert.ToInt32(Convert.ToInt32(dgvHoaDon.Rows[i].Cells[3].Value) * Convert.ToInt32(dgvHoaDon.Rows[i].Cells[5].Value));
                     dgvHoaDon.ClearSelection();
@@ -135,6 +167,12 @@ namespace SalesManagement
             {
                 if (sanPham.tenSP == cbbTenSP.Text)
                 {
+                    if (nudSoLuong.Value > sanPham.soLuong)
+                    {
+                        MessageBox.Show("Số lượng sản phẩm còn lại không đủ\nSản phẩm: " + sanPham.tenSP
+                            + "\nSố lượng còn lại: " + sanPham.soLuong.ToString());
+                        return;
+                    }
                     dgvHoaDon.Rows.Add(dgvHoaDon.Rows.Count, sanPham.maSP, sanPham.tenSP, Convert.ToInt32(nudSoLuong.Value), sanPham.donViTinh,
                         sanPham.giaBan, Convert.ToInt32(nudSoLuong.Value) * sanPham.giaBan);
                     timThaySanPham = true;
@@ -171,6 +209,10 @@ namespace SalesManagement
             if (timThaySanPham == false) MessageBox.Show("Khong tim thay san pham: " + cbbTenSP.Text);
             if (dgvHoaDon.SelectedRows[0].Cells[2].Value.ToString() == cbbTenSP.Text)
             {
+                if (KiemTraSoLuong(dgvHoaDon.SelectedRows[0].Cells[1].Value.ToString(), Convert.ToInt32(nudSoLuong.Value)) == false)
+                {
+                    return;
+                }
                 dgvHoaDon.SelectedRows[0].Cells[3].Value = nudSoLuong.Value;
                 dgvHoaDon.SelectedRows[0].Cells[6].Value = Convert.ToInt32(dgvHoaDon.SelectedRows[0].Cells[3].Value) * Convert.ToInt32(dgvHoaDon.SelectedRows[0].Cells[5].Value);
                 UpdateTongThanhToan();
@@ -189,6 +231,12 @@ namespace SalesManagement
             {
                 if (sanPham.tenSP == cbbTenSP.Text)
                 {
+                    if (nudSoLuong.Value > sanPham.soLuong)
+                    {
+                        MessageBox.Show("Số lượng sản phẩm còn lại không đủ\nSản phẩm: " + sanPham.tenSP
+                            + "\nSố lượng còn lại: " + sanPham.soLuong.ToString());
+                        return;
+                    }
                     dgvHoaDon.SelectedRows[0].Cells[1].Value = sanPham.maSP;
                     dgvHoaDon.SelectedRows[0].Cells[2].Value = sanPham.tenSP;
                     dgvHoaDon.SelectedRows[0].Cells[3].Value = nudSoLuong.Value;
@@ -212,7 +260,12 @@ namespace SalesManagement
             rowIndexToRemove.Reverse();
             foreach (var index in rowIndexToRemove) dgvHoaDon.Rows.RemoveAt(index);
             for (int i = 0; i < dgvHoaDon.Rows.Count - 1; i++) dgvHoaDon.Rows[i].Cells[0].Value = i + 1;
+            cbbTenSP.TextChanged -= cbbTenSP_TextChanged;
+            cbbMaSP.TextChanged -= cbbMaSP_TextChanged;
             cbbTenSP.Text = "";
+            cbbMaSP.Text = "";
+            cbbTenSP.TextChanged += cbbTenSP_TextChanged;
+            cbbMaSP.TextChanged += cbbMaSP_TextChanged;
             nudSoLuong.Value = 1;
             UpdateTongThanhToan();
         }
@@ -228,31 +281,155 @@ namespace SalesManagement
 
         private void txbTienKhachDua_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                if (txbTienKhachDua.Text == "" || txbTienKhachDua.Text == " ₫" || txbTienKhachDua.Text == string.Format(CultureInfo.CreateSpecificCulture("vi-VN"), "{0:C0}", 0))
+                {
+                    txbTienKhachDua.Text = string.Format(CultureInfo.CreateSpecificCulture("vi-VN"), "{0:C0}", 0);
+                    txbTraLaiKhach.Text = "";
+                    MessageBox.Show("Chưa nhập tiền khách đưa");
+                    return;
+                }
+                int traLaiKhach = int.Parse(txbTienKhachDua.Text, NumberStyles.Currency) - int.Parse(txbTongThanhToan.Text, NumberStyles.Currency);
+                txbTraLaiKhach.Text = string.Format(CultureInfo.CreateSpecificCulture("vi-VN"), "{0:C0}", traLaiKhach);
+                if (int.Parse(txbTienKhachDua.Text, NumberStyles.Currency) < int.Parse(txbTongThanhToan.Text, NumberStyles.Currency))
+                    MessageBox.Show("Tiền khách đưa ít hơn tổng tiền cần thanh toán");
+            }
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }
         }
 
-        private void txbTienKhachDua_TextChanged(object sender, EventArgs e)
-        {
-            //if (txbTienKhachDua.Text == "") return;
-            txbTienKhachDua.Text = string.Format(CultureInfo.CreateSpecificCulture("vi-VN"), "{0:C0}", int.Parse(txbTienKhachDua.Text, NumberStyles.Currency));
-            if (txbTongThanhToan.Text == "") return;
-            int traLaiKhach = int.Parse(txbTienKhachDua.Text, NumberStyles.Currency) - int.Parse(txbTongThanhToan.Text, NumberStyles.Currency);
-            txbTraLaiKhach.Text = string.Format(CultureInfo.CreateSpecificCulture("vi-VN"), "{0:C0}", traLaiKhach);
-        }
-
         private void btnTaoHD_Click(object sender, EventArgs e)
         {
+            txbMaHD.Text = GetMaHD();
             txbThoiGian.Text = DateTime.Now.ToString();
+            cbbTenSP.TextChanged -= cbbTenSP_TextChanged;
+            cbbMaSP.TextChanged -= cbbMaSP_TextChanged;
             cbbTenSP.Text = "";
+            cbbMaSP.Text = "";
+            cbbTenSP.TextChanged += cbbTenSP_TextChanged;
+            cbbMaSP.TextChanged += cbbMaSP_TextChanged;
             nudSoLuong.Value = 1;
             dgvHoaDon.Rows.Clear();
-            cbbKH.Text = "";
-            txbTongThanhToan.Text = "";
+            cbbMaKH.Text = "";
+            txbTongThanhToan.Text = string.Format(CultureInfo.CreateSpecificCulture("vi-VN"), "{0:C0}", 0);
+            txbTienKhachDua.TextChanged -= txbTienKhachDua_TextChanged;
             txbTienKhachDua.Text = "";
+            txbTienKhachDua.TextChanged += txbTienKhachDua_TextChanged;
             txbTraLaiKhach.Text = "";
+        }
+
+        private void txbTienKhachDua_Leave(object sender, EventArgs e)
+        {
+            if (txbTienKhachDua.Text == "" || txbTienKhachDua.Text == " ₫" || txbTienKhachDua.Text == string.Format(CultureInfo.CreateSpecificCulture("vi-VN"), "{0:C0}", 0))
+            {
+                txbTienKhachDua.Text = string.Format(CultureInfo.CreateSpecificCulture("vi-VN"), "{0:C0}", 0);
+                txbTraLaiKhach.Text = "";
+                MessageBox.Show("Chưa nhập tiền khách đưa");
+                return;
+            }
+            int traLaiKhach = int.Parse(txbTienKhachDua.Text, NumberStyles.Currency) - int.Parse(txbTongThanhToan.Text, NumberStyles.Currency);
+            txbTraLaiKhach.Text = string.Format(CultureInfo.CreateSpecificCulture("vi-VN"), "{0:C0}", traLaiKhach);
+            if (int.Parse(txbTienKhachDua.Text, NumberStyles.Currency) < int.Parse(txbTongThanhToan.Text, NumberStyles.Currency))
+                MessageBox.Show("Tiền khách đưa ít hơn tổng tiền cần thanh toán");
+        }
+
+        private void txbTienKhachDua_TextChanged(object sender, EventArgs e)
+        {
+            string stringSoTien = txbTienKhachDua.Text.Replace(".", "").Replace(",", "").Replace("₫", "").Replace(" ", "");
+            if (stringSoTien == "") return;
+            int soTien = int.Parse(stringSoTien);
+            txbTienKhachDua.TextChanged -= txbTienKhachDua_TextChanged;
+            txbTienKhachDua.Text = string.Format(CultureInfo.CreateSpecificCulture("vi-VN"), "{0:C0}", soTien);
+            txbTienKhachDua.TextChanged += txbTienKhachDua_TextChanged;
+            txbTienKhachDua.Select(txbTienKhachDua.Text.Length - 2, 0);
+        }
+
+        private void cbbTenSP_TextChanged(object sender, EventArgs e)
+        {
+            if (cbbTenSP.FindString(cbbTenSP.Text) != -1)
+            {
+                cbbMaSP.TextChanged -= cbbMaSP_TextChanged;
+                cbbMaSP.Text = cbbMaSP.Items[cbbTenSP.FindString(cbbTenSP.Text)].ToString();
+                cbbMaSP.TextChanged += cbbMaSP_TextChanged;
+            }
+        }
+
+        private void cbbMaSP_TextChanged(object sender, EventArgs e)
+        {
+            if (cbbMaSP.FindString(cbbMaSP.Text) != -1)
+            {
+                cbbTenSP.TextChanged -= cbbTenSP_TextChanged;
+                cbbTenSP.Text = cbbTenSP.Items[cbbMaSP.FindString(cbbMaSP.Text)].ToString();
+                cbbTenSP.TextChanged += cbbTenSP_TextChanged;
+            }
+        }
+
+        private void btnThanhToan_Click(object sender, EventArgs e)
+        {
+            if (dgvHoaDon.Rows.Count <= 1)
+            {
+                MessageBox.Show("Chưa nhập sản phẩm");
+                return;
+            }
+            if (txbTienKhachDua.Text == "" || txbTienKhachDua.Text == " ₫" || txbTienKhachDua.Text == string.Format(CultureInfo.CreateSpecificCulture("vi-VN"), "{0:C0}", 0))
+            {
+                MessageBox.Show("Chưa nhập tiền khách đưa");
+                return;
+            }
+            SqlConnection connection = new SqlConnection(conString);
+            connection.Open();
+            string sqlQuery = "INSERT INTO HOADON(MAHD, MANV, MAKH, THOIGIAN, TONGGIATRI) VALUES (@maHD, @maNV, @maKH, @thoiGian, @tongGiaTri)";
+            SqlCommand command = new SqlCommand(sqlQuery, connection);
+            command.Parameters.AddWithValue("@maHD", txbMaHD.Text);
+            // ------------------------------------------------------------------------------------------------
+            //command.Parameters.AddWithValue("@maNV", user.MaNV);
+            command.Parameters.AddWithValue("@maNV", "NV001");  //Chưa đổi MANV
+            // ------------------------------------------------------------------------------------------------
+            command.Parameters.AddWithValue("@maKH", cbbMaKH.Text);
+            command.Parameters.AddWithValue("@thoiGian", Convert.ToDateTime(txbThoiGian.Text));
+            command.Parameters.AddWithValue("@tongGiaTri", int.Parse(txbTongThanhToan.Text, NumberStyles.Currency));
+            int check = command.ExecuteNonQuery();
+            if (check != 1)
+            {
+                MessageBox.Show("Failed query INSERT INTO HOADON");
+                connection.Close();
+                return;
+            }
+            sqlQuery = "INSERT INTO CTHD(MAHD, MASP, SOLUONG) VALUES (@maHD, @maSP, @soLuong)";
+            command = new SqlCommand(sqlQuery, connection);
+            /*string sqlQuery2 = "UPDATE SANPHAM SET SOLUONG = SOLUONG - @soLuong";
+            SqlCommand command2 = new SqlCommand(sqlQuery2, connection);*/
+            for (int i = 0; i < dgvHoaDon.Rows.Count - 1; i++)
+            {
+                command.Parameters.Clear();
+                command.Parameters.AddWithValue("@maHD", txbMaHD.Text);
+                command.Parameters.AddWithValue("@maSP", dgvHoaDon.Rows[i].Cells[1].Value.ToString());
+                command.Parameters.AddWithValue("@soLuong", dgvHoaDon.Rows[i].Cells[3].Value);
+                check = command.ExecuteNonQuery();
+                if (check != 1)
+                {
+                    MessageBox.Show("Failed query INSERT INTO CTHD\nMã sản phẩm: " + dgvHoaDon.Rows[i].Cells[1].Value.ToString());
+                }
+            }
+            sqlQuery = "UPDATE SANPHAM SET SOLUONG = SOLUONG - @soLuong WHERE MASP = @maSP";
+            command = new SqlCommand(sqlQuery, connection);
+            for (int i = 0; i < dgvHoaDon.Rows.Count - 1; i++)
+            {
+                command.Parameters.Clear();
+                command.Parameters.AddWithValue("@maSP", dgvHoaDon.Rows[i].Cells[1].Value.ToString());
+                command.Parameters.AddWithValue("@soLuong", dgvHoaDon.Rows[i].Cells[3].Value);
+                check = command.ExecuteNonQuery();
+                if (check != 1)
+                {
+                    MessageBox.Show("Failed query UPDATE SANPHAM\nMã sản phẩm: " + dgvHoaDon.Rows[i].Cells[1].Value.ToString());
+                }
+            }
+            MessageBox.Show("Thanh toán thành công");
+            btnTaoHD.PerformClick();
+            connection.Close();
         }
     }
 }
