@@ -16,7 +16,7 @@ namespace SalesManagement
     public partial class Login : Form
     {
         public bool isQL = false;
-        static string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
+        static string conString = @"Server=DESKTOP-IRREIHM\SQLEXPRESS;Database=SALES_MANAGEMENT;User Id=sa;Password=thanh08052001;";
         SqlConnection connection = new SqlConnection(conString);
         /*SqlCommand com = new SqlCommand();
         SqlDataReader dr;*/
@@ -173,6 +173,21 @@ namespace SalesManagement
             {
                 button_dangNhap.PerformClick();
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
