@@ -15,7 +15,6 @@ namespace SalesManagement
     public delegate void changeform();
     public partial class FormNhanVien : Form
     {
-        string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
         public FormNhanVien()
         {
             InitializeComponent();
@@ -26,10 +25,8 @@ namespace SalesManagement
         //------------------------------------------------update_Nhân viên----------------------------------------//
         private void UpdateNhanVien()
         {
-<<<<<<< HEAD
-=======
             SqlConnection connection = new SqlConnection(conString);
->>>>>>> 2fc26b192b351325a0c8ac42c3c63a60997779d2
+
             connection.Open();
             string sqlQuery = "select * from NHANVIEN";
             SqlCommand command = new SqlCommand(sqlQuery, connection);
@@ -109,7 +106,7 @@ namespace SalesManagement
                 DataGridViewCell cell = dataGridView1.CurrentCell;
                 int index = cell.RowIndex;
                 dataGridView1.Rows[index].Cells[2].Value = txbHoTen.Text;
-                dataGridView1.Rows[index].Cells[3].Value = dateTimePicker1.Value.ToString();
+                dataGridView1.Rows[index].Cells[3].Value = dateTimePicker1.Value.ToString().Substring(0, dateTimePicker1.Value.ToString().IndexOf(" "));
                 dataGridView1.Rows[index].Cells[4].Value = txbGioiTinh.Text;
                 dataGridView1.Rows[index].Cells[5].Value = txbSDT.Text;
                 dataGridView1.Rows[index].Cells[6].Value = txbDiaChi.Text;
@@ -235,6 +232,7 @@ namespace SalesManagement
             DataGridViewCell cell = dataGridView1.CurrentCell;
             int index = cell.RowIndex;
             txbMaNV.Text = dataGridView1.Rows[index].Cells[1].Value.ToString();
+            this.label_warning.Text = "";
         }
 
         private void txbMaNV_Enter(object sender, EventArgs e)// thông báo nhân viên thay đổi
