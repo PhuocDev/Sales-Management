@@ -14,7 +14,7 @@ namespace SalesManagement
 {
     public partial class SignUp : Form
     {
-        static string conString = @"Server=DESKTOP-IRREIHM\SQLEXPRESS;Database=SALES_MANAGEMENT;User Id=sa;Password=thanh08052001;";
+        static string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
         SqlConnection connection = new SqlConnection(conString);
         public SignUp()
         {
