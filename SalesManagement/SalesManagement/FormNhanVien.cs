@@ -15,6 +15,7 @@ namespace SalesManagement
     public delegate void changeform();
     public partial class FormNhanVien : Form
     {
+        string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
         public FormNhanVien()
         {
             InitializeComponent();
@@ -25,6 +26,10 @@ namespace SalesManagement
         //------------------------------------------------update_Nhân viên----------------------------------------//
         private void UpdateNhanVien()
         {
+<<<<<<< HEAD
+=======
+            SqlConnection connection = new SqlConnection(conString);
+>>>>>>> 2fc26b192b351325a0c8ac42c3c63a60997779d2
             connection.Open();
             string sqlQuery = "select * from NHANVIEN";
             SqlCommand command = new SqlCommand(sqlQuery, connection);
