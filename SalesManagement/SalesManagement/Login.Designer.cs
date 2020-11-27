@@ -91,6 +91,9 @@
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = "Username";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.textBox1.Enter += new System.EventHandler(this.textBox1_Enter);
+            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            this.textBox1.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
             // label2
             // 
@@ -101,7 +104,7 @@
             this.label2.Location = new System.Drawing.Point(113, 144);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(109, 38);
-            this.label2.TabIndex = 4;
+            this.label2.TabIndex = 0;
             this.label2.Text = "Log In";
             // 
             // panel1
@@ -116,7 +119,7 @@
             this.panel1.Location = new System.Drawing.Point(456, 35);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(333, 412);
-            this.panel1.TabIndex = 5;
+            this.panel1.TabIndex = 0;
             // 
             // panel2
             // 
@@ -126,7 +129,7 @@
             this.panel2.Location = new System.Drawing.Point(111, 46);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(112, 95);
-            this.panel2.TabIndex = 5;
+            this.panel2.TabIndex = 0;
             // 
             // Login
             // 
@@ -143,7 +146,6 @@
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
-            this.Load += new System.EventHandler(this.Login_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
