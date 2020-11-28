@@ -13,6 +13,7 @@ namespace SalesManagement
 {
     public partial class FormKhachHang : Form
     {
+        //string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
         public changeform change;
         public FormKhachHang()
         {
@@ -21,8 +22,12 @@ namespace SalesManagement
         }
         private void UpdateKhachHang()
         {
+//<<<<<<< HEAD
             //string conString = @"Server=DESKTOP-IRREIHM\SQLEXPRESS;Database=SALES_MANAGEMENT;User Id=sa;Password=thanh08052001;";
             SqlConnection connection = new SqlConnection(global.conString);
+//=======
+            //SqlConnection connection = new SqlConnection(globa);
+//>>>>> 2fc26b192b351325a0c8ac42c3c63a60997779d2
             connection.Open();
             string sqlQuery = "select * from KHACHHANG";
             SqlCommand command = new SqlCommand(sqlQuery, connection);

@@ -17,8 +17,13 @@ namespace SalesManagement
     public partial class Login : Form
     {
         public bool isQL = false;
+        // HEAD
         //static string conString = @"Server=DESKTOP-IRREIHM\SQLEXPRESS;Database=SALES_MANAGEMENT;User Id=sa;Password=thanh08052001;";
         SqlConnection connection = new SqlConnection(global.conString);
+//=======
+        static string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
+        //SqlConnection connection = new SqlConnection(conString);
+//>>>>>>> 2fc26b192b351325a0c8ac42c3c63a60997779d2
         /*SqlCommand com = new SqlCommand();
         SqlDataReader dr;*/
 
