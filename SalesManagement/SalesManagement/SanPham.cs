@@ -4,22 +4,16 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Configuration;
-using System.Security.Cryptography;
-using MySql.Data.MySqlClient;
-using System.Net;
-using System.Net.Sockets;
 
 namespace SalesManagement
 {
     public partial class SanPham : Form
     {
-        //string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
+        string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
         public SanPham()
         {
             InitializeComponent();
@@ -27,16 +21,11 @@ namespace SalesManagement
         }
         private void ImportSanPham()
         {
-//<<<<<<< HEAD
-            //string conString = @"Server=DESKTOP-IRREIHM\SQLEXPRESS;Database=SALES_MANAGEMENT;User Id=sa;Password=thanh08052001;";
-            //SqlConnection connection = new SqlConnection(global.conString);
-//=======
-            MySqlConnection connection = new MySqlConnection(global.conString);
-//>>>>>>> 2fc26b192b351325a0c8ac42c3c63a60997779d2
+            SqlConnection connection = new SqlConnection(conString);
             connection.Open();
             string sqlQuery = "select * from SANPHAM";
-            MySqlCommand command = new MySqlCommand(sqlQuery, connection);
-            MySqlDataReader dataReader = command.ExecuteReader();
+            SqlCommand command = new SqlCommand(sqlQuery, connection);
+            SqlDataReader dataReader = command.ExecuteReader();
             int stt = 1;
             while (dataReader.HasRows)
             {

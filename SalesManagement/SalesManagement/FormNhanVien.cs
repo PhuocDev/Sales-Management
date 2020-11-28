@@ -4,32 +4,33 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Configuration;
-using System.Security.Cryptography;
-using MySql.Data.MySqlClient;
-using System.Net;
-using System.Net.Sockets;
 
 namespace SalesManagement
 { 
     public delegate void changeform();
     public partial class FormNhanVien : Form
     {
+        public FormNhanVien()
+        {
+            InitializeComponent();
+        }
+        public static string conString = @"Server=DESKTOP-IRREIHM\SQLEXPRESS;Database=SALES_MANAGEMENT;User Id=sa;Password=thanh08052001;";
+        public SqlConnection connection = new SqlConnection(conString);
+
         //------------------------------------------------update_Nhân viên----------------------------------------//
         private void UpdateNhanVien()
         {
-            MySqlConnection connection = new MySqlConnection(global.conString);
+            SqlConnection connection = new SqlConnection(conString);
 
             connection.Open();
             string sqlQuery = "select * from NHANVIEN";
-            MySqlCommand command = new MySqlCommand(sqlQuery, connection);
-            MySqlDataReader dataReader = command.ExecuteReader();
+            SqlCommand command = new SqlCommand(sqlQuery, connection);
+            SqlDataReader dataReader = command.ExecuteReader();
             int stt = 1;
             while (dataReader.HasRows)
             {
