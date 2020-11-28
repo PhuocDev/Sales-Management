@@ -44,7 +44,6 @@ namespace SalesManagement
 
         private void UpdateDanhSachSP()
         {
-            //string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
             SqlConnection connection = new SqlConnection(conString);
             connection.Open();
             string sqlQuery = "SELECT * FROM SANPHAM";
@@ -64,7 +63,6 @@ namespace SalesManagement
         }
         private void UpdateDanhSachKH()
         {
-            //string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
             SqlConnection connection = new SqlConnection(conString);
             connection.Open();
             string sqlQuery = "SELECT * FROM KHACHHANG";
@@ -80,7 +78,6 @@ namespace SalesManagement
         }
         private string GetMaHD()
         {
-            //string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
             SqlConnection connection = new SqlConnection(conString);
             connection.Open();
             string sqlQuery = "SELECT * FROM HOADON WHERE THOIGIAN IN (SELECT MAX(THOIGIAN) FROM HOADON)";
@@ -194,7 +191,7 @@ namespace SalesManagement
         {
             DataGridViewCell cell = dgvHoaDon.CurrentCell;
             int index = cell.RowIndex;
-            if (index == 0 || index == dgvHoaDon.Rows.Count - 1) return;
+            if (index == dgvHoaDon.Rows.Count - 1) return;
             dgvHoaDon.Rows[index].Selected = true;
             cbbTenSP.Text = dgvHoaDon.SelectedRows[0].Cells[2].Value.ToString();
             nudSoLuong.Value = Convert.ToInt32(dgvHoaDon.SelectedRows[0].Cells[3].Value);
@@ -369,7 +366,8 @@ namespace SalesManagement
             if (cbbTenSP.FindString(cbbTenSP.Text) != -1)
             {
                 cbbMaSP.TextChanged -= cbbMaSP_TextChanged;
-                cbbMaSP.Text = cbbMaSP.Items[cbbTenSP.FindString(cbbTenSP.Text)].ToString();
+                if (cbbTenSP.Text == "") cbbMaSP.Text = "";
+                else cbbMaSP.Text = cbbMaSP.Items[cbbTenSP.FindString(cbbTenSP.Text)].ToString();
                 cbbMaSP.TextChanged += cbbMaSP_TextChanged;
             }
         }
@@ -379,7 +377,8 @@ namespace SalesManagement
             if (cbbMaSP.FindString(cbbMaSP.Text) != -1)
             {
                 cbbTenSP.TextChanged -= cbbTenSP_TextChanged;
-                cbbTenSP.Text = cbbTenSP.Items[cbbMaSP.FindString(cbbMaSP.Text)].ToString();
+                if (cbbMaSP.Text == "") cbbTenSP.Text = "";
+                else cbbTenSP.Text = cbbTenSP.Items[cbbMaSP.FindString(cbbMaSP.Text)].ToString();
                 cbbTenSP.TextChanged += cbbTenSP_TextChanged;
             }
         }
@@ -418,8 +417,6 @@ namespace SalesManagement
             }
             sqlQuery = "INSERT INTO CTHD(MAHD, MASP, SOLUONG) VALUES (@maHD, @maSP, @soLuong)";
             command = new SqlCommand(sqlQuery, connection);
-            /*string sqlQuery2 = "UPDATE SANPHAM SET SOLUONG = SOLUONG - @soLuong";
-            SqlCommand command2 = new SqlCommand(sqlQuery2, connection);*/
             for (int i = 0; i < dgvHoaDon.Rows.Count - 1; i++)
             {
                 command.Parameters.Clear();
@@ -461,18 +458,22 @@ namespace SalesManagement
 
         private void btnLichSuHoaDon_Click(object sender, EventArgs e)
         {
-            FormLichSuHoaDon formLichSuHoaDon = new FormLichSuHoaDon(change);
+            FormLichSuHoaDon formLichSuHoaDon = new FormLichSuHoaDon(change1, change2);
             formLichSuHoaDon.FormClosed += new FormClosedEventHandler(FormLichSuHoaDon_FormClose);
             formLichSuHoaDon.Show();
             this.Hide();
         }
-        private void change()
+        private void change1()
         {
             this.Show();
         }
-        private void FormLichSuHoaDon_FormClose(object sender, FormClosedEventArgs e)
+        private void change2()
         {
             this.Close();
+        }
+        private void FormLichSuHoaDon_FormClose(object sender, FormClosedEventArgs e)
+        {
+            this.Show();
         }
     }
 }
