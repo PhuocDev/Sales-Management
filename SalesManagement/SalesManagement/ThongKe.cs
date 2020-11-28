@@ -4,10 +4,16 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
+using System.Security.Cryptography;
+using MySql.Data.MySqlClient;
+using System.Net;
+using System.Net.Sockets;
 
 namespace SalesManagement
 {
@@ -61,12 +67,12 @@ namespace SalesManagement
         protected void data()
         {
 
-            SqlConnection conn = new SqlConnection(global.conString);
-            SqlCommand cmd = new SqlCommand("SELECT month(THOIGIAN) as thang, sum(TONGGIATRI) AS doanhThu " // thử select month giùm tui với, toàn bị lỗi :(
+            MySqlConnection conn = new MySqlConnection(global.conString);
+            MySqlCommand cmd = new MySqlCommand("SELECT month(THOIGIAN) as thang, sum(TONGGIATRI) AS doanhThu " // thử select month giùm tui với, toàn bị lỗi :(
                                             + "FROM HOADON WHERE year(THOIGIAN) = 2020 "
                                             + " GROUP BY month(THOIGIAN)", conn);
 
-            SqlDataReader dr;
+            MySqlDataReader dr;
             //int sum = 0, i = 0;
             try
             {

@@ -2,25 +2,23 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
+using System.Configuration;
 using System.Security.Cryptography;
-using System.Text;
+using MySql.Data.MySqlClient;
+using System.Net;
+using System.Net.Sockets;
 namespace SalesManagement
 {
     public partial class SignUp : Form
     {
-//<<<<<<< HEAD
-        //static string conString = @"Server=DESKTOP-IRREIHM\SQLEXPRESS;Database=SALES_MANAGEMENT;User Id=sa;Password=thanh08052001;";
-       // SqlConnection connection = new SqlConnection(global.conString);
-//=======
-        //static string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
-        SqlConnection connection = new SqlConnection(global.conString);
-//>>>>>>> 2fc26b192b351325a0c8ac42c3c63a60997779d2
+        MySqlConnection connection = new MySqlConnection(global.conString);
         public SignUp()
         {
             InitializeComponent();
@@ -28,32 +26,12 @@ namespace SalesManagement
         }
         private bool Check_Used_name(string name)
         {
-            /*SqlConnection con = new SqlConnection();
-            con.ConnectionString = @"Data Source=DESKTOP-STUS076\SQLEXPRESS;Initial Catalog=SALES_MANAGEMENT;Integrated Security=True";
-            con.Open();
-            if (name.Substring(0, 1) == "N")
-            {
-                string query = "select * from NHANVIEN where MANV= '" + name.Trim() + "'";
-                SqlDataAdapter sda = new SqlDataAdapter(query, con);
-                DataTable dttb = new DataTable();
-                sda.Fill(dttb);
-                if (dttb.Rows.Count == 1)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else return false;
-            con.Close();*/
             connection.Open();
             if (name.Substring(0, 2) == "NV")
             {
                 string sqlQuery = "select MANV from NHANVIEN";
-                SqlCommand command = new SqlCommand(sqlQuery, connection);
-                SqlDataReader dataReader = command.ExecuteReader();
+                MySqlCommand command = new MySqlCommand(sqlQuery, connection);
+                MySqlDataReader dataReader = command.ExecuteReader();
                 while (dataReader.HasRows)
                 {
                     if (dataReader.Read() == false) break;
@@ -69,8 +47,8 @@ namespace SalesManagement
             else if (name.Substring(0, 2) == "QL")
             {
                 string sqlQuery = "select MAQL from QUANLY";
-                SqlCommand command = new SqlCommand(sqlQuery, connection);
-                SqlDataReader dataReader = command.ExecuteReader();
+                MySqlCommand command = new MySqlCommand(sqlQuery, connection);
+                MySqlDataReader dataReader = command.ExecuteReader();
                 while (dataReader.HasRows)
                 {
                     if (dataReader.Read() == false) break;
@@ -148,15 +126,6 @@ namespace SalesManagement
                     sqlCon.Open();
                     string commandString = "INSERT INTO NHANVIEN VALUES('" + textBox5_MaNV.Text + "', '" + Hash_pass(textBox2_matKhau.Text) + "', N'" + textBox4_HoTen.Text + "', '" + textBox_nam.Text + "-" + textBox_thang.Text + "-" + textBox_ngay.Text + "', N'" + comboBox2.SelectedItem.ToString() + "', '" + textBox_DienThoai.Text + "', N'" + textBox_diaChi.Text + "')";
                     SqlCommand sqlCmd = new SqlCommand(commandString, sqlCon);
-                    /*sqlCmd.CommandType = CommandType.StoredProcedure;
-                    sqlCmd.Parameters.AddWithValue("@MANV", textBox5_MaNV.Text.Trim());
-                    sqlCmd.Parameters.AddWithValue("@PASSWORD", Hash_pass(textBox2_matKhau.Text).Trim());  // hashed password
-                    sqlCmd.Parameters.AddWithValue("@TEN", textBox4_HoTen.Text.Trim());
-                    string date = textBox_nam.Text + "-" + textBox_thang.Text + "-" + textBox_ngay.Text;
-                    sqlCmd.Parameters.AddWithValue("@NGAYSINH ", date.Trim());
-                    sqlCmd.Parameters.AddWithValue("@GIOITINH", this.comboBox2.SelectedItem.ToString().Trim());
-                    sqlCmd.Parameters.AddWithValue("@SDT", textBox_DienThoai.Text.Trim());
-                    sqlCmd.Parameters.AddWithValue("@DIACHI", textBox_diaChi.Text.Trim());*/
                     sqlCmd.ExecuteNonQuery();
                     MessageBox.Show("Dang ki thanh cong");
                     sqlCon.Close();

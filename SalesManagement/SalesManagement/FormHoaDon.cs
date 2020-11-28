@@ -9,7 +9,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Configuration;
+using System.Security.Cryptography;
+using MySql.Data.MySqlClient;
+using System.Net;
+using System.Net.Sockets;
 namespace SalesManagement
 {
     public partial class FormHoaDon : Form
@@ -45,11 +49,11 @@ namespace SalesManagement
         private void UpdateDanhSachSP()
         {
             //string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
-            SqlConnection connection = new SqlConnection(global.conString);
+            MySqlConnection connection = new MySqlConnection(global.conString);
             connection.Open();
             string sqlQuery = "SELECT * FROM SANPHAM";
-            SqlCommand command = new SqlCommand(sqlQuery, connection);
-            SqlDataReader dataReader = command.ExecuteReader();
+            MySqlCommand command = new MySqlCommand(sqlQuery, connection);
+            MySqlDataReader dataReader = command.ExecuteReader();
             while (dataReader.HasRows)
             {
                 if (dataReader.Read() == false) break;
@@ -65,11 +69,11 @@ namespace SalesManagement
         private void UpdateDanhSachKH()
         {
             //string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
-            SqlConnection connection = new SqlConnection(global.conString);
+            MySqlConnection connection = new MySqlConnection(global.conString);
             connection.Open();
             string sqlQuery = "SELECT * FROM KHACHHANG";
-            SqlCommand command = new SqlCommand(sqlQuery, connection);
-            SqlDataReader dataReader = command.ExecuteReader();
+            MySqlCommand command = new MySqlCommand(sqlQuery, connection);
+            MySqlDataReader dataReader = command.ExecuteReader();
             while (dataReader.HasRows)
             {
                 if (dataReader.Read() == false) break;
@@ -81,11 +85,11 @@ namespace SalesManagement
         private string GetMaHD()
         {
             //string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
-            SqlConnection connection = new SqlConnection(global.conString);
+            MySqlConnection connection = new MySqlConnection(global.conString);
             connection.Open();
             string sqlQuery = "SELECT * FROM HOADON WHERE THOIGIAN IN (SELECT MAX(THOIGIAN) FROM HOADON)";
-            SqlCommand command = new SqlCommand(sqlQuery, connection);
-            SqlDataReader dataReader = command.ExecuteReader();
+            MySqlCommand command = new MySqlCommand(sqlQuery, connection);
+            MySqlDataReader dataReader = command.ExecuteReader();
             string maHD;
             string[] months = { "Key months of year", "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" };
             DateTime dateTime = DateTime.Now;
@@ -379,10 +383,10 @@ namespace SalesManagement
                 MessageBox.Show("Chưa nhập tiền khách đưa");
                 return;
             }
-            SqlConnection connection = new SqlConnection(global.conString);
+            MySqlConnection connection = new MySqlConnection(global.conString);
             connection.Open();
             string sqlQuery = "INSERT INTO HOADON(MAHD, MANV, MAKH, THOIGIAN, TONGGIATRI) VALUES (@maHD, @maNV, @maKH, @thoiGian, @tongGiaTri)";
-            SqlCommand command = new SqlCommand(sqlQuery, connection);
+            MySqlCommand command = new MySqlCommand(sqlQuery, connection);
             command.Parameters.AddWithValue("@maHD", txbMaHD.Text);
             // ------------------------------------------------------------------------------------------------
             //command.Parameters.AddWithValue("@maNV", user.MaNV);
@@ -399,7 +403,7 @@ namespace SalesManagement
                 return;
             }
             sqlQuery = "INSERT INTO CTHD(MAHD, MASP, SOLUONG) VALUES (@maHD, @maSP, @soLuong)";
-            command = new SqlCommand(sqlQuery, connection);
+            command = new MySqlCommand(sqlQuery, connection);
             /*string sqlQuery2 = "UPDATE SANPHAM SET SOLUONG = SOLUONG - @soLuong";
             SqlCommand command2 = new SqlCommand(sqlQuery2, connection);*/
             for (int i = 0; i < dgvHoaDon.Rows.Count - 1; i++)
@@ -415,7 +419,7 @@ namespace SalesManagement
                 }
             }
             sqlQuery = "UPDATE SANPHAM SET SOLUONG = SOLUONG - @soLuong WHERE MASP = @maSP";
-            command = new SqlCommand(sqlQuery, connection);
+            command = new MySqlCommand(sqlQuery, connection);
             for (int i = 0; i < dgvHoaDon.Rows.Count - 1; i++)
             {
                 command.Parameters.Clear();

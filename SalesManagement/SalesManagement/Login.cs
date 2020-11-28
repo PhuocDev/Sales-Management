@@ -11,6 +11,11 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Security.Cryptography;
 using System.Text;
+using MySql.Data.MySqlClient;
+using System.Windows.Forms;
+using System.Data;
+using System.Net;
+using System.Net.Sockets;
 namespace SalesManagement
 {
     
@@ -19,9 +24,9 @@ namespace SalesManagement
         public bool isQL = false;
         // HEAD
         //static string conString = @"Server=DESKTOP-IRREIHM\SQLEXPRESS;Database=SALES_MANAGEMENT;User Id=sa;Password=thanh08052001;";
-        SqlConnection connection = new SqlConnection(global.conString);
+        MySql.Data.MySqlClient.MySqlConnection connection = new MySqlConnection(global.conString);
 //=======
-        static string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
+        //static string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
         //SqlConnection connection = new SqlConnection(conString);
 //>>>>>>> 2fc26b192b351325a0c8ac42c3c63a60997779d2
         /*SqlCommand com = new SqlCommand();
@@ -79,8 +84,9 @@ namespace SalesManagement
                     return false;
                 }*/
                 string sqlQuery = "select MANV, PASSWORD from NHANVIEN";
-                SqlCommand command = new SqlCommand(sqlQuery, connection);
-                SqlDataReader dataReader = command.ExecuteReader();
+                MySqlCommand command = new MySqlCommand(sqlQuery, connection);
+                MySqlDataReader dataReader = command.ExecuteReader();
+                
                 while (dataReader.HasRows)
                 {
                     if (dataReader.Read() == false) break;
@@ -109,8 +115,8 @@ namespace SalesManagement
                     return false;
                 }*/
                 string sqlQuery = "select MAQL, PASSWORD from QUANLY";
-                SqlCommand command = new SqlCommand(sqlQuery, connection);
-                SqlDataReader dataReader = command.ExecuteReader();
+                MySqlCommand command = new MySqlCommand(sqlQuery, connection);
+                MySqlDataReader dataReader = command.ExecuteReader();
                 while (dataReader.HasRows)
                 {
                     if (dataReader.Read() == false) break;
@@ -198,6 +204,7 @@ namespace SalesManagement
     }
     public class global
     {
-        public static string conString = @"Data Source=DESKTOP-VMO2INA\SQLEXPRESS;Initial Catalog=SALES_MANAGEMENT;Integrated Security=True;";
+        public static string conString = "datasource=localhost;port=3306;Initial Catalog=SALES_MANAGEMENT;username=phuoc;password=phuoc;pooling = false; convert zero datetime=True";
+            //@"Data Source=DESKTOP-VMO2INA\SQLEXPRESS;Initial Catalog=SALES_MANAGEMENT;Integrated Security=True;";
     }
 }
