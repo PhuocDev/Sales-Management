@@ -14,16 +14,25 @@ using System.Security.Cryptography;
 using MySql.Data.MySqlClient;
 using System.Net;
 using System.Net.Sockets;
+using System.Text;
+using System.Runtime.CompilerServices;
 namespace SalesManagement
 {
     public partial class SignUp : Form
     {
         MySqlConnection connection = new MySqlConnection(global.conString);
+        public FormNhanVien parent ;
         public SignUp()
         {
             InitializeComponent();
-
         }
+        public SignUp(FormNhanVien parent)
+        {
+            this.parent = parent;
+            InitializeComponent();
+        }
+
+        //-------------------------------------------check_used_name------------------------------------------------------------//
         private bool Check_Used_name(string name)
         {
             connection.Open();
@@ -67,30 +76,37 @@ namespace SalesManagement
                 return false;
             }
         }
+
+        //-----------------------------------------------------fill_condition----------------------------------------------------//
         private bool fillCondition()
         {
             if (textBox5_MaNV.Text == "" || textBox2_matKhau.Text == "")
             {
-                MessageBox.Show("Vui long nhap du thong tin!","Thong bao");
+                MessageBox.Show("Vui lòng nhập đủ thông tin", "Thông báo");
+                return false;
+            }
+            else if(textBox5_MaNV.Text.Length < 2 || textBox5_MaNV.Text.Substring(0,2) != "NV")
+            {
+                MessageBox.Show("Mã nhân viên phải bắt đầu bằng \"NV\"", "Thông báo");
+                return false;
+            }
+            else if(comboBox2.Text != "Nam" && comboBox2.Text != "Nu")
+            {
+                MessageBox.Show("Giới tính không hợp lệ!", "Thông báo");
                 return false;
             }
             else if (textBox2_matKhau.Text != textBox3_laiMK.Text)
             {
-                MessageBox.Show("Mat khau khong khop!");
-                return false;
-            }
-            else if (textBox_ngay.Text == "" || textBox_thang.Text =="" || textBox_nam.Text == "")
-            {
-                MessageBox.Show("Vui long nhap du thong tin!","Thong bao");
+                MessageBox.Show("Mật khẩu không trùng khớp!");
                 return false;
             }
             else if (textBox_DienThoai.Text == "")
             {
-                MessageBox.Show("Vui long nhap du thong tin!","Thong bao");
+                MessageBox.Show("Vui lòng nhập đủ thông tin!","Thông báo");
                 return false;
             }
             else if (Check_Used_name(textBox5_MaNV.Text) == true) {
-                MessageBox.Show("Ma nhan vien da duoc su dung", "Thong bao");
+                MessageBox.Show("Mã nhân viên đã được sử dụng", "Thông báo");
                 return false;
             }
             else
@@ -98,6 +114,8 @@ namespace SalesManagement
                 return true;
             }
         }
+
+        //------------------------------------------------------------Hash_pass-----------------------------------------------------//
         private string Hash_pass(string pass)
         {
             byte[] temp = ASCIIEncoding.ASCII.GetBytes(pass);
@@ -112,29 +130,40 @@ namespace SalesManagement
             return hasPass;
         }
         
+        //-------------------------------------------------------Đăng kí click-----------------------------------------------------------//
         
-        private void button1_Click(object sender, EventArgs e)
+        private void button_signup_Click(object sender, EventArgs e)
         {
-            /*if (isQL == false)
+            if (fillCondition())
             {
                 MessageBox.Show("Không có quyền thêm nhân viên");
             }*/
             using (SqlConnection sqlCon = new SqlConnection(global.conString))
             {
                 if (fillCondition())
+                try
                 {
                     sqlCon.Open();
-                    string commandString = "INSERT INTO NHANVIEN VALUES('" + textBox5_MaNV.Text + "', '" + Hash_pass(textBox2_matKhau.Text) + "', N'" + textBox4_HoTen.Text + "', '" + textBox_nam.Text + "-" + textBox_thang.Text + "-" + textBox_ngay.Text + "', N'" + comboBox2.SelectedItem.ToString() + "', '" + textBox_DienThoai.Text + "', N'" + textBox_diaChi.Text + "')";
+                    string commandString = "INSERT INTO NHANVIEN VALUES('" + textBox5_MaNV.Text.ToString() + "', '" + Hash_pass(textBox2_matKhau.Text).ToString() + "', N'" + textBox4_HoTen.Text.ToString() + "', '" + dateTimePicker1.Value.ToString() + "', N'" + comboBox2.Text.ToString() + "', '" + textBox_DienThoai.Text.ToString() + "', N'" + textBox_diaChi.Text.ToString() + "')";
                     SqlCommand sqlCmd = new SqlCommand(commandString, sqlCon);
                     sqlCmd.ExecuteNonQuery();
                     MessageBox.Show("Dang ki thanh cong");
-                    sqlCon.Close();
-                    Login test = new Login();
-                    this.Hide();
-                    //test.Show();
+                    this.parent.add_datagridview(textBox5_MaNV.Text, textBox4_HoTen.Text, dateTimePicker1.Value.ToString().Substring(0, dateTimePicker1.Value.ToString().IndexOf(" ")), comboBox2.Text.ToString(), textBox_DienThoai.Text, textBox_diaChi.Text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("kết nối xảy ra lỗi hoặc ghi dữ liệu bị lỗi");
+                }
+                finally
+                {
+                    connection.Close();
+                    this.Close();
                 }
             }
         }
+
+
+        //---------------------------------------------------hủy bỏ click-------------------------------------------------------------------//
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -145,13 +174,8 @@ namespace SalesManagement
         {
             if (e.KeyCode == Keys.Enter)
             {
-                button1.PerformClick();
+                button_signup.PerformClick();
             }
-        }
-
-        private void textBox4_HoTen_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
