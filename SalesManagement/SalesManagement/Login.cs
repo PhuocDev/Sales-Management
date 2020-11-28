@@ -11,13 +11,20 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Security.Cryptography;
 using System.Text;
+using MySql.Data.MySqlClient;
+using System.Windows.Forms;
+using System.Data;
+using System.Net;
+using System.Net.Sockets;
 namespace SalesManagement
 {
+    
     public partial class Login : Form
     {
-        public static User Current_user;////////////////////// Lưu thông tin người dùng hiện tại
-        static string conString = @"Server=DESKTOP-IRREIHM\SQLEXPRESS;Database=SALES_MANAGEMENT;User Id=sa;Password=thanh08052001;";
-        SqlConnection connection = new SqlConnection(conString);
+        public bool isQL = false;
+        // HEAD
+        //static string conString = @"Server=DESKTOP-IRREIHM\SQLEXPRESS;Database=SALES_MANAGEMENT;User Id=sa;Password=thanh08052001;";
+        MySql.Data.MySqlClient.MySqlConnection connection = new MySqlConnection(global.conString);
 
         public Login()
         {
@@ -45,8 +52,9 @@ namespace SalesManagement
             if (name.Substring(0, 2) == "NV")
             {
                 string sqlQuery = "select MANV, PASSWORD from NHANVIEN";
-                SqlCommand command = new SqlCommand(sqlQuery, connection);
-                SqlDataReader dataReader = command.ExecuteReader();
+                MySqlCommand command = new MySqlCommand(sqlQuery, connection);
+                MySqlDataReader dataReader = command.ExecuteReader();
+                
                 while (dataReader.HasRows)
                 {
                     if (dataReader.Read() == false) break;
@@ -62,8 +70,8 @@ namespace SalesManagement
             else if (name.Substring(0, 2) == "QL")
             {
                 string sqlQuery = "select MAQL, PASSWORD from QUANLY";
-                SqlCommand command = new SqlCommand(sqlQuery, connection);
-                SqlDataReader dataReader = command.ExecuteReader();
+                MySqlCommand command = new MySqlCommand(sqlQuery, connection);
+                MySqlDataReader dataReader = command.ExecuteReader();
                 while (dataReader.HasRows)
                 {
                     if (dataReader.Read() == false) break;
@@ -141,5 +149,10 @@ namespace SalesManagement
                 textBox1.Text = "";
             }
         }
+    }
+    public class global
+    {
+        public static string conString = "datasource=localhost;port=3306;Initial Catalog=SALES_MANAGEMENT;username=phuoc;password=phuoc;pooling = false; convert zero datetime=True";
+            //@"Data Source=DESKTOP-VMO2INA\SQLEXPRESS;Initial Catalog=SALES_MANAGEMENT;Integrated Security=True;";
     }
 }

@@ -2,22 +2,25 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
+using System.Configuration;
 using System.Security.Cryptography;
+using MySql.Data.MySqlClient;
+using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using System.Runtime.CompilerServices;
-
 namespace SalesManagement
 {
     public partial class SignUp : Form
     {
-        static string conString = @"Server=DESKTOP-IRREIHM\SQLEXPRESS;Database=SALES_MANAGEMENT;User Id=sa;Password=thanh08052001;";
-        SqlConnection connection = new SqlConnection(conString);
+        MySqlConnection connection = new MySqlConnection(global.conString);
         public FormNhanVien parent ;
         public SignUp()
         {
@@ -36,8 +39,25 @@ namespace SalesManagement
             if (name.Substring(0, 2) == "NV")
             {
                 string sqlQuery = "select MANV from NHANVIEN";
-                SqlCommand command = new SqlCommand(sqlQuery, connection);
-                SqlDataReader dataReader = command.ExecuteReader();
+                MySqlCommand command = new MySqlCommand(sqlQuery, connection);
+                MySqlDataReader dataReader = command.ExecuteReader();
+                while (dataReader.HasRows)
+                {
+                    if (dataReader.Read() == false) break;
+                    if (dataReader.GetString(0) == name)
+                    {
+                        connection.Close();
+                        return true;
+                    }
+                }
+                connection.Close();
+                return false;
+            }
+            else if (name.Substring(0, 2) == "QL")
+            {
+                string sqlQuery = "select MAQL from QUANLY";
+                MySqlCommand command = new MySqlCommand(sqlQuery, connection);
+                MySqlDataReader dataReader = command.ExecuteReader();
                 while (dataReader.HasRows)
                 {
                     if (dataReader.Read() == false) break;
@@ -116,7 +136,11 @@ namespace SalesManagement
         {
             if (fillCondition())
             {
-                SqlConnection sqlCon = new SqlConnection(conString);
+                MessageBox.Show("Không có quyền thêm nhân viên");
+            }*/
+            using (SqlConnection sqlCon = new SqlConnection(global.conString))
+            {
+                if (fillCondition())
                 try
                 {
                     sqlCon.Open();
