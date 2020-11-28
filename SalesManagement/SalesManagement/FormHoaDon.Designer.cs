@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvHoaDon = new System.Windows.Forms.DataGridView();
             this.ColSTT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColMaSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -74,6 +74,7 @@
             // 
             // dgvHoaDon
             // 
+            this.dgvHoaDon.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.dgvHoaDon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvHoaDon.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColSTT,
@@ -141,9 +142,9 @@
             // 
             // ColDonGia
             // 
-            dataGridViewCellStyle5.Format = "C0";
-            dataGridViewCellStyle5.NullValue = null;
-            this.ColDonGia.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle7.Format = "C0";
+            dataGridViewCellStyle7.NullValue = null;
+            this.ColDonGia.DefaultCellStyle = dataGridViewCellStyle7;
             this.ColDonGia.FillWeight = 75F;
             this.ColDonGia.HeaderText = "Đơn giá";
             this.ColDonGia.MinimumWidth = 6;
@@ -153,9 +154,9 @@
             // 
             // ColThanhTien
             // 
-            dataGridViewCellStyle6.Format = "C0";
-            dataGridViewCellStyle6.NullValue = null;
-            this.ColThanhTien.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle8.Format = "C0";
+            dataGridViewCellStyle8.NullValue = null;
+            this.ColThanhTien.DefaultCellStyle = dataGridViewCellStyle8;
             this.ColThanhTien.FillWeight = 90F;
             this.ColThanhTien.HeaderText = "Thành tiền";
             this.ColThanhTien.MinimumWidth = 6;
@@ -494,6 +495,7 @@
             this.cbbMaKH.Name = "cbbMaKH";
             this.cbbMaKH.Size = new System.Drawing.Size(232, 28);
             this.cbbMaKH.TabIndex = 6;
+            this.cbbMaKH.Leave += new System.EventHandler(this.cbbMaKH_Leave);
             // 
             // btnLichSuHoaDon
             // 
@@ -507,6 +509,7 @@
             this.btnLichSuHoaDon.TabStop = false;
             this.btnLichSuHoaDon.Text = "Lịch sử hóa đơn";
             this.btnLichSuHoaDon.UseVisualStyleBackColor = false;
+            this.btnLichSuHoaDon.Click += new System.EventHandler(this.btnLichSuHoaDon_Click);
             // 
             // label10
             // 
