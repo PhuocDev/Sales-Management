@@ -26,7 +26,7 @@ namespace SalesManagement
             this.change2 = change2;
             DateTime currentDateTime = DateTime.Now;
             dtpFromDate.Value = new DateTime(currentDateTime.Year, currentDateTime.Month, 1);
-            dtpToDate.Value = dtpFromDate.Value.AddMonths(1).AddDays(-1);
+            dtpToDate.Value = dtpFromDate.Value.AddMonths(1).AddSeconds(-1);
             UpdateDanhSachHD();
             UpdateCTHD();
         }
@@ -36,10 +36,10 @@ namespace SalesManagement
             dgvLichSuHD.Rows.Clear();
             SqlConnection connection = new SqlConnection(conString);
             connection.Open();
-            string sqlQuery = "SELECT * FROM HOADON WHERE THOIGIAN >= @thoiGianBatDau AND THOIGIAN <= @thoiGianKetThuc ORDER BY MAHD DESC";
+            string sqlQuery = "SELECT * FROM HOADON WHERE THOIGIAN >= @thoiGianBatDau AND THOIGIAN <= @thoiGianKetThuc ORDER BY THOIGIAN DESC";
             SqlCommand command = new SqlCommand(sqlQuery, connection);
-            command.Parameters.AddWithValue("@thoiGianBatDau", Convert.ToDateTime(dtpFromDate.Value.ToShortDateString()));
-            command.Parameters.AddWithValue("@thoiGianKetThuc", Convert.ToDateTime(dtpToDate.Value.ToShortDateString()));
+            command.Parameters.AddWithValue("@thoiGianBatDau", Convert.ToDateTime(dtpFromDate.Value.ToString()));
+            command.Parameters.AddWithValue("@thoiGianKetThuc", Convert.ToDateTime(dtpToDate.Value.ToString()));
             SqlDataReader dataReader = command.ExecuteReader();
             while (dataReader.HasRows)
             {
@@ -54,6 +54,7 @@ namespace SalesManagement
         private void UpdateCTHD()
         {
             dgvCTHD.Rows.Clear();
+            if (dgvLichSuHD.Rows.Count < 2) return;
             if (dgvLichSuHD.SelectedRows.Count != 1) return;
             SqlConnection connection = new SqlConnection(conString);
             connection.Open();
@@ -87,17 +88,6 @@ namespace SalesManagement
             UpdateCTHD();
         }
 
-        private void btnThongKe_Click(object sender, EventArgs e)
-        {
-            if (dtpFromDate.Value > dtpToDate.Value)
-            {
-                DateTime dateTime = dtpFromDate.Value;
-                dtpFromDate.Value = dtpToDate.Value;
-                dtpToDate.Value = dateTime;
-            }
-            UpdateDanhSachHD();
-            UpdateCTHD();
-        }
 
         private void dgvLichSuHD_Sorted(object sender, EventArgs e)
         {
@@ -107,6 +97,19 @@ namespace SalesManagement
             }
             dgvLichSuHD.ClearSelection();
             dgvLichSuHD.Rows[0].Selected = true;
+            UpdateCTHD();
+        }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            if (dtpFromDate.Value > dtpToDate.Value)
+            {
+                DateTime dateTime = dtpFromDate.Value;
+                dtpFromDate.Value = dtpToDate.Value;
+                dtpToDate.Value = dateTime;
+                dtpToDate.Value.AddDays(1).AddSeconds(-1);
+            }
+            UpdateDanhSachHD();
             UpdateCTHD();
         }
 

@@ -28,7 +28,7 @@ namespace SalesManagement
             txbMaHD.Text = GetMaHD();
             txbTongThanhToan.Text = string.Format(CultureInfo.CreateSpecificCulture("vi-VN"), "{0:C0}", 0);
             // ----------------------------------------------------------------------------------------------------------
-            //txbNhanVien.Text = user.name;    //Them function tra ve string ten User
+            txbNhanVien.Text = Login.Current_user.NAME;    //Them function tra ve string ten User
             // ----------------------------------------------------------------------------------------------------------
         }
 
@@ -402,9 +402,9 @@ namespace SalesManagement
             command.Parameters.AddWithValue("@maHD", txbMaHD.Text);
             // ------------------------------------------------------------------------------------------------
             //command.Parameters.AddWithValue("@maNV", user.MaNV);
-            command.Parameters.AddWithValue("@maNV", "NV001");  //Chưa đổi MANV
+            command.Parameters.AddWithValue("@maNV", Login.Current_user.ID);  //Chưa đổi MANV
             // ------------------------------------------------------------------------------------------------
-            if (cbbMaKH.FindString(cbbMaKH.Text) == -1) command.Parameters.AddWithValue("@maKH", "NULL");
+            if (cbbMaKH.FindString(cbbMaKH.Text) == -1 || cbbMaKH.Text == "") command.Parameters.AddWithValue("@maKH", "KH000");
             else command.Parameters.AddWithValue("@maKH", cbbMaKH.Text);
             command.Parameters.AddWithValue("@thoiGian", Convert.ToDateTime(txbThoiGian.Text));
             command.Parameters.AddWithValue("@tongGiaTri", int.Parse(txbTongThanhToan.Text, NumberStyles.Currency));

@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvHoaDon = new System.Windows.Forms.DataGridView();
             this.txbTraLaiKhach = new System.Windows.Forms.TextBox();
             this.txbTienKhachDua = new System.Windows.Forms.TextBox();
@@ -76,6 +77,7 @@
             // 
             this.dgvHoaDon.AllowUserToResizeColumns = false;
             this.dgvHoaDon.AllowUserToResizeRows = false;
+            this.dgvHoaDon.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.dgvHoaDon.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.dgvHoaDon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvHoaDon.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -484,6 +486,8 @@
             // ColTenSP
             // 
             this.ColTenSP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColTenSP.DefaultCellStyle = dataGridViewCellStyle4;
             this.ColTenSP.FillWeight = 200F;
             this.ColTenSP.HeaderText = "Tên sản phẩm";
             this.ColTenSP.MinimumWidth = 6;
@@ -513,9 +517,9 @@
             // 
             // ColDonGia
             // 
-            dataGridViewCellStyle1.Format = "C0";
-            dataGridViewCellStyle1.NullValue = null;
-            this.ColDonGia.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Format = "C0";
+            dataGridViewCellStyle5.NullValue = null;
+            this.ColDonGia.DefaultCellStyle = dataGridViewCellStyle5;
             this.ColDonGia.FillWeight = 75F;
             this.ColDonGia.HeaderText = "Đơn giá";
             this.ColDonGia.MinimumWidth = 6;
@@ -526,9 +530,9 @@
             // 
             // ColThanhTien
             // 
-            dataGridViewCellStyle2.Format = "C0";
-            dataGridViewCellStyle2.NullValue = null;
-            this.ColThanhTien.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Format = "C0";
+            dataGridViewCellStyle6.NullValue = null;
+            this.ColThanhTien.DefaultCellStyle = dataGridViewCellStyle6;
             this.ColThanhTien.FillWeight = 90F;
             this.ColThanhTien.HeaderText = "Thành tiền";
             this.ColThanhTien.MinimumWidth = 6;
