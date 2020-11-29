@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button2 = new System.Windows.Forms.Button();
+            this.button_huyBo = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -49,20 +49,20 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
-            // button2
+            // button_huyBo
             // 
-            this.button2.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.Black;
-            this.button2.Location = new System.Drawing.Point(306, 467);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(88, 35);
-            this.button2.TabIndex = 51;
-            this.button2.TabStop = false;
-            this.button2.Text = "Hủy bỏ";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button_huyBo.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.button_huyBo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_huyBo.ForeColor = System.Drawing.Color.Black;
+            this.button_huyBo.Location = new System.Drawing.Point(306, 467);
+            this.button_huyBo.Margin = new System.Windows.Forms.Padding(2);
+            this.button_huyBo.Name = "button_huyBo";
+            this.button_huyBo.Size = new System.Drawing.Size(88, 35);
+            this.button_huyBo.TabIndex = 51;
+            this.button_huyBo.TabStop = false;
+            this.button_huyBo.Text = "Hủy bỏ";
+            this.button_huyBo.UseVisualStyleBackColor = false;
+            this.button_huyBo.Click += new System.EventHandler(this.button_huyBo_Click);
             // 
             // label10
             // 
@@ -233,6 +233,7 @@
             this.textBox_DienThoai.Name = "textBox_DienThoai";
             this.textBox_DienThoai.Size = new System.Drawing.Size(241, 22);
             this.textBox_DienThoai.TabIndex = 4;
+            this.textBox_DienThoai.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_DienThoai_KeyPress);
             // 
             // comboBox2
             // 
@@ -242,7 +243,7 @@
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
             "Nam",
-            "Nu"});
+            "Nữ"});
             this.comboBox2.Location = new System.Drawing.Point(153, 194);
             this.comboBox2.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox2.Name = "comboBox2";
@@ -275,7 +276,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(481, 520);
             this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button_huyBo);
             this.Controls.Add(this.textBox5_MaNV);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.textBox_diaChi);
@@ -304,7 +305,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button_huyBo;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label9;

@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddKhachHang.Designer.cs">
+      <DependentUpon>AddKhachHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddSP.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,6 +137,9 @@
       <DependentUpon>ThongKe.cs</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
+    <EmbeddedResource Include="AddKhachHang.resx">
+      <DependentUpon>AddKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddSP.resx">
       <DependentUpon>AddSP.cs</DependentUpon>
     </EmbeddedResource>

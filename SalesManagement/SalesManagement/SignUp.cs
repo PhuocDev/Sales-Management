@@ -70,7 +70,7 @@ namespace SalesManagement
                 MessageBox.Show("Mã nhân viên phải bắt đầu bằng \"NV\"", "Thông báo");
                 return false;
             }
-            else if(comboBox2.Text != "Nam" && comboBox2.Text != "Nu")
+            else if(comboBox2.Text != "Nam" && comboBox2.Text != "Nữ")
             {
                 MessageBox.Show("Giới tính không hợp lệ!", "Thông báo");
                 return false;
@@ -120,7 +120,7 @@ namespace SalesManagement
                 try
                 {
                     sqlCon.Open();
-                    string commandString = "INSERT INTO NHANVIEN VALUES('" + textBox5_MaNV.Text.ToString() + "', '" + Hash_pass(textBox2_matKhau.Text).ToString() + "', N'" + textBox4_HoTen.Text.ToString() + "', '" + dateTimePicker1.Value.ToString() + "', N'" + comboBox2.Text.ToString() + "', '" + textBox_DienThoai.Text.ToString() + "', N'" + textBox_diaChi.Text.ToString() + "')";
+                    string commandString = "INSERT INTO NHANVIEN VALUES('" + textBox5_MaNV.Text.ToString() + "', '" + Hash_pass(textBox2_matKhau.Text).ToString() + "', N'" + textBox4_HoTen.Text.ToString() + "', '" + dateTimePicker1.Value.ToString().Substring(0, dateTimePicker1.Value.ToString().IndexOf(" ")) + "', N'" + comboBox2.Text.ToString() + "', '" + textBox_DienThoai.Text.ToString() + "', N'" + textBox_diaChi.Text.ToString() + "')";
                     SqlCommand sqlCmd = new SqlCommand(commandString, sqlCon);
                     sqlCmd.ExecuteNonQuery();
                     MessageBox.Show("Dang ki thanh cong");
@@ -139,13 +139,14 @@ namespace SalesManagement
         }
 
 
-        //---------------------------------------------------hủy bỏ click-------------------------------------------------------------------//
+        //---------------------------------------------------hủy_bỏ_click-------------------------------------------------------------------//
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button_huyBo_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        //-----------------------------------------------------confirm_password_click-------------------------------------------------------//
         private void textBox3_laiMK_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -153,5 +154,14 @@ namespace SalesManagement
                 button_signup.PerformClick();
             }
         }
+        //------------------------------------------------------------đặt_đk_cho_sđt---------------------------------------------------------//
+        private void textBox_DienThoai_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(!char.IsControl(e.KeyChar) && !char.IsNumber(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
     }
 }
