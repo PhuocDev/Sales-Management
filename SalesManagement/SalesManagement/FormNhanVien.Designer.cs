@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.btnXoaNV = new System.Windows.Forms.Button();
-            this.ColSDT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColGioiTinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColNgaySinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColHoTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColMaNV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColSTT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ColSTT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMaNV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColHoTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColNgaySinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColGioiTinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColSDT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColDiaChi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnThemNV = new System.Windows.Forms.Button();
             this.btnXuatFile = new System.Windows.Forms.Button();
@@ -77,58 +77,11 @@
             this.btnXoaNV.UseVisualStyleBackColor = false;
             this.btnXoaNV.Click += new System.EventHandler(this.btnXoaNV_Click);
             // 
-            // ColSDT
-            // 
-            this.ColSDT.HeaderText = "SĐT";
-            this.ColSDT.MinimumWidth = 6;
-            this.ColSDT.Name = "ColSDT";
-            this.ColSDT.ReadOnly = true;
-            this.ColSDT.Width = 120;
-            // 
-            // ColGioiTinh
-            // 
-            this.ColGioiTinh.HeaderText = "Giới tính";
-            this.ColGioiTinh.MinimumWidth = 6;
-            this.ColGioiTinh.Name = "ColGioiTinh";
-            this.ColGioiTinh.ReadOnly = true;
-            this.ColGioiTinh.Width = 125;
-            // 
-            // ColNgaySinh
-            // 
-            this.ColNgaySinh.HeaderText = "Ngày sinh";
-            this.ColNgaySinh.MinimumWidth = 6;
-            this.ColNgaySinh.Name = "ColNgaySinh";
-            this.ColNgaySinh.ReadOnly = true;
-            this.ColNgaySinh.Width = 120;
-            // 
-            // ColHoTen
-            // 
-            this.ColHoTen.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColHoTen.HeaderText = "Họ tên";
-            this.ColHoTen.MinimumWidth = 6;
-            this.ColHoTen.Name = "ColHoTen";
-            this.ColHoTen.ReadOnly = true;
-            // 
-            // ColMaNV
-            // 
-            this.ColMaNV.HeaderText = "Mã NV";
-            this.ColMaNV.MinimumWidth = 6;
-            this.ColMaNV.Name = "ColMaNV";
-            this.ColMaNV.ReadOnly = true;
-            this.ColMaNV.Width = 120;
-            // 
-            // ColSTT
-            // 
-            this.ColSTT.HeaderText = "STT";
-            this.ColSTT.MinimumWidth = 6;
-            this.ColSTT.Name = "ColSTT";
-            this.ColSTT.ReadOnly = true;
-            this.ColSTT.Width = 40;
-            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColSTT,
@@ -145,11 +98,73 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.RowTemplate.ReadOnly = true;
+            this.dataGridView1.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.Size = new System.Drawing.Size(920, 202);
             this.dataGridView1.TabIndex = 25;
             this.dataGridView1.TabStop = false;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
+            // 
+            // ColSTT
+            // 
+            this.ColSTT.HeaderText = "STT";
+            this.ColSTT.MinimumWidth = 6;
+            this.ColSTT.Name = "ColSTT";
+            this.ColSTT.ReadOnly = true;
+            this.ColSTT.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColSTT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColSTT.Width = 40;
+            // 
+            // ColMaNV
+            // 
+            this.ColMaNV.HeaderText = "Mã NV";
+            this.ColMaNV.MinimumWidth = 6;
+            this.ColMaNV.Name = "ColMaNV";
+            this.ColMaNV.ReadOnly = true;
+            this.ColMaNV.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColMaNV.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColMaNV.Width = 120;
+            // 
+            // ColHoTen
+            // 
+            this.ColHoTen.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColHoTen.HeaderText = "Họ tên";
+            this.ColHoTen.MinimumWidth = 6;
+            this.ColHoTen.Name = "ColHoTen";
+            this.ColHoTen.ReadOnly = true;
+            this.ColHoTen.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColHoTen.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColNgaySinh
+            // 
+            this.ColNgaySinh.HeaderText = "Ngày sinh";
+            this.ColNgaySinh.MinimumWidth = 6;
+            this.ColNgaySinh.Name = "ColNgaySinh";
+            this.ColNgaySinh.ReadOnly = true;
+            this.ColNgaySinh.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColNgaySinh.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColNgaySinh.Width = 120;
+            // 
+            // ColGioiTinh
+            // 
+            this.ColGioiTinh.HeaderText = "Giới tính";
+            this.ColGioiTinh.MinimumWidth = 6;
+            this.ColGioiTinh.Name = "ColGioiTinh";
+            this.ColGioiTinh.ReadOnly = true;
+            this.ColGioiTinh.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColGioiTinh.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColGioiTinh.Width = 125;
+            // 
+            // ColSDT
+            // 
+            this.ColSDT.HeaderText = "SĐT";
+            this.ColSDT.MinimumWidth = 6;
+            this.ColSDT.Name = "ColSDT";
+            this.ColSDT.ReadOnly = true;
+            this.ColSDT.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColSDT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColSDT.Width = 120;
             // 
             // ColDiaChi
             // 
@@ -157,6 +172,8 @@
             this.ColDiaChi.MinimumWidth = 6;
             this.ColDiaChi.Name = "ColDiaChi";
             this.ColDiaChi.ReadOnly = true;
+            this.ColDiaChi.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColDiaChi.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.ColDiaChi.Width = 180;
             // 
             // btnThemNV
@@ -466,14 +483,7 @@
         #endregion
 
         private System.Windows.Forms.Button btnXoaNV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColSDT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColGioiTinh;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColNgaySinh;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColHoTen;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColMaNV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColSTT;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColDiaChi;
         private System.Windows.Forms.Button btnThemNV;
         private System.Windows.Forms.Button btnXuatFile;
         private System.Windows.Forms.Button btnChinhSua;
@@ -496,5 +506,12 @@
         private System.Windows.Forms.Button button_save;
         private System.Windows.Forms.Label label_warning;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColSTT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColMaNV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColHoTen;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColNgaySinh;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColGioiTinh;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColSDT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColDiaChi;
     }
 }

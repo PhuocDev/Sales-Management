@@ -25,8 +25,6 @@ namespace SalesManagement
         //------------------------------------------------update_Nhân viên----------------------------------------//
         private void UpdateNhanVien()
         {
-            SqlConnection connection = new SqlConnection(conString);
-
             connection.Open();
             string sqlQuery = "select * from NHANVIEN";
             SqlCommand command = new SqlCommand(sqlQuery, connection);
@@ -46,6 +44,7 @@ namespace SalesManagement
 
         private void btnKhachHang_Click(object sender, EventArgs e)
         {
+            this.button_save.PerformClick();
             FormKhachHang kh = new FormKhachHang(change);
             kh.FormClosed += new FormClosedEventHandler(KhachHang_FormClose);
             kh.Show();
@@ -74,8 +73,15 @@ namespace SalesManagement
         //--------------------------------------thêm nhân viên---------------------------------------------------------------------//
         private void btnThemNV_Click(object sender, EventArgs e)
         {
-            SignUp sn = new SignUp(this);
-            sn.ShowDialog();
+            if(Login.Current_user.ID.Substring(0, 2) == "QL")
+            {
+                SignUp sn = new SignUp(this);
+                sn.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Tài khoản không được cấp quyền thêm nhân viên ");
+            }
         }
         public void add_datagridview(string manv, string ten, string ngaysinh, string gioitinh, string sdt, string diachi)
         {
@@ -101,7 +107,7 @@ namespace SalesManagement
         public List<string> id_changes = new List<string>();// danh sách nhân viên bị thay đổi thông tin
         private void btnChinhSua_Click(object sender, EventArgs e)
         {
-            if (Login.Current_user.ID.Contains("QL"))
+            if (Login.Current_user.ID.Substring(0, 2) == "QL")
             {
                 DataGridViewCell cell = dataGridView1.CurrentCell;
                 int index = cell.RowIndex;
@@ -124,18 +130,31 @@ namespace SalesManagement
         public List<string> id_remove = new List<string>();// danh sách nhân viên bị xóa
         private void btnXoaNV_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Bạn có muốn xóa nhân viên đã chọn?","", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.No) return;
-
-            DataGridViewCell cell = dataGridView1.CurrentCell;
-            if (cell == null) return;
-            int index = cell.RowIndex;
-            id_remove.Add(dataGridView1.Rows[index].Cells[1].Value.ToString());// thêm vào danh sách nhân viên bị xóa
-            dataGridView1.Rows.RemoveAt(index);
-            for (int i = index; i < dataGridView1.Rows.Count; i++)
+            if(Login.Current_user.ID.Substring(0, 2) == "QL")
             {
-                DataGridViewRow row = dataGridView1.Rows[i];
-                row.Cells[0].Value = i + 1;
+                DialogResult result = MessageBox.Show("Bạn có muốn xóa nhân viên đã chọn?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.No) return;
+
+                DataGridViewCell cell = dataGridView1.CurrentCell;
+                if (cell == null) return;
+                int index = cell.RowIndex;
+                id_remove.Add(dataGridView1.Rows[index].Cells[1].Value.ToString());// thêm vào danh sách nhân viên bị xóa
+                dataGridView1.Rows.RemoveAt(index);
+                for (int i = index; i < dataGridView1.Rows.Count; i++)
+                {
+                    DataGridViewRow row = dataGridView1.Rows[i];
+                    row.Cells[0].Value = i + 1;
+                }
+                txbMaNV.Text = "";
+                txbHoTen.Text = "";
+                dateTimePicker1.Text = "";
+                txbGioiTinh.Text = "";
+                txbSDT.Text = "";
+                txbDiaChi.Text = "";
+            }
+            else
+            {
+                MessageBox.Show("Tài khoản không được cấp quyền xóa nhân viên");
             }
         }
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
@@ -161,7 +180,13 @@ namespace SalesManagement
         {
             if (id_changes.Count() == 0 && id_remove.Count() == 0) return;
             DialogResult result = MessageBox.Show("Bạn có muốn lưu thay đổi?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.No) return;
+            if (result == DialogResult.No)
+            {
+                id_changes.Clear();
+                id_remove.Clear();
+                this.dataGridView1.Rows.Clear();
+                UpdateNhanVien();
+            }
 
             try
             {
