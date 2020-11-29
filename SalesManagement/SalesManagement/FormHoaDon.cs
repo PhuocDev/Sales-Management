@@ -531,6 +531,17 @@ namespace SalesManagement
                                 Document pdfDoc = new Document(PageSize.A4, 10f, 20f, 20f, 10f);
                                 PdfWriter.GetInstance(pdfDoc, stream);
                                 pdfDoc.Open();
+                                Phrase phrase = new Phrase();
+                                Chunk chunk = new Chunk("Mã hóa đơn: " + txbMaHD.Text);
+                                phrase.Add(chunk);
+                                phrase.Add(Environment.NewLine);
+                                chunk = new Chunk("Thời gian: " + txbThoiGian.Text);
+                                phrase.Add(chunk);
+                                phrase.Add(Environment.NewLine);
+                                chunk = new Chunk("Tổng thanh toán: " + txbTongThanhToan.Text);
+                                phrase.Add(chunk);
+                                phrase.Add(Environment.NewLine);
+                                pdfDoc.Add(phrase);
                                 pdfDoc.Add(pdfTable);
                                 pdfDoc.Close();
                                 stream.Close();
