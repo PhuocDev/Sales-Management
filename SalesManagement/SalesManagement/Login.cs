@@ -15,35 +15,17 @@ namespace SalesManagement
 {
     public partial class Login : Form
     {
-        public bool isQL = false;
-        static string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
+        public static User Current_user;////////////////////// Lưu thông tin người dùng hiện tại
+        static string conString = @"Server=DESKTOP-IRREIHM\SQLEXPRESS;Database=SALES_MANAGEMENT;User Id=sa;Password=thanh08052001;";
         SqlConnection connection = new SqlConnection(conString);
-        /*SqlCommand com = new SqlCommand();
-        SqlDataReader dr;*/
 
         public Login()
         {
             InitializeComponent();
-            //con.ConnectionString = @"Data Source=DESKTOP-STUS076\SQLEXPRESS;Initial Catalog=SALES_MANAGEMENT;Integrated Security=True";
         }
-
+        //---------------------------------------------Hash_pass------------------------------------------------------//
         private string Hash_pass(string pass)
         {
-            /*//Tạo MD5 
-            MD5 mh = MD5.Create();
-            //Chuyển kiểu chuổi thành kiểu byte
-            byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(pass);
-            //mã hóa chuỗi đã chuyển
-            byte[] hash = mh.ComputeHash(inputBytes);
-            //tạo đối tượng StringBuilder (làm việc với kiểu dữ liệu lớn)
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < hash.Length; i++)
-            {
-                sb.Append(hash[i].ToString("x2"));
-            }
-            string repass = Convert.ToString(sb);
-            repass = repass.Substring(0, 7);
-            return repass;*/
             byte[] temp = ASCIIEncoding.ASCII.GetBytes(pass);
             byte[] hasData = new MD5CryptoServiceProvider().ComputeHash(temp);
 
@@ -55,23 +37,13 @@ namespace SalesManagement
             }
             return hasPass;
         }
-        private bool VerifyUser(string name, string pass)
+
+        //--------------------------------------VerifyUser----------------------------------------------------------//
+        private bool VerifyUser(string name, string pass)//kiểm tra TK_MK
         {
             connection.Open();
             if (name.Substring(0, 2) == "NV")
             {
-                /*string query = "select * from NHANVIEN where MANV= '" + name.Trim() + "' and PASSWORD = '" + Hash_pass(pass).Trim() + "'";
-                SqlDataAdapter sda = new SqlDataAdapter(query, con);
-                DataTable dttb = new DataTable();
-                sda.Fill(dttb);
-                if (dttb.Rows.Count == 1)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }*/
                 string sqlQuery = "select MANV, PASSWORD from NHANVIEN";
                 SqlCommand command = new SqlCommand(sqlQuery, connection);
                 SqlDataReader dataReader = command.ExecuteReader();
@@ -81,7 +53,6 @@ namespace SalesManagement
                     if (dataReader.GetString(0) == name && dataReader.GetString(1) == Hash_pass(pass))
                     {
                         connection.Close();
-                        isQL = false;
                         return true;
                     }
                 }
@@ -90,18 +61,6 @@ namespace SalesManagement
             }
             else if (name.Substring(0, 2) == "QL")
             {
-                /*string query = "select * from QUANLY where MAQL= '" + name.Trim() + "' and PASSWORD = '" + Hash_pass(pass).Trim() + "'";
-                SqlDataAdapter sda = new SqlDataAdapter(query, con);
-                DataTable dttb = new DataTable();
-                sda.Fill(dttb);
-                if (dttb.Rows.Count == 1)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }*/
                 string sqlQuery = "select MAQL, PASSWORD from QUANLY";
                 SqlCommand command = new SqlCommand(sqlQuery, connection);
                 SqlDataReader dataReader = command.ExecuteReader();
@@ -111,7 +70,6 @@ namespace SalesManagement
                     if (dataReader.GetString(0) == name && dataReader.GetString(1) == Hash_pass(pass))
                     {
                         connection.Close();
-                        isQL = true;
                         return true;
                     }
                 }
@@ -125,22 +83,7 @@ namespace SalesManagement
             }
         }
 
-        private void UsernamEnter(object sender, EventArgs e)
-        {
-            if (textBox1.Text.Equals("Username"))
-            {
-                textBox1.Text = "";
-            }
-        }
-
-        private void UsernamLeave(object sender, EventArgs e)
-        {
-            if (textBox1.Text.Equals(""))
-            {
-                textBox1.Text = "Username";
-            }
-        }
-
+        //--------------------------------------------------Dangnhap_click------------------------------------------------//
         private void button_dangNhap_Click(object sender, EventArgs e)
         {
             if (textBox1.Text == "" || textBox_passWord.Text == "")
@@ -150,44 +93,53 @@ namespace SalesManagement
             } 
             if (VerifyUser(textBox1.Text, textBox_passWord.Text))
             {
+                Current_user = new User(textBox1.Text, textBox_passWord.Text);//////// Lưu thông tin người dùng hiện tại
                 menu mn = new menu();
                 mn.FormClosed += new FormClosedEventHandler(menu_FormClose);
                 mn.Show();
                 this.Hide();
             }
             else MessageBox.Show("Tài khoản hoặc mật khẩu không đúng");
-
-            /*menu mn = new menu();
-            mn.FormClosed += new FormClosedEventHandler(menu_FormClose);
-            mn.Show();
-            this.Hide();*/
         }
         private void menu_FormClose(object sender, FormClosedEventArgs e)
         {
             this.Show();
         }
-
+        //------------------------------------------keydown------------------------------------------------------------------//
         private void textBox_passWord_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
+                e.SuppressKeyPress = true;
                 button_dangNhap.PerformClick();
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
+            if(e.KeyCode == Keys.Enter)
+            {
+                this.ActiveControl = textBox_passWord;
+                this.textBox_passWord.Focus();
+                e.SuppressKeyPress = true;
+            }
+        }
+        //---------------------------------------------------username_leave_enter--------------------------------------------------//
 
+        private void textBox1_Leave(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Equals(""))
+            {
+                textBox1.Text = "Username";
+            }
         }
 
-        private void label1_Click_1(object sender, EventArgs e)
+        private void textBox1_Enter(object sender, EventArgs e)
         {
-
-        }
-
-        private void Login_Load(object sender, EventArgs e)
-        {
-
+            if (textBox1.Text.Equals("Username"))
+            {
+                textBox1.Text = "";
+            }
         }
     }
 }
