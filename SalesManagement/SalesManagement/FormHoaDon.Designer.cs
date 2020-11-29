@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvHoaDon = new System.Windows.Forms.DataGridView();
             this.txbTraLaiKhach = new System.Windows.Forms.TextBox();
             this.txbTienKhachDua = new System.Windows.Forms.TextBox();
@@ -69,6 +69,7 @@
             this.ColDonGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColThanhTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColCheckbox = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.btnIn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHoaDon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSoLuong)).BeginInit();
             this.SuspendLayout();
@@ -175,10 +176,10 @@
             // 
             this.btnThanhToan.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.btnThanhToan.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThanhToan.Location = new System.Drawing.Point(1022, 561);
+            this.btnThanhToan.Location = new System.Drawing.Point(1075, 558);
             this.btnThanhToan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnThanhToan.Name = "btnThanhToan";
-            this.btnThanhToan.Size = new System.Drawing.Size(230, 66);
+            this.btnThanhToan.Size = new System.Drawing.Size(213, 66);
             this.btnThanhToan.TabIndex = 8;
             this.btnThanhToan.Text = "Thanh Toán";
             this.btnThanhToan.UseVisualStyleBackColor = false;
@@ -486,8 +487,8 @@
             // ColTenSP
             // 
             this.ColTenSP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColTenSP.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColTenSP.DefaultCellStyle = dataGridViewCellStyle10;
             this.ColTenSP.FillWeight = 200F;
             this.ColTenSP.HeaderText = "Tên sản phẩm";
             this.ColTenSP.MinimumWidth = 6;
@@ -517,9 +518,9 @@
             // 
             // ColDonGia
             // 
-            dataGridViewCellStyle5.Format = "C0";
-            dataGridViewCellStyle5.NullValue = null;
-            this.ColDonGia.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.Format = "C0";
+            dataGridViewCellStyle11.NullValue = null;
+            this.ColDonGia.DefaultCellStyle = dataGridViewCellStyle11;
             this.ColDonGia.FillWeight = 75F;
             this.ColDonGia.HeaderText = "Đơn giá";
             this.ColDonGia.MinimumWidth = 6;
@@ -530,9 +531,9 @@
             // 
             // ColThanhTien
             // 
-            dataGridViewCellStyle6.Format = "C0";
-            dataGridViewCellStyle6.NullValue = null;
-            this.ColThanhTien.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Format = "C0";
+            dataGridViewCellStyle12.NullValue = null;
+            this.ColThanhTien.DefaultCellStyle = dataGridViewCellStyle12;
             this.ColThanhTien.FillWeight = 90F;
             this.ColThanhTien.HeaderText = "Thành tiền";
             this.ColThanhTien.MinimumWidth = 6;
@@ -548,6 +549,19 @@
             this.ColCheckbox.Name = "ColCheckbox";
             this.ColCheckbox.ReadOnly = true;
             this.ColCheckbox.Width = 35;
+            // 
+            // btnIn
+            // 
+            this.btnIn.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIn.Location = new System.Drawing.Point(970, 558);
+            this.btnIn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnIn.Name = "btnIn";
+            this.btnIn.Size = new System.Drawing.Size(72, 66);
+            this.btnIn.TabIndex = 8;
+            this.btnIn.Text = "In";
+            this.btnIn.UseVisualStyleBackColor = false;
+            this.btnIn.Click += new System.EventHandler(this.btnIn_Click);
             // 
             // FormHoaDon
             // 
@@ -566,6 +580,7 @@
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
+            this.Controls.Add(this.btnIn);
             this.Controls.Add(this.btnThanhToan);
             this.Controls.Add(this.btnLichSuHoaDon);
             this.Controls.Add(this.btnTaoHD);
@@ -636,5 +651,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColDonGia;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColThanhTien;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ColCheckbox;
+        private System.Windows.Forms.Button btnIn;
     }
 }
