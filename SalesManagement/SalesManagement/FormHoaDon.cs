@@ -44,7 +44,6 @@ namespace SalesManagement
 
         private void UpdateDanhSachSP()
         {
-            //string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
             SqlConnection connection = new SqlConnection(conString);
             connection.Open();
             string sqlQuery = "SELECT * FROM SANPHAM";
@@ -64,7 +63,6 @@ namespace SalesManagement
         }
         private void UpdateDanhSachKH()
         {
-            //string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
             SqlConnection connection = new SqlConnection(conString);
             connection.Open();
             string sqlQuery = "SELECT * FROM KHACHHANG";
@@ -80,7 +78,6 @@ namespace SalesManagement
         }
         private string GetMaHD()
         {
-            //string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
             SqlConnection connection = new SqlConnection(conString);
             connection.Open();
             string sqlQuery = "SELECT * FROM HOADON WHERE THOIGIAN IN (SELECT MAX(THOIGIAN) FROM HOADON)";
@@ -152,12 +149,14 @@ namespace SalesManagement
                 {
                     if (KiemTraSoLuong(dgvHoaDon.Rows[i].Cells[1].Value.ToString(), Convert.ToInt32(dgvHoaDon.Rows[i].Cells[3].Value) + Convert.ToInt32(nudSoLuong.Value)) == false)
                     {
+                        nudSoLuong.Focus();
                         return;
                     }
                     dgvHoaDon.Rows[i].Cells[3].Value = Convert.ToInt32(dgvHoaDon.Rows[i].Cells[3].Value) + Convert.ToInt32(nudSoLuong.Value);
                     dgvHoaDon.Rows[i].Cells[6].Value = Convert.ToInt32(Convert.ToInt32(dgvHoaDon.Rows[i].Cells[3].Value) * Convert.ToInt32(dgvHoaDon.Rows[i].Cells[5].Value));
                     dgvHoaDon.ClearSelection();
                     dgvHoaDon.Rows[i].Selected = true;
+                    cbbTenSP.Focus();
                     UpdateTongThanhToan();
                     return;
                 }
@@ -171,6 +170,7 @@ namespace SalesManagement
                     {
                         MessageBox.Show("Số lượng sản phẩm còn lại không đủ\nSản phẩm: " + sanPham.tenSP
                             + "\nSố lượng còn lại: " + sanPham.soLuong.ToString());
+                        cbbTenSP.Focus();
                         return;
                     }
                     dgvHoaDon.Rows.Add(dgvHoaDon.Rows.Count, sanPham.maSP, sanPham.tenSP, Convert.ToInt32(nudSoLuong.Value), sanPham.donViTinh,
@@ -178,17 +178,20 @@ namespace SalesManagement
                     timThaySanPham = true;
                     dgvHoaDon.ClearSelection();
                     dgvHoaDon.Rows[dgvHoaDon.Rows.Count - 2].Selected = true;
+                    cbbTenSP.Focus();
                     UpdateTongThanhToan();
                     break;
                 }
             }
             if (timThaySanPham == false) MessageBox.Show("Khong tim thay san pham: " + cbbTenSP.Text);
+            cbbTenSP.Focus();
         }
 
         private void dgvHoaDon_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewCell cell = dgvHoaDon.CurrentCell;
             int index = cell.RowIndex;
+            if (index == dgvHoaDon.Rows.Count - 1) return;
             dgvHoaDon.Rows[index].Selected = true;
             cbbTenSP.Text = dgvHoaDon.SelectedRows[0].Cells[2].Value.ToString();
             nudSoLuong.Value = Convert.ToInt32(dgvHoaDon.SelectedRows[0].Cells[3].Value);
@@ -206,16 +209,23 @@ namespace SalesManagement
                     break;
                 }
             }
-            if (timThaySanPham == false) MessageBox.Show("Khong tim thay san pham: " + cbbTenSP.Text);
+            if (timThaySanPham == false)
+            {
+                MessageBox.Show("Khong tim thay san pham: " + cbbTenSP.Text);
+                cbbTenSP.Focus();
+                return;
+            }
             if (dgvHoaDon.SelectedRows[0].Cells[2].Value.ToString() == cbbTenSP.Text)
             {
                 if (KiemTraSoLuong(dgvHoaDon.SelectedRows[0].Cells[1].Value.ToString(), Convert.ToInt32(nudSoLuong.Value)) == false)
                 {
+                    nudSoLuong.Focus();
                     return;
                 }
                 dgvHoaDon.SelectedRows[0].Cells[3].Value = nudSoLuong.Value;
                 dgvHoaDon.SelectedRows[0].Cells[6].Value = Convert.ToInt32(dgvHoaDon.SelectedRows[0].Cells[3].Value) * Convert.ToInt32(dgvHoaDon.SelectedRows[0].Cells[5].Value);
                 UpdateTongThanhToan();
+                cbbTenSP.Focus();
                 return;
             }
             for (int i = 0; i < dgvHoaDon.Rows.Count - 1; i++)
@@ -224,6 +234,7 @@ namespace SalesManagement
                 if (dgvHoaDon.Rows[i].Cells[2].Value.ToString() == cbbTenSP.Text)
                 {
                     MessageBox.Show("Da co san pham '" + cbbTenSP.Text + "' trong danh sach");
+                    cbbTenSP.Focus();
                     return;
                 }
             }
@@ -235,6 +246,7 @@ namespace SalesManagement
                     {
                         MessageBox.Show("Số lượng sản phẩm còn lại không đủ\nSản phẩm: " + sanPham.tenSP
                             + "\nSố lượng còn lại: " + sanPham.soLuong.ToString());
+                        nudSoLuong.Focus();
                         return;
                     }
                     dgvHoaDon.SelectedRows[0].Cells[1].Value = sanPham.maSP;
@@ -244,6 +256,7 @@ namespace SalesManagement
                     dgvHoaDon.SelectedRows[0].Cells[5].Value = sanPham.giaBan;
                     dgvHoaDon.SelectedRows[0].Cells[6].Value = Convert.ToInt32(nudSoLuong.Value) * sanPham.giaBan;
                     UpdateTongThanhToan();
+                    cbbTenSP.Focus();
                     return;
                 }
             }
@@ -267,6 +280,7 @@ namespace SalesManagement
             cbbTenSP.TextChanged += cbbTenSP_TextChanged;
             cbbMaSP.TextChanged += cbbMaSP_TextChanged;
             nudSoLuong.Value = 1;
+            cbbTenSP.Focus();
             UpdateTongThanhToan();
         }
 
@@ -352,7 +366,8 @@ namespace SalesManagement
             if (cbbTenSP.FindString(cbbTenSP.Text) != -1)
             {
                 cbbMaSP.TextChanged -= cbbMaSP_TextChanged;
-                cbbMaSP.Text = cbbMaSP.Items[cbbTenSP.FindString(cbbTenSP.Text)].ToString();
+                if (cbbTenSP.Text == "") cbbMaSP.Text = "";
+                else cbbMaSP.Text = cbbMaSP.Items[cbbTenSP.FindString(cbbTenSP.Text)].ToString();
                 cbbMaSP.TextChanged += cbbMaSP_TextChanged;
             }
         }
@@ -362,7 +377,8 @@ namespace SalesManagement
             if (cbbMaSP.FindString(cbbMaSP.Text) != -1)
             {
                 cbbTenSP.TextChanged -= cbbTenSP_TextChanged;
-                cbbTenSP.Text = cbbTenSP.Items[cbbMaSP.FindString(cbbMaSP.Text)].ToString();
+                if (cbbMaSP.Text == "") cbbTenSP.Text = "";
+                else cbbTenSP.Text = cbbTenSP.Items[cbbMaSP.FindString(cbbMaSP.Text)].ToString();
                 cbbTenSP.TextChanged += cbbTenSP_TextChanged;
             }
         }
@@ -388,7 +404,8 @@ namespace SalesManagement
             //command.Parameters.AddWithValue("@maNV", user.MaNV);
             command.Parameters.AddWithValue("@maNV", "NV001");  //Chưa đổi MANV
             // ------------------------------------------------------------------------------------------------
-            command.Parameters.AddWithValue("@maKH", cbbMaKH.Text);
+            if (cbbMaKH.FindString(cbbMaKH.Text) == -1) command.Parameters.AddWithValue("@maKH", "NULL");
+            else command.Parameters.AddWithValue("@maKH", cbbMaKH.Text);
             command.Parameters.AddWithValue("@thoiGian", Convert.ToDateTime(txbThoiGian.Text));
             command.Parameters.AddWithValue("@tongGiaTri", int.Parse(txbTongThanhToan.Text, NumberStyles.Currency));
             int check = command.ExecuteNonQuery();
@@ -400,8 +417,6 @@ namespace SalesManagement
             }
             sqlQuery = "INSERT INTO CTHD(MAHD, MASP, SOLUONG) VALUES (@maHD, @maSP, @soLuong)";
             command = new SqlCommand(sqlQuery, connection);
-            /*string sqlQuery2 = "UPDATE SANPHAM SET SOLUONG = SOLUONG - @soLuong";
-            SqlCommand command2 = new SqlCommand(sqlQuery2, connection);*/
             for (int i = 0; i < dgvHoaDon.Rows.Count - 1; i++)
             {
                 command.Parameters.Clear();
@@ -430,6 +445,35 @@ namespace SalesManagement
             MessageBox.Show("Thanh toán thành công");
             btnTaoHD.PerformClick();
             connection.Close();
+        }
+
+        private void cbbMaKH_Leave(object sender, EventArgs e)
+        {
+            if (cbbMaKH.FindString(cbbMaKH.Text) == -1)
+            {
+                MessageBox.Show("Không tìm thấy khách hàng: " + cbbMaKH.Text);
+                return;
+            }
+        }
+
+        private void btnLichSuHoaDon_Click(object sender, EventArgs e)
+        {
+            FormLichSuHoaDon formLichSuHoaDon = new FormLichSuHoaDon(change1, change2);
+            formLichSuHoaDon.FormClosed += new FormClosedEventHandler(FormLichSuHoaDon_FormClose);
+            formLichSuHoaDon.Show();
+            this.Hide();
+        }
+        private void change1()
+        {
+            this.Show();
+        }
+        private void change2()
+        {
+            this.Close();
+        }
+        private void FormLichSuHoaDon_FormClose(object sender, FormClosedEventArgs e)
+        {
+            this.Show();
         }
     }
 }
