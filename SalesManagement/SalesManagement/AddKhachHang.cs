@@ -90,7 +90,7 @@ namespace SalesManagement
                     SqlCommand sqlCmd = new SqlCommand(commandString, sqlCon);
                     sqlCmd.ExecuteNonQuery();
                     MessageBox.Show("Dang ki thanh cong");
-                    this.parent.add_datagridview(textBox5_MaKH.Text, textBox4_HoTen.Text, dateTimePicker1.Value.ToString().Substring(0, dateTimePicker1.Value.ToString().IndexOf(" ")), comboBox_gioiTinh.Text.ToString(), textBox_DienThoai.Text, textBox_diaChi.Text, textBox_diem.Text);
+                   // this.parent.add_datagridview(textBox5_MaKH.Text, textBox4_HoTen.Text, dateTimePicker1.Value.ToString().Substring(0, dateTimePicker1.Value.ToString().IndexOf(" ")), comboBox_gioiTinh.Text.ToString(), textBox_DienThoai.Text, textBox_diaChi.Text, textBox_diem.Text);
                 }
                 catch (Exception ex)
                 {
@@ -114,6 +114,7 @@ namespace SalesManagement
             if (get_MAKH())
             {
                 textBox5_MaKH.Text = MAKH;
+                MAKH = "KH";
             }
             else
             {
