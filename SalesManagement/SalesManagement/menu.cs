@@ -19,7 +19,7 @@ namespace SalesManagement
 
         private void button_SanPham_Click(object sender, EventArgs e)
         {
-            SanPham sp = new SanPham();
+            sanPham sp = new sanPham();
             sp.FormClosed += new FormClosedEventHandler(SanPham_FormClose);
             sp.Show();
             this.Hide();
