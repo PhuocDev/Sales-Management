@@ -81,7 +81,10 @@ namespace SalesManagement
             DialogResult result =  MessageBox.Show("Bạn có chắc muốn xóa sản phẩm đã chọn", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             if(result == DialogResult.Yes)
             {
-                dataGridView_danhSachSanPham.Rows.RemoveAt(dataGridView_danhSachSanPham.CurrentCell.RowIndex);
+                DataGridViewCell cell = dataGridView_danhSachSanPham.CurrentCell;
+                if (cell == null) return;
+                int index = cell.RowIndex;
+                dataGridView_danhSachSanPham.Rows.RemoveAt(index);
                 for(int i = dataGridView_danhSachSanPham.CurrentCell.RowIndex; i< dataGridView_danhSachSanPham.Rows.Count; i++)
                 {
                     DataGridViewRow row = dataGridView_danhSachSanPham.Rows[i];
