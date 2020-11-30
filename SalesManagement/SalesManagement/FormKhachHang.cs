@@ -26,6 +26,7 @@ namespace SalesManagement
         private void UpdateKhachHang()
         {
             connection.Open();
+            dataGridView1.Rows.Clear();
             string sqlQuery = "select * from KHACHHANG";
             SqlCommand command = new SqlCommand(sqlQuery, connection);
             SqlDataReader dataReader = command.ExecuteReader();
@@ -245,8 +246,10 @@ namespace SalesManagement
 
         private void btnThemKH_Click(object sender, EventArgs e)
         {
+            button_save.PerformClick();
             AddKhachHang kh = new AddKhachHang(this);
             kh.ShowDialog();
+            UpdateKhachHang();
         }
         public void add_datagridview(string makh, string ten, string ngaysinh, string gioitinh, string sdt, string diachi, string diem)
         {

@@ -109,6 +109,11 @@ namespace SalesManagement
         {
             if (Login.Current_user.ID.Substring(0, 2) == "QL")
             {
+                if(txbHoTen.Text == "" || txbGioiTinh.Text == "" || txbSDT.Text == "" || txbDiaChi.Text == "")
+                {
+                    MessageBox.Show("Bạn cần nhập đủ thông tin");
+                    return;
+                }
                 DataGridViewCell cell = dataGridView1.CurrentCell;
                 int index = cell.RowIndex;
                 dataGridView1.Rows[index].Cells[2].Value = txbHoTen.Text;

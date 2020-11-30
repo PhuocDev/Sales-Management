@@ -13,7 +13,7 @@ namespace SalesManagement
 {
     public partial class AddKhachHang : Form
     {
-        public static string conString = @"Server=DESKTOP-IRREIHM\SQLEXPRESS;Database=SALES_MANAGEMENT;User Id=sa;Password=thanh08052001;";
+        public static string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
         SqlConnection connection = new SqlConnection(conString);
         public FormKhachHang parent;
         private string MAKH = "KH";
@@ -90,7 +90,7 @@ namespace SalesManagement
                     SqlCommand sqlCmd = new SqlCommand(commandString, sqlCon);
                     sqlCmd.ExecuteNonQuery();
                     MessageBox.Show("Dang ki thanh cong");
-                    this.parent.add_datagridview(textBox5_MaKH.Text, textBox4_HoTen.Text, dateTimePicker1.Value.ToString().Substring(0, dateTimePicker1.Value.ToString().IndexOf(" ")), comboBox_gioiTinh.Text.ToString(), textBox_DienThoai.Text, textBox_diaChi.Text, textBox_diem.Text);
+                   // this.parent.add_datagridview(textBox5_MaKH.Text, textBox4_HoTen.Text, dateTimePicker1.Value.ToString().Substring(0, dateTimePicker1.Value.ToString().IndexOf(" ")), comboBox_gioiTinh.Text.ToString(), textBox_DienThoai.Text, textBox_diaChi.Text, textBox_diem.Text);
                 }
                 catch (Exception ex)
                 {
@@ -114,6 +114,7 @@ namespace SalesManagement
             if (get_MAKH())
             {
                 textBox5_MaKH.Text = MAKH;
+                MAKH = "KH";
             }
             else
             {

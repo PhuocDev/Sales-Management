@@ -561,5 +561,12 @@ namespace SalesManagement
                 MessageBox.Show("No Record To Export !!!", "Info");
             }
         }
+
+        private void btnTaoKHMoi_Click(object sender, EventArgs e)
+        {
+            AddKhachHang addKhachHang = new AddKhachHang();
+            addKhachHang.ShowDialog();
+            UpdateDanhSachKH();
+        }
     }
 }
