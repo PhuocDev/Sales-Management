@@ -19,7 +19,7 @@ namespace SalesManagement
         {
             InitializeComponent();
         }
-        public static string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
+        public static string conString = @"Server=DESKTOP-IRREIHM\SQLEXPRESS;Database=SALES_MANAGEMENT;User Id=sa;Password=thanh08052001;";
         public SqlConnection connection = new SqlConnection(conString);
 
         //------------------------------------------------update_Nhân viên----------------------------------------//
@@ -109,6 +109,11 @@ namespace SalesManagement
         {
             if (Login.Current_user.ID.Substring(0, 2) == "QL")
             {
+                if(txbHoTen.Text == "" || txbGioiTinh.Text == "" || txbSDT.Text == "" || txbDiaChi.Text == "")
+                {
+                    MessageBox.Show("Bạn cần nhập đủ thông tin");
+                    return;
+                }
                 DataGridViewCell cell = dataGridView1.CurrentCell;
                 int index = cell.RowIndex;
                 dataGridView1.Rows[index].Cells[2].Value = txbHoTen.Text;

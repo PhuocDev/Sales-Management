@@ -31,7 +31,6 @@
             this.button_huyBo = new System.Windows.Forms.Button();
             this.button_them = new System.Windows.Forms.Button();
             this.textBox_nhaCungCap = new System.Windows.Forms.TextBox();
-            this.textBox_hsd = new System.Windows.Forms.TextBox();
             this.textBox_donViTinh = new System.Windows.Forms.TextBox();
             this.textBox_giaBanLe = new System.Windows.Forms.TextBox();
             this.textBox_soLuong = new System.Windows.Forms.TextBox();
@@ -47,16 +46,17 @@
             this.textBox_giaNhap = new System.Windows.Forms.TextBox();
             this.label_giaNhap = new System.Windows.Forms.Label();
             this.label_ngayNhap = new System.Windows.Forms.Label();
-            this.textBox_ngayNhap = new System.Windows.Forms.TextBox();
             this.textBox_ghiChu = new System.Windows.Forms.TextBox();
             this.label_ghiChu = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // button_huyBo
             // 
             this.button_huyBo.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.button_huyBo.Font = new System.Drawing.Font("Lucida Fax", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_huyBo.Location = new System.Drawing.Point(200, 306);
+            this.button_huyBo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_huyBo.Location = new System.Drawing.Point(334, 305);
             this.button_huyBo.Name = "button_huyBo";
             this.button_huyBo.Size = new System.Drawing.Size(115, 33);
             this.button_huyBo.TabIndex = 31;
@@ -67,8 +67,8 @@
             // button_them
             // 
             this.button_them.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.button_them.Font = new System.Drawing.Font("Lucida Fax", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_them.Location = new System.Drawing.Point(336, 306);
+            this.button_them.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_them.Location = new System.Drawing.Point(200, 305);
             this.button_them.Name = "button_them";
             this.button_them.Size = new System.Drawing.Size(115, 33);
             this.button_them.TabIndex = 30;
@@ -82,13 +82,6 @@
             this.textBox_nhaCungCap.Name = "textBox_nhaCungCap";
             this.textBox_nhaCungCap.Size = new System.Drawing.Size(333, 20);
             this.textBox_nhaCungCap.TabIndex = 29;
-            // 
-            // textBox_hsd
-            // 
-            this.textBox_hsd.Location = new System.Drawing.Point(330, 140);
-            this.textBox_hsd.Name = "textBox_hsd";
-            this.textBox_hsd.Size = new System.Drawing.Size(121, 20);
-            this.textBox_hsd.TabIndex = 28;
             // 
             // textBox_donViTinh
             // 
@@ -222,13 +215,6 @@
             this.label_ngayNhap.TabIndex = 34;
             this.label_ngayNhap.Text = "Ngày Nhập";
             // 
-            // textBox_ngayNhap
-            // 
-            this.textBox_ngayNhap.Location = new System.Drawing.Point(328, 180);
-            this.textBox_ngayNhap.Name = "textBox_ngayNhap";
-            this.textBox_ngayNhap.Size = new System.Drawing.Size(121, 20);
-            this.textBox_ngayNhap.TabIndex = 35;
-            // 
             // textBox_ghiChu
             // 
             this.textBox_ghiChu.Location = new System.Drawing.Point(116, 267);
@@ -246,6 +232,23 @@
             this.label_ghiChu.TabIndex = 37;
             this.label_ghiChu.Text = "Ghi Chú";
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(328, 141);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(123, 20);
+            this.dateTimePicker1.TabIndex = 38;
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker2.Location = new System.Drawing.Point(328, 181);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(121, 20);
+            this.dateTimePicker2.TabIndex = 39;
+            this.dateTimePicker2.Value = new System.DateTime(2020, 11, 30, 0, 0, 0, 0);
+            // 
             // AddSP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -253,16 +256,16 @@
             this.BackgroundImage = global::SalesManagement.Properties.Resources.background2;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(482, 350);
+            this.Controls.Add(this.dateTimePicker2);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label_ghiChu);
             this.Controls.Add(this.textBox_ghiChu);
-            this.Controls.Add(this.textBox_ngayNhap);
             this.Controls.Add(this.label_ngayNhap);
             this.Controls.Add(this.label_giaNhap);
             this.Controls.Add(this.textBox_giaNhap);
             this.Controls.Add(this.button_huyBo);
             this.Controls.Add(this.button_them);
             this.Controls.Add(this.textBox_nhaCungCap);
-            this.Controls.Add(this.textBox_hsd);
             this.Controls.Add(this.textBox_donViTinh);
             this.Controls.Add(this.textBox_giaBanLe);
             this.Controls.Add(this.textBox_soLuong);
@@ -288,7 +291,6 @@
         private System.Windows.Forms.Button button_huyBo;
         private System.Windows.Forms.Button button_them;
         private System.Windows.Forms.TextBox textBox_nhaCungCap;
-        private System.Windows.Forms.TextBox textBox_hsd;
         private System.Windows.Forms.TextBox textBox_donViTinh;
         private System.Windows.Forms.TextBox textBox_giaBanLe;
         private System.Windows.Forms.TextBox textBox_soLuong;
@@ -304,8 +306,9 @@
         private System.Windows.Forms.TextBox textBox_giaNhap;
         private System.Windows.Forms.Label label_giaNhap;
         private System.Windows.Forms.Label label_ngayNhap;
-        private System.Windows.Forms.TextBox textBox_ngayNhap;
         private System.Windows.Forms.TextBox textBox_ghiChu;
         private System.Windows.Forms.Label label_ghiChu;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
     }
 }
