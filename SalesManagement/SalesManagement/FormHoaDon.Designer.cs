@@ -30,7 +30,16 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvHoaDon = new System.Windows.Forms.DataGridView();
+            this.ColSTT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMaSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColTenSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColSoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDVT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColDonGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColThanhTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColCheckbox = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.txbTraLaiKhach = new System.Windows.Forms.TextBox();
             this.txbTienKhachDua = new System.Windows.Forms.TextBox();
             this.txbTongThanhToan = new System.Windows.Forms.TextBox();
@@ -60,14 +69,7 @@
             this.btnLichSuHoaDon = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.cbbMaSP = new System.Windows.Forms.ComboBox();
-            this.ColSTT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColMaSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColTenSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColSoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColDVT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColDonGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColThanhTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColCheckbox = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.btnIn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHoaDon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSoLuong)).BeginInit();
             this.SuspendLayout();
@@ -76,6 +78,7 @@
             // 
             this.dgvHoaDon.AllowUserToResizeColumns = false;
             this.dgvHoaDon.AllowUserToResizeRows = false;
+            this.dgvHoaDon.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.dgvHoaDon.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.dgvHoaDon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvHoaDon.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -98,6 +101,90 @@
             this.dgvHoaDon.TabIndex = 31;
             this.dgvHoaDon.TabStop = false;
             this.dgvHoaDon.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHoaDon_CellClick);
+            // 
+            // ColSTT
+            // 
+            this.ColSTT.HeaderText = "STT";
+            this.ColSTT.MinimumWidth = 6;
+            this.ColSTT.Name = "ColSTT";
+            this.ColSTT.ReadOnly = true;
+            this.ColSTT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColSTT.Width = 35;
+            // 
+            // ColMaSP
+            // 
+            this.ColMaSP.HeaderText = "Mã sản phẩm";
+            this.ColMaSP.MinimumWidth = 6;
+            this.ColMaSP.Name = "ColMaSP";
+            this.ColMaSP.ReadOnly = true;
+            this.ColMaSP.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColMaSP.Width = 125;
+            // 
+            // ColTenSP
+            // 
+            this.ColTenSP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColTenSP.DefaultCellStyle = dataGridViewCellStyle1;
+            this.ColTenSP.FillWeight = 200F;
+            this.ColTenSP.HeaderText = "Tên sản phẩm";
+            this.ColTenSP.MinimumWidth = 6;
+            this.ColTenSP.Name = "ColTenSP";
+            this.ColTenSP.ReadOnly = true;
+            this.ColTenSP.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColSoLuong
+            // 
+            this.ColSoLuong.FillWeight = 75F;
+            this.ColSoLuong.HeaderText = "Số lượng";
+            this.ColSoLuong.MinimumWidth = 6;
+            this.ColSoLuong.Name = "ColSoLuong";
+            this.ColSoLuong.ReadOnly = true;
+            this.ColSoLuong.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColSoLuong.Width = 75;
+            // 
+            // ColDVT
+            // 
+            this.ColDVT.FillWeight = 75F;
+            this.ColDVT.HeaderText = "Đ.V.Tính";
+            this.ColDVT.MinimumWidth = 6;
+            this.ColDVT.Name = "ColDVT";
+            this.ColDVT.ReadOnly = true;
+            this.ColDVT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColDVT.Width = 75;
+            // 
+            // ColDonGia
+            // 
+            dataGridViewCellStyle2.Format = "C0";
+            dataGridViewCellStyle2.NullValue = null;
+            this.ColDonGia.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ColDonGia.FillWeight = 75F;
+            this.ColDonGia.HeaderText = "Đơn giá";
+            this.ColDonGia.MinimumWidth = 6;
+            this.ColDonGia.Name = "ColDonGia";
+            this.ColDonGia.ReadOnly = true;
+            this.ColDonGia.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColDonGia.Width = 75;
+            // 
+            // ColThanhTien
+            // 
+            dataGridViewCellStyle3.Format = "C0";
+            dataGridViewCellStyle3.NullValue = null;
+            this.ColThanhTien.DefaultCellStyle = dataGridViewCellStyle3;
+            this.ColThanhTien.FillWeight = 90F;
+            this.ColThanhTien.HeaderText = "Thành tiền";
+            this.ColThanhTien.MinimumWidth = 6;
+            this.ColThanhTien.Name = "ColThanhTien";
+            this.ColThanhTien.ReadOnly = true;
+            this.ColThanhTien.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColThanhTien.Width = 90;
+            // 
+            // ColCheckbox
+            // 
+            this.ColCheckbox.HeaderText = "";
+            this.ColCheckbox.MinimumWidth = 6;
+            this.ColCheckbox.Name = "ColCheckbox";
+            this.ColCheckbox.ReadOnly = true;
+            this.ColCheckbox.Width = 35;
             // 
             // txbTraLaiKhach
             // 
@@ -173,10 +260,10 @@
             // 
             this.btnThanhToan.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.btnThanhToan.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThanhToan.Location = new System.Drawing.Point(1022, 561);
+            this.btnThanhToan.Location = new System.Drawing.Point(1075, 558);
             this.btnThanhToan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnThanhToan.Name = "btnThanhToan";
-            this.btnThanhToan.Size = new System.Drawing.Size(230, 66);
+            this.btnThanhToan.Size = new System.Drawing.Size(213, 66);
             this.btnThanhToan.TabIndex = 8;
             this.btnThanhToan.Text = "Thanh Toán";
             this.btnThanhToan.UseVisualStyleBackColor = false;
@@ -194,6 +281,7 @@
             this.btnTaoKHMoi.TabStop = false;
             this.btnTaoKHMoi.Text = "Tạo khách hàng mới";
             this.btnTaoKHMoi.UseVisualStyleBackColor = false;
+            this.btnTaoKHMoi.Click += new System.EventHandler(this.btnTaoKHMoi_Click);
             // 
             // txbNhanVien
             // 
@@ -463,87 +551,18 @@
             this.cbbMaSP.TabIndex = 2;
             this.cbbMaSP.TextChanged += new System.EventHandler(this.cbbMaSP_TextChanged);
             // 
-            // ColSTT
+            // btnIn
             // 
-            this.ColSTT.HeaderText = "STT";
-            this.ColSTT.MinimumWidth = 6;
-            this.ColSTT.Name = "ColSTT";
-            this.ColSTT.ReadOnly = true;
-            this.ColSTT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColSTT.Width = 35;
-            // 
-            // ColMaSP
-            // 
-            this.ColMaSP.HeaderText = "Mã sản phẩm";
-            this.ColMaSP.MinimumWidth = 6;
-            this.ColMaSP.Name = "ColMaSP";
-            this.ColMaSP.ReadOnly = true;
-            this.ColMaSP.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColMaSP.Width = 125;
-            // 
-            // ColTenSP
-            // 
-            this.ColTenSP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColTenSP.FillWeight = 200F;
-            this.ColTenSP.HeaderText = "Tên sản phẩm";
-            this.ColTenSP.MinimumWidth = 6;
-            this.ColTenSP.Name = "ColTenSP";
-            this.ColTenSP.ReadOnly = true;
-            this.ColTenSP.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // ColSoLuong
-            // 
-            this.ColSoLuong.FillWeight = 75F;
-            this.ColSoLuong.HeaderText = "Số lượng";
-            this.ColSoLuong.MinimumWidth = 6;
-            this.ColSoLuong.Name = "ColSoLuong";
-            this.ColSoLuong.ReadOnly = true;
-            this.ColSoLuong.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColSoLuong.Width = 75;
-            // 
-            // ColDVT
-            // 
-            this.ColDVT.FillWeight = 75F;
-            this.ColDVT.HeaderText = "Đ.V.Tính";
-            this.ColDVT.MinimumWidth = 6;
-            this.ColDVT.Name = "ColDVT";
-            this.ColDVT.ReadOnly = true;
-            this.ColDVT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColDVT.Width = 75;
-            // 
-            // ColDonGia
-            // 
-            dataGridViewCellStyle1.Format = "C0";
-            dataGridViewCellStyle1.NullValue = null;
-            this.ColDonGia.DefaultCellStyle = dataGridViewCellStyle1;
-            this.ColDonGia.FillWeight = 75F;
-            this.ColDonGia.HeaderText = "Đơn giá";
-            this.ColDonGia.MinimumWidth = 6;
-            this.ColDonGia.Name = "ColDonGia";
-            this.ColDonGia.ReadOnly = true;
-            this.ColDonGia.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColDonGia.Width = 75;
-            // 
-            // ColThanhTien
-            // 
-            dataGridViewCellStyle2.Format = "C0";
-            dataGridViewCellStyle2.NullValue = null;
-            this.ColThanhTien.DefaultCellStyle = dataGridViewCellStyle2;
-            this.ColThanhTien.FillWeight = 90F;
-            this.ColThanhTien.HeaderText = "Thành tiền";
-            this.ColThanhTien.MinimumWidth = 6;
-            this.ColThanhTien.Name = "ColThanhTien";
-            this.ColThanhTien.ReadOnly = true;
-            this.ColThanhTien.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ColThanhTien.Width = 90;
-            // 
-            // ColCheckbox
-            // 
-            this.ColCheckbox.HeaderText = "";
-            this.ColCheckbox.MinimumWidth = 6;
-            this.ColCheckbox.Name = "ColCheckbox";
-            this.ColCheckbox.ReadOnly = true;
-            this.ColCheckbox.Width = 35;
+            this.btnIn.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIn.Location = new System.Drawing.Point(970, 558);
+            this.btnIn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnIn.Name = "btnIn";
+            this.btnIn.Size = new System.Drawing.Size(72, 66);
+            this.btnIn.TabIndex = 8;
+            this.btnIn.Text = "In";
+            this.btnIn.UseVisualStyleBackColor = false;
+            this.btnIn.Click += new System.EventHandler(this.btnIn_Click);
             // 
             // FormHoaDon
             // 
@@ -562,6 +581,7 @@
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
+            this.Controls.Add(this.btnIn);
             this.Controls.Add(this.btnThanhToan);
             this.Controls.Add(this.btnLichSuHoaDon);
             this.Controls.Add(this.btnTaoHD);
@@ -632,5 +652,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColDonGia;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColThanhTien;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ColCheckbox;
+        private System.Windows.Forms.Button btnIn;
     }
 }
