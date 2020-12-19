@@ -17,7 +17,7 @@ namespace SalesManagement
     public partial class Login : Form
     {
         public static User Current_user;////////////////////// Lưu thông tin người dùng hiện tại
-        //static string conString = @"Server=DESKTOP-IRREIHM\SQLEXPRESS;Database=SALES_MANAGEMENT;User Id=sa;Password=thanh08052001;";
+        static string conString = @"Server=DESKTOP-IRREIHM\SQLEXPRESS;Database=SALES_MANAGEMENT;User Id=sa;Password=thanh08052001;";
         SqlConnection connection = new SqlConnection( global.conString);
 
         public Login()

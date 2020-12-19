@@ -14,7 +14,7 @@ namespace SalesManagement
     public partial class FormLichSuHoaDon : Form
     {
         public changeform change1, change2;
-        //string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
+        string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
         public FormLichSuHoaDon()
         {
             InitializeComponent();

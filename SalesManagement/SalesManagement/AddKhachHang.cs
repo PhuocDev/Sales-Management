@@ -13,7 +13,7 @@ namespace SalesManagement
 {
     public partial class AddKhachHang : Form
     {
-        //public static string conString = @"Server=DESKTOP-IRREIHM\SQLEXPRESS;Database=SALES_MANAGEMENT;User Id=sa;Password=thanh08052001;";
+        public static string conString = @"Server=DESKTOP-IRREIHM\SQLEXPRESS;Database=SALES_MANAGEMENT;User Id=sa;Password=thanh08052001;";
         SqlConnection connection = new SqlConnection(global.conString);
         public FormKhachHang parent;
         private string MAKH = "KH";
