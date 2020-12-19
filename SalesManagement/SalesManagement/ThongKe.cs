@@ -19,13 +19,18 @@ namespace SalesManagement
         // kiểu dữ liệu trả về từ month(THOIGIAN) là int32, không phải string, dùng lệnh dr.GetInt32 thay vì dr.GetString
 
 
-        string conString = @"Data Source=DESKTOP-VMO2INA\SQLEXPRESS;Initial Catalog=SALES_MANAGEMENT;Integrated Security=True";
-        public List<month> data1 = new List<month>(12);
-        public List<year> data2 = new List<year>(10);
+        //string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
+        public List<month> data1;
+        public List<year> data2;
         public ThongKe()
         {
             InitializeComponent();
             chart1.Titles.Add("Doanh Thu Chart");
+            checkBox_tKTheoThang.Checked = true;
+            checkBox_tKTheoNam.Checked = false;
+            dateTimePicker1.Value = DateTime.Now;
+            data(DateTime.Now.Year.ToString());
+            fillChart();
         }
 
         private void button_menu_Click(object sender, EventArgs e)
@@ -40,8 +45,8 @@ namespace SalesManagement
 
         private void ThongKe_Load(object sender, EventArgs e)
         {
-
-            //data();
+            data(DateTime.Now.Year.ToString());
+            fillChart();
         }
         private void fillChart()
         {
@@ -54,7 +59,7 @@ namespace SalesManagement
             }
             for (int i = 0; i < data1.Count(); i++)
             {
-                chart1.Series["Doanh Thu"].Points[Convert.ToInt32(data1[i].thang)].YValues = new Double[] { Convert.ToDouble(data1[i].doanhThu) };
+                chart1.Series["Doanh Thu"].Points[Convert.ToInt32(data1[i].thang) - 1].YValues = new Double[] { Convert.ToDouble(data1[i].doanhThu) };
             }
 
         }
@@ -62,17 +67,17 @@ namespace SalesManagement
         {
             chart1.ChartAreas["ChartArea1"].AxisX.Interval = 1;     // Để hiển thị tất cả các label cột x
 
-            for (int i = 1; i < 11; i++)
+            for (int i = 1; i < 12; i++)
             {
                 chart1.Series["Doanh Thu"].Points.AddY(0);
-                chart1.Series["Doanh Thu"].Points[i - 1].AxisLabel = "Nam " + (i).ToString();
+                chart1.Series["Doanh Thu"].Points[i - 1].AxisLabel = (i + dateTimePicker1.Value.Year - 6).ToString();
             }
-            for (int i = 1; i < data2.Count(); i++)
+            //MessageBox.Show(data2.Count().ToString());
+            for (int i = 0; i < data2.Count(); i++)
             {
-                chart1.Series["Doanh Thu"].Points[Convert.ToInt32(data2[i].nam)].YValues = new Double[] { Convert.ToDouble(data2[i].doanhThu) };
+                if (Convert.ToInt32(data2[i].nam) >= dateTimePicker1.Value.Year - 5 && Convert.ToInt32(data2[i].nam) <= dateTimePicker1.Value.Year + 5)
+                    chart1.Series["Doanh Thu"].Points[Convert.ToInt32(data2[i].nam) - (dateTimePicker1.Value.Year - 6) - 1].YValues = new Double[] { Convert.ToDouble(data2[i].doanhThu) };
             }
-            //chart title  
-            chart1.Titles.Add("Doanh Thu Chart");
         }
         protected void data(string year)
         {
@@ -81,13 +86,15 @@ namespace SalesManagement
                 series.Points.Clear();
             }
             chart1.Series["Doanh Thu"].Points.Clear();
+            data1 = new List<month>(12);
             SqlCommand cmd;
-            SqlConnection conn = new SqlConnection(conString);
+            SqlConnection conn = new SqlConnection(global.conString);
 
 
             cmd = new SqlCommand("SELECT month(THOIGIAN) as thang, sum(TONGGIATRI) AS doanhThu " // thử select month giùm tui với, toàn bị lỗi :(
                                             + "FROM HOADON WHERE year(THOIGIAN) =" + year
                                             + " GROUP BY month(THOIGIAN)", conn);
+
             SqlDataReader dr;
             //int sum = 0, i = 0;
             try
@@ -124,11 +131,16 @@ namespace SalesManagement
         public void dataNam()
         {
             SqlCommand cmd;
-            SqlConnection conn = new SqlConnection(conString);
-
+            SqlConnection conn = new SqlConnection(global.conString);
+            foreach (var series in chart1.Series)
+            {
+                series.Points.Clear();
+            }
+            chart1.Series["Doanh Thu"].Points.Clear();
+            data2 = new List<year>(12);
             string year = dateTimePicker1.Value.Year.ToString();
             cmd = new SqlCommand("SELECT year(THOIGIAN) as year, sum(TONGGIATRI) AS doanhThu"
-                                  + " FROM HOADON"
+                                  + " FROM HOADON \n"
                                    + " GROUP BY year(THOIGIAN)", conn);
             SqlDataReader dr;
             //int sum = 0, i = 0;
@@ -147,8 +159,6 @@ namespace SalesManagement
 
                     });
                 }
-                //MessageBox.Show(sum.ToString());
-
                 dr.Close();
             }
             catch (Exception exp)
@@ -174,12 +184,30 @@ namespace SalesManagement
             }
             else if (checkBox_tKTheoNam.Checked == true && checkBox_tKTheoThang.Checked == false)
             {
-                MessageBox.Show("Tính năng chưa hoàn thiện");
+                dataNam();
+                fillChartNam();
             }
             else
             {
                 MessageBox.Show("Vui lòng xem lại ô checkbox!");
             }
+        }
+
+        private void checkBox_tKTheoNam_MouseClick(object sender, MouseEventArgs e)
+        {
+            //checkBox_tKTheoNam.Checked = !checkBox_tKTheoNam.Checked;
+            checkBox_tKTheoThang.Checked = !checkBox_tKTheoThang.Checked;
+        }
+
+        private void checkBox_tKTheoThang_MouseClick(object sender, MouseEventArgs e)
+        {
+            checkBox_tKTheoNam.Checked = !checkBox_tKTheoNam.Checked;
+            //checkBox_tKTheoThang.Checked = !checkBox_tKTheoThang.Checked;
+        }
+
+        private void checkBox_tKTheoThang_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
     public class month

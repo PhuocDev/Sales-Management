@@ -13,11 +13,12 @@ using System.Security.Cryptography;
 using System.Text;
 namespace SalesManagement
 {
+    
     public partial class Login : Form
     {
         public static User Current_user;////////////////////// Lưu thông tin người dùng hiện tại
-        static string conString = @"Server=DESKTOP-IRREIHM\SQLEXPRESS;Database=SALES_MANAGEMENT;User Id=sa;Password=thanh08052001;";
-        SqlConnection connection = new SqlConnection(conString);
+        //static string conString = @"Server=DESKTOP-IRREIHM\SQLEXPRESS;Database=SALES_MANAGEMENT;User Id=sa;Password=thanh08052001;";
+        SqlConnection connection = new SqlConnection( global.conString);
 
         public Login()
         {
@@ -141,5 +142,6 @@ namespace SalesManagement
                 textBox1.Text = "";
             }
         }
+        
     }
 }

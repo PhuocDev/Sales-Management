@@ -19,8 +19,8 @@ namespace SalesManagement
         {
             InitializeComponent();
         }
-        public static string conString = @"Server=DESKTOP-IRREIHM\SQLEXPRESS;Database=SALES_MANAGEMENT;User Id=sa;Password=thanh08052001;";
-        public SqlConnection connection = new SqlConnection(conString);
+        //public static string conString = @"Server=DESKTOP-IRREIHM\SQLEXPRESS;Database=SALES_MANAGEMENT;User Id=sa;Password=thanh08052001;";
+        public SqlConnection connection = new SqlConnection(global.conString);
 
         //------------------------------------------------update_Nhân viên----------------------------------------//
         private void UpdateNhanVien()
