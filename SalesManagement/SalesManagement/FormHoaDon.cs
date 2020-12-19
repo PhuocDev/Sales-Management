@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using System.Threading;
 
 namespace SalesManagement
 {
@@ -25,6 +26,7 @@ namespace SalesManagement
             InitializeComponent();
             listSanPham = new List<ClassSanPham>();
             listMaKH = new List<string>();
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("vn-VN");
             UpdateDanhSachSP();
             UpdateDanhSachKH();
             txbThoiGian.Text = DateTime.Now.ToString();

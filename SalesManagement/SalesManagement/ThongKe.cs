@@ -45,8 +45,8 @@ namespace SalesManagement
 
         private void ThongKe_Load(object sender, EventArgs e)
         {
-
-            //data();
+            data(DateTime.Now.Year.ToString());
+            fillChart();
         }
         private void fillChart()
         {
