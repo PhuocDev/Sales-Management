@@ -5,10 +5,14 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.Threading;
 
 namespace SalesManagement
 {
@@ -22,13 +26,14 @@ namespace SalesManagement
             InitializeComponent();
             listSanPham = new List<ClassSanPham>();
             listMaKH = new List<string>();
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("vn-VN");
             UpdateDanhSachSP();
             UpdateDanhSachKH();
             txbThoiGian.Text = DateTime.Now.ToString();
             txbMaHD.Text = GetMaHD();
             txbTongThanhToan.Text = string.Format(CultureInfo.CreateSpecificCulture("vi-VN"), "{0:C0}", 0);
             // ----------------------------------------------------------------------------------------------------------
-            //txbNhanVien.Text = user.name;    //Them function tra ve string ten User
+            txbNhanVien.Text = Login.Current_user.NAME;    //Them function tra ve string ten User
             // ----------------------------------------------------------------------------------------------------------
         }
 
@@ -402,9 +407,9 @@ namespace SalesManagement
             command.Parameters.AddWithValue("@maHD", txbMaHD.Text);
             // ------------------------------------------------------------------------------------------------
             //command.Parameters.AddWithValue("@maNV", user.MaNV);
-            command.Parameters.AddWithValue("@maNV", "NV001");  //Chưa đổi MANV
+            command.Parameters.AddWithValue("@maNV", Login.Current_user.ID);  //Chưa đổi MANV
             // ------------------------------------------------------------------------------------------------
-            if (cbbMaKH.FindString(cbbMaKH.Text) == -1) command.Parameters.AddWithValue("@maKH", "NULL");
+            if (cbbMaKH.FindString(cbbMaKH.Text) == -1 || cbbMaKH.Text == "") command.Parameters.AddWithValue("@maKH", "KH000");
             else command.Parameters.AddWithValue("@maKH", cbbMaKH.Text);
             command.Parameters.AddWithValue("@thoiGian", Convert.ToDateTime(txbThoiGian.Text));
             command.Parameters.AddWithValue("@tongGiaTri", int.Parse(txbTongThanhToan.Text, NumberStyles.Currency));
@@ -474,6 +479,96 @@ namespace SalesManagement
         private void FormLichSuHoaDon_FormClose(object sender, FormClosedEventArgs e)
         {
             this.Show();
+        }
+
+        private void btnIn_Click(object sender, EventArgs e)
+        {
+            if (dgvHoaDon.Rows.Count > 0)
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "PDF (*.pdf)|*.pdf";
+                sfd.FileName = txbMaHD.Text + ".pdf";
+                bool fileError = false;
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    if (File.Exists(sfd.FileName))
+                    {
+                        try
+                        {
+                            File.Delete(sfd.FileName);
+                        }
+                        catch (IOException ex)
+                        {
+                            fileError = true;
+                            MessageBox.Show("It wasn't possible to write the data to the disk." + ex.Message);
+                        }
+                    }
+                    if (!fileError)
+                    {
+                        try
+                        {
+                            PdfPTable pdfTable = new PdfPTable(dgvHoaDon.Columns.Count);
+                            pdfTable.DefaultCell.Padding = 3;
+                            pdfTable.WidthPercentage = 100;
+                            pdfTable.HorizontalAlignment = Element.ALIGN_LEFT;
+
+                            foreach (DataGridViewColumn column in dgvHoaDon.Columns)
+                            {
+                                PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText));
+                                pdfTable.AddCell(cell);
+                            }
+
+                            foreach (DataGridViewRow row in dgvHoaDon.Rows)
+                            {
+                                if (row.Index == dgvHoaDon.Rows.Count - 1) continue;
+                                foreach (DataGridViewCell cell in row.Cells)
+                                {
+                                    if (cell.ColumnIndex == 7) pdfTable.AddCell("[  ]");
+                                    else pdfTable.AddCell(cell.Value.ToString());
+                                }
+                            }
+
+                            using (FileStream stream = new FileStream(sfd.FileName, FileMode.Create))
+                            {
+                                Document pdfDoc = new Document(PageSize.A4, 10f, 20f, 20f, 10f);
+                                PdfWriter.GetInstance(pdfDoc, stream);
+                                pdfDoc.Open();
+                                Phrase phrase = new Phrase();
+                                Chunk chunk = new Chunk("Mã hóa đơn: " + txbMaHD.Text);
+                                phrase.Add(chunk);
+                                phrase.Add(Environment.NewLine);
+                                chunk = new Chunk("Thời gian: " + txbThoiGian.Text);
+                                phrase.Add(chunk);
+                                phrase.Add(Environment.NewLine);
+                                chunk = new Chunk("Tổng thanh toán: " + txbTongThanhToan.Text);
+                                phrase.Add(chunk);
+                                phrase.Add(Environment.NewLine);
+                                pdfDoc.Add(phrase);
+                                pdfDoc.Add(pdfTable);
+                                pdfDoc.Close();
+                                stream.Close();
+                            }
+
+                            MessageBox.Show("Data Exported Successfully !!!", "Info");
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error :" + ex.Message);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("No Record To Export !!!", "Info");
+            }
+        }
+
+        private void btnTaoKHMoi_Click(object sender, EventArgs e)
+        {
+            AddKhachHang addKhachHang = new AddKhachHang();
+            addKhachHang.ShowDialog();
+            UpdateDanhSachKH();
         }
     }
 }

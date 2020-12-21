@@ -13,8 +13,8 @@ namespace SalesManagement
 {
     public partial class FormKhachHang : Form
     {
-        public static string conString = @"Server=DESKTOP-IRREIHM\SQLEXPRESS;Database=SALES_MANAGEMENT;User Id=sa;Password=thanh08052001;";
-        SqlConnection connection = new SqlConnection(global.conString);
+        public static string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
+        SqlConnection connection = new SqlConnection(conString);
         public changeform change;
         public FormKhachHang()
         {
@@ -34,6 +34,7 @@ namespace SalesManagement
             while (dataReader.HasRows)
             {
                 if (dataReader.Read() == false) break;
+                if (dataReader.GetString(0) == "KH000") continue;
                 dataGridView1.Rows.Add(stt, dataReader.GetString(0), dataReader.GetString(1),
                     dataReader.GetDateTime(2).ToString().Substring(0, dataReader.GetDateTime(2).ToString().IndexOf(" ")),
                     dataReader.GetString(3), dataReader.GetString(4), dataReader.GetString(5), dataReader.GetInt32(6));
@@ -245,6 +246,7 @@ namespace SalesManagement
 
         private void btnThemKH_Click(object sender, EventArgs e)
         {
+            button_save.PerformClick();
             AddKhachHang kh = new AddKhachHang(this);
             kh.ShowDialog();
             UpdateKhachHang();

@@ -75,9 +75,9 @@ namespace SalesManagement
             //MessageBox.Show(data2.Count().ToString());
             for (int i = 0; i < data2.Count(); i++)
             {
-                if (Convert.ToInt32(data2[i].nam) >= dateTimePicker1.Value.Year - 5 && Convert.ToInt32(data2[i].nam) <= dateTimePicker1.Value.Year + 5)
+                if (Convert.ToInt32(data2[i].nam) >= dateTimePicker1.Value.Year - 5 && Convert.ToInt32(data2[i].nam) <= dateTimePicker1.Value.Year + 5) 
                     chart1.Series["Doanh Thu"].Points[Convert.ToInt32(data2[i].nam) - (dateTimePicker1.Value.Year - 6) - 1].YValues = new Double[] { Convert.ToDouble(data2[i].doanhThu) };
-            }
+            } 
         }
         protected void data(string year)
         {
@@ -203,11 +203,6 @@ namespace SalesManagement
         {
             checkBox_tKTheoNam.Checked = !checkBox_tKTheoNam.Checked;
             //checkBox_tKTheoThang.Checked = !checkBox_tKTheoThang.Checked;
-        }
-
-        private void checkBox_tKTheoThang_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
     }
     public class month
