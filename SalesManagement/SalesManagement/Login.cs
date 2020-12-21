@@ -16,8 +16,8 @@ namespace SalesManagement
     public partial class Login : Form
     {
         public static User Current_user;////////////////////// Lưu thông tin người dùng hiện tại
-        static string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
-        SqlConnection connection = new SqlConnection(conString);
+        //static string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
+        SqlConnection connection = new SqlConnection(global.conString);
 
         public Login()
         {
@@ -28,7 +28,6 @@ namespace SalesManagement
         {
             byte[] temp = ASCIIEncoding.ASCII.GetBytes(pass);
             byte[] hasData = new MD5CryptoServiceProvider().ComputeHash(temp);
-
             string hasPass = "";
 
             foreach (byte item in hasData)

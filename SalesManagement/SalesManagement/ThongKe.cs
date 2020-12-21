@@ -19,7 +19,7 @@ namespace SalesManagement
         // kiểu dữ liệu trả về từ month(THOIGIAN) là int32, không phải string, dùng lệnh dr.GetInt32 thay vì dr.GetString
 
 
-        string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
+        //string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
         public List<month> data1;
         public List<year> data2;
         public ThongKe()
@@ -88,7 +88,7 @@ namespace SalesManagement
             chart1.Series["Doanh Thu"].Points.Clear();
             data1 = new List<month>(12);
             SqlCommand cmd;
-            SqlConnection conn = new SqlConnection(conString);
+            SqlConnection conn = new SqlConnection(global.conString);
 
 
             cmd = new SqlCommand("SELECT month(THOIGIAN) as thang, sum(TONGGIATRI) AS doanhThu " // thử select month giùm tui với, toàn bị lỗi :(
@@ -131,7 +131,7 @@ namespace SalesManagement
         public void dataNam()
         {
             SqlCommand cmd;
-            SqlConnection conn = new SqlConnection(conString);
+            SqlConnection conn = new SqlConnection(global.conString);
             foreach (var series in chart1.Series)
             {
                 series.Points.Clear();
