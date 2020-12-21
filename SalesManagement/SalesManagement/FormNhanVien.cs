@@ -19,8 +19,8 @@ namespace SalesManagement
         {
             InitializeComponent();
         }
-        public static string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
-        public SqlConnection connection = new SqlConnection(conString);
+        //public static string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
+        public SqlConnection connection = new SqlConnection(global.conString);
 
         //------------------------------------------------update_Nhân viên----------------------------------------//
         private void UpdateNhanVien()

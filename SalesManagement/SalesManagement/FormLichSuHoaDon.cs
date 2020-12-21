@@ -16,7 +16,7 @@ namespace SalesManagement
     public partial class FormLichSuHoaDon : Form
     {
         public changeform change1, change2;
-        string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
+        //string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
         public FormLichSuHoaDon()
         {
             InitializeComponent();
@@ -39,7 +39,7 @@ namespace SalesManagement
         private void UpdateDanhSachHD()
         {
             dgvLichSuHD.Rows.Clear();
-            SqlConnection connection = new SqlConnection(conString);
+            SqlConnection connection = new SqlConnection(global.conString);
             connection.Open();
             string sqlQuery = "SELECT * FROM HOADON WHERE THOIGIAN >= @thoiGianBatDau AND THOIGIAN <= @thoiGianKetThuc ORDER BY THOIGIAN DESC";
             SqlCommand command = new SqlCommand(sqlQuery, connection);
@@ -61,7 +61,7 @@ namespace SalesManagement
             dgvCTHD.Rows.Clear();
             if (dgvLichSuHD.Rows.Count < 2) return;
             if (dgvLichSuHD.SelectedRows.Count != 1) return;
-            SqlConnection connection = new SqlConnection(conString);
+            SqlConnection connection = new SqlConnection(global.conString);
             connection.Open();
             string sqlQuery = "SELECT SANPHAM.MASP, TEN, A.SOLUONG, DVT, GIABANLE FROM SANPHAM INNER JOIN " +
                 "(SELECT * FROM CTHD WHERE CTHD.MAHD = '" + dgvLichSuHD.SelectedRows[0].Cells[1].Value.ToString() + "') AS A " +
