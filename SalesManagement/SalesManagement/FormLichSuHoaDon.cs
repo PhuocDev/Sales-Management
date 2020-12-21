@@ -34,7 +34,7 @@ namespace SalesManagement
         private void UpdateDanhSachHD()
         {
             dgvLichSuHD.Rows.Clear();
-            SqlConnection connection = new SqlConnection(global.conString);
+            SqlConnection connection = new SqlConnection(conString);
             connection.Open();
             string sqlQuery = "SELECT * FROM HOADON WHERE THOIGIAN >= @thoiGianBatDau AND THOIGIAN <= @thoiGianKetThuc ORDER BY MAHD DESC";
             SqlCommand command = new SqlCommand(sqlQuery, connection);
@@ -55,7 +55,7 @@ namespace SalesManagement
         {
             dgvCTHD.Rows.Clear();
             if (dgvLichSuHD.SelectedRows.Count != 1) return;
-            SqlConnection connection = new SqlConnection(global.conString);
+            SqlConnection connection = new SqlConnection(conString);
             connection.Open();
             string sqlQuery = "SELECT SANPHAM.MASP, TEN, A.SOLUONG, DVT, GIABANLE FROM SANPHAM INNER JOIN " +
                 "(SELECT * FROM CTHD WHERE CTHD.MAHD = '" + dgvLichSuHD.SelectedRows[0].Cells[1].Value.ToString() + "') AS A " +

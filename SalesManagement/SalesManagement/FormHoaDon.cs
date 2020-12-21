@@ -44,7 +44,7 @@ namespace SalesManagement
 
         private void UpdateDanhSachSP()
         {
-            SqlConnection connection = new SqlConnection(global.conString);
+            SqlConnection connection = new SqlConnection(conString);
             connection.Open();
             string sqlQuery = "SELECT * FROM SANPHAM";
             SqlCommand command = new SqlCommand(sqlQuery, connection);
@@ -63,7 +63,7 @@ namespace SalesManagement
         }
         private void UpdateDanhSachKH()
         {
-            SqlConnection connection = new SqlConnection(global.conString);
+            SqlConnection connection = new SqlConnection(conString);
             connection.Open();
             string sqlQuery = "SELECT * FROM KHACHHANG";
             SqlCommand command = new SqlCommand(sqlQuery, connection);
@@ -78,7 +78,7 @@ namespace SalesManagement
         }
         private string GetMaHD()
         {
-            SqlConnection connection = new SqlConnection(global.conString);
+            SqlConnection connection = new SqlConnection(conString);
             connection.Open();
             string sqlQuery = "SELECT * FROM HOADON WHERE THOIGIAN IN (SELECT MAX(THOIGIAN) FROM HOADON)";
             SqlCommand command = new SqlCommand(sqlQuery, connection);
@@ -395,7 +395,7 @@ namespace SalesManagement
                 MessageBox.Show("Chưa nhập tiền khách đưa");
                 return;
             }
-            SqlConnection connection = new SqlConnection(global.conString);
+            SqlConnection connection = new SqlConnection(conString);
             connection.Open();
             string sqlQuery = "INSERT INTO HOADON(MAHD, MANV, MAKH, THOIGIAN, TONGGIATRI) VALUES (@maHD, @maNV, @maKH, @thoiGian, @tongGiaTri)";
             SqlCommand command = new SqlCommand(sqlQuery, connection);

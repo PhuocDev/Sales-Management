@@ -14,7 +14,7 @@ namespace SalesManagement
     public partial class sanPham : Form
     {
         public static string conString = @"Server=DESKTOP-IRREIHM\SQLEXPRESS;Database=SALES_MANAGEMENT;User Id=sa;Password=thanh08052001;";
-        SqlConnection connection = new SqlConnection(global.conString);
+        SqlConnection connection = new SqlConnection(conString);
         public sanPham()
         {
             InitializeComponent();

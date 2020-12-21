@@ -21,8 +21,8 @@ namespace SalesManagement
             name = "";
         }
 
-        //public static string conString = @"Server=DESKTOP-IRREIHM\SQLEXPRESS;Database=SALES_MANAGEMENT;User Id=sa;Password=thanh08052001;";
-        public SqlConnection connection = new SqlConnection(global.conString);
+        public static string conString = @"Server=DESKTOP-IRREIHM\SQLEXPRESS;Database=SALES_MANAGEMENT;User Id=sa;Password=thanh08052001;";
+        public SqlConnection connection = new SqlConnection(conString);
         public User(string id, string pass)
         {
             this.id = id;

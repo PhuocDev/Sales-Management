@@ -88,7 +88,7 @@ namespace SalesManagement
             chart1.Series["Doanh Thu"].Points.Clear();
             data1 = new List<month>(12);
             SqlCommand cmd;
-            SqlConnection conn = new SqlConnection(global.conString);
+            SqlConnection conn = new SqlConnection(conString);
 
 
             cmd = new SqlCommand("SELECT month(THOIGIAN) as thang, sum(TONGGIATRI) AS doanhThu " // thử select month giùm tui với, toàn bị lỗi :(
@@ -131,7 +131,7 @@ namespace SalesManagement
         public void dataNam()
         {
             SqlCommand cmd;
-            SqlConnection conn = new SqlConnection(global.conString);
+            SqlConnection conn = new SqlConnection(conString);
             foreach (var series in chart1.Series)
             {
                 series.Points.Clear();
