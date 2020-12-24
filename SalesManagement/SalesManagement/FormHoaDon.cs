@@ -20,21 +20,27 @@ namespace SalesManagement
     {
         List<ClassSanPham> listSanPham;
         List<string> listMaKH;
+        CultureInfo cultureInfo;
         //string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
         public FormHoaDon()
         {
             InitializeComponent();
             listSanPham = new List<ClassSanPham>();
             listMaKH = new List<string>();
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("vn-VN");
+            NumberFormatInfo nfi = new CultureInfo("vn-VN", false).NumberFormat;
+            nfi.CurrencyPositivePattern = 3;
+            nfi.CurrencyNegativePattern = 3;
+            nfi.NumberDecimalSeparator = ".";
+            nfi.NumberGroupSeparator = ",";
+            cultureInfo = new CultureInfo("vn-VN", false);
+            cultureInfo.NumberFormat = nfi;
+            Thread.CurrentThread.CurrentCulture = cultureInfo;
             UpdateDanhSachSP();
             UpdateDanhSachKH();
             txbThoiGian.Text = DateTime.Now.ToString();
             txbMaHD.Text = GetMaHD();
-            txbTongThanhToan.Text = string.Format(CultureInfo.CreateSpecificCulture("vi-VN"), "{0:C0}", 0);
-            // ----------------------------------------------------------------------------------------------------------
-            txbNhanVien.Text = Login.Current_user.NAME;    //Them function tra ve string ten User
-            // ----------------------------------------------------------------------------------------------------------
+            txbTongThanhToan.Text = string.Format(cultureInfo, "{0:C0}", 0);
+            txbNhanVien.Text = Login.Current_user.NAME;
         }
 
         private void button_menu_Click(object sender, EventArgs e)
@@ -119,7 +125,7 @@ namespace SalesManagement
             {
                 tongThanhToan += Convert.ToInt32(dgvHoaDon.Rows[i].Cells[6].Value);
             }
-            txbTongThanhToan.Text = string.Format(CultureInfo.CreateSpecificCulture("vi-VN"), "{0:C0}", tongThanhToan);
+            txbTongThanhToan.Text = string.Format(cultureInfo, "{0:C0}", tongThanhToan);
         }
         private int GetSoLuong(string maSP)
         {
@@ -300,23 +306,33 @@ namespace SalesManagement
 
         private void txbTienKhachDua_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char)Keys.Enter)
+            try
             {
-                if (txbTienKhachDua.Text == "" || txbTienKhachDua.Text == " ₫" || txbTienKhachDua.Text == string.Format(CultureInfo.CreateSpecificCulture("vi-VN"), "{0:C0}", 0))
+                if (e.KeyChar == (char)Keys.Enter)
                 {
-                    txbTienKhachDua.Text = string.Format(CultureInfo.CreateSpecificCulture("vi-VN"), "{0:C0}", 0);
-                    txbTraLaiKhach.Text = "";
-                    MessageBox.Show("Chưa nhập tiền khách đưa");
-                    return;
+                    if (txbTienKhachDua.Text == "" || txbTienKhachDua.Text == " ₫" || txbTienKhachDua.Text == string.Format(cultureInfo, "{0:C0}", 0))
+                    {
+                        txbTienKhachDua.Text = string.Format(cultureInfo, "{0:C0}", 0);
+                        txbTraLaiKhach.Text = "";
+                        MessageBox.Show("Chưa nhập tiền khách đưa");
+                        return;
+                    }
+                    if (int.Parse(txbTienKhachDua.Text, NumberStyles.Currency) < int.Parse(txbTongThanhToan.Text, NumberStyles.Currency))
+                        MessageBox.Show("Tiền khách đưa ít hơn tổng tiền cần thanh toán");
+                    else
+                    {
+                        int traLaiKhach = int.Parse(txbTienKhachDua.Text, NumberStyles.Currency) - int.Parse(txbTongThanhToan.Text, NumberStyles.Currency);
+                        txbTraLaiKhach.Text = string.Format(cultureInfo, "{0:C0}", traLaiKhach);
+                    }
                 }
-                int traLaiKhach = int.Parse(txbTienKhachDua.Text, NumberStyles.Currency) - int.Parse(txbTongThanhToan.Text, NumberStyles.Currency);
-                txbTraLaiKhach.Text = string.Format(CultureInfo.CreateSpecificCulture("vi-VN"), "{0:C0}", traLaiKhach);
-                if (int.Parse(txbTienKhachDua.Text, NumberStyles.Currency) < int.Parse(txbTongThanhToan.Text, NumberStyles.Currency))
-                    MessageBox.Show("Tiền khách đưa ít hơn tổng tiền cần thanh toán");
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
             }
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            catch (Exception ex)
             {
-                e.Handled = true;
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -333,7 +349,7 @@ namespace SalesManagement
             nudSoLuong.Value = 1;
             dgvHoaDon.Rows.Clear();
             cbbMaKH.Text = "";
-            txbTongThanhToan.Text = string.Format(CultureInfo.CreateSpecificCulture("vi-VN"), "{0:C0}", 0);
+            txbTongThanhToan.Text = string.Format(cultureInfo, "{0:C0}", 0);
             txbTienKhachDua.TextChanged -= txbTienKhachDua_TextChanged;
             txbTienKhachDua.Text = "";
             txbTienKhachDua.TextChanged += txbTienKhachDua_TextChanged;
@@ -342,28 +358,45 @@ namespace SalesManagement
 
         private void txbTienKhachDua_Leave(object sender, EventArgs e)
         {
-            if (txbTienKhachDua.Text == "" || txbTienKhachDua.Text == " ₫" || txbTienKhachDua.Text == string.Format(CultureInfo.CreateSpecificCulture("vi-VN"), "{0:C0}", 0))
+            try
             {
-                txbTienKhachDua.Text = string.Format(CultureInfo.CreateSpecificCulture("vi-VN"), "{0:C0}", 0);
-                txbTraLaiKhach.Text = "";
-                MessageBox.Show("Chưa nhập tiền khách đưa");
-                return;
+                if (txbTienKhachDua.Text == "" || txbTienKhachDua.Text == " ₫" || txbTienKhachDua.Text == string.Format(cultureInfo, "{0:C0}", 0))
+                {
+                    txbTienKhachDua.Text = string.Format(cultureInfo, "{0:C0}", 0);
+                    txbTraLaiKhach.Text = "";
+                    MessageBox.Show("Chưa nhập tiền khách đưa");
+                    return;
+                }
+                if (int.Parse(txbTienKhachDua.Text, NumberStyles.Currency) < int.Parse(txbTongThanhToan.Text, NumberStyles.Currency))
+                    MessageBox.Show("Tiền khách đưa ít hơn tổng tiền cần thanh toán");
+                else
+                {
+                    int traLaiKhach = int.Parse(txbTienKhachDua.Text, NumberStyles.Currency) - int.Parse(txbTongThanhToan.Text, NumberStyles.Currency);
+                    txbTraLaiKhach.Text = string.Format(cultureInfo, "{0:C0}", traLaiKhach);
+                }
             }
-            int traLaiKhach = int.Parse(txbTienKhachDua.Text, NumberStyles.Currency) - int.Parse(txbTongThanhToan.Text, NumberStyles.Currency);
-            txbTraLaiKhach.Text = string.Format(CultureInfo.CreateSpecificCulture("vi-VN"), "{0:C0}", traLaiKhach);
-            if (int.Parse(txbTienKhachDua.Text, NumberStyles.Currency) < int.Parse(txbTongThanhToan.Text, NumberStyles.Currency))
-                MessageBox.Show("Tiền khách đưa ít hơn tổng tiền cần thanh toán");
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void txbTienKhachDua_TextChanged(object sender, EventArgs e)
         {
-            string stringSoTien = txbTienKhachDua.Text.Replace(".", "").Replace(",", "").Replace("₫", "").Replace(" ", "");
-            if (stringSoTien == "") return;
-            int soTien = int.Parse(stringSoTien);
-            txbTienKhachDua.TextChanged -= txbTienKhachDua_TextChanged;
-            txbTienKhachDua.Text = string.Format(CultureInfo.CreateSpecificCulture("vi-VN"), "{0:C0}", soTien);
-            txbTienKhachDua.TextChanged += txbTienKhachDua_TextChanged;
-            txbTienKhachDua.Select(txbTienKhachDua.Text.Length - 2, 0);
+            try
+            {
+                string stringSoTien = txbTienKhachDua.Text.Replace(".", "").Replace(",", "").Replace("₫", "").Replace(" ", "");
+                if (stringSoTien == "") return;
+                int soTien = int.Parse(stringSoTien);
+                txbTienKhachDua.TextChanged -= txbTienKhachDua_TextChanged;
+                txbTienKhachDua.Text = string.Format(cultureInfo, "{0:C0}", soTien);
+                txbTienKhachDua.TextChanged += txbTienKhachDua_TextChanged;
+                txbTienKhachDua.Select(txbTienKhachDua.Text.Length - 2, 0);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void cbbTenSP_TextChanged(object sender, EventArgs e)
@@ -395,7 +428,7 @@ namespace SalesManagement
                 MessageBox.Show("Chưa nhập sản phẩm");
                 return;
             }
-            if (txbTienKhachDua.Text == "" || txbTienKhachDua.Text == " ₫" || txbTienKhachDua.Text == string.Format(CultureInfo.CreateSpecificCulture("vi-VN"), "{0:C0}", 0))
+            if (txbTienKhachDua.Text == "" || txbTienKhachDua.Text == " ₫" || txbTienKhachDua.Text == string.Format(cultureInfo, "{0:C0}", 0))
             {
                 MessageBox.Show("Chưa nhập tiền khách đưa");
                 return;
@@ -507,14 +540,15 @@ namespace SalesManagement
                     {
                         try
                         {
+                            iTextSharp.text.Font font = FontFactory.GetFont("Arial", 14.0f, BaseColor.BLACK);
                             PdfPTable pdfTable = new PdfPTable(dgvHoaDon.Columns.Count);
                             pdfTable.DefaultCell.Padding = 3;
                             pdfTable.WidthPercentage = 100;
-                            pdfTable.HorizontalAlignment = Element.ALIGN_LEFT;
+                            pdfTable.HorizontalAlignment = Element.ALIGN_CENTER;
 
                             foreach (DataGridViewColumn column in dgvHoaDon.Columns)
                             {
-                                PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText));
+                                PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText, font));
                                 pdfTable.AddCell(cell);
                             }
 
@@ -523,8 +557,8 @@ namespace SalesManagement
                                 if (row.Index == dgvHoaDon.Rows.Count - 1) continue;
                                 foreach (DataGridViewCell cell in row.Cells)
                                 {
-                                    if (cell.ColumnIndex == 7) pdfTable.AddCell("[  ]");
-                                    else pdfTable.AddCell(cell.Value.ToString());
+                                    PdfPCell cellWithFont = new PdfPCell(new Phrase(cell.Value.ToString(), font));
+                                    pdfTable.AddCell(cellWithFont);
                                 }
                             }
 
@@ -534,19 +568,20 @@ namespace SalesManagement
                                 PdfWriter.GetInstance(pdfDoc, stream);
                                 pdfDoc.Open();
                                 Phrase phrase = new Phrase();
-                                Chunk chunk = new Chunk("Mã hóa đơn: " + txbMaHD.Text);
+                                Chunk chunk = new Chunk("Mã hóa đơn: " + txbMaHD.Text, font);
                                 phrase.Add(chunk);
                                 phrase.Add(Environment.NewLine);
-                                chunk = new Chunk("Thời gian: " + txbThoiGian.Text);
+                                chunk = new Chunk("Thời gian: " + txbThoiGian.Text, font);
                                 phrase.Add(chunk);
                                 phrase.Add(Environment.NewLine);
-                                chunk = new Chunk("Tổng thanh toán: " + txbTongThanhToan.Text);
+                                chunk = new Chunk("Tổng thanh toán: " + txbTongThanhToan.Text, font);
                                 phrase.Add(chunk);
                                 phrase.Add(Environment.NewLine);
                                 pdfDoc.Add(phrase);
                                 pdfDoc.Add(pdfTable);
                                 pdfDoc.Close();
                                 stream.Close();
+                                
                             }
 
                             MessageBox.Show("Data Exported Successfully !!!", "Info");
