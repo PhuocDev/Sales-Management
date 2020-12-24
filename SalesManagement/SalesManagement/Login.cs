@@ -93,7 +93,7 @@ namespace SalesManagement
             if (VerifyUser(textBox1.Text, textBox_passWord.Text))
             {
                 Current_user = new User(textBox1.Text, textBox_passWord.Text);//////// Lưu thông tin người dùng hiện tại
-                menu mn = new menu();
+                menu mn = new menu(this.SHOW);
                 mn.FormClosed += new FormClosedEventHandler(menu_FormClose);
                 mn.Show();
                 this.Hide();
@@ -102,6 +102,15 @@ namespace SalesManagement
         }
         private void menu_FormClose(object sender, FormClosedEventArgs e)
         {
+            DialogResult result =  MessageBox.Show("Bạn có muốn thoát chương trình", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if(result == DialogResult.Yes) this.Close();
+        }
+
+        public void SHOW()
+        {
+            this.textBox1.Text = "";
+            this.ActiveControl = this.textBox1;
+            this.textBox_passWord.Text = "password";
             this.Show();
         }
         //------------------------------------------keydown------------------------------------------------------------------//

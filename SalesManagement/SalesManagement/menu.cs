@@ -16,7 +16,13 @@ namespace SalesManagement
         {
             InitializeComponent();
         }
-
+        public changeform change;
+        public menu(changeform change)
+        {
+            InitializeComponent();
+            this.change = change;
+        }
+        //-------------------------------------------------------------------------------------------------------------------------//
         private void button_SanPham_Click(object sender, EventArgs e)
         {
             sanPham sp = new sanPham();
@@ -29,18 +35,22 @@ namespace SalesManagement
             this.Show();
         }
 
+        //---------------------------------------------------------------------------------------------------------------------------//
+
         private void button_nhanVien_Click(object sender, EventArgs e)
         {
-            FormNhanVien nv = new FormNhanVien();
-            nv.FormClosed += new FormClosedEventHandler(NhanVien_FormClose);
-            nv.Show();
+            FormKhachHang kh = new FormKhachHang();
+            kh.FormClosed += new FormClosedEventHandler(KhachHang_FormClose);
+            kh.Show();
             this.Hide();
         }
 
-        private void NhanVien_FormClose(object sender, FormClosedEventArgs e)
+        private void KhachHang_FormClose(object sender, FormClosedEventArgs e)
         {
             this.Show();
         }
+
+        //------------------------------------------------------------------------------------------------------------------------------//
 
         private void button_QLD_Click(object sender, EventArgs e)
         {
@@ -54,6 +64,7 @@ namespace SalesManagement
             this.Show();
         }
 
+        //--------------------------------------------------------------------------------------------------------------------------------//
         private void button_TKTC_Click(object sender, EventArgs e)
         {
             ThongKe tk = new ThongKe();
@@ -66,22 +77,71 @@ namespace SalesManagement
             this.Show();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        //---------------------------------------------------------------------------------------------------------------------------------//
+        private void menu_Load(object sender, EventArgs e)
+        {
+            if(Login.Current_user.ID.Substring(0,2) == "NV")
+            {
+                this.label_nv_kh.Text = "Khách hàng";
+                this.button_nv_kh2.Text = "Khách hàng";
+            }
+            this.label_tenDangNhap.Text = Login.Current_user.NAME;
+        }
+        //---------------------------------------------------thoát-chương-trình-------------------------------------------------------------//
+        private void button_thoat_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        //---------------------------------------------------đăng-xuất -------------------------------------------------------------------------//
+        private void button_dangXuat_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bạn có muốn đăng xuất không", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if(result == DialogResult.Yes)
+            {
+                this.Hide();
+                this.change();
+            }
+        }
+        //-------------------------------------------------------button phụ click----------------------------------------------------------------//
+        private void button_bh2_Click(object sender, EventArgs e)
         {
             button_QLD.PerformClick();
         }
 
-        private void pictureBox4_Click(object sender, EventArgs e)
+        private void button_sp2_Click(object sender, EventArgs e)
         {
             button_SanPham.PerformClick();
         }
 
-        private void pictureBox3_Click(object sender, EventArgs e)
+        private void button_nv_kh2_Click(object sender, EventArgs e)
+        {
+            button_nhanVien.PerformClick();
+        }
+
+        private void button_tk2_Click(object sender, EventArgs e)
         {
             button_TKTC.PerformClick();
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
+        //-----------------------------------------------------------------label-click-------------------------------------------------------------//
+
+        private void label_bh_Click(object sender, EventArgs e)
+        {
+            button_QLD.PerformClick();
+        }
+
+        private void label_sp_Click(object sender, EventArgs e)
+        {
+            button_SanPham.PerformClick();
+        }
+
+        private void label_tk_Click(object sender, EventArgs e)
+        {
+            button_TKTC.PerformClick();
+        }
+
+        private void label_nv_kh_Click(object sender, EventArgs e)
         {
             button_nhanVien.PerformClick();
         }
