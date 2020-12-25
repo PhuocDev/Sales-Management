@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnXoaKH = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.ColSTT = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,27 +57,30 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button_menu = new System.Windows.Forms.Button();
-            this.button_back = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.button_save = new System.Windows.Forms.Button();
             this.label_warning = new System.Windows.Forms.Label();
+            this.button_back = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnXoaKH
             // 
-            this.btnXoaKH.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnXoaKH.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXoaKH.Location = new System.Drawing.Point(766, 222);
+            this.btnXoaKH.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.btnXoaKH.FlatAppearance.BorderSize = 0;
+            this.btnXoaKH.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnXoaKH.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXoaKH.ForeColor = System.Drawing.Color.Black;
+            this.btnXoaKH.Location = new System.Drawing.Point(744, 174);
             this.btnXoaKH.Margin = new System.Windows.Forms.Padding(2);
             this.btnXoaKH.Name = "btnXoaKH";
-            this.btnXoaKH.Size = new System.Drawing.Size(166, 40);
+            this.btnXoaKH.Size = new System.Drawing.Size(130, 40);
             this.btnXoaKH.TabIndex = 46;
             this.btnXoaKH.TabStop = false;
-            this.btnXoaKH.Text = "Xóa khách hàng";
+            this.btnXoaKH.Text = "Xóa";
             this.btnXoaKH.UseVisualStyleBackColor = false;
             this.btnXoaKH.Click += new System.EventHandler(this.btnXoaKH_Click);
             // 
@@ -84,7 +88,15 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColSTT,
@@ -95,7 +107,7 @@
             this.ColSDT,
             this.ColDiaChi,
             this.ColDiem});
-            this.dataGridView1.Location = new System.Drawing.Point(44, 338);
+            this.dataGridView1.Location = new System.Drawing.Point(46, 340);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -104,7 +116,7 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.RowTemplate.ReadOnly = true;
             this.dataGridView1.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.Size = new System.Drawing.Size(920, 202);
+            this.dataGridView1.Size = new System.Drawing.Size(860, 216);
             this.dataGridView1.TabIndex = 47;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
@@ -191,26 +203,32 @@
             // 
             // btnThemKH
             // 
-            this.btnThemKH.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnThemKH.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThemKH.Location = new System.Drawing.Point(766, 173);
+            this.btnThemKH.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.btnThemKH.FlatAppearance.BorderSize = 0;
+            this.btnThemKH.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnThemKH.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThemKH.ForeColor = System.Drawing.Color.Black;
+            this.btnThemKH.Location = new System.Drawing.Point(744, 78);
             this.btnThemKH.Margin = new System.Windows.Forms.Padding(2);
             this.btnThemKH.Name = "btnThemKH";
-            this.btnThemKH.Size = new System.Drawing.Size(166, 40);
+            this.btnThemKH.Size = new System.Drawing.Size(130, 40);
             this.btnThemKH.TabIndex = 45;
             this.btnThemKH.TabStop = false;
-            this.btnThemKH.Text = "Thêm khách hàng";
+            this.btnThemKH.Text = "Thêm";
             this.btnThemKH.UseVisualStyleBackColor = false;
             this.btnThemKH.Click += new System.EventHandler(this.btnThemKH_Click);
             // 
             // btnXuatFile
             // 
-            this.btnXuatFile.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnXuatFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXuatFile.Location = new System.Drawing.Point(766, 124);
+            this.btnXuatFile.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.btnXuatFile.FlatAppearance.BorderSize = 0;
+            this.btnXuatFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnXuatFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXuatFile.ForeColor = System.Drawing.Color.Black;
+            this.btnXuatFile.Location = new System.Drawing.Point(744, 228);
             this.btnXuatFile.Margin = new System.Windows.Forms.Padding(2);
             this.btnXuatFile.Name = "btnXuatFile";
-            this.btnXuatFile.Size = new System.Drawing.Size(166, 40);
+            this.btnXuatFile.Size = new System.Drawing.Size(130, 40);
             this.btnXuatFile.TabIndex = 44;
             this.btnXuatFile.TabStop = false;
             this.btnXuatFile.Text = "Xuất File";
@@ -218,15 +236,18 @@
             // 
             // btnChinhSua
             // 
-            this.btnChinhSua.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnChinhSua.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnChinhSua.Location = new System.Drawing.Point(766, 76);
+            this.btnChinhSua.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.btnChinhSua.FlatAppearance.BorderSize = 0;
+            this.btnChinhSua.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChinhSua.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChinhSua.ForeColor = System.Drawing.Color.Black;
+            this.btnChinhSua.Location = new System.Drawing.Point(744, 125);
             this.btnChinhSua.Margin = new System.Windows.Forms.Padding(2);
             this.btnChinhSua.Name = "btnChinhSua";
-            this.btnChinhSua.Size = new System.Drawing.Size(166, 40);
+            this.btnChinhSua.Size = new System.Drawing.Size(130, 40);
             this.btnChinhSua.TabIndex = 43;
             this.btnChinhSua.TabStop = false;
-            this.btnChinhSua.Text = "Chỉnh sửa";
+            this.btnChinhSua.Text = "Sửa";
             this.btnChinhSua.UseVisualStyleBackColor = false;
             this.btnChinhSua.Click += new System.EventHandler(this.btnChinhSua_Click);
             // 
@@ -237,13 +258,13 @@
             this.btnKhachHang.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKhachHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnKhachHang.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.btnKhachHang.Location = new System.Drawing.Point(846, 34);
+            this.btnKhachHang.Location = new System.Drawing.Point(708, 29);
             this.btnKhachHang.Margin = new System.Windows.Forms.Padding(2);
             this.btnKhachHang.Name = "btnKhachHang";
-            this.btnKhachHang.Size = new System.Drawing.Size(106, 32);
+            this.btnKhachHang.Size = new System.Drawing.Size(112, 32);
             this.btnKhachHang.TabIndex = 42;
             this.btnKhachHang.TabStop = false;
-            this.btnKhachHang.Text = "Khách hàng";
+            this.btnKhachHang.Text = "KHÁCH HÀNG";
             this.btnKhachHang.UseVisualStyleBackColor = false;
             // 
             // btnNhanVien
@@ -254,13 +275,13 @@
             this.btnNhanVien.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNhanVien.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNhanVien.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnNhanVien.Location = new System.Drawing.Point(742, 34);
+            this.btnNhanVien.Location = new System.Drawing.Point(813, 29);
             this.btnNhanVien.Margin = new System.Windows.Forms.Padding(2);
             this.btnNhanVien.Name = "btnNhanVien";
-            this.btnNhanVien.Size = new System.Drawing.Size(106, 32);
+            this.btnNhanVien.Size = new System.Drawing.Size(117, 32);
             this.btnNhanVien.TabIndex = 41;
             this.btnNhanVien.TabStop = false;
-            this.btnNhanVien.Text = "Nhân viên";
+            this.btnNhanVien.Text = "NHÂN VIÊN";
             this.btnNhanVien.UseVisualStyleBackColor = false;
             this.btnNhanVien.Click += new System.EventHandler(this.btnNhanVien_Click);
             // 
@@ -404,39 +425,6 @@
             this.label1.TabIndex = 33;
             this.label1.Text = "Mã KH:";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = global::SalesManagement.Properties.Resources.khach_hang;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(64, 47);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(196, 264);
-            this.pictureBox1.TabIndex = 26;
-            this.pictureBox1.TabStop = false;
-            // 
-            // button_menu
-            // 
-            this.button_menu.BackgroundImage = global::SalesManagement.Properties.Resources.home;
-            this.button_menu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button_menu.Location = new System.Drawing.Point(0, 0);
-            this.button_menu.Name = "button_menu";
-            this.button_menu.Size = new System.Drawing.Size(46, 42);
-            this.button_menu.TabIndex = 49;
-            this.button_menu.UseVisualStyleBackColor = true;
-            this.button_menu.Click += new System.EventHandler(this.button_menu_Click);
-            // 
-            // button_back
-            // 
-            this.button_back.BackgroundImage = global::SalesManagement.Properties.Resources.back1;
-            this.button_back.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button_back.Location = new System.Drawing.Point(45, 0);
-            this.button_back.Name = "button_back";
-            this.button_back.Size = new System.Drawing.Size(47, 42);
-            this.button_back.TabIndex = 48;
-            this.button_back.UseVisualStyleBackColor = true;
-            this.button_back.Click += new System.EventHandler(this.button_back_Click);
-            // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -448,12 +436,15 @@
             // 
             // button_save
             // 
-            this.button_save.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.button_save.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_save.Location = new System.Drawing.Point(817, 550);
+            this.button_save.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.button_save.FlatAppearance.BorderSize = 0;
+            this.button_save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_save.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_save.ForeColor = System.Drawing.Color.Black;
+            this.button_save.Location = new System.Drawing.Point(744, 279);
             this.button_save.Margin = new System.Windows.Forms.Padding(2);
             this.button_save.Name = "button_save";
-            this.button_save.Size = new System.Drawing.Size(147, 32);
+            this.button_save.Size = new System.Drawing.Size(130, 36);
             this.button_save.TabIndex = 51;
             this.button_save.TabStop = false;
             this.button_save.Text = "Lưu";
@@ -469,16 +460,50 @@
             this.label_warning.Size = new System.Drawing.Size(0, 13);
             this.label_warning.TabIndex = 52;
             // 
+            // button_back
+            // 
+            this.button_back.BackColor = System.Drawing.Color.Transparent;
+            this.button_back.BackgroundImage = global::SalesManagement.Properties.Resources.output_onlinepngtools;
+            this.button_back.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button_back.FlatAppearance.BorderSize = 0;
+            this.button_back.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_back.Location = new System.Drawing.Point(1, 2);
+            this.button_back.Name = "button_back";
+            this.button_back.Size = new System.Drawing.Size(47, 42);
+            this.button_back.TabIndex = 48;
+            this.button_back.UseVisualStyleBackColor = false;
+            this.button_back.Click += new System.EventHandler(this.button_back_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = global::SalesManagement.Properties.Resources.khach_hang;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(71, 47);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(196, 264);
+            this.pictureBox1.TabIndex = 26;
+            this.pictureBox1.TabStop = false;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(48, 24);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(642, 304);
+            this.groupBox1.TabIndex = 53;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Khách hàng";
+            // 
             // FormKhachHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::SalesManagement.Properties.Resources.background2;
-            this.ClientSize = new System.Drawing.Size(1006, 586);
+            this.BackColor = System.Drawing.Color.AliceBlue;
+            this.ClientSize = new System.Drawing.Size(966, 586);
             this.Controls.Add(this.label_warning);
             this.Controls.Add(this.button_save);
             this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.button_menu);
             this.Controls.Add(this.button_back);
             this.Controls.Add(this.btnXoaKH);
             this.Controls.Add(this.dataGridView1);
@@ -501,6 +526,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormKhachHang";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -536,7 +562,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button_menu;
         private System.Windows.Forms.Button button_back;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button button_save;
@@ -549,5 +574,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColSDT;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColDiaChi;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColDiem;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
