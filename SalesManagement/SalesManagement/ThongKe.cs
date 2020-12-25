@@ -8,20 +8,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using iTextSharp.text;
+using itextsharp.pdfa;
+using System.IO;
+using iTextSharp.text;
 
+using System.IO;
+
+using iTextSharp.text.html.simpleparser;
+
+using iTextSharp.text.pdf;
+
+using System.Web;
 namespace SalesManagement
 {
     public partial class ThongKe : Form
     {
         // đổi conString theo máy tui, chưa thêm class global nên dùng như vầy
-        // đưa khởi tạo data1 lên đầu
-        // chạy data() để gắn giá trị cho data1 trước khi sử dụng trong fillChart()
+        // đưa khởi tạo dataMonth lên đầu
+        // chạy data() để gắn giá trị cho dataMonth trước khi sử dụng trong fillChart()
         // kiểu dữ liệu trả về từ month(THOIGIAN) là int32, không phải string, dùng lệnh dr.GetInt32 thay vì dr.GetString
 
-
-        //string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
-        public List<month> data1;
-        public List<year> data2;
+        public List<month> dataMonth;
+        public List<year> dataYear;
+        public List<day> dataDay;
         public ThongKe()
         {
             InitializeComponent();
@@ -57,9 +67,9 @@ namespace SalesManagement
                 chart1.Series["Doanh Thu"].Points.AddY(0);
                 chart1.Series["Doanh Thu"].Points[i - 1].AxisLabel = "T" + i.ToString();
             }
-            for (int i = 0; i < data1.Count(); i++)
+            for (int i = 0; i < dataMonth.Count(); i++)
             {
-                chart1.Series["Doanh Thu"].Points[Convert.ToInt32(data1[i].thang) - 1].YValues = new Double[] { Convert.ToDouble(data1[i].doanhThu) };
+                chart1.Series["Doanh Thu"].Points[Convert.ToInt32(dataMonth[i].thang) - 1].YValues = new Double[] { Convert.ToDouble(dataMonth[i].doanhThu) };
             }
 
         }
@@ -72,12 +82,28 @@ namespace SalesManagement
                 chart1.Series["Doanh Thu"].Points.AddY(0);
                 chart1.Series["Doanh Thu"].Points[i - 1].AxisLabel = (i + dateTimePicker1.Value.Year - 6).ToString();
             }
-            //MessageBox.Show(data2.Count().ToString());
-            for (int i = 0; i < data2.Count(); i++)
+            //MessageBox.Show(dataYear.Count().ToString());
+            for (int i = 0; i < dataYear.Count(); i++)
             {
-                if (Convert.ToInt32(data2[i].nam) >= dateTimePicker1.Value.Year - 5 && Convert.ToInt32(data2[i].nam) <= dateTimePicker1.Value.Year + 5) 
-                    chart1.Series["Doanh Thu"].Points[Convert.ToInt32(data2[i].nam) - (dateTimePicker1.Value.Year - 6) - 1].YValues = new Double[] { Convert.ToDouble(data2[i].doanhThu) };
+                if (Convert.ToInt32(dataYear[i].nam) >= dateTimePicker1.Value.Year - 5 && Convert.ToInt32(dataYear[i].nam) <= dateTimePicker1.Value.Year + 5) 
+                    chart1.Series["Doanh Thu"].Points[Convert.ToInt32(dataYear[i].nam) - (dateTimePicker1.Value.Year - 6) - 1].YValues = new Double[] { Convert.ToDouble(dataYear[i].doanhThu) };
             } 
+        }
+        private void fillChartNgay()
+        {
+            chart1.ChartAreas["ChartArea1"].AxisX.Interval = 1;     // Để hiển thị tất cả các label cột x
+            // thống kê 30 ngày trong khoảng hiện tại
+            int songay = 31;
+
+            for (int i = 1; i < songay; i++)
+            {
+                chart1.Series["Doanh Thu"].Points.AddY(0);
+                chart1.Series["Doanh Thu"].Points[i - 1].AxisLabel = "" + i.ToString();
+            }
+            for (int i = 0; i < dataDay.Count(); i++)
+            {
+                chart1.Series["Doanh Thu"].Points[Convert.ToInt32(dataDay[i].ngay) -1 ].YValues = new Double[] { Convert.ToDouble(dataDay[i].doanhThu) };
+            }
         }
         protected void data(string year)
         {
@@ -86,7 +112,7 @@ namespace SalesManagement
                 series.Points.Clear();
             }
             chart1.Series["Doanh Thu"].Points.Clear();
-            data1 = new List<month>(12);
+            dataMonth = new List<month>(12);
             SqlCommand cmd;
             SqlConnection conn = new SqlConnection(global.conString);
 
@@ -94,7 +120,7 @@ namespace SalesManagement
             cmd = new SqlCommand("SELECT month(THOIGIAN) as thang, sum(TONGGIATRI) AS doanhThu " // thử select month giùm tui với, toàn bị lỗi :(
                                             + "FROM HOADON WHERE year(THOIGIAN) =" + year
                                             + " GROUP BY month(THOIGIAN)", conn);
-
+            
             SqlDataReader dr;
             //int sum = 0, i = 0;
             try
@@ -105,7 +131,7 @@ namespace SalesManagement
                 {
                     //MessageBox.Show(dr.GetOrdinal("thang").GetType().ToString());
 
-                    data1.Add(new month()
+                    dataMonth.Add(new month()
                     {
                         thang = dr.GetInt32(dr.GetOrdinal("thang")).ToString(),
                         doanhThu = dr.GetInt32(dr.GetOrdinal("doanhThu"))
@@ -126,7 +152,55 @@ namespace SalesManagement
                 conn.Close();
             }
 
-            //MessageBox.Show(Convert.ToString(data1.Count()));
+            //MessageBox.Show(Convert.ToString(dataMonth.Count()));
+        }
+        protected void dataNgay()
+        {
+            foreach (var series in chart1.Series)
+            {
+                series.Points.Clear();
+            }
+            chart1.Series["Doanh Thu"].Points.Clear();
+            dataDay = new List<day>(31);
+
+            SqlCommand cmd;
+            SqlConnection conn = new SqlConnection(global.conString);
+
+
+            cmd = new SqlCommand("SELECT day(THOIGIAN) as ngay, sum(TONGGIATRI) AS doanhThu " // thử select month giùm tui với, toàn bị lỗi :(
+                                            + "FROM HOADON WHERE month(THOIGIAN) =" + dateTimePicker1.Value.Month.ToString() + "and year(THOIGIAN) = " + dateTimePicker1.Value.Year.ToString()
+                                            + " GROUP BY day(THOIGIAN)", conn) ;
+            SqlDataReader dr;
+            //int sum = 0, i = 0;
+            try
+            {
+                conn.Open();
+                dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    //MessageBox.Show(dr.GetOrdinal("thang").GetType().ToString());
+
+                    dataDay.Add(new day()
+                    {
+                        ngay = dr.GetInt32(dr.GetOrdinal("ngay")).ToString(),
+                        doanhThu = dr.GetInt32(dr.GetOrdinal("doanhThu"))
+
+                    });
+                }
+                //MessageBox.Show(sum.ToString());
+
+                dr.Close();
+            }
+            catch (Exception exp)
+            {
+
+                MessageBox.Show("Loi ket noi");
+            }
+            finally
+            {
+                conn.Close();
+            }
+
         }
         public void dataNam()
         {
@@ -137,7 +211,7 @@ namespace SalesManagement
                 series.Points.Clear();
             }
             chart1.Series["Doanh Thu"].Points.Clear();
-            data2 = new List<year>(12);
+            dataYear = new List<year>(12);
             string year = dateTimePicker1.Value.Year.ToString();
             cmd = new SqlCommand("SELECT year(THOIGIAN) as year, sum(TONGGIATRI) AS doanhThu"
                                   + " FROM HOADON \n"
@@ -152,7 +226,7 @@ namespace SalesManagement
                 {
                     //MessageBox.Show(dr.GetOrdinal("thang").GetType().ToString());
 
-                    data2.Add(new year()
+                    dataYear.Add(new year()
                     {
                         nam = dr.GetInt32(dr.GetOrdinal("year")).ToString(),
                         doanhThu = dr.GetInt32(dr.GetOrdinal("doanhThu"))
@@ -174,8 +248,6 @@ namespace SalesManagement
 
         private void button_thongKe_Click(object sender, EventArgs e)
         {
-            //chart1.Series["Doanh Thu"].Points.Clear();
-
             if (checkBox_tKTheoNam.Checked == false && (checkBox_tKTheoThang.Checked == true))
             {
                 string year = dateTimePicker1.Value.Year.ToString();
@@ -187,6 +259,12 @@ namespace SalesManagement
                 dataNam();
                 fillChartNam();
             }
+            else if (checkBox_Ngay.Checked == true  && checkBox_tKTheoNam.Checked == false && checkBox_tKTheoThang.Checked == false)
+            {
+                string day = dateTimePicker1.Value.Day.ToString();
+                dataNgay();
+                fillChartNgay();
+            }    
             else
             {
                 MessageBox.Show("Vui lòng xem lại ô checkbox!");
@@ -195,14 +273,90 @@ namespace SalesManagement
 
         private void checkBox_tKTheoNam_MouseClick(object sender, MouseEventArgs e)
         {
-            //checkBox_tKTheoNam.Checked = !checkBox_tKTheoNam.Checked;
-            checkBox_tKTheoThang.Checked = !checkBox_tKTheoThang.Checked;
+            if (checkBox_tKTheoThang.Checked == true)
+            {
+                checkBox_tKTheoThang.Checked = !checkBox_tKTheoThang.Checked;
+            }
+            if (checkBox_Ngay.Checked == true)
+            {
+                checkBox_Ngay.Checked = !checkBox_Ngay.Checked;
+            }
+
         }
 
         private void checkBox_tKTheoThang_MouseClick(object sender, MouseEventArgs e)
         {
-            checkBox_tKTheoNam.Checked = !checkBox_tKTheoNam.Checked;
-            //checkBox_tKTheoThang.Checked = !checkBox_tKTheoThang.Checked;
+            if (checkBox_Ngay.Checked == true)
+            {
+                checkBox_Ngay.Checked = !checkBox_Ngay.Checked;
+            }
+            if (checkBox_tKTheoNam.Checked == true)
+            {
+                checkBox_tKTheoNam.Checked = !checkBox_tKTheoNam.Checked;
+            }
+        }
+
+        private void checkBox_Ngay_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (checkBox_tKTheoThang.Checked == true)
+            {
+                checkBox_tKTheoThang.Checked = !checkBox_tKTheoThang.Checked;
+            }
+            if (checkBox_tKTheoNam.Checked == true) 
+            {
+                checkBox_tKTheoNam.Checked = !checkBox_tKTheoNam.Checked;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // button in ra màn hình
+
+            Document Doc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
+            string status = "";
+            try
+            {
+                MemoryStream ms = new MemoryStream();
+                HTMLWorker htmlparser = new HTMLWorker(Doc);
+                PdfWriter.GetInstance(Doc , ms);
+                Doc.Open();
+
+                using (MemoryStream memoryStream = new MemoryStream())
+
+                {
+
+                    //Chart1.SaveImage(memoryStream, ChartImageFormat.Png);
+                    chart1.SaveImage(memoryStream, System.Windows.Forms.DataVisualization.Charting.ChartImageFormat.Png);
+
+                    iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(memoryStream.GetBuffer());
+
+                    img.ScalePercent(75f);
+
+                    Doc.Add(img);
+
+                    Doc.Close();
+
+
+                    HttpContext.Current.Response.ContentType = "application/pdf";
+
+                    HttpContext.Current.Response.AddHeader("content-disposition", "attachment;filename=Chart.pdf");
+
+                    HttpContext.Current.Response.Cache.SetCacheability(HttpCacheability.NoCache);
+
+                    HttpContext.Current.Response.Write(Doc);
+
+                    HttpContext.Current.Response.End();
+                    status = "success";
+                }
+            }
+            catch (DocumentException de)
+            {
+                System.Web.HttpContext.Current.Response.Write(de.Message);
+            }
+            catch (Exception ex)
+            {
+                status = ex.Message.ToString();
+            }
         }
     }
     public class month
@@ -215,4 +369,10 @@ namespace SalesManagement
         public int doanhThu { get; set; }
         public string nam { get; set; }
     }
+    public class day
+    {
+        public int doanhThu { get; set; }
+        public string ngay { get; set; }
+    }
+        
 }
