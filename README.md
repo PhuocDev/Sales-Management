@@ -5,7 +5,7 @@ Mở cửa hàng kinh doanh thì dễ những làm thế nào để cửa hàng 
 ## Công nghệ
 - IDE: Visual Studio 2020 (C#/.Net)
 - Database: SQL Server
-- UI design: Figma
+- UI design: Bunifu
 - Công cụ quản lý: GitHub
 - Khác: Office365
 
