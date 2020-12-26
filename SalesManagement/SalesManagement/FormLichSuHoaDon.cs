@@ -29,9 +29,14 @@ namespace SalesManagement
             DateTime currentDateTime = DateTime.Now;
             dtpFromDate.Value = new DateTime(currentDateTime.Year, currentDateTime.Month, 1);
             dtpToDate.Value = dtpFromDate.Value.AddMonths(1).AddSeconds(-1);
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("vn-VN");
-            //dgvLichSuHD.Columns[2].DefaultCellStyle.FormatProvider = CultureInfo.GetCultureInfo("vn-VN");
-            //dgvLichSuHD.Columns[2].DefaultCellStyle.Format = "C0";
+            NumberFormatInfo nfi = new CultureInfo("vn-VN", false).NumberFormat;
+            nfi.CurrencyPositivePattern = 3;
+            nfi.CurrencyNegativePattern = 3;
+            nfi.NumberDecimalSeparator = ".";
+            nfi.NumberGroupSeparator = ",";
+            CultureInfo cultureInfo = new CultureInfo("vn-VN", false);
+            cultureInfo.NumberFormat = nfi;
+            Thread.CurrentThread.CurrentCulture = cultureInfo;
             UpdateDanhSachHD();
             UpdateCTHD();
         }
