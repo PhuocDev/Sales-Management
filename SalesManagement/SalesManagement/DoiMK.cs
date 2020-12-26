@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SalesManagement
 {
-    public partial class ChinhSuaDSNH : Form
+    public partial class DoiMK : Form
     {
-        public ChinhSuaDSNH()
+        public DoiMK()
         {
             InitializeComponent();
         }

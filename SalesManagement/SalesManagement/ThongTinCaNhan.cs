@@ -10,21 +10,13 @@ using System.Windows.Forms;
 
 namespace SalesManagement
 {
-    public partial class AddSP : Form
+    public partial class thongTinCaNhan : Form
     {
-        public AddSP()
+        public thongTinCaNhan()
         {
             InitializeComponent();
         }
+ 
 
-        private void button_them_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button_huyBo_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
     }
 }

@@ -162,6 +162,5 @@ namespace SalesManagement
                 e.Handled = true;
             }
         }
-
     }
 }

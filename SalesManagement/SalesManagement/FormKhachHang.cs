@@ -105,11 +105,11 @@ namespace SalesManagement
 
         private void btnXoaKH_Click(object sender, EventArgs e)
         {
+            DataGridViewCell cell = dataGridView1.CurrentCell;
+            if (cell == null) return;
             DialogResult result = MessageBox.Show("Bạn có muốn xóa khách hàng đã chọn?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.No) return;
 
-            DataGridViewCell cell = dataGridView1.CurrentCell;
-            if (cell == null) return;
             int index = cell.RowIndex;
             id_remove.Add(dataGridView1.Rows[index].Cells[1].Value.ToString());// thêm vào danh sách khách hàng bị xóa
             dataGridView1.Rows.RemoveAt(index);
