@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label1 = new System.Windows.Forms.Label();
             this.checkBox_tKTheoThang = new System.Windows.Forms.CheckBox();
             this.checkBox_tKTheoNam = new System.Windows.Forms.CheckBox();
@@ -48,7 +48,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.White;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Lato", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(390, 18);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -112,41 +112,47 @@
             // 
             // button_menu
             // 
-            this.button_menu.BackgroundImage = global::SalesManagement.Properties.Resources.home;
+            this.button_menu.BackColor = System.Drawing.Color.Transparent;
+            this.button_menu.BackgroundImage = global::SalesManagement.Properties.Resources.home2;
             this.button_menu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button_menu.Location = new System.Drawing.Point(0, -1);
+            this.button_menu.FlatAppearance.BorderSize = 0;
+            this.button_menu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_menu.Location = new System.Drawing.Point(4, 3);
             this.button_menu.Margin = new System.Windows.Forms.Padding(4);
             this.button_menu.Name = "button_menu";
-            this.button_menu.Size = new System.Drawing.Size(61, 52);
+            this.button_menu.Size = new System.Drawing.Size(42, 40);
             this.button_menu.TabIndex = 47;
-            this.button_menu.UseVisualStyleBackColor = true;
+            this.button_menu.UseVisualStyleBackColor = false;
             this.button_menu.Click += new System.EventHandler(this.button_menu_Click);
             // 
             // button_back
             // 
-            this.button_back.BackgroundImage = global::SalesManagement.Properties.Resources.back1;
+            this.button_back.BackColor = System.Drawing.Color.Transparent;
+            this.button_back.BackgroundImage = global::SalesManagement.Properties.Resources.output_onlinepngtools;
             this.button_back.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button_back.Location = new System.Drawing.Point(59, -1);
+            this.button_back.FlatAppearance.BorderSize = 0;
+            this.button_back.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_back.Location = new System.Drawing.Point(51, 3);
             this.button_back.Margin = new System.Windows.Forms.Padding(4);
             this.button_back.Name = "button_back";
-            this.button_back.Size = new System.Drawing.Size(63, 52);
+            this.button_back.Size = new System.Drawing.Size(42, 40);
             this.button_back.TabIndex = 46;
-            this.button_back.UseVisualStyleBackColor = true;
+            this.button_back.UseVisualStyleBackColor = false;
             this.button_back.Click += new System.EventHandler(this.button_back_Click);
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(0, 68);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Doanh Thu";
-            this.chart1.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Doanh Thu";
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(1067, 402);
             this.chart1.TabIndex = 48;
             this.chart1.Text = "chart1";
@@ -192,6 +198,7 @@
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(1067, 596);
             this.Controls.Add(this.button1_In);
             this.Controls.Add(this.checkBox_Ngay);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,8 @@ namespace SalesManagement
             InitializeComponent();
             this.change = change;
         }
-        
+        SqlConnection connection = new SqlConnection(global.conString);
+
         //-------------------------------------------------------------thêm----------------------------------------------------------------------------//
 
         private void button_them_Click(object sender, EventArgs e)
@@ -156,7 +158,100 @@ namespace SalesManagement
         //-------------------------------------------------------------------lưu_kho---------------------------------------------------------------------------//
         private void button_luuKho_Click(object sender, EventArgs e)
         {
+            DialogResult result = MessageBox.Show("Bạn có muốn lưu dữ liệu?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.No) return;
 
+
+            try
+            {
+                for(int i = 0; i< dataGridView_danhSachSanPham.Rows.Count; i++)
+                {
+                    if (Check_MaSP(dataGridView_danhSachSanPham.Rows[i].Cells[1].Value.ToString()))
+                    {
+                        update_list.Add(dataGridView_danhSachSanPham.Rows[i].Cells[1].Value.ToString());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+
+            }
+
+            try
+            {
+                connection.Open();
+                for (int i = 0; i < dataGridView_danhSachSanPham.Rows.Count; i++)
+                {
+                    string sqlQuery;
+                    if (update_list.Contains(dataGridView_danhSachSanPham.Rows[i].Cells[1].Value.ToString()))
+                    {
+                        sqlQuery = "update SANPHAM set SOLUONG = SOLUONG + @sl where MASP = @masp";
+                        SqlCommand command = new SqlCommand(sqlQuery, connection);
+                        command.Parameters.AddWithValue("@masp", dataGridView_danhSachSanPham.Rows[i].Cells[1].Value.ToString());
+                        command.Parameters.AddWithValue("@sl", Convert.ToInt32(dataGridView_danhSachSanPham.Rows[i].Cells[3].Value));
+                        int rs1 = command.ExecuteNonQuery();
+                        if (rs1 != 1)
+                        {
+                           throw new Exception("Failed Query");
+                        }
+                    }
+                    else
+                    {
+                        sqlQuery = "INSERT INTO SANPHAM VALUES( @masp, @ten, @sl, @dvt , @giaNhap, @giaBanLe, @hsd, @nhacc, @ghichu)";
+                        SqlCommand command = new SqlCommand(sqlQuery, connection);
+
+                        command.Parameters.Add("@masp", SqlDbType.NVarChar).Value = dataGridView_danhSachSanPham.Rows[i].Cells[1].Value.ToString();
+                        command.Parameters.Add("@ten", SqlDbType.NVarChar).Value = dataGridView_danhSachSanPham.Rows[i].Cells[2].Value.ToString();
+                        command.Parameters.AddWithValue("@sl", SqlDbType.NVarChar).Value = Convert.ToInt32(dataGridView_danhSachSanPham.Rows[i].Cells[3].Value);
+                        command.Parameters.AddWithValue("@dvt", SqlDbType.NVarChar).Value = dataGridView_danhSachSanPham.Rows[i].Cells[4].Value.ToString();
+                        command.Parameters.AddWithValue("@giaNhap", SqlDbType.NVarChar).Value = Convert.ToInt32(dataGridView_danhSachSanPham.Rows[i].Cells[5].Value);
+                        command.Parameters.AddWithValue("@giaBanLe", SqlDbType.NVarChar).Value = Convert.ToInt32(dataGridView_danhSachSanPham.Rows[i].Cells[6].Value);
+                        command.Parameters.AddWithValue("@hsd", SqlDbType.NVarChar).Value = dataGridView_danhSachSanPham.Rows[i].Cells[7].Value.ToString();
+                        command.Parameters.AddWithValue("@nhacc", SqlDbType.NVarChar).Value = dataGridView_danhSachSanPham.Rows[i].Cells[8].Value.ToString();
+                        command.Parameters.AddWithValue("@ghichu", SqlDbType.NVarChar).Value = dataGridView_danhSachSanPham.Rows[i].Cells[9].Value.ToString();
+
+                        int rs = command.ExecuteNonQuery();
+                        if (rs != 1)
+                        {
+                            throw new Exception("Failed Query");
+                        }
+                    } 
+                }
+            }
+            catch (Exception ex)
+            {
+               MessageBox.Show("kết nối xảy ra lỗi hoặc ghi dữ liệu bị lỗi");
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
+
+        List<string> update_list = new List<string>();
+        private bool Check_MaSP(string masp)
+        {
+            connection.Open();
+            string sqlQuery = "select MASP from SANPHAM";
+            SqlCommand command = new SqlCommand(sqlQuery, connection);
+            SqlDataReader dataReader = command.ExecuteReader();
+            while (dataReader.HasRows)
+            {
+                if (dataReader.Read() == false) break;
+                if (dataReader.GetString(0) == masp)
+                {
+                    connection.Close();
+                    return true;
+                }
+            }
+            connection.Close();
+            return false;
+        }
+
+
     }
 }

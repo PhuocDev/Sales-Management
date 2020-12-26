@@ -34,7 +34,7 @@ namespace SalesManagement
             while (dataReader.HasRows)
             {
                 if (dataReader.Read() == false) break;
-                if (dataReader.GetString(0) == "KH000") continue;
+                if (dataReader.GetString(0) == "KH00000") continue;
                 dataGridView1.Rows.Add(stt, dataReader.GetString(0), dataReader.GetString(1),
                     dataReader.GetDateTime(2).ToString().Substring(0, dataReader.GetDateTime(2).ToString().IndexOf(" ")),
                     dataReader.GetString(3), dataReader.GetString(4), dataReader.GetString(5), dataReader.GetInt32(6));
@@ -105,11 +105,11 @@ namespace SalesManagement
 
         private void btnXoaKH_Click(object sender, EventArgs e)
         {
+            DataGridViewCell cell = dataGridView1.CurrentCell;
+            if (cell == null) return;
             DialogResult result = MessageBox.Show("Bạn có muốn xóa khách hàng đã chọn?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.No) return;
 
-            DataGridViewCell cell = dataGridView1.CurrentCell;
-            if (cell == null) return;
             int index = cell.RowIndex;
             id_remove.Add(dataGridView1.Rows[index].Cells[1].Value.ToString());// thêm vào danh sách khách hàng bị xóa
             dataGridView1.Rows.RemoveAt(index);

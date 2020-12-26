@@ -45,21 +45,20 @@
             this.button_chinhSua = new System.Windows.Forms.Button();
             this.button_timKiem = new System.Windows.Forms.Button();
             this.button_xuatFile = new System.Windows.Forms.Button();
-            this.label_danhSachSanPham = new System.Windows.Forms.Label();
-            this.button_menu = new System.Windows.Forms.Button();
             this.button_luu = new System.Windows.Forms.Button();
-            this.button_back = new System.Windows.Forms.Button();
             this.button_xoa = new System.Windows.Forms.Button();
             this.textBox_ten = new System.Windows.Forms.TextBox();
             this.textBox_masp = new System.Windows.Forms.TextBox();
             this.button_fullsp = new System.Windows.Forms.Button();
+            this.button_back = new System.Windows.Forms.Button();
+            this.button_menu = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_danhSachSanPham)).BeginInit();
             this.SuspendLayout();
             // 
             // button_nhapHang
             // 
             this.button_nhapHang.BackColor = System.Drawing.Color.Transparent;
-            this.button_nhapHang.FlatAppearance.BorderSize = 0;
             this.button_nhapHang.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_nhapHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_nhapHang.ForeColor = System.Drawing.Color.Navy;
@@ -76,7 +75,7 @@
             // 
             this.dataGridView_danhSachSanPham.AllowUserToAddRows = false;
             this.dataGridView_danhSachSanPham.AllowUserToDeleteRows = false;
-            this.dataGridView_danhSachSanPham.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.dataGridView_danhSachSanPham.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView_danhSachSanPham.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_danhSachSanPham.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column_stt,
@@ -184,7 +183,7 @@
             this.label_boLoc.AutoSize = true;
             this.label_boLoc.BackColor = System.Drawing.Color.Transparent;
             this.label_boLoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_boLoc.Location = new System.Drawing.Point(356, 80);
+            this.label_boLoc.Location = new System.Drawing.Point(356, 70);
             this.label_boLoc.Name = "label_boLoc";
             this.label_boLoc.Size = new System.Drawing.Size(46, 16);
             this.label_boLoc.TabIndex = 50;
@@ -195,7 +194,7 @@
             this.label_tenSanPham.AutoSize = true;
             this.label_tenSanPham.BackColor = System.Drawing.Color.Transparent;
             this.label_tenSanPham.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_tenSanPham.Location = new System.Drawing.Point(25, 116);
+            this.label_tenSanPham.Location = new System.Drawing.Point(25, 106);
             this.label_tenSanPham.Name = "label_tenSanPham";
             this.label_tenSanPham.Size = new System.Drawing.Size(94, 16);
             this.label_tenSanPham.TabIndex = 49;
@@ -206,7 +205,7 @@
             this.label_maSanPham.AutoSize = true;
             this.label_maSanPham.BackColor = System.Drawing.Color.Transparent;
             this.label_maSanPham.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_maSanPham.Location = new System.Drawing.Point(27, 82);
+            this.label_maSanPham.Location = new System.Drawing.Point(27, 72);
             this.label_maSanPham.Name = "label_maSanPham";
             this.label_maSanPham.Size = new System.Drawing.Size(89, 16);
             this.label_maSanPham.TabIndex = 48;
@@ -220,14 +219,16 @@
             "Giá từ 100.000đ đến 1.000.000đ",
             "Giá từ 1.000.000đ đến 10.000.000đ",
             "Giá trên 10.000.000đ"});
-            this.comboBox_boLoc.Location = new System.Drawing.Point(421, 78);
+            this.comboBox_boLoc.Location = new System.Drawing.Point(421, 68);
             this.comboBox_boLoc.Name = "comboBox_boLoc";
             this.comboBox_boLoc.Size = new System.Drawing.Size(199, 21);
             this.comboBox_boLoc.TabIndex = 2;
             // 
             // button_chinhSua
             // 
-            this.button_chinhSua.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.button_chinhSua.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.button_chinhSua.FlatAppearance.BorderSize = 0;
+            this.button_chinhSua.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_chinhSua.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_chinhSua.Location = new System.Drawing.Point(821, 218);
             this.button_chinhSua.Name = "button_chinhSua";
@@ -240,9 +241,11 @@
             // 
             // button_timKiem
             // 
-            this.button_timKiem.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.button_timKiem.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.button_timKiem.FlatAppearance.BorderSize = 0;
+            this.button_timKiem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_timKiem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_timKiem.Location = new System.Drawing.Point(666, 82);
+            this.button_timKiem.Location = new System.Drawing.Point(666, 72);
             this.button_timKiem.Name = "button_timKiem";
             this.button_timKiem.Size = new System.Drawing.Size(85, 50);
             this.button_timKiem.TabIndex = 3;
@@ -252,7 +255,9 @@
             // 
             // button_xuatFile
             // 
-            this.button_xuatFile.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.button_xuatFile.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.button_xuatFile.FlatAppearance.BorderSize = 0;
+            this.button_xuatFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_xuatFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_xuatFile.ForeColor = System.Drawing.SystemColors.Desktop;
             this.button_xuatFile.Location = new System.Drawing.Point(821, 274);
@@ -263,32 +268,11 @@
             this.button_xuatFile.Text = "Xuất file";
             this.button_xuatFile.UseVisualStyleBackColor = false;
             // 
-            // label_danhSachSanPham
-            // 
-            this.label_danhSachSanPham.AutoSize = true;
-            this.label_danhSachSanPham.BackColor = System.Drawing.Color.Transparent;
-            this.label_danhSachSanPham.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_danhSachSanPham.Location = new System.Drawing.Point(355, 9);
-            this.label_danhSachSanPham.Name = "label_danhSachSanPham";
-            this.label_danhSachSanPham.Size = new System.Drawing.Size(195, 24);
-            this.label_danhSachSanPham.TabIndex = 53;
-            this.label_danhSachSanPham.Text = "Danh Sách Sản Phẩm";
-            // 
-            // button_menu
-            // 
-            this.button_menu.BackgroundImage = global::SalesManagement.Properties.Resources.home;
-            this.button_menu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button_menu.Location = new System.Drawing.Point(0, 0);
-            this.button_menu.Name = "button_menu";
-            this.button_menu.Size = new System.Drawing.Size(46, 42);
-            this.button_menu.TabIndex = 41;
-            this.button_menu.TabStop = false;
-            this.button_menu.UseVisualStyleBackColor = true;
-            this.button_menu.Click += new System.EventHandler(this.button_menu_Click);
-            // 
             // button_luu
             // 
-            this.button_luu.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.button_luu.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.button_luu.FlatAppearance.BorderSize = 0;
+            this.button_luu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_luu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_luu.Location = new System.Drawing.Point(821, 482);
             this.button_luu.Name = "button_luu";
@@ -299,21 +283,11 @@
             this.button_luu.UseVisualStyleBackColor = false;
             this.button_luu.Click += new System.EventHandler(this.button_luu_Click);
             // 
-            // button_back
-            // 
-            this.button_back.BackgroundImage = global::SalesManagement.Properties.Resources.back1;
-            this.button_back.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button_back.Location = new System.Drawing.Point(45, 0);
-            this.button_back.Name = "button_back";
-            this.button_back.Size = new System.Drawing.Size(48, 42);
-            this.button_back.TabIndex = 55;
-            this.button_back.TabStop = false;
-            this.button_back.UseVisualStyleBackColor = true;
-            this.button_back.Click += new System.EventHandler(this.button_back_Click);
-            // 
             // button_xoa
             // 
-            this.button_xoa.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.button_xoa.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.button_xoa.FlatAppearance.BorderSize = 0;
+            this.button_xoa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_xoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_xoa.Location = new System.Drawing.Point(821, 161);
             this.button_xoa.Name = "button_xoa";
@@ -326,21 +300,23 @@
             // 
             // textBox_ten
             // 
-            this.textBox_ten.Location = new System.Drawing.Point(134, 116);
+            this.textBox_ten.Location = new System.Drawing.Point(134, 106);
             this.textBox_ten.Name = "textBox_ten";
             this.textBox_ten.Size = new System.Drawing.Size(486, 20);
             this.textBox_ten.TabIndex = 1;
             // 
             // textBox_masp
             // 
-            this.textBox_masp.Location = new System.Drawing.Point(134, 78);
+            this.textBox_masp.Location = new System.Drawing.Point(134, 68);
             this.textBox_masp.Name = "textBox_masp";
             this.textBox_masp.Size = new System.Drawing.Size(206, 20);
             this.textBox_masp.TabIndex = 0;
             // 
             // button_fullsp
             // 
-            this.button_fullsp.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.button_fullsp.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.button_fullsp.FlatAppearance.BorderSize = 0;
+            this.button_fullsp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_fullsp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_fullsp.Location = new System.Drawing.Point(821, 104);
             this.button_fullsp.Name = "button_fullsp";
@@ -351,20 +327,60 @@
             this.button_fullsp.UseVisualStyleBackColor = false;
             this.button_fullsp.Click += new System.EventHandler(this.button_fullsp_Click);
             // 
+            // button_back
+            // 
+            this.button_back.BackColor = System.Drawing.Color.Transparent;
+            this.button_back.BackgroundImage = global::SalesManagement.Properties.Resources.output_onlinepngtools;
+            this.button_back.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button_back.FlatAppearance.BorderSize = 0;
+            this.button_back.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_back.Location = new System.Drawing.Point(44, 2);
+            this.button_back.Name = "button_back";
+            this.button_back.Size = new System.Drawing.Size(42, 40);
+            this.button_back.TabIndex = 55;
+            this.button_back.TabStop = false;
+            this.button_back.UseVisualStyleBackColor = false;
+            this.button_back.Click += new System.EventHandler(this.button_back_Click);
+            // 
+            // button_menu
+            // 
+            this.button_menu.BackgroundImage = global::SalesManagement.Properties.Resources.home2;
+            this.button_menu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button_menu.FlatAppearance.BorderSize = 0;
+            this.button_menu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_menu.Location = new System.Drawing.Point(2, 2);
+            this.button_menu.Name = "button_menu";
+            this.button_menu.Size = new System.Drawing.Size(42, 40);
+            this.button_menu.TabIndex = 41;
+            this.button_menu.TabStop = false;
+            this.button_menu.UseVisualStyleBackColor = true;
+            this.button_menu.Click += new System.EventHandler(this.button_menu_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(129, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(111, 25);
+            this.label1.TabIndex = 75;
+            this.label1.Text = "Sản Phẩm";
+            // 
             // sanPham
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::SalesManagement.Properties.Resources.background2;
+            this.BackColor = System.Drawing.Color.AliceBlue;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(990, 565);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.button_fullsp);
             this.Controls.Add(this.textBox_masp);
             this.Controls.Add(this.textBox_ten);
             this.Controls.Add(this.button_xoa);
             this.Controls.Add(this.button_back);
             this.Controls.Add(this.button_luu);
-            this.Controls.Add(this.label_danhSachSanPham);
             this.Controls.Add(this.button_nhapHang);
             this.Controls.Add(this.dataGridView_danhSachSanPham);
             this.Controls.Add(this.label_boLoc);
@@ -396,7 +412,6 @@
         private System.Windows.Forms.Button button_timKiem;
         private System.Windows.Forms.Button button_xuatFile;
         private System.Windows.Forms.Button button_menu;
-        private System.Windows.Forms.Label label_danhSachSanPham;
         private System.Windows.Forms.Button button_luu;
         private System.Windows.Forms.Button button_back;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_stt;
@@ -411,5 +426,6 @@
         private System.Windows.Forms.TextBox textBox_ten;
         private System.Windows.Forms.TextBox textBox_masp;
         private System.Windows.Forms.Button button_fullsp;
+        private System.Windows.Forms.Label label1;
     }
 }

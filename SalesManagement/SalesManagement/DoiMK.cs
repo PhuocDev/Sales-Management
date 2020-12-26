@@ -11,18 +11,42 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Security.Cryptography;
 using System.Text;
+
 namespace SalesManagement
 {
-    public partial class Login : Form
+    public partial class DoiMK : Form
     {
-        public static User Current_user;////////////////////// Lưu thông tin người dùng hiện tại
-        //static string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
         SqlConnection connection = new SqlConnection(global.conString);
-
-        public Login()
+        string maNV = Login.Current_user.ID;
+        string name = Login.Current_user.NAME;
+        public int check = 0;
+        public DoiMK()
         {
             InitializeComponent();
         }
+
+        private void button_huyBo_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        private bool fillCondition()
+        {
+            if (textBox_matKhau.Text == "" || textBox_mkCu.Text == "" || textBox_laiMK.Text == "")
+            {
+                MessageBox.Show("Vui lòng nhập đủ thông tin", "Thông báo");
+                return false;
+            }
+            else if (textBox_matKhau.Text != textBox_laiMK.Text)
+            {
+                MessageBox.Show("Mật khẩu không trùng khớp!");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         //---------------------------------------------Hash_pass------------------------------------------------------//
         private string Hash_pass(string pass)
         {
@@ -36,9 +60,7 @@ namespace SalesManagement
             }
             return hasPass;
         }
-
-        //--------------------------------------VerifyUser----------------------------------------------------------//
-        private bool VerifyUser(string name, string pass)//kiểm tra TK_MK
+        private bool VerifyUser(string name, string pass)     //kiểm tra TK_MK
         {
             connection.Open();
             if (name.Substring(0, 2) == "NV")
@@ -82,70 +104,60 @@ namespace SalesManagement
             }
         }
 
-        //--------------------------------------------------Dangnhap_click------------------------------------------------//
-        private void button_dangNhap_Click(object sender, EventArgs e)
+        //Update password
+        private void updatePass()
         {
-            if (textBox1.Text == "" || textBox_passWord.Text == "")
+            try
             {
-                MessageBox.Show("Chưa nhập đủ thông tin", "Lỗi");
-                return;
-            } 
-            if (VerifyUser(textBox1.Text, textBox_passWord.Text))
-            {
-                Current_user = new User(textBox1.Text, textBox_passWord.Text);//////// Lưu thông tin người dùng hiện tại
-                menu mn = new menu(this.SHOW);
-                mn.FormClosed += new FormClosedEventHandler(menu_FormClose);
-                mn.Show();
-                this.Hide();
+                connection.Open();
+                if (Login.Current_user.ID.Substring(0, 2) == "NV")
+                {
+                    SqlCommand cmd = new SqlCommand("update NHANVIEN SET PASSWORD = '" + Hash_pass(textBox_matKhau.Text) + "' where MANV = '" + Login.Current_user.ID + "' and password = '" + Hash_pass(textBox_mkCu.Text) + "'", connection);
+                    cmd.ExecuteNonQuery();
+                }
+                else
+                {
+                    SqlCommand cmd = new SqlCommand("update QUANLY SET PASSWORD = '" + Hash_pass(textBox_matKhau.Text) + "' where MAQL = '" + Login.Current_user.ID + "' and password = '" + Hash_pass(textBox_mkCu.Text) + "'", connection);
+                    cmd.ExecuteNonQuery();
+                }
             }
-            else MessageBox.Show("Tài khoản hoặc mật khẩu không đúng", "Lỗi");
+            catch (Exception ex)
+            {
+                MessageBox.Show("kết nối xảy ra lỗi hoặc ghi dữ liệu bị lỗi");
+            }
+            finally
+            {
+                connection.Close();
+            }
+            MessageBox.Show("Đã đổi mật khẩu thành công! ", "Thông báo");
         }
-        private void menu_FormClose(object sender, FormClosedEventArgs e)
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (fillCondition())
+            {
+                if (VerifyUser(Login.Current_user.ID, textBox_mkCu.Text))
+                {
+                    updatePass();
+                    this.Close();
+                    check = 1;
+                }
+                else
+                {
+                    MessageBox.Show("Sai mật khẩu! vui lòng nhập lại", "Thông báo");
+                }
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        public void SHOW()
-        {
-            this.textBox1.Text = "";
-            this.ActiveControl = this.textBox1;
-            this.textBox_passWord.Text = "password";
-            this.Show();
-        }
-        //------------------------------------------keydown------------------------------------------------------------------//
-        private void textBox_passWord_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.SuppressKeyPress = true;
-                button_dangNhap.PerformClick();
-            }
-        }
-
-        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        private void textBox_laiMK_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Enter)
             {
-                this.ActiveControl = textBox_passWord;
-                this.textBox_passWord.Focus();
-                e.SuppressKeyPress = true;
-            }
-        }
-        //---------------------------------------------------username_leave_enter--------------------------------------------------//
-
-        private void textBox1_Leave(object sender, EventArgs e)
-        {
-            if (textBox1.Text.Equals(""))
-            {
-                textBox1.Text = "Username";
-            }
-        }
-
-        private void textBox1_Enter(object sender, EventArgs e)
-        {
-            if (textBox1.Text.Equals("Username"))
-            {
-                textBox1.Text = "";
+                button1.PerformClick();
             }
         }
     }
