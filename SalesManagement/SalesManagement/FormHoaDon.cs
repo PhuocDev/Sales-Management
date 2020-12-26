@@ -644,7 +644,7 @@ namespace SalesManagement
             {
                 MessageBox.Show("No Record To Export !!!", "Info");
             }
-            XuatPDF();
+            //XuatPDF();
         }*/
 
         private void btnTaoKHMoi_Click(object sender, EventArgs e)
