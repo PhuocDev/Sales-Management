@@ -87,21 +87,30 @@ namespace SalesManagement
         {
             if (textBox1.Text == "" || textBox_passWord.Text == "")
             {
-                MessageBox.Show("Chưa nhập đủ thông tin");
+                MessageBox.Show("Chưa nhập đủ thông tin", "Lỗi");
                 return;
             } 
             if (VerifyUser(textBox1.Text, textBox_passWord.Text))
             {
                 Current_user = new User(textBox1.Text, textBox_passWord.Text);//////// Lưu thông tin người dùng hiện tại
-                menu mn = new menu();
+                menu mn = new menu(this.SHOW);
                 mn.FormClosed += new FormClosedEventHandler(menu_FormClose);
                 mn.Show();
                 this.Hide();
             }
-            else MessageBox.Show("Tài khoản hoặc mật khẩu không đúng");
+            else MessageBox.Show("Tài khoản hoặc mật khẩu không đúng", "Lỗi");
         }
         private void menu_FormClose(object sender, FormClosedEventArgs e)
         {
+            DialogResult result =  MessageBox.Show("Bạn có muốn thoát chương trình", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if(result == DialogResult.Yes) this.Close();
+        }
+
+        public void SHOW()
+        {
+            this.textBox1.Text = "";
+            this.ActiveControl = this.textBox1;
+            this.textBox_passWord.Text = "password";
             this.Show();
         }
         //------------------------------------------keydown------------------------------------------------------------------//

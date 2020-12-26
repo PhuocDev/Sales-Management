@@ -15,7 +15,7 @@ namespace SalesManagement
     {
         //public static string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
         SqlConnection connection = new SqlConnection(global.conString);
-        public changeform change;
+
         public FormKhachHang()
         {
             InitializeComponent();
@@ -44,31 +44,28 @@ namespace SalesManagement
         }
 
         //---------------------------------------------------chuyển_form-------------------------------------------------------------------------//
-        public FormKhachHang(changeform change)
-        {
-            InitializeComponent();
-            UpdateKhachHang();
-            this.change = change;
-        }
 
-        private void button_menu_Click(object sender, EventArgs e)
+        private void button_back_Click(object sender, EventArgs e)
         {
             this.button_save.PerformClick();
             this.Close();
         }
 
-        private void button_back_Click(object sender, EventArgs e)
-        {
-            this.button_save.PerformClick();
-            this.change();
-            this.Hide();
-        }
-
         private void btnNhanVien_Click(object sender, EventArgs e)
         {
             this.button_save.PerformClick();
-            this.change();
+            FormNhanVien nv = new FormNhanVien(change);
+            nv.FormClosed += new FormClosedEventHandler(NhanVien_FormClose);
+            nv.Show();
             this.Hide();
+        }
+        private void change()
+        {
+            this.Show();
+        }
+        private void NhanVien_FormClose(object sender, FormClosedEventArgs e)
+        {
+            this.Close();
         }
 
         //------------------------------------------------------cell_click-------------------------------------------------------------------------//
@@ -214,6 +211,11 @@ namespace SalesManagement
         //---------------------------------------------------------Form_load------------------------------------------------------------------------//
         private void FormKhachHang_Load(object sender, EventArgs e)
         {
+            if(Login.Current_user.ID.Substring(0, 2) == "NV")
+            {
+                this.btnNhanVien.Visible = false;
+                this.btnKhachHang.Visible = false;
+            }
             DataGridViewCell cell = dataGridView1.CurrentCell;
             int index = cell.RowIndex;
             txbMaKH.Text = dataGridView1.Rows[index].Cells[1].Value.ToString();

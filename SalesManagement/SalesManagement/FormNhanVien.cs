@@ -15,9 +15,15 @@ namespace SalesManagement
     public delegate void changeform();
     public partial class FormNhanVien : Form
     {
+        public changeform change;
         public FormNhanVien()
         {
             InitializeComponent();
+        }
+        public FormNhanVien(changeform change)
+        {
+            InitializeComponent();
+            this.change = change;
         }
         //public static string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
         public SqlConnection connection = new SqlConnection(global.conString);
@@ -40,24 +46,15 @@ namespace SalesManagement
             connection.Close();
         }
 
-        //-------------------------------------------------chuyển form----------------------------------------------------------//
+        //-------------------------------------------------chuyển-form----------------------------------------------------------//
 
         private void btnKhachHang_Click(object sender, EventArgs e)
         {
             this.button_save.PerformClick();
-            FormKhachHang kh = new FormKhachHang(change);
-            kh.FormClosed += new FormClosedEventHandler(KhachHang_FormClose);
-            kh.Show();
+            this.change();
             this.Hide();
         }
-        private void change()
-        {
-            this.Show();
-        }
-        private void KhachHang_FormClose(object sender, FormClosedEventArgs e)
-        {
-            this.Close();
-        }
+
 
         private void button_back_Click(object sender, EventArgs e)
         {
@@ -65,12 +62,7 @@ namespace SalesManagement
             this.Close();
         }
 
-        private void button_menu_Click(object sender, EventArgs e)
-        {
-            this.button_save.PerformClick();
-            this.Close();
-        }
-        //--------------------------------------thêm nhân viên---------------------------------------------------------------------//
+        //--------------------------------------thêm-nhân-viên---------------------------------------------------------------------//
         private void btnThemNV_Click(object sender, EventArgs e)
         {
             if(Login.Current_user.ID.Substring(0, 2) == "QL")
