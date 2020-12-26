@@ -87,7 +87,7 @@ namespace SalesManagement
         {
             if (textBox1.Text == "" || textBox_passWord.Text == "")
             {
-                MessageBox.Show("Chưa nhập đủ thông tin");
+                MessageBox.Show("Chưa nhập đủ thông tin", "Lỗi");
                 return;
             } 
             if (VerifyUser(textBox1.Text, textBox_passWord.Text))
@@ -98,11 +98,16 @@ namespace SalesManagement
                 mn.Show();
                 this.Hide();
             }
-            else MessageBox.Show("Tài khoản hoặc mật khẩu không đúng");
+            else MessageBox.Show("Tài khoản hoặc mật khẩu không đúng", "Lỗi");
         }
         private void menu_FormClose(object sender, FormClosedEventArgs e)
         {
+<<<<<<< HEAD
             this.Close();
+=======
+            DialogResult result =  MessageBox.Show("Bạn có muốn thoát chương trình", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if(result == DialogResult.Yes) this.Close();
+>>>>>>> 3561d641529b4ba8be043449dbc82a261c2885a0
         }
 
         public void SHOW()
