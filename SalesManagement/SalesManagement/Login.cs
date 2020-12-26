@@ -102,12 +102,7 @@ namespace SalesManagement
         }
         private void menu_FormClose(object sender, FormClosedEventArgs e)
         {
-<<<<<<< HEAD
             this.Close();
-=======
-            DialogResult result =  MessageBox.Show("Bạn có muốn thoát chương trình", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if(result == DialogResult.Yes) this.Close();
->>>>>>> 3561d641529b4ba8be043449dbc82a261c2885a0
         }
 
         public void SHOW()

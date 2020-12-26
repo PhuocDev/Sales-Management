@@ -28,15 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-<<<<<<< HEAD
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-=======
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
->>>>>>> 3561d641529b4ba8be043449dbc82a261c2885a0
             this.label1 = new System.Windows.Forms.Label();
             this.checkBox_tKTheoThang = new System.Windows.Forms.CheckBox();
             this.checkBox_tKTheoNam = new System.Windows.Forms.CheckBox();
@@ -54,20 +48,12 @@
             // label1
             // 
             this.label1.AutoSize = true;
-<<<<<<< HEAD
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(301, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(189, 25);
-=======
             this.label1.BackColor = System.Drawing.Color.White;
             this.label1.Font = new System.Drawing.Font("Lato", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(390, 18);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(306, 33);
->>>>>>> 3561d641529b4ba8be043449dbc82a261c2885a0
             this.label1.TabIndex = 0;
             this.label1.Text = "THỐNG KÊ TÀI CHÍNH";
             // 
@@ -76,14 +62,10 @@
             this.checkBox_tKTheoThang.AutoSize = true;
             this.checkBox_tKTheoThang.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_tKTheoThang.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-<<<<<<< HEAD
-            this.checkBox_tKTheoThang.Location = new System.Drawing.Point(92, 399);
-=======
             this.checkBox_tKTheoThang.Location = new System.Drawing.Point(98, 491);
             this.checkBox_tKTheoThang.Margin = new System.Windows.Forms.Padding(4);
->>>>>>> 3561d641529b4ba8be043449dbc82a261c2885a0
             this.checkBox_tKTheoThang.Name = "checkBox_tKTheoThang";
-            this.checkBox_tKTheoThang.Size = new System.Drawing.Size(138, 19);
+            this.checkBox_tKTheoThang.Size = new System.Drawing.Size(165, 22);
             this.checkBox_tKTheoThang.TabIndex = 2;
             this.checkBox_tKTheoThang.Text = "Thống kê theo tháng";
             this.checkBox_tKTheoThang.UseVisualStyleBackColor = false;
@@ -94,14 +76,10 @@
             this.checkBox_tKTheoNam.AutoSize = true;
             this.checkBox_tKTheoNam.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_tKTheoNam.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-<<<<<<< HEAD
-            this.checkBox_tKTheoNam.Location = new System.Drawing.Point(236, 399);
-=======
             this.checkBox_tKTheoNam.Location = new System.Drawing.Point(289, 491);
             this.checkBox_tKTheoNam.Margin = new System.Windows.Forms.Padding(4);
->>>>>>> 3561d641529b4ba8be043449dbc82a261c2885a0
             this.checkBox_tKTheoNam.Name = "checkBox_tKTheoNam";
-            this.checkBox_tKTheoNam.Size = new System.Drawing.Size(132, 19);
+            this.checkBox_tKTheoNam.Size = new System.Drawing.Size(158, 22);
             this.checkBox_tKTheoNam.TabIndex = 3;
             this.checkBox_tKTheoNam.Text = "Thống kê theo năm";
             this.checkBox_tKTheoNam.UseVisualStyleBackColor = false;
@@ -109,20 +87,12 @@
             // 
             // button_thongKe
             // 
-<<<<<<< HEAD
-            this.button_thongKe.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.button_thongKe.FlatAppearance.BorderSize = 0;
-            this.button_thongKe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_thongKe.Font = new System.Drawing.Font("Lucida Fax", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_thongKe.Location = new System.Drawing.Point(422, 399);
-=======
             this.button_thongKe.BackColor = System.Drawing.Color.PowderBlue;
             this.button_thongKe.Font = new System.Drawing.Font("Lucida Fax", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_thongKe.Location = new System.Drawing.Point(759, 504);
             this.button_thongKe.Margin = new System.Windows.Forms.Padding(4);
->>>>>>> 3561d641529b4ba8be043449dbc82a261c2885a0
             this.button_thongKe.Name = "button_thongKe";
-            this.button_thongKe.Size = new System.Drawing.Size(138, 54);
+            this.button_thongKe.Size = new System.Drawing.Size(184, 66);
             this.button_thongKe.TabIndex = 4;
             this.button_thongKe.Text = "Thống kê";
             this.button_thongKe.UseVisualStyleBackColor = false;
@@ -133,70 +103,39 @@
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-<<<<<<< HEAD
-            this.label5.Location = new System.Drawing.Point(55, 435);
-=======
             this.label5.Location = new System.Drawing.Point(91, 536);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
->>>>>>> 3561d641529b4ba8be043449dbc82a261c2885a0
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(71, 17);
+            this.label5.Size = new System.Drawing.Size(82, 20);
             this.label5.TabIndex = 8;
             this.label5.Text = "Thời gian:";
             // 
             // button_menu
             // 
-            this.button_menu.BackgroundImage = global::SalesManagement.Properties.Resources.home2;
+            this.button_menu.BackgroundImage = global::SalesManagement.Properties.Resources.home;
             this.button_menu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-<<<<<<< HEAD
-            this.button_menu.FlatAppearance.BorderSize = 0;
-            this.button_menu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_menu.Location = new System.Drawing.Point(3, 2);
-=======
             this.button_menu.Location = new System.Drawing.Point(0, -1);
             this.button_menu.Margin = new System.Windows.Forms.Padding(4);
->>>>>>> 3561d641529b4ba8be043449dbc82a261c2885a0
             this.button_menu.Name = "button_menu";
-            this.button_menu.Size = new System.Drawing.Size(42, 40);
+            this.button_menu.Size = new System.Drawing.Size(61, 52);
             this.button_menu.TabIndex = 47;
             this.button_menu.UseVisualStyleBackColor = true;
             this.button_menu.Click += new System.EventHandler(this.button_menu_Click);
             // 
             // button_back
             // 
-            this.button_back.BackgroundImage = global::SalesManagement.Properties.Resources.output_onlinepngtools;
+            this.button_back.BackgroundImage = global::SalesManagement.Properties.Resources.back1;
             this.button_back.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-<<<<<<< HEAD
-            this.button_back.FlatAppearance.BorderSize = 0;
-            this.button_back.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_back.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button_back.Location = new System.Drawing.Point(49, 2);
-=======
             this.button_back.Location = new System.Drawing.Point(59, -1);
             this.button_back.Margin = new System.Windows.Forms.Padding(4);
->>>>>>> 3561d641529b4ba8be043449dbc82a261c2885a0
             this.button_back.Name = "button_back";
-            this.button_back.Size = new System.Drawing.Size(42, 40);
+            this.button_back.Size = new System.Drawing.Size(63, 52);
             this.button_back.TabIndex = 46;
             this.button_back.UseVisualStyleBackColor = true;
             this.button_back.Click += new System.EventHandler(this.button_back_Click);
             // 
             // chart1
             // 
-<<<<<<< HEAD
-            chartArea5.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea5);
-            legend5.Name = "Legend1";
-            this.chart1.Legends.Add(legend5);
-            this.chart1.Location = new System.Drawing.Point(58, 55);
-            this.chart1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.chart1.Name = "chart1";
-            series5.ChartArea = "ChartArea1";
-            series5.Legend = "Legend1";
-            series5.Name = "Doanh Thu";
-            this.chart1.Series.Add(series5);
-            this.chart1.Size = new System.Drawing.Size(694, 327);
-=======
             chartArea1.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
@@ -209,7 +148,6 @@
             series1.Name = "Doanh Thu";
             this.chart1.Series.Add(series1);
             this.chart1.Size = new System.Drawing.Size(1067, 402);
->>>>>>> 3561d641529b4ba8be043449dbc82a261c2885a0
             this.chart1.TabIndex = 48;
             this.chart1.Text = "chart1";
             // 
@@ -217,14 +155,9 @@
             // 
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-<<<<<<< HEAD
-            this.dateTimePicker1.Location = new System.Drawing.Point(140, 431);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-=======
             this.dateTimePicker1.Location = new System.Drawing.Point(181, 531);
->>>>>>> 3561d641529b4ba8be043449dbc82a261c2885a0
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 23);
+            this.dateTimePicker1.Size = new System.Drawing.Size(266, 27);
             this.dateTimePicker1.TabIndex = 49;
             // 
             // checkBox_Ngay
@@ -256,19 +189,12 @@
             // 
             // ThongKe
             // 
-<<<<<<< HEAD
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.AliceBlue;
-            this.ClientSize = new System.Drawing.Size(800, 484);
-=======
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 596);
             this.Controls.Add(this.button1_In);
             this.Controls.Add(this.checkBox_Ngay);
->>>>>>> 3561d641529b4ba8be043449dbc82a261c2885a0
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.button_menu);
@@ -278,10 +204,7 @@
             this.Controls.Add(this.checkBox_tKTheoNam);
             this.Controls.Add(this.checkBox_tKTheoThang);
             this.Controls.Add(this.label1);
-<<<<<<< HEAD
-=======
             this.Margin = new System.Windows.Forms.Padding(4);
->>>>>>> 3561d641529b4ba8be043449dbc82a261c2885a0
             this.Name = "ThongKe";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Thống kê";
