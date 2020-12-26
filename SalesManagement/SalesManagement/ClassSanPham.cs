@@ -8,8 +8,8 @@ namespace SalesManagement
 {
     class ClassSanPham
     {
-        public string maSP;
-        public string tenSP;
+		public string maSP;
+		public string tenSP;
 		public int soLuong;
 		public string donViTinh;
 		public int giaNhap;
@@ -29,6 +29,27 @@ namespace SalesManagement
 			this.hanSuDung = hanSuDung;
 			this.nhaCungCap = nhaCungCap;
 			this.ghiChu = ghiChu;
+		}
+		public string TenSP
+		{
+			get
+			{
+				return tenSP;
+			}
+		}
+		public int SoLuong
+		{
+			get
+			{
+				return soLuong;
+			}
+		}
+		public int GiaBan
+		{
+			get
+			{
+				return giaBan;
+			}
 		}
 
 /*	MASP VARCHAR(20) NOT NULL,

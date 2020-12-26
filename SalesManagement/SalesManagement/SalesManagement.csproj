@@ -81,6 +81,30 @@
     <Reference Include="itextsharp.pdfa, Version=5.5.13.2, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>..\packages\itextsharp.pdfa.5.5.13.2\lib\itextsharp.pdfa.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.11.0.3366.16\lib\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.11.0.3366.16\lib\Microsoft.ReportViewer.DataVisualization.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.11.0.3366.16\lib\Microsoft.ReportViewer.Design.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.11.0.3366.16\lib\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebDesign, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.11.0.3366.16\lib\Microsoft.ReportViewer.WebDesign.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.11.0.3366.16\lib\Microsoft.ReportViewer.WebForms.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.11.0.3366.16\lib\Microsoft.ReportViewer.WinForms.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.11.0.1\lib\net20\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
@@ -145,6 +169,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Receipt.cs" />
     <Compile Include="SignUp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,6 +208,7 @@
     <Compile Include="SanPham.Designer.cs">
       <DependentUpon>SanPham.cs</DependentUpon>
     </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="ThongKe.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -228,6 +254,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReceiptReport.rdlc" />
     <EmbeddedResource Include="SanPham.resx">
       <DependentUpon>SanPham.cs</DependentUpon>
     </EmbeddedResource>
@@ -238,6 +265,9 @@
       <DependentUpon>ThongKe.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\ClassSanPham.datasource" />
+    <None Include="Properties\DataSources\Receipt.datasource" />
+    <None Include="Properties\DataSources\SanPhamThanhToan.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -292,6 +322,25 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\packages\Microsoft.SqlServer.Types.11.0.1\nativeBinaries\x64\msvcr100.dll">
+      <Link>SqlServerTypes\x64\msvcr100.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\packages\Microsoft.SqlServer.Types.11.0.1\nativeBinaries\x64\SqlServerSpatial110.dll">
+      <Link>SqlServerTypes\x64\SqlServerSpatial110.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\packages\Microsoft.SqlServer.Types.11.0.1\nativeBinaries\x86\msvcr100.dll">
+      <Link>SqlServerTypes\x86\msvcr100.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\packages\Microsoft.SqlServer.Types.11.0.1\nativeBinaries\x86\SqlServerSpatial110.dll">
+      <Link>SqlServerTypes\x86\SqlServerSpatial110.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\readme.htm" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

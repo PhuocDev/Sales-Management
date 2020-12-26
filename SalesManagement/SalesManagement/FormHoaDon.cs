@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.Threading;
+using Microsoft.Reporting.WinForms;
 
 namespace SalesManagement
 {
@@ -516,7 +517,7 @@ namespace SalesManagement
 
         private void btnIn_Click(object sender, EventArgs e)
         {
-            if (dgvHoaDon.Rows.Count > 0)
+            /*if (dgvHoaDon.Rows.Count > 0)
             {
                 SaveFileDialog sfd = new SaveFileDialog();
                 sfd.Filter = "PDF (*.pdf)|*.pdf";
@@ -596,7 +597,8 @@ namespace SalesManagement
             else
             {
                 MessageBox.Show("No Record To Export !!!", "Info");
-            }
+            }*/
+            XuatPDF();
         }
 
         private void btnTaoKHMoi_Click(object sender, EventArgs e)
@@ -604,6 +606,49 @@ namespace SalesManagement
             AddKhachHang addKhachHang = new AddKhachHang();
             addKhachHang.ShowDialog();
             UpdateDanhSachKH();
+        }
+        public List<SanPhamThanhToan> GetSanPhamThanhToan()
+        {
+            List<SanPhamThanhToan> list = new List<SanPhamThanhToan>();
+            for (int i = 0; i < dgvHoaDon.Rows.Count - 1; i++)
+            {
+                list.Add(new SanPhamThanhToan { TenSP = dgvHoaDon.Rows[i].Cells[2].Value.ToString(), 
+                    SoLuong = Convert.ToInt32(dgvHoaDon.Rows[i].Cells[3].Value), 
+                    ThanhTien = Convert.ToInt32(dgvHoaDon.Rows[i].Cells[6].Value) });
+            }
+            return list;
+        }
+        public List<Receipt> GetReceiptInfo()
+        {
+            return new List<Receipt>
+            {
+                new Receipt
+                {
+                    MaHD = txbMaHD.Text,
+                    MaKH = cbbMaKH.Text,
+                    TenNV = txbNhanVien.Text,
+                    StringThoiGian = txbThoiGian.Text,
+                    StringTongThanhToan = txbTongThanhToan.Text,
+                    StringTienKhachDua = txbTienKhachDua.Text,
+                    StringTraLaiKhach = txbTraLaiKhach.Text
+                }
+            };
+        }
+        public void XuatPDF()
+        {
+                ReportViewer viewer = new ReportViewer();
+                viewer.ProcessingMode = ProcessingMode.Local;
+                viewer.LocalReport.ReportPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+                viewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet2", GetSanPhamThanhToan()));
+                viewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", GetReceiptInfo()));
+                viewer.RefreshReport();
+            var bytes = viewer.LocalReport.Render("PDF");
+            //string fileName = @"D:\Temp\" + txbMaHD.Text;
+            //string fileName = Path.Combine(Directory.GetCurrentDirectory(), txbMaHD.Text);
+            string fileName = @"D:\Temp\1.pdf";
+                File.WriteAllBytes(fileName, bytes);
+
+
         }
     }
 }
