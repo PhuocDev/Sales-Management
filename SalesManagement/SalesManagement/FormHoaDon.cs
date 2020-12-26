@@ -613,8 +613,8 @@ namespace SalesManagement
             for (int i = 0; i < dgvHoaDon.Rows.Count - 1; i++)
             {
                 list.Add(new SanPhamThanhToan { TenSP = dgvHoaDon.Rows[i].Cells[2].Value.ToString(), 
-                    SoLuong = Convert.ToInt32(dgvHoaDon.Rows[i].Cells[3].Value), 
-                    ThanhTien = Convert.ToInt32(dgvHoaDon.Rows[i].Cells[6].Value) });
+                    SoLuong = dgvHoaDon.Rows[i].Cells[3].Value.ToString(), 
+                    ThanhTien = dgvHoaDon.Rows[i].Cells[6].Value.ToString() });
             }
             return list;
         }
@@ -636,18 +636,20 @@ namespace SalesManagement
         }
         public void XuatPDF()
         {
-                ReportViewer viewer = new ReportViewer();
-                viewer.ProcessingMode = ProcessingMode.Local;
-                viewer.LocalReport.ReportPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
-                viewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet2", GetSanPhamThanhToan()));
-                viewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", GetReceiptInfo()));
-                viewer.RefreshReport();
+            ReportViewer viewer = new ReportViewer();
+            viewer.ProcessingMode = ProcessingMode.Local;
+            viewer.LocalReport.ReportPath = "ReceiptReport.rdlc";
+            viewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet2", GetSanPhamThanhToan()));
+            viewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", GetReceiptInfo()));
+            viewer.RefreshReport();
             var bytes = viewer.LocalReport.Render("PDF");
             //string fileName = @"D:\Temp\" + txbMaHD.Text;
             //string fileName = Path.Combine(Directory.GetCurrentDirectory(), txbMaHD.Text);
-            string fileName = @"D:\Temp\1.pdf";
-                File.WriteAllBytes(fileName, bytes);
-
+            string fileName = @".\Receipts\" + txbMaHD.Text + ".pdf";
+            if (!Directory.Exists(@".\Receipts\")) Directory.CreateDirectory(@".\Receipts\");
+            if (!File.Exists(fileName)) File.Delete(fileName);
+            File.WriteAllBytes(fileName, bytes);
+            MessageBox.Show("Print successfully");
 
         }
     }
