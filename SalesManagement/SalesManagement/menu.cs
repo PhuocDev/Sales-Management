@@ -145,5 +145,19 @@ namespace SalesManagement
         {
             button_nhanVien.PerformClick();
         }
+        //----------------------------------------------------------------đổi_mật_khẩu--------------------------------------------------------------------//
+        private void button_doiMK_Click(object sender, EventArgs e)
+        {
+
+        }
+        //-----------------------------------------------------------------form_closing--------------------------------------------------------------------//
+        private void menu_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bạn có muốn thoát chương trình", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+        }
     }
 }

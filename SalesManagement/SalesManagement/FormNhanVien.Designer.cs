@@ -396,7 +396,7 @@
             this.button_back.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_back.Location = new System.Drawing.Point(1, 1);
             this.button_back.Name = "button_back";
-            this.button_back.Size = new System.Drawing.Size(48, 42);
+            this.button_back.Size = new System.Drawing.Size(42, 40);
             this.button_back.TabIndex = 44;
             this.button_back.TabStop = false;
             this.button_back.UseVisualStyleBackColor = true;

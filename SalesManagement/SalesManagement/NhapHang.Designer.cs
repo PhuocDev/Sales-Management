@@ -30,12 +30,6 @@
         {
             this.button_them = new System.Windows.Forms.Button();
             this.dataGridView_danhSachSanPham = new System.Windows.Forms.DataGridView();
-            this.button_chinhSua = new System.Windows.Forms.Button();
-            this.button_xoa = new System.Windows.Forms.Button();
-            this.button_xuatFile = new System.Windows.Forms.Button();
-            this.button_menu = new System.Windows.Forms.Button();
-            this.button_back = new System.Windows.Forms.Button();
-            this.button_luuKho = new System.Windows.Forms.Button();
             this.Column_stt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_maSanPham = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_ten = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,6 +40,10 @@
             this.Column_hsd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_nhaCungCap = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column_ghiChu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button_chinhSua = new System.Windows.Forms.Button();
+            this.button_xoa = new System.Windows.Forms.Button();
+            this.button_xuatFile = new System.Windows.Forms.Button();
+            this.button_luuKho = new System.Windows.Forms.Button();
             this.textBox_masp = new System.Windows.Forms.TextBox();
             this.textBox_tensp = new System.Windows.Forms.TextBox();
             this.textBox_giaBan = new System.Windows.Forms.TextBox();
@@ -64,12 +62,17 @@
             this.label_HSD = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.dateTimePicker1_hsd = new System.Windows.Forms.DateTimePicker();
+            this.button_menu = new System.Windows.Forms.Button();
+            this.button_back = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_danhSachSanPham)).BeginInit();
             this.SuspendLayout();
             // 
             // button_them
             // 
-            this.button_them.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.button_them.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.button_them.FlatAppearance.BorderSize = 0;
+            this.button_them.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_them.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_them.Location = new System.Drawing.Point(909, 195);
             this.button_them.Name = "button_them";
@@ -83,7 +86,7 @@
             // 
             this.dataGridView_danhSachSanPham.AllowUserToAddRows = false;
             this.dataGridView_danhSachSanPham.AllowUserToDeleteRows = false;
-            this.dataGridView_danhSachSanPham.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.dataGridView_danhSachSanPham.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView_danhSachSanPham.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridView_danhSachSanPham.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridView_danhSachSanPham.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -104,82 +107,6 @@
             this.dataGridView_danhSachSanPham.Size = new System.Drawing.Size(854, 358);
             this.dataGridView_danhSachSanPham.TabIndex = 53;
             this.dataGridView_danhSachSanPham.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_danhSachSanPham_CellClick);
-            // 
-            // button_chinhSua
-            // 
-            this.button_chinhSua.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.button_chinhSua.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_chinhSua.Location = new System.Drawing.Point(909, 254);
-            this.button_chinhSua.Name = "button_chinhSua";
-            this.button_chinhSua.Size = new System.Drawing.Size(155, 40);
-            this.button_chinhSua.TabIndex = 46;
-            this.button_chinhSua.TabStop = false;
-            this.button_chinhSua.Text = "Chỉnh sửa";
-            this.button_chinhSua.UseVisualStyleBackColor = false;
-            this.button_chinhSua.Click += new System.EventHandler(this.button_chinhSua_Click);
-            // 
-            // button_xoa
-            // 
-            this.button_xoa.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.button_xoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_xoa.Location = new System.Drawing.Point(909, 313);
-            this.button_xoa.Name = "button_xoa";
-            this.button_xoa.Size = new System.Drawing.Size(155, 40);
-            this.button_xoa.TabIndex = 45;
-            this.button_xoa.TabStop = false;
-            this.button_xoa.Text = "Xóa";
-            this.button_xoa.UseVisualStyleBackColor = false;
-            this.button_xoa.Click += new System.EventHandler(this.button_xoa_Click);
-            // 
-            // button_xuatFile
-            // 
-            this.button_xuatFile.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.button_xuatFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_xuatFile.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.button_xuatFile.Location = new System.Drawing.Point(909, 372);
-            this.button_xuatFile.Name = "button_xuatFile";
-            this.button_xuatFile.Size = new System.Drawing.Size(155, 40);
-            this.button_xuatFile.TabIndex = 44;
-            this.button_xuatFile.TabStop = false;
-            this.button_xuatFile.Text = "Xuất file";
-            this.button_xuatFile.UseVisualStyleBackColor = false;
-            // 
-            // button_menu
-            // 
-            this.button_menu.BackgroundImage = global::SalesManagement.Properties.Resources.home;
-            this.button_menu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button_menu.Location = new System.Drawing.Point(0, 0);
-            this.button_menu.Name = "button_menu";
-            this.button_menu.Size = new System.Drawing.Size(46, 42);
-            this.button_menu.TabIndex = 43;
-            this.button_menu.TabStop = false;
-            this.button_menu.UseVisualStyleBackColor = true;
-            this.button_menu.Click += new System.EventHandler(this.button_menu_Click);
-            // 
-            // button_back
-            // 
-            this.button_back.BackgroundImage = global::SalesManagement.Properties.Resources.back1;
-            this.button_back.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button_back.Location = new System.Drawing.Point(44, 0);
-            this.button_back.Name = "button_back";
-            this.button_back.Size = new System.Drawing.Size(47, 42);
-            this.button_back.TabIndex = 42;
-            this.button_back.TabStop = false;
-            this.button_back.UseVisualStyleBackColor = true;
-            this.button_back.Click += new System.EventHandler(this.button_back_Click);
-            // 
-            // button_luuKho
-            // 
-            this.button_luuKho.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.button_luuKho.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_luuKho.Location = new System.Drawing.Point(909, 513);
-            this.button_luuKho.Name = "button_luuKho";
-            this.button_luuKho.Size = new System.Drawing.Size(155, 40);
-            this.button_luuKho.TabIndex = 55;
-            this.button_luuKho.TabStop = false;
-            this.button_luuKho.Text = "Nhập kho";
-            this.button_luuKho.UseVisualStyleBackColor = false;
-            this.button_luuKho.Click += new System.EventHandler(this.button_luuKho_Click);
             // 
             // Column_stt
             // 
@@ -260,6 +187,66 @@
             this.Column_ghiChu.Name = "Column_ghiChu";
             this.Column_ghiChu.ReadOnly = true;
             this.Column_ghiChu.Width = 110;
+            // 
+            // button_chinhSua
+            // 
+            this.button_chinhSua.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.button_chinhSua.FlatAppearance.BorderSize = 0;
+            this.button_chinhSua.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_chinhSua.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_chinhSua.Location = new System.Drawing.Point(909, 254);
+            this.button_chinhSua.Name = "button_chinhSua";
+            this.button_chinhSua.Size = new System.Drawing.Size(155, 40);
+            this.button_chinhSua.TabIndex = 46;
+            this.button_chinhSua.TabStop = false;
+            this.button_chinhSua.Text = "Chỉnh sửa";
+            this.button_chinhSua.UseVisualStyleBackColor = false;
+            this.button_chinhSua.Click += new System.EventHandler(this.button_chinhSua_Click);
+            // 
+            // button_xoa
+            // 
+            this.button_xoa.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.button_xoa.FlatAppearance.BorderSize = 0;
+            this.button_xoa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_xoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_xoa.Location = new System.Drawing.Point(909, 313);
+            this.button_xoa.Name = "button_xoa";
+            this.button_xoa.Size = new System.Drawing.Size(155, 40);
+            this.button_xoa.TabIndex = 45;
+            this.button_xoa.TabStop = false;
+            this.button_xoa.Text = "Xóa";
+            this.button_xoa.UseVisualStyleBackColor = false;
+            this.button_xoa.Click += new System.EventHandler(this.button_xoa_Click);
+            // 
+            // button_xuatFile
+            // 
+            this.button_xuatFile.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.button_xuatFile.FlatAppearance.BorderSize = 0;
+            this.button_xuatFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_xuatFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_xuatFile.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.button_xuatFile.Location = new System.Drawing.Point(909, 372);
+            this.button_xuatFile.Name = "button_xuatFile";
+            this.button_xuatFile.Size = new System.Drawing.Size(155, 40);
+            this.button_xuatFile.TabIndex = 44;
+            this.button_xuatFile.TabStop = false;
+            this.button_xuatFile.Text = "Xuất file";
+            this.button_xuatFile.UseVisualStyleBackColor = false;
+            // 
+            // button_luuKho
+            // 
+            this.button_luuKho.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.button_luuKho.FlatAppearance.BorderSize = 0;
+            this.button_luuKho.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_luuKho.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_luuKho.Location = new System.Drawing.Point(909, 513);
+            this.button_luuKho.Name = "button_luuKho";
+            this.button_luuKho.Size = new System.Drawing.Size(155, 40);
+            this.button_luuKho.TabIndex = 55;
+            this.button_luuKho.TabStop = false;
+            this.button_luuKho.Text = "Nhập kho";
+            this.button_luuKho.UseVisualStyleBackColor = false;
+            this.button_luuKho.Click += new System.EventHandler(this.button_luuKho_Click);
             // 
             // textBox_masp
             // 
@@ -428,13 +415,53 @@
             this.dateTimePicker1_hsd.Size = new System.Drawing.Size(205, 20);
             this.dateTimePicker1_hsd.TabIndex = 3;
             // 
+            // button_menu
+            // 
+            this.button_menu.BackgroundImage = global::SalesManagement.Properties.Resources.home2;
+            this.button_menu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button_menu.FlatAppearance.BorderSize = 0;
+            this.button_menu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_menu.Location = new System.Drawing.Point(2, 2);
+            this.button_menu.Name = "button_menu";
+            this.button_menu.Size = new System.Drawing.Size(41, 40);
+            this.button_menu.TabIndex = 43;
+            this.button_menu.TabStop = false;
+            this.button_menu.UseVisualStyleBackColor = true;
+            this.button_menu.Click += new System.EventHandler(this.button_menu_Click);
+            // 
+            // button_back
+            // 
+            this.button_back.BackgroundImage = global::SalesManagement.Properties.Resources.output_onlinepngtools;
+            this.button_back.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button_back.FlatAppearance.BorderSize = 0;
+            this.button_back.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_back.Location = new System.Drawing.Point(45, 2);
+            this.button_back.Name = "button_back";
+            this.button_back.Size = new System.Drawing.Size(42, 40);
+            this.button_back.TabIndex = 42;
+            this.button_back.TabStop = false;
+            this.button_back.UseVisualStyleBackColor = true;
+            this.button_back.Click += new System.EventHandler(this.button_back_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(129, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(120, 25);
+            this.label1.TabIndex = 74;
+            this.label1.Text = "Nhập Hàng";
+            // 
             // NhapHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::SalesManagement.Properties.Resources.background2;
+            this.BackColor = System.Drawing.Color.AliceBlue;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1086, 565);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.dateTimePicker1_hsd);
             this.Controls.Add(this.label_HSD);
             this.Controls.Add(this.label4);
@@ -508,5 +535,6 @@
         private System.Windows.Forms.Label label_HSD;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker dateTimePicker1_hsd;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -38,7 +38,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.button_signup = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.textBox3_laiMK = new System.Windows.Forms.TextBox();
             this.textBox2_matKhau = new System.Windows.Forms.TextBox();
             this.textBox5_MaNV = new System.Windows.Forms.TextBox();
@@ -47,11 +46,14 @@
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.textBox4_HoTen = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button_huyBo
             // 
-            this.button_huyBo.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.button_huyBo.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.button_huyBo.FlatAppearance.BorderSize = 0;
+            this.button_huyBo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_huyBo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_huyBo.ForeColor = System.Drawing.Color.Black;
             this.button_huyBo.Location = new System.Drawing.Point(306, 467);
@@ -60,7 +62,7 @@
             this.button_huyBo.Size = new System.Drawing.Size(88, 35);
             this.button_huyBo.TabIndex = 51;
             this.button_huyBo.TabStop = false;
-            this.button_huyBo.Text = "Hủy bỏ";
+            this.button_huyBo.Text = "Hủy Bỏ";
             this.button_huyBo.UseVisualStyleBackColor = false;
             this.button_huyBo.Click += new System.EventHandler(this.button_huyBo_Click);
             // 
@@ -149,7 +151,9 @@
             // 
             // button_signup
             // 
-            this.button_signup.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.button_signup.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.button_signup.FlatAppearance.BorderSize = 0;
+            this.button_signup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_signup.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_signup.ForeColor = System.Drawing.Color.Black;
             this.button_signup.Location = new System.Drawing.Point(130, 467);
@@ -157,7 +161,7 @@
             this.button_signup.Name = "button_signup";
             this.button_signup.Size = new System.Drawing.Size(160, 35);
             this.button_signup.TabIndex = 8;
-            this.button_signup.Text = "Đăng kí";
+            this.button_signup.Text = "Đăng Ký";
             this.button_signup.UseVisualStyleBackColor = false;
             this.button_signup.Click += new System.EventHandler(this.button_signup_Click);
             // 
@@ -172,18 +176,6 @@
             this.label3.Size = new System.Drawing.Size(69, 18);
             this.label3.TabIndex = 33;
             this.label3.Text = "Mật khẩu";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(196, 9);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(94, 25);
-            this.label1.TabIndex = 31;
-            this.label1.Text = "Đăng Ký";
             // 
             // textBox3_laiMK
             // 
@@ -268,11 +260,23 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(137, 22);
             this.dateTimePicker1.TabIndex = 2;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(196, 9);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(94, 25);
+            this.label1.TabIndex = 31;
+            this.label1.Text = "Đăng Ký";
+            // 
             // SignUp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::SalesManagement.Properties.Resources.background2;
+            this.BackColor = System.Drawing.Color.AliceBlue;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(481, 520);
             this.Controls.Add(this.dateTimePicker1);
@@ -297,7 +301,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "SignUp";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Sign Up";
+            this.Text = "Đăng Ký";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -315,7 +319,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button_signup;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox3_laiMK;
         private System.Windows.Forms.TextBox textBox2_matKhau;
         private System.Windows.Forms.TextBox textBox5_MaNV;
@@ -324,6 +327,7 @@
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.TextBox textBox4_HoTen;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label1;
     }
 }
 

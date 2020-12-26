@@ -63,11 +63,11 @@
     <Compile Include="AddKhachHang.Designer.cs">
       <DependentUpon>AddKhachHang.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddSP.cs">
+    <Compile Include="ThongTinCaNhan.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddSP.Designer.cs">
-      <DependentUpon>AddSP.cs</DependentUpon>
+    <Compile Include="ThongTinCaNhan.Designer.cs">
+      <DependentUpon>ThongTinCaNhan.cs</DependentUpon>
     </Compile>
     <Compile Include="ChinhSuaDSNH.cs">
       <SubType>Form</SubType>
@@ -153,8 +153,8 @@
     <EmbeddedResource Include="AddKhachHang.resx">
       <DependentUpon>AddKhachHang.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddSP.resx">
-      <DependentUpon>AddSP.cs</DependentUpon>
+    <EmbeddedResource Include="ThongTinCaNhan.resx">
+      <DependentUpon>ThongTinCaNhan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChinhSuaDSNH.resx">
       <DependentUpon>ChinhSuaDSNH.cs</DependentUpon>
@@ -249,6 +249,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\output-onlinepngtools.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

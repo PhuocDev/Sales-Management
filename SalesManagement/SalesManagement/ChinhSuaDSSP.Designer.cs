@@ -50,9 +50,10 @@
             // 
             this.label_msp.AutoSize = true;
             this.label_msp.BackColor = System.Drawing.Color.Transparent;
+            this.label_msp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_msp.Location = new System.Drawing.Point(49, 53);
             this.label_msp.Name = "label_msp";
-            this.label_msp.Size = new System.Drawing.Size(71, 13);
+            this.label_msp.Size = new System.Drawing.Size(83, 15);
             this.label_msp.TabIndex = 0;
             this.label_msp.Text = "Mã sản phẩm";
             // 
@@ -60,9 +61,10 @@
             // 
             this.label_tensp.AutoSize = true;
             this.label_tensp.BackColor = System.Drawing.Color.Transparent;
+            this.label_tensp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_tensp.Location = new System.Drawing.Point(49, 93);
             this.label_tensp.Name = "label_tensp";
-            this.label_tensp.Size = new System.Drawing.Size(43, 13);
+            this.label_tensp.Size = new System.Drawing.Size(47, 15);
             this.label_tensp.TabIndex = 1;
             this.label_tensp.Text = "Tên SP";
             // 
@@ -70,9 +72,10 @@
             // 
             this.label_soLuog.AutoSize = true;
             this.label_soLuog.BackColor = System.Drawing.Color.Transparent;
+            this.label_soLuog.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_soLuog.Location = new System.Drawing.Point(49, 134);
             this.label_soLuog.Name = "label_soLuog";
-            this.label_soLuog.Size = new System.Drawing.Size(49, 13);
+            this.label_soLuog.Size = new System.Drawing.Size(56, 15);
             this.label_soLuog.TabIndex = 2;
             this.label_soLuog.Text = "Số lượng";
             // 
@@ -80,9 +83,10 @@
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(291, 131);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(285, 130);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(55, 13);
+            this.label4.Size = new System.Drawing.Size(63, 15);
             this.label4.TabIndex = 3;
             this.label4.Text = "Giá bán lẻ";
             // 
@@ -90,9 +94,10 @@
             // 
             this.label_dvt.AutoSize = true;
             this.label_dvt.BackColor = System.Drawing.Color.Transparent;
+            this.label_dvt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_dvt.Location = new System.Drawing.Point(49, 174);
             this.label_dvt.Name = "label_dvt";
-            this.label_dvt.Size = new System.Drawing.Size(60, 13);
+            this.label_dvt.Size = new System.Drawing.Size(64, 15);
             this.label_dvt.TabIndex = 4;
             this.label_dvt.Text = "Đơn vị tính";
             // 
@@ -100,9 +105,10 @@
             // 
             this.label_HSD.AutoSize = true;
             this.label_HSD.BackColor = System.Drawing.Color.Transparent;
-            this.label_HSD.Location = new System.Drawing.Point(295, 174);
+            this.label_HSD.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_HSD.Location = new System.Drawing.Point(289, 170);
             this.label_HSD.Name = "label_HSD";
-            this.label_HSD.Size = new System.Drawing.Size(30, 13);
+            this.label_HSD.Size = new System.Drawing.Size(33, 15);
             this.label_HSD.TabIndex = 5;
             this.label_HSD.Text = "HSD";
             // 
@@ -110,9 +116,10 @@
             // 
             this.label_nhaCungCap.AutoSize = true;
             this.label_nhaCungCap.BackColor = System.Drawing.Color.Transparent;
+            this.label_nhaCungCap.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_nhaCungCap.Location = new System.Drawing.Point(49, 221);
             this.label_nhaCungCap.Name = "label_nhaCungCap";
-            this.label_nhaCungCap.Size = new System.Drawing.Size(77, 13);
+            this.label_nhaCungCap.Size = new System.Drawing.Size(87, 15);
             this.label_nhaCungCap.TabIndex = 6;
             this.label_nhaCungCap.Text = "Nhà Cung Cấp";
             // 
@@ -162,7 +169,9 @@
             // 
             // button_ok
             // 
-            this.button_ok.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.button_ok.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.button_ok.FlatAppearance.BorderSize = 0;
+            this.button_ok.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_ok.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_ok.Location = new System.Drawing.Point(231, 251);
             this.button_ok.Name = "button_ok";
@@ -174,7 +183,9 @@
             // 
             // button_huyBo
             // 
-            this.button_huyBo.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.button_huyBo.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.button_huyBo.FlatAppearance.BorderSize = 0;
+            this.button_huyBo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_huyBo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_huyBo.Location = new System.Drawing.Point(364, 250);
             this.button_huyBo.Name = "button_huyBo";
@@ -197,7 +208,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::SalesManagement.Properties.Resources.background2;
+            this.BackColor = System.Drawing.Color.AliceBlue;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(537, 295);
             this.Controls.Add(this.dateTimePicker1_hsd);

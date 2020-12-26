@@ -33,18 +33,18 @@
             this.label_tk = new System.Windows.Forms.Label();
             this.label_nv_kh = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button_thoat = new System.Windows.Forms.Button();
+            this.label_tenDangNhap = new System.Windows.Forms.Label();
+            this.button_dangXuat = new System.Windows.Forms.Button();
+            this.button_doiMK = new System.Windows.Forms.Button();
+            this.button_taiKhoan = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button_bh2 = new System.Windows.Forms.Button();
             this.button_sp2 = new System.Windows.Forms.Button();
             this.button_nv_kh2 = new System.Windows.Forms.Button();
             this.button_tk2 = new System.Windows.Forms.Button();
-            this.button_taiKhoan = new System.Windows.Forms.Button();
-            this.button_doiMK = new System.Windows.Forms.Button();
-            this.button_dangXuat = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label_tenDangNhap = new System.Windows.Forms.Label();
-            this.button_thoat = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.button_QLD = new System.Windows.Forms.Button();
             this.button_TKTC = new System.Windows.Forms.Button();
             this.button_nhanVien = new System.Windows.Forms.Button();
@@ -126,6 +126,84 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tài khoản";
             // 
+            // button_thoat
+            // 
+            this.button_thoat.BackColor = System.Drawing.Color.Lavender;
+            this.button_thoat.FlatAppearance.BorderSize = 0;
+            this.button_thoat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_thoat.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_thoat.ForeColor = System.Drawing.Color.Black;
+            this.button_thoat.Location = new System.Drawing.Point(4, 278);
+            this.button_thoat.Name = "button_thoat";
+            this.button_thoat.Size = new System.Drawing.Size(192, 30);
+            this.button_thoat.TabIndex = 9;
+            this.button_thoat.Text = "Thoát";
+            this.button_thoat.UseVisualStyleBackColor = false;
+            this.button_thoat.Click += new System.EventHandler(this.button_thoat_Click);
+            // 
+            // label_tenDangNhap
+            // 
+            this.label_tenDangNhap.Location = new System.Drawing.Point(1, 138);
+            this.label_tenDangNhap.Name = "label_tenDangNhap";
+            this.label_tenDangNhap.Size = new System.Drawing.Size(195, 26);
+            this.label_tenDangNhap.TabIndex = 8;
+            this.label_tenDangNhap.Text = "----------";
+            this.label_tenDangNhap.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button_dangXuat
+            // 
+            this.button_dangXuat.BackColor = System.Drawing.Color.Lavender;
+            this.button_dangXuat.FlatAppearance.BorderSize = 0;
+            this.button_dangXuat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_dangXuat.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_dangXuat.ForeColor = System.Drawing.Color.Black;
+            this.button_dangXuat.Location = new System.Drawing.Point(4, 247);
+            this.button_dangXuat.Name = "button_dangXuat";
+            this.button_dangXuat.Size = new System.Drawing.Size(192, 30);
+            this.button_dangXuat.TabIndex = 7;
+            this.button_dangXuat.Text = "Đăng xuất";
+            this.button_dangXuat.UseVisualStyleBackColor = false;
+            this.button_dangXuat.Click += new System.EventHandler(this.button_dangXuat_Click);
+            // 
+            // button_doiMK
+            // 
+            this.button_doiMK.BackColor = System.Drawing.Color.Lavender;
+            this.button_doiMK.FlatAppearance.BorderSize = 0;
+            this.button_doiMK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_doiMK.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_doiMK.ForeColor = System.Drawing.Color.Black;
+            this.button_doiMK.Location = new System.Drawing.Point(4, 216);
+            this.button_doiMK.Name = "button_doiMK";
+            this.button_doiMK.Size = new System.Drawing.Size(192, 30);
+            this.button_doiMK.TabIndex = 6;
+            this.button_doiMK.Text = "Đổi mật khẩu";
+            this.button_doiMK.UseVisualStyleBackColor = false;
+            this.button_doiMK.Click += new System.EventHandler(this.button_doiMK_Click);
+            // 
+            // button_taiKhoan
+            // 
+            this.button_taiKhoan.BackColor = System.Drawing.Color.Lavender;
+            this.button_taiKhoan.FlatAppearance.BorderSize = 0;
+            this.button_taiKhoan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_taiKhoan.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_taiKhoan.ForeColor = System.Drawing.Color.Black;
+            this.button_taiKhoan.Location = new System.Drawing.Point(4, 185);
+            this.button_taiKhoan.Name = "button_taiKhoan";
+            this.button_taiKhoan.Size = new System.Drawing.Size(192, 30);
+            this.button_taiKhoan.TabIndex = 5;
+            this.button_taiKhoan.Text = "Thông tin cá nhân";
+            this.button_taiKhoan.UseVisualStyleBackColor = false;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.BackgroundImage = global::SalesManagement.Properties.Resources.user;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Location = new System.Drawing.Point(35, 24);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(129, 111);
+            this.panel1.TabIndex = 4;
+            // 
             // groupBox2
             // 
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -196,49 +274,6 @@
             this.button_tk2.UseVisualStyleBackColor = false;
             this.button_tk2.Click += new System.EventHandler(this.button_tk2_Click);
             // 
-            // button_taiKhoan
-            // 
-            this.button_taiKhoan.BackColor = System.Drawing.Color.Lavender;
-            this.button_taiKhoan.FlatAppearance.BorderSize = 0;
-            this.button_taiKhoan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_taiKhoan.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_taiKhoan.ForeColor = System.Drawing.Color.Black;
-            this.button_taiKhoan.Location = new System.Drawing.Point(4, 185);
-            this.button_taiKhoan.Name = "button_taiKhoan";
-            this.button_taiKhoan.Size = new System.Drawing.Size(192, 30);
-            this.button_taiKhoan.TabIndex = 5;
-            this.button_taiKhoan.Text = "Thông tin cá nhân";
-            this.button_taiKhoan.UseVisualStyleBackColor = false;
-            // 
-            // button_doiMK
-            // 
-            this.button_doiMK.BackColor = System.Drawing.Color.Lavender;
-            this.button_doiMK.FlatAppearance.BorderSize = 0;
-            this.button_doiMK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_doiMK.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_doiMK.ForeColor = System.Drawing.Color.Black;
-            this.button_doiMK.Location = new System.Drawing.Point(4, 216);
-            this.button_doiMK.Name = "button_doiMK";
-            this.button_doiMK.Size = new System.Drawing.Size(192, 30);
-            this.button_doiMK.TabIndex = 6;
-            this.button_doiMK.Text = "Đổi mật khẩu";
-            this.button_doiMK.UseVisualStyleBackColor = false;
-            // 
-            // button_dangXuat
-            // 
-            this.button_dangXuat.BackColor = System.Drawing.Color.Lavender;
-            this.button_dangXuat.FlatAppearance.BorderSize = 0;
-            this.button_dangXuat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_dangXuat.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_dangXuat.ForeColor = System.Drawing.Color.Black;
-            this.button_dangXuat.Location = new System.Drawing.Point(4, 247);
-            this.button_dangXuat.Name = "button_dangXuat";
-            this.button_dangXuat.Size = new System.Drawing.Size(192, 30);
-            this.button_dangXuat.TabIndex = 7;
-            this.button_dangXuat.Text = "Đăng xuất";
-            this.button_dangXuat.UseVisualStyleBackColor = false;
-            this.button_dangXuat.Click += new System.EventHandler(this.button_dangXuat_Click);
-            // 
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.Color.Transparent;
@@ -253,40 +288,6 @@
             this.groupBox3.TabIndex = 62;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Trang chủ";
-            // 
-            // label_tenDangNhap
-            // 
-            this.label_tenDangNhap.Location = new System.Drawing.Point(1, 138);
-            this.label_tenDangNhap.Name = "label_tenDangNhap";
-            this.label_tenDangNhap.Size = new System.Drawing.Size(195, 26);
-            this.label_tenDangNhap.TabIndex = 8;
-            this.label_tenDangNhap.Text = "----------";
-            this.label_tenDangNhap.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // button_thoat
-            // 
-            this.button_thoat.BackColor = System.Drawing.Color.Lavender;
-            this.button_thoat.FlatAppearance.BorderSize = 0;
-            this.button_thoat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_thoat.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_thoat.ForeColor = System.Drawing.Color.Black;
-            this.button_thoat.Location = new System.Drawing.Point(4, 278);
-            this.button_thoat.Name = "button_thoat";
-            this.button_thoat.Size = new System.Drawing.Size(192, 30);
-            this.button_thoat.TabIndex = 9;
-            this.button_thoat.Text = "Thoát";
-            this.button_thoat.UseVisualStyleBackColor = false;
-            this.button_thoat.Click += new System.EventHandler(this.button_thoat_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.BackgroundImage = global::SalesManagement.Properties.Resources.user;
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Location = new System.Drawing.Point(35, 24);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(129, 111);
-            this.panel1.TabIndex = 4;
             // 
             // button_QLD
             // 
@@ -374,6 +375,7 @@
             this.Name = "menu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.menu_FormClosing);
             this.Load += new System.EventHandler(this.menu_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
