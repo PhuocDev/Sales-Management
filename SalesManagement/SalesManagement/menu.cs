@@ -94,13 +94,14 @@ namespace SalesManagement
         }
 
         //---------------------------------------------------đăng-xuất -------------------------------------------------------------------------//
-        private void button_dangXuat_Click(object sender, EventArgs e)
+        public void button_dangXuat_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Bạn có muốn đăng xuất không", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if(result == DialogResult.Yes)
             {
                 this.Hide();
                 this.change();
+               
             }
         }
         //-------------------------------------------------------button phụ click----------------------------------------------------------------//
@@ -148,7 +149,12 @@ namespace SalesManagement
         //----------------------------------------------------------------đổi_mật_khẩu--------------------------------------------------------------------//
         private void button_doiMK_Click(object sender, EventArgs e)
         {
-
+            DoiMK doimk = new DoiMK();
+            doimk.ShowDialog();
+            if(doimk.check == 1)
+            {
+                button_dangXuat.PerformClick();
+            }
         }
         //-----------------------------------------------------------------form_closing--------------------------------------------------------------------//
         private void menu_FormClosing(object sender, FormClosingEventArgs e)
@@ -158,6 +164,12 @@ namespace SalesManagement
             {
                 e.Cancel = true;
             }
+        }
+
+        private void button_taiKhoan_Click(object sender, EventArgs e)
+        {
+            thongTinCaNhan thongTinCaNhan = new thongTinCaNhan();
+            thongTinCaNhan.Show();
         }
     }
 }
