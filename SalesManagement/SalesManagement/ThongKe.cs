@@ -8,17 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using iTextSharp.text;
-using itextsharp.pdfa;
 using System.IO;
-using iTextSharp.text;
-
-using System.IO;
-
-using iTextSharp.text.html.simpleparser;
-
-using iTextSharp.text.pdf;
-
+using System.Windows.Forms.DataVisualization.Charting;
 using System.Web;
 namespace SalesManagement
 {
@@ -307,56 +298,44 @@ namespace SalesManagement
                 checkBox_tKTheoNam.Checked = !checkBox_tKTheoNam.Checked;
             }
         }
-
+        
+        private void screenPanel()
+        {
+            using (var bmp  = new Bitmap(panel1.Width, panel1.Height))
+            {
+                String fileName = Login.Current_user.ID + Path.GetRandomFileName().Substring(0,5) + "Chart";
+                panel1.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
+                bmp.Save(@"Charts/" + fileName +".bmp");
+                MessageBox.Show("Đã lưu!", "Thông báo");
+            }
+        }
         private void button1_Click(object sender, EventArgs e)
         {
-            // button in ra màn hình
+            screenPanel();
+        }
 
-            Document Doc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
-            string status = "";
-            try
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void chart1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox_tKTheoNam_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_thongKe_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
             {
-                MemoryStream ms = new MemoryStream();
-                HTMLWorker htmlparser = new HTMLWorker(Doc);
-                PdfWriter.GetInstance(Doc , ms);
-                Doc.Open();
-
-                using (MemoryStream memoryStream = new MemoryStream())
-
-                {
-
-                    //Chart1.SaveImage(memoryStream, ChartImageFormat.Png);
-                    chart1.SaveImage(memoryStream, System.Windows.Forms.DataVisualization.Charting.ChartImageFormat.Png);
-
-                    iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(memoryStream.GetBuffer());
-
-                    img.ScalePercent(75f);
-
-                    Doc.Add(img);
-
-                    Doc.Close();
-
-
-                    HttpContext.Current.Response.ContentType = "application/pdf";
-
-                    HttpContext.Current.Response.AddHeader("content-disposition", "attachment;filename=Chart.pdf");
-
-                    HttpContext.Current.Response.Cache.SetCacheability(HttpCacheability.NoCache);
-
-                    HttpContext.Current.Response.Write(Doc);
-
-                    HttpContext.Current.Response.End();
-                    status = "success";
-                }
+                button_thongKe.PerformClick();
             }
-            catch (DocumentException de)
-            {
-                System.Web.HttpContext.Current.Response.Write(de.Message);
-            }
-            catch (Exception ex)
-            {
-                status = ex.Message.ToString();
-            }
+           
         }
     }
     public class month
