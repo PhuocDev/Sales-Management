@@ -80,13 +80,19 @@ namespace SalesManagement
                     chart1.Series["Doanh Thu"].Points[Convert.ToInt32(dataYear[i].nam) - (dateTimePicker1.Value.Year - 6) - 1].YValues = new Double[] { Convert.ToDouble(dataYear[i].doanhThu) };
             } 
         }
+        private int soNgayTrongThang(int month, int year)
+        {
+            int[] soNgayTrongThang = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+            if (month != 2) return soNgayTrongThang[month - 1];
+            if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) return 29;
+            else return 28;
+        }
         private void fillChartNgay()
         {
             chart1.ChartAreas["ChartArea1"].AxisX.Interval = 1;     // Để hiển thị tất cả các label cột x
             // thống kê 30 ngày trong khoảng hiện tại
-            int songay = 31;
-
-            for (int i = 1; i < songay; i++)
+            int songay = soNgayTrongThang(dateTimePicker1.Value.Month, dateTimePicker1.Value.Year);
+            for (int i = 1; i <= songay; i++)
             {
                 chart1.Series["Doanh Thu"].Points.AddY(0);
                 chart1.Series["Doanh Thu"].Points[i - 1].AxisLabel = "" + i.ToString();
