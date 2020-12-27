@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -256,6 +257,68 @@ namespace SalesManagement
         public void add_datagridview(string makh, string ten, string ngaysinh, string gioitinh, string sdt, string diachi, string diem)
         {
             this.dataGridView1.Rows.Add(this.dataGridView1.Rows.Count + 1, makh, ten, ngaysinh, gioitinh, sdt, diachi, Convert.ToInt32(diem));
+        }
+
+        private void btnXuatFile_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.Rows.Count == 0)
+            {
+                MessageBox.Show("Không có dữ liệu để xuất file");
+                return;
+            }
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "XLSX (*.xlsx)|*.xlsx";
+            sfd.FileName = "DanhSachKhachHang.xlsx";
+            bool fileError = false;
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                if (File.Exists(sfd.FileName))
+                {
+                    try
+                    {
+                        File.Delete(sfd.FileName);
+                    }
+                    catch (IOException ex)
+                    {
+                        fileError = true;
+                        MessageBox.Show("Error: " + ex.Message);
+                    }
+                }
+                if (!fileError)
+                {
+                    try
+                    {
+                        Microsoft.Office.Interop.Excel.Application app = new Microsoft.Office.Interop.Excel.Application();
+                        Microsoft.Office.Interop.Excel.Workbook workbook = app.Workbooks.Add(Type.Missing);
+                        Microsoft.Office.Interop.Excel.Worksheet worksheet = null;
+                        //app.Visible = true;
+                        worksheet = workbook.Sheets["Sheet1"];
+                        worksheet = workbook.ActiveSheet;
+                        for (int i = 0; i < dataGridView1.Columns.Count; i++)
+                        {
+                            worksheet.Cells[1, i + 1] = dataGridView1.Columns[i].HeaderText;
+                        }
+                        for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                        {
+                            for (int j = 0; j < dataGridView1.Columns.Count; j++)
+                            {
+                                worksheet.Cells[i + 2, j + 1] = dataGridView1.Rows[i].Cells[j].Value.ToString();
+                            }
+                        }
+                        for (int i = 0; i < dataGridView1.Columns.Count; i++)
+                        {
+                            worksheet.Columns[i + 1].AutoFit();
+                        }
+                        workbook.SaveAs(sfd.FileName);
+                        app.Quit();
+                        MessageBox.Show("Xuất file excel thành công");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message);
+                    }
+                }
+            }
         }
     }
 }
