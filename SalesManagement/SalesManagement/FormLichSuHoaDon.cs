@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -121,6 +122,69 @@ namespace SalesManagement
             }
             UpdateDanhSachHD();
             UpdateCTHD();
+        }
+
+        private void btnXuatFile_Click(object sender, EventArgs e)
+        {
+            if (dgvLichSuHD.Rows.Count <= 1)
+            {
+                MessageBox.Show("Bảng dữ liệu trống", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "XLSX (*.xlsx)|*.xlsx";
+            sfd.FileName = "LichSuHoaDon.xlsx";
+            bool fileError = false;
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                if (File.Exists(sfd.FileName))
+                {
+                    try
+                    {
+                        File.Delete(sfd.FileName);
+                    }
+                    catch (IOException ex)
+                    {
+                        fileError = true;
+                        MessageBox.Show("Error: " + ex.Message);
+                    }
+                }
+                if (!fileError)
+                {
+                    try
+                    {
+                        Microsoft.Office.Interop.Excel.Application app = new Microsoft.Office.Interop.Excel.Application();
+                        Microsoft.Office.Interop.Excel.Workbook workbook = app.Workbooks.Add(Type.Missing);
+                        Microsoft.Office.Interop.Excel.Worksheet worksheet = null;
+                        //app.Visible = true;
+                        worksheet = workbook.Sheets["Sheet1"];
+                        worksheet = workbook.ActiveSheet;
+                        for (int i = 0; i < dgvLichSuHD.Columns.Count; i++)
+                        {
+                            worksheet.Cells[1, i + 1] = dgvLichSuHD.Columns[i].HeaderText;
+                        }
+                        worksheet.Columns[2].NumberFormat = "0";
+                        for (int i = 0; i < dgvLichSuHD.Rows.Count - 1; i++)
+                        {
+                            for (int j = 0; j < dgvLichSuHD.Columns.Count; j++)
+                            {
+                                worksheet.Cells[i + 2, j + 1] = dgvLichSuHD.Rows[i].Cells[j].Value.ToString();
+                            }
+                        }
+                        for (int i = 0; i < dgvLichSuHD.Columns.Count; i++)
+                        {
+                            worksheet.Columns[i + 1].AutoFit();
+                        }
+                        workbook.SaveAs(sfd.FileName);
+                        app.Quit();
+                        MessageBox.Show("Xuất file excel thành công");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
 
         private void button_menu_Click(object sender, EventArgs e)

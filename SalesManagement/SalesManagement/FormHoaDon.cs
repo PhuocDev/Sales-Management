@@ -193,6 +193,7 @@ namespace SalesManagement
                         dgvHoaDon.Rows[i].Cells[6].Value = Convert.ToInt32(Convert.ToInt32(dgvHoaDon.Rows[i].Cells[3].Value) * Convert.ToInt32(dgvHoaDon.Rows[i].Cells[5].Value));
                         dgvHoaDon.ClearSelection();
                         dgvHoaDon.Rows[i].Selected = true;
+                        nudSoLuong.Value = 1;
                         cbbTenSP.Focus();
                         UpdateTongThanhToan();
                         return;
@@ -215,6 +216,7 @@ namespace SalesManagement
                         timThaySanPham = true;
                         dgvHoaDon.ClearSelection();
                         dgvHoaDon.Rows[dgvHoaDon.Rows.Count - 2].Selected = true;
+                        nudSoLuong.Value = 1;
                         cbbTenSP.Focus();
                         UpdateTongThanhToan();
                         break;
@@ -521,9 +523,9 @@ namespace SalesManagement
                     }
                 }
                 MessageBox.Show("Thanh toán thành công");
+                XuatPDF();
                 btnTaoHD.PerformClick();
                 connection.Close();
-                XuatPDF();
             }
             catch (Exception ex)
             {
