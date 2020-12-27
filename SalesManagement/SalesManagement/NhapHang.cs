@@ -200,7 +200,7 @@ namespace SalesManagement
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro: " + ex.ToString(), "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             finally
@@ -256,7 +256,7 @@ namespace SalesManagement
             }
             catch (Exception ex)
             {
-               MessageBox.Show("Erro:" + ex.ToString(), "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+               MessageBox.Show("Error:" + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -339,7 +339,7 @@ namespace SalesManagement
                         }
                         workbook.SaveAs(sfd.FileName);
                         app.Quit();
-                        MessageBox.Show("Xuất file excel thành công");
+                        MessageBox.Show("Xuất file thành công", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {

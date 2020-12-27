@@ -53,6 +53,7 @@
             this.textBox_passWord.TabIndex = 1;
             this.textBox_passWord.Text = "Password";
             this.textBox_passWord.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.textBox_passWord.Enter += new System.EventHandler(this.textBox_passWord_Enter);
             this.textBox_passWord.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_passWord_KeyDown);
             // 
             // textBox1

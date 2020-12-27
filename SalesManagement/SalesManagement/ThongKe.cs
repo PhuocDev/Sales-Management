@@ -136,7 +136,7 @@ namespace SalesManagement
             catch (Exception exp)
             {
 
-                MessageBox.Show("Loi ket noi");
+                MessageBox.Show("Error: " + exp.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -185,7 +185,7 @@ namespace SalesManagement
             catch (Exception exp)
             {
 
-                MessageBox.Show("Loi ket noi");
+                MessageBox.Show("Error:" + exp.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -229,7 +229,7 @@ namespace SalesManagement
             catch (Exception exp)
             {
 
-                MessageBox.Show("Loi ket noi");
+                MessageBox.Show("Error: " + exp.Message,"Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -301,32 +301,45 @@ namespace SalesManagement
         
         private void screenPanel()
         {
-            using (var bmp  = new Bitmap(panel1.Width, panel1.Height))
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "BMP (*.bmp)|*.bmp";
+            sfd.FileName = "BieuDoDoanhThu.bmp";
+            bool fileError = false;
+            if (sfd.ShowDialog() == DialogResult.OK)
             {
-                String fileName = Login.Current_user.ID + Path.GetRandomFileName().Substring(0,5) + "Chart";
-                panel1.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
-                bmp.Save(@"Charts/" + fileName +".bmp");
-                MessageBox.Show("Đã lưu!", "Thông báo");
+                if (File.Exists(sfd.FileName))
+                {
+                    try
+                    {
+                        File.Delete(sfd.FileName);
+                    }
+                    catch (IOException ex)
+                    {
+                        fileError = true;
+                        MessageBox.Show("Error: " + ex.Message);
+                    }
+                }
+                if (!fileError)
+                {
+                    try
+                    {
+                        using (var bmp = new Bitmap(panel1.Width, panel1.Height))
+                        {
+                            panel1.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
+                            bmp.Save(sfd.FileName);
+                            MessageBox.Show("In biểu đồ thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
         }
         private void button1_Click(object sender, EventArgs e)
         {
             screenPanel();
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void chart1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBox_tKTheoNam_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void button_thongKe_KeyDown(object sender, KeyEventArgs e)
