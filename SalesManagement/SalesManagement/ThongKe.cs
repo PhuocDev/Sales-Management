@@ -76,9 +76,9 @@ namespace SalesManagement
             //MessageBox.Show(dataYear.Count().ToString());
             for (int i = 0; i < dataYear.Count(); i++)
             {
-                if (Convert.ToInt32(dataYear[i].nam) >= dateTimePicker1.Value.Year - 5 && Convert.ToInt32(dataYear[i].nam) <= dateTimePicker1.Value.Year + 5) 
+                if (Convert.ToInt32(dataYear[i].nam) >= dateTimePicker1.Value.Year - 5 && Convert.ToInt32(dataYear[i].nam) <= dateTimePicker1.Value.Year + 5)
                     chart1.Series["Doanh Thu"].Points[Convert.ToInt32(dataYear[i].nam) - (dateTimePicker1.Value.Year - 6) - 1].YValues = new Double[] { Convert.ToDouble(dataYear[i].doanhThu) };
-            } 
+            }
         }
         private int soNgayTrongThang(int month, int year)
         {
@@ -99,7 +99,7 @@ namespace SalesManagement
             }
             for (int i = 0; i < dataDay.Count(); i++)
             {
-                chart1.Series["Doanh Thu"].Points[Convert.ToInt32(dataDay[i].ngay) -1 ].YValues = new Double[] { Convert.ToDouble(dataDay[i].doanhThu) };
+                chart1.Series["Doanh Thu"].Points[Convert.ToInt32(dataDay[i].ngay) - 1].YValues = new Double[] { Convert.ToDouble(dataDay[i].doanhThu) };
             }
         }
         protected void data(string year)
@@ -117,7 +117,7 @@ namespace SalesManagement
             cmd = new SqlCommand("SELECT month(THOIGIAN) as thang, sum(TONGGIATRI) AS doanhThu " // thử select month giùm tui với, toàn bị lỗi :(
                                             + "FROM HOADON WHERE year(THOIGIAN) =" + year
                                             + " GROUP BY month(THOIGIAN)", conn);
-            
+
             SqlDataReader dr;
             //int sum = 0, i = 0;
             try
@@ -166,7 +166,7 @@ namespace SalesManagement
 
             cmd = new SqlCommand("SELECT day(THOIGIAN) as ngay, sum(TONGGIATRI) AS doanhThu " // thử select month giùm tui với, toàn bị lỗi :(
                                             + "FROM HOADON WHERE month(THOIGIAN) =" + dateTimePicker1.Value.Month.ToString() + "and year(THOIGIAN) = " + dateTimePicker1.Value.Year.ToString()
-                                            + " GROUP BY day(THOIGIAN)", conn) ;
+                                            + " GROUP BY day(THOIGIAN)", conn);
             SqlDataReader dr;
             //int sum = 0, i = 0;
             try
@@ -235,7 +235,7 @@ namespace SalesManagement
             catch (Exception exp)
             {
 
-                MessageBox.Show("Error: " + exp.Message,"Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: " + exp.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -256,12 +256,12 @@ namespace SalesManagement
                 dataNam();
                 fillChartNam();
             }
-            else if (checkBox_Ngay.Checked == true  && checkBox_tKTheoNam.Checked == false && checkBox_tKTheoThang.Checked == false)
+            else if (checkBox_Ngay.Checked == true && checkBox_tKTheoNam.Checked == false && checkBox_tKTheoThang.Checked == false)
             {
                 string day = dateTimePicker1.Value.Day.ToString();
                 dataNgay();
                 fillChartNgay();
-            }    
+            }
             else
             {
                 MessageBox.Show("Vui lòng xem lại ô checkbox!");
@@ -299,12 +299,12 @@ namespace SalesManagement
             {
                 checkBox_tKTheoThang.Checked = !checkBox_tKTheoThang.Checked;
             }
-            if (checkBox_tKTheoNam.Checked == true) 
+            if (checkBox_tKTheoNam.Checked == true)
             {
                 checkBox_tKTheoNam.Checked = !checkBox_tKTheoNam.Checked;
             }
         }
-        
+
         private void screenPanel()
         {
             SaveFileDialog sfd = new SaveFileDialog();
@@ -354,7 +354,7 @@ namespace SalesManagement
             {
                 button_thongKe.PerformClick();
             }
-           
+
         }
     }
     public class month
@@ -372,5 +372,5 @@ namespace SalesManagement
         public int doanhThu { get; set; }
         public string ngay { get; set; }
     }
-        
+
 }
