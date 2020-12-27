@@ -136,7 +136,15 @@ namespace SalesManagement
                 try
                 {
                     connection.Open();
-                    string sqlQuery = "update NHANVIEN set TEN = @ten, NGAYSINH = @ngaysinh, GIOITINH = @gioitinh, SDT = @sdt, DIACHI = @diachi where MANV = @manv";
+                    string sqlQuery = "";
+                    if (Login.Current_user.ID.ToString().Substring(0,2) == "QL")
+                    {
+                        sqlQuery = "update QUANLY set TEN = @ten, NGAYSINH = @ngaysinh, GIOITINH = @gioitinh, SDT = @sdt, DIACHI = @diachi where MAQL = @manv";
+                    }
+                    else
+                    {
+                        sqlQuery = "update NHANVIEN set TEN = @ten, NGAYSINH = @ngaysinh, GIOITINH = @gioitinh, SDT = @sdt, DIACHI = @diachi where MANV = @manv";
+                    }
                     SqlCommand command = new SqlCommand(sqlQuery, connection);
                     command.Parameters.AddWithValue("@ten", txbHoTen.Text);
                     command.Parameters.AddWithValue("@ngaysinh", dateTimePicker1.Value.ToString());
@@ -150,11 +158,11 @@ namespace SalesManagement
                     {
                         throw new Exception("Failed Query");
                     }
-                    MessageBox.Show("Đã lưu!", "Thông báo");
+                    MessageBox.Show("Đã lưu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("kết nối xảy ra lỗi hoặc ghi dữ liệu bị lỗi");
+                    MessageBox.Show("Error:" + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 finally
                 {
@@ -163,7 +171,7 @@ namespace SalesManagement
             }
             else
             {
-                MessageBox.Show("Không có gì thay đổi", "Thông báo");
+                MessageBox.Show("Không có gì thay đổi", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         //-----------------------------------------------------------------------------------------------------------------------------------------//

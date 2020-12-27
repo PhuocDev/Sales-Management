@@ -85,20 +85,33 @@ namespace SalesManagement
         //--------------------------------------------------Dangnhap_click------------------------------------------------//
         private void button_dangNhap_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text == "" || textBox_passWord.Text == "")
+            try
             {
-                MessageBox.Show("Chưa nhập đủ thông tin", "Lỗi");
-                return;
-            } 
-            if (VerifyUser(textBox1.Text, textBox_passWord.Text))
-            {
-                Current_user = new User(textBox1.Text, textBox_passWord.Text);//////// Lưu thông tin người dùng hiện tại
-                menu mn = new menu(this.SHOW);
-                mn.FormClosed += new FormClosedEventHandler(menu_FormClose);
-                mn.Show();
-                this.Hide();
+                if (textBox1.Text == "" || textBox_passWord.Text == "")
+                {
+                    MessageBox.Show("Chưa nhập đủ thông tin", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (VerifyUser(textBox1.Text, textBox_passWord.Text))
+                {
+                    Current_user = new User(textBox1.Text, textBox_passWord.Text);//////// Lưu thông tin người dùng hiện tại
+                    menu mn = new menu(this.SHOW);
+                    mn.FormClosed += new FormClosedEventHandler(menu_FormClose);
+                    mn.Show();
+                    this.Hide();
+                }
+                else MessageBox.Show("Tài khoản hoặc mật khẩu không đúng", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else MessageBox.Show("Tài khoản hoặc mật khẩu không đúng", "Lỗi");
+            catch( Exception ex)
+            {
+                MessageBox.Show("Error:" + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                connection.Close();
+            }
+            finally
+            {
+
+            }
+            
         }
         private void menu_FormClose(object sender, FormClosedEventArgs e)
         {
@@ -147,6 +160,11 @@ namespace SalesManagement
             {
                 textBox1.Text = "";
             }
+        }
+
+        private void textBox_passWord_Enter(object sender, EventArgs e)
+        {
+            this.textBox_passWord.isPassword = true;
         }
     }
 }

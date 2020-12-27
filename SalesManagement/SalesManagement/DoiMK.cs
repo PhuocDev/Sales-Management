@@ -25,20 +25,16 @@ namespace SalesManagement
             InitializeComponent();
         }
 
-        private void button_huyBo_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
         private bool fillCondition()
         {
             if (textBox_matKhau.Text == "" || textBox_mkCu.Text == "" || textBox_laiMK.Text == "")
             {
-                MessageBox.Show("Vui lòng nhập đủ thông tin", "Thông báo");
+                MessageBox.Show("Vui lòng nhập đủ thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             else if (textBox_matKhau.Text != textBox_laiMK.Text)
             {
-                MessageBox.Show("Mật khẩu không trùng khớp!");
+                MessageBox.Show("Mật khẩu không trùng khớp!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             else
@@ -123,13 +119,13 @@ namespace SalesManagement
             }
             catch (Exception ex)
             {
-                MessageBox.Show("kết nối xảy ra lỗi hoặc ghi dữ liệu bị lỗi");
+                MessageBox.Show("Error:" + ex.Message, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
                 connection.Close();
             }
-            MessageBox.Show("Đã đổi mật khẩu thành công! ", "Thông báo");
+            MessageBox.Show("Đã đổi mật khẩu thành công! ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -143,7 +139,7 @@ namespace SalesManagement
                 }
                 else
                 {
-                    MessageBox.Show("Sai mật khẩu! vui lòng nhập lại", "Thông báo");
+                    MessageBox.Show("Sai mật khẩu! vui lòng nhập lại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -152,12 +148,29 @@ namespace SalesManagement
         {
             this.Close();
         }
+        //---------------------------------------------------------------------------------------------------------------------------------//
 
         private void textBox_laiMK_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Enter)
             {
                 button1.PerformClick();
+            }
+        }
+
+        private void textBox_mkCu_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                this.ActiveControl = this.textBox_matKhau;
+            }
+        }
+
+        private void textBox_matKhau_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.ActiveControl = this.textBox_laiMK;
             }
         }
     }

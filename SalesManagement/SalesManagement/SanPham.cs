@@ -312,7 +312,7 @@ namespace SalesManagement
                         }
                         workbook.SaveAs(sfd.FileName);
                         app.Quit();
-                        MessageBox.Show("Xuất file excel thành công");
+                        MessageBox.Show("Xuất file thành công", "", MessageBoxButtons.OK,MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {
@@ -324,7 +324,7 @@ namespace SalesManagement
         //-----------------------------------------------------------------------------------------------------------------------------------//
         private void sanPham_Load(object sender, EventArgs e)
         {
-            if(Login.Current_user.ToString().Substring(0,2) != "QL")
+            if(Login.Current_user.ID.ToString().Substring(0,2) == "NV")
             {
                 this.button_nhapHang.Visible = false;
             }
