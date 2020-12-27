@@ -305,7 +305,7 @@ namespace SalesManagement
             {
                 String fileName = Login.Current_user.ID + Path.GetRandomFileName().Substring(0,5) + "Chart";
                 panel1.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
-                bmp.Save(@"Charts/" + fileName +".bmp");
+                bmp.Save(@"D:/" + fileName +".bmp");
                 MessageBox.Show("Đã lưu!", "Thông báo");
             }
         }

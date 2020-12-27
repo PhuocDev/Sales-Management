@@ -21,7 +21,7 @@ namespace SalesManagement
     }
     static class global
     {
-        public static string conString = @"Data Source=DESKTOP-VMO2INA\SQLEXPRESS;Initial Catalog=SALES_MANAGEMENT;Integrated Security=True";
+        public static string conString = @"Data Source=.\SQLEXPRESS;Initial Catalog=SALES_MANAGEMENT;Integrated Security=True";
     }
 }
 
