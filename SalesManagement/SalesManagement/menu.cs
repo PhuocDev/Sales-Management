@@ -171,5 +171,11 @@ namespace SalesManagement
             thongTinCaNhan thongTinCaNhan = new thongTinCaNhan();
             thongTinCaNhan.Show();
         }
+
+        private void button_info_ungDung_Click(object sender, EventArgs e)
+        {
+            ThongTinUngDung info = new ThongTinUngDung();
+            info.ShowDialog();
+        }
     }
 }
