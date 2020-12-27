@@ -71,7 +71,7 @@
             this.btnXoaNV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnXoaNV.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnXoaNV.Location = new System.Drawing.Point(766, 176);
-            this.btnXoaNV.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnXoaNV.Margin = new System.Windows.Forms.Padding(2);
             this.btnXoaNV.Name = "btnXoaNV";
             this.btnXoaNV.Size = new System.Drawing.Size(130, 40);
             this.btnXoaNV.TabIndex = 24;
@@ -95,7 +95,7 @@
             this.ColSDT,
             this.ColDiaChi});
             this.dataGridView1.Location = new System.Drawing.Point(53, 328);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
@@ -186,7 +186,7 @@
             this.btnThemNV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnThemNV.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThemNV.Location = new System.Drawing.Point(766, 81);
-            this.btnThemNV.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnThemNV.Margin = new System.Windows.Forms.Padding(2);
             this.btnThemNV.Name = "btnThemNV";
             this.btnThemNV.Size = new System.Drawing.Size(130, 40);
             this.btnThemNV.TabIndex = 23;
@@ -202,7 +202,7 @@
             this.btnXuatFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnXuatFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnXuatFile.Location = new System.Drawing.Point(766, 223);
-            this.btnXuatFile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnXuatFile.Margin = new System.Windows.Forms.Padding(2);
             this.btnXuatFile.Name = "btnXuatFile";
             this.btnXuatFile.Size = new System.Drawing.Size(130, 40);
             this.btnXuatFile.TabIndex = 22;
@@ -218,7 +218,7 @@
             this.btnChinhSua.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnChinhSua.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChinhSua.Location = new System.Drawing.Point(766, 128);
-            this.btnChinhSua.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnChinhSua.Margin = new System.Windows.Forms.Padding(2);
             this.btnChinhSua.Name = "btnChinhSua";
             this.btnChinhSua.Size = new System.Drawing.Size(130, 40);
             this.btnChinhSua.TabIndex = 21;
@@ -234,7 +234,7 @@
             this.btnKhachHang.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKhachHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnKhachHang.Location = new System.Drawing.Point(735, 37);
-            this.btnKhachHang.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnKhachHang.Margin = new System.Windows.Forms.Padding(2);
             this.btnKhachHang.Name = "btnKhachHang";
             this.btnKhachHang.Size = new System.Drawing.Size(111, 32);
             this.btnKhachHang.TabIndex = 20;
@@ -252,7 +252,7 @@
             this.btnNhanVien.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNhanVien.ForeColor = System.Drawing.SystemColors.Highlight;
             this.btnNhanVien.Location = new System.Drawing.Point(834, 36);
-            this.btnNhanVien.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnNhanVien.Margin = new System.Windows.Forms.Padding(2);
             this.btnNhanVien.Name = "btnNhanVien";
             this.btnNhanVien.Size = new System.Drawing.Size(106, 32);
             this.btnNhanVien.TabIndex = 19;
@@ -264,7 +264,7 @@
             // 
             this.txbDiaChi.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbDiaChi.Location = new System.Drawing.Point(396, 267);
-            this.txbDiaChi.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbDiaChi.Margin = new System.Windows.Forms.Padding(2);
             this.txbDiaChi.Name = "txbDiaChi";
             this.txbDiaChi.Size = new System.Drawing.Size(259, 23);
             this.txbDiaChi.TabIndex = 4;
@@ -273,16 +273,17 @@
             // 
             this.txbSDT.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbSDT.Location = new System.Drawing.Point(396, 223);
-            this.txbSDT.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbSDT.Margin = new System.Windows.Forms.Padding(2);
             this.txbSDT.Name = "txbSDT";
             this.txbSDT.Size = new System.Drawing.Size(259, 23);
             this.txbSDT.TabIndex = 3;
+            this.txbSDT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbSDT_KeyPress);
             // 
             // txbHoTen
             // 
             this.txbHoTen.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbHoTen.Location = new System.Drawing.Point(396, 89);
-            this.txbHoTen.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbHoTen.Margin = new System.Windows.Forms.Padding(2);
             this.txbHoTen.Name = "txbHoTen";
             this.txbHoTen.Size = new System.Drawing.Size(259, 23);
             this.txbHoTen.TabIndex = 1;
@@ -291,7 +292,7 @@
             // 
             this.txbMaNV.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbMaNV.Location = new System.Drawing.Point(396, 48);
-            this.txbMaNV.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbMaNV.Margin = new System.Windows.Forms.Padding(2);
             this.txbMaNV.Name = "txbMaNV";
             this.txbMaNV.ReadOnly = true;
             this.txbMaNV.Size = new System.Drawing.Size(259, 23);
@@ -376,7 +377,7 @@
             this.pictureBox1.BackgroundImage = global::SalesManagement.Properties.Resources.nhan_vien;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Location = new System.Drawing.Point(71, 48);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(196, 241);
             this.pictureBox1.TabIndex = 6;
@@ -403,7 +404,7 @@
             this.button_save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_save.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_save.Location = new System.Drawing.Point(766, 270);
-            this.button_save.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_save.Margin = new System.Windows.Forms.Padding(2);
             this.button_save.Name = "button_save";
             this.button_save.Size = new System.Drawing.Size(130, 32);
             this.button_save.TabIndex = 46;
@@ -488,7 +489,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormNhanVien";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nhân viên";

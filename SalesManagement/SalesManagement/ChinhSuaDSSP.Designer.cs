@@ -145,6 +145,7 @@
             this.textBox_soLuong.Name = "textBox_soLuong";
             this.textBox_soLuong.Size = new System.Drawing.Size(121, 20);
             this.textBox_soLuong.TabIndex = 1;
+            this.textBox_soLuong.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_soLuong_KeyPress);
             // 
             // textBox_giaBanLe
             // 
@@ -152,6 +153,8 @@
             this.textBox_giaBanLe.Name = "textBox_giaBanLe";
             this.textBox_giaBanLe.Size = new System.Drawing.Size(132, 20);
             this.textBox_giaBanLe.TabIndex = 2;
+            this.textBox_giaBanLe.TextChanged += new System.EventHandler(this.textBox_giaBanLe_TextChanged);
+            this.textBox_giaBanLe.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_giaBanLe_KeyPress);
             // 
             // textBox_donViTinh
             // 

@@ -76,24 +76,30 @@ namespace SalesManagement
             //MessageBox.Show(dataYear.Count().ToString());
             for (int i = 0; i < dataYear.Count(); i++)
             {
-                if (Convert.ToInt32(dataYear[i].nam) >= dateTimePicker1.Value.Year - 5 && Convert.ToInt32(dataYear[i].nam) <= dateTimePicker1.Value.Year + 5) 
+                if (Convert.ToInt32(dataYear[i].nam) >= dateTimePicker1.Value.Year - 5 && Convert.ToInt32(dataYear[i].nam) <= dateTimePicker1.Value.Year + 5)
                     chart1.Series["Doanh Thu"].Points[Convert.ToInt32(dataYear[i].nam) - (dateTimePicker1.Value.Year - 6) - 1].YValues = new Double[] { Convert.ToDouble(dataYear[i].doanhThu) };
-            } 
+            }
+        }
+        private int soNgayTrongThang(int month, int year)
+        {
+            int[] soNgayTrongThang = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+            if (month != 2) return soNgayTrongThang[month - 1];
+            if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) return 29;
+            else return 28;
         }
         private void fillChartNgay()
         {
             chart1.ChartAreas["ChartArea1"].AxisX.Interval = 1;     // Để hiển thị tất cả các label cột x
             // thống kê 30 ngày trong khoảng hiện tại
-            int songay = 31;
-
-            for (int i = 1; i < songay; i++)
+            int songay = soNgayTrongThang(dateTimePicker1.Value.Month, dateTimePicker1.Value.Year);
+            for (int i = 1; i <= songay; i++)
             {
                 chart1.Series["Doanh Thu"].Points.AddY(0);
                 chart1.Series["Doanh Thu"].Points[i - 1].AxisLabel = "" + i.ToString();
             }
             for (int i = 0; i < dataDay.Count(); i++)
             {
-                chart1.Series["Doanh Thu"].Points[Convert.ToInt32(dataDay[i].ngay) -1 ].YValues = new Double[] { Convert.ToDouble(dataDay[i].doanhThu) };
+                chart1.Series["Doanh Thu"].Points[Convert.ToInt32(dataDay[i].ngay) - 1].YValues = new Double[] { Convert.ToDouble(dataDay[i].doanhThu) };
             }
         }
         protected void data(string year)
@@ -111,7 +117,7 @@ namespace SalesManagement
             cmd = new SqlCommand("SELECT month(THOIGIAN) as thang, sum(TONGGIATRI) AS doanhThu " // thử select month giùm tui với, toàn bị lỗi :(
                                             + "FROM HOADON WHERE year(THOIGIAN) =" + year
                                             + " GROUP BY month(THOIGIAN)", conn);
-            
+
             SqlDataReader dr;
             //int sum = 0, i = 0;
             try
@@ -136,7 +142,7 @@ namespace SalesManagement
             catch (Exception exp)
             {
 
-                MessageBox.Show("Loi ket noi");
+                MessageBox.Show("Error: " + exp.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -160,7 +166,7 @@ namespace SalesManagement
 
             cmd = new SqlCommand("SELECT day(THOIGIAN) as ngay, sum(TONGGIATRI) AS doanhThu " // thử select month giùm tui với, toàn bị lỗi :(
                                             + "FROM HOADON WHERE month(THOIGIAN) =" + dateTimePicker1.Value.Month.ToString() + "and year(THOIGIAN) = " + dateTimePicker1.Value.Year.ToString()
-                                            + " GROUP BY day(THOIGIAN)", conn) ;
+                                            + " GROUP BY day(THOIGIAN)", conn);
             SqlDataReader dr;
             //int sum = 0, i = 0;
             try
@@ -185,7 +191,7 @@ namespace SalesManagement
             catch (Exception exp)
             {
 
-                MessageBox.Show("Loi ket noi");
+                MessageBox.Show("Error:" + exp.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -229,7 +235,7 @@ namespace SalesManagement
             catch (Exception exp)
             {
 
-                MessageBox.Show("Loi ket noi");
+                MessageBox.Show("Error: " + exp.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -250,12 +256,12 @@ namespace SalesManagement
                 dataNam();
                 fillChartNam();
             }
-            else if (checkBox_Ngay.Checked == true  && checkBox_tKTheoNam.Checked == false && checkBox_tKTheoThang.Checked == false)
+            else if (checkBox_Ngay.Checked == true && checkBox_tKTheoNam.Checked == false && checkBox_tKTheoThang.Checked == false)
             {
                 string day = dateTimePicker1.Value.Day.ToString();
                 dataNgay();
                 fillChartNgay();
-            }    
+            }
             else
             {
                 MessageBox.Show("Vui lòng xem lại ô checkbox!");
@@ -293,40 +299,53 @@ namespace SalesManagement
             {
                 checkBox_tKTheoThang.Checked = !checkBox_tKTheoThang.Checked;
             }
-            if (checkBox_tKTheoNam.Checked == true) 
+            if (checkBox_tKTheoNam.Checked == true)
             {
                 checkBox_tKTheoNam.Checked = !checkBox_tKTheoNam.Checked;
             }
         }
-        
+
         private void screenPanel()
         {
-            using (var bmp  = new Bitmap(panel1.Width, panel1.Height))
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "BMP (*.bmp)|*.bmp";
+            sfd.FileName = "BieuDoDoanhThu.bmp";
+            bool fileError = false;
+            if (sfd.ShowDialog() == DialogResult.OK)
             {
-                String fileName = Login.Current_user.ID + Path.GetRandomFileName().Substring(0,5) + "Chart";
-                panel1.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
-                bmp.Save(@"D:/" + fileName +".bmp");
-                MessageBox.Show("Đã lưu!", "Thông báo");
+                if (File.Exists(sfd.FileName))
+                {
+                    try
+                    {
+                        File.Delete(sfd.FileName);
+                    }
+                    catch (IOException ex)
+                    {
+                        fileError = true;
+                        MessageBox.Show("Error: " + ex.Message);
+                    }
+                }
+                if (!fileError)
+                {
+                    try
+                    {
+                        using (var bmp = new Bitmap(panel1.Width, panel1.Height))
+                        {
+                            panel1.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
+                            bmp.Save(sfd.FileName);
+                            MessageBox.Show("In biểu đồ thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
         }
         private void button1_Click(object sender, EventArgs e)
         {
             screenPanel();
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void chart1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBox_tKTheoNam_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void button_thongKe_KeyDown(object sender, KeyEventArgs e)
@@ -335,7 +354,7 @@ namespace SalesManagement
             {
                 button_thongKe.PerformClick();
             }
-           
+
         }
     }
     public class month
@@ -353,5 +372,5 @@ namespace SalesManagement
         public int doanhThu { get; set; }
         public string ngay { get; set; }
     }
-        
+
 }

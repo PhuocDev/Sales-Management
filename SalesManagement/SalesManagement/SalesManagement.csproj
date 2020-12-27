@@ -179,6 +179,12 @@
     <Compile Include="ThongKe.Designer.cs">
       <DependentUpon>ThongKe.cs</DependentUpon>
     </Compile>
+    <Compile Include="ThongTinUngDung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThongTinUngDung.Designer.cs">
+      <DependentUpon>ThongTinUngDung.cs</DependentUpon>
+    </Compile>
     <Compile Include="User.cs" />
     <EmbeddedResource Include="AddKhachHang.resx">
       <DependentUpon>AddKhachHang.cs</DependentUpon>
@@ -229,6 +235,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ThongKe.resx">
       <DependentUpon>ThongKe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThongTinUngDung.resx">
+      <DependentUpon>ThongTinUngDung.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\ClassSanPham.datasource" />
@@ -307,6 +316,7 @@
       <Link>SqlServerTypes\x86\SqlServerSpatial110.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\output-onlinepngtools %284%29.png" />
     <Content Include="SqlServerTypes\readme.htm" />
   </ItemGroup>
   <ItemGroup>

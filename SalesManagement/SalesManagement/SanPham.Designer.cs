@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button_nhapHang = new System.Windows.Forms.Button();
             this.dataGridView_danhSachSanPham = new System.Windows.Forms.DataGridView();
             this.Column_stt = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,10 +63,9 @@
             this.button_nhapHang.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_nhapHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_nhapHang.ForeColor = System.Drawing.Color.Navy;
-            this.button_nhapHang.Location = new System.Drawing.Point(1095, 15);
-            this.button_nhapHang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_nhapHang.Location = new System.Drawing.Point(821, 12);
             this.button_nhapHang.Name = "button_nhapHang";
-            this.button_nhapHang.Size = new System.Drawing.Size(187, 49);
+            this.button_nhapHang.Size = new System.Drawing.Size(140, 40);
             this.button_nhapHang.TabIndex = 52;
             this.button_nhapHang.TabStop = false;
             this.button_nhapHang.Text = "Nhập Hàng";
@@ -87,12 +87,11 @@
             this.Column_giaBanLe,
             this.Column_hsd,
             this.Column_nhaCungCap});
-            this.dataGridView_danhSachSanPham.Location = new System.Drawing.Point(37, 198);
-            this.dataGridView_danhSachSanPham.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView_danhSachSanPham.Location = new System.Drawing.Point(28, 161);
             this.dataGridView_danhSachSanPham.Name = "dataGridView_danhSachSanPham";
             this.dataGridView_danhSachSanPham.ReadOnly = true;
             this.dataGridView_danhSachSanPham.RowHeadersWidth = 51;
-            this.dataGridView_danhSachSanPham.Size = new System.Drawing.Size(1031, 441);
+            this.dataGridView_danhSachSanPham.Size = new System.Drawing.Size(773, 358);
             this.dataGridView_danhSachSanPham.TabIndex = 51;
             // 
             // Column_stt
@@ -152,6 +151,9 @@
             // 
             // Column_giaBanLe
             // 
+            dataGridViewCellStyle2.Format = "C0";
+            dataGridViewCellStyle2.NullValue = null;
+            this.Column_giaBanLe.DefaultCellStyle = dataGridViewCellStyle2;
             this.Column_giaBanLe.FillWeight = 50.16045F;
             this.Column_giaBanLe.HeaderText = "Giá Bán Lẻ";
             this.Column_giaBanLe.MinimumWidth = 6;
@@ -188,10 +190,9 @@
             this.label_boLoc.AutoSize = true;
             this.label_boLoc.BackColor = System.Drawing.Color.Transparent;
             this.label_boLoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_boLoc.Location = new System.Drawing.Point(475, 86);
-            this.label_boLoc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_boLoc.Location = new System.Drawing.Point(356, 70);
             this.label_boLoc.Name = "label_boLoc";
-            this.label_boLoc.Size = new System.Drawing.Size(57, 20);
+            this.label_boLoc.Size = new System.Drawing.Size(46, 16);
             this.label_boLoc.TabIndex = 50;
             this.label_boLoc.Text = "Bộ lọc";
             // 
@@ -200,10 +201,9 @@
             this.label_tenSanPham.AutoSize = true;
             this.label_tenSanPham.BackColor = System.Drawing.Color.Transparent;
             this.label_tenSanPham.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_tenSanPham.Location = new System.Drawing.Point(33, 130);
-            this.label_tenSanPham.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_tenSanPham.Location = new System.Drawing.Point(25, 106);
             this.label_tenSanPham.Name = "label_tenSanPham";
-            this.label_tenSanPham.Size = new System.Drawing.Size(115, 20);
+            this.label_tenSanPham.Size = new System.Drawing.Size(94, 16);
             this.label_tenSanPham.TabIndex = 49;
             this.label_tenSanPham.Text = "Tên sản phẩm";
             // 
@@ -212,10 +212,9 @@
             this.label_maSanPham.AutoSize = true;
             this.label_maSanPham.BackColor = System.Drawing.Color.Transparent;
             this.label_maSanPham.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_maSanPham.Location = new System.Drawing.Point(36, 89);
-            this.label_maSanPham.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_maSanPham.Location = new System.Drawing.Point(27, 72);
             this.label_maSanPham.Name = "label_maSanPham";
-            this.label_maSanPham.Size = new System.Drawing.Size(110, 20);
+            this.label_maSanPham.Size = new System.Drawing.Size(89, 16);
             this.label_maSanPham.TabIndex = 48;
             this.label_maSanPham.Text = "Mã sản phẩm";
             // 
@@ -226,11 +225,11 @@
             "Giá  dưới 100.000đ",
             "Giá từ 100.000đ đến 1.000.000đ",
             "Giá từ 1.000.000đ đến 10.000.000đ",
-            "Giá trên 10.000.000đ"});
-            this.comboBox_boLoc.Location = new System.Drawing.Point(561, 84);
-            this.comboBox_boLoc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            "Giá trên 10.000.000đ",
+            "Hết HSD"});
+            this.comboBox_boLoc.Location = new System.Drawing.Point(421, 68);
             this.comboBox_boLoc.Name = "comboBox_boLoc";
-            this.comboBox_boLoc.Size = new System.Drawing.Size(264, 24);
+            this.comboBox_boLoc.Size = new System.Drawing.Size(199, 21);
             this.comboBox_boLoc.TabIndex = 2;
             // 
             // button_chinhSua
@@ -238,14 +237,13 @@
             this.button_chinhSua.BackColor = System.Drawing.Color.LightSkyBlue;
             this.button_chinhSua.FlatAppearance.BorderSize = 0;
             this.button_chinhSua.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_chinhSua.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_chinhSua.Location = new System.Drawing.Point(1095, 268);
-            this.button_chinhSua.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_chinhSua.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_chinhSua.Location = new System.Drawing.Point(821, 218);
             this.button_chinhSua.Name = "button_chinhSua";
-            this.button_chinhSua.Size = new System.Drawing.Size(187, 46);
+            this.button_chinhSua.Size = new System.Drawing.Size(140, 37);
             this.button_chinhSua.TabIndex = 44;
             this.button_chinhSua.TabStop = false;
-            this.button_chinhSua.Text = "Chỉnh sửa";
+            this.button_chinhSua.Text = "Sửa";
             this.button_chinhSua.UseVisualStyleBackColor = false;
             this.button_chinhSua.Click += new System.EventHandler(this.button_chinhSua_Click);
             // 
@@ -254,11 +252,10 @@
             this.button_timKiem.BackColor = System.Drawing.Color.LightSkyBlue;
             this.button_timKiem.FlatAppearance.BorderSize = 0;
             this.button_timKiem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_timKiem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_timKiem.Location = new System.Drawing.Point(888, 89);
-            this.button_timKiem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_timKiem.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_timKiem.Location = new System.Drawing.Point(666, 72);
             this.button_timKiem.Name = "button_timKiem";
-            this.button_timKiem.Size = new System.Drawing.Size(113, 62);
+            this.button_timKiem.Size = new System.Drawing.Size(85, 50);
             this.button_timKiem.TabIndex = 3;
             this.button_timKiem.Text = "Tìm kiếm";
             this.button_timKiem.UseVisualStyleBackColor = false;
@@ -269,12 +266,11 @@
             this.button_xuatFile.BackColor = System.Drawing.Color.LightSkyBlue;
             this.button_xuatFile.FlatAppearance.BorderSize = 0;
             this.button_xuatFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_xuatFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_xuatFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_xuatFile.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.button_xuatFile.Location = new System.Drawing.Point(1095, 337);
-            this.button_xuatFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_xuatFile.Location = new System.Drawing.Point(821, 274);
             this.button_xuatFile.Name = "button_xuatFile";
-            this.button_xuatFile.Size = new System.Drawing.Size(187, 49);
+            this.button_xuatFile.Size = new System.Drawing.Size(140, 40);
             this.button_xuatFile.TabIndex = 42;
             this.button_xuatFile.TabStop = false;
             this.button_xuatFile.Text = "Xuất file";
@@ -286,11 +282,10 @@
             this.button_luu.BackColor = System.Drawing.Color.LightSkyBlue;
             this.button_luu.FlatAppearance.BorderSize = 0;
             this.button_luu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_luu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_luu.Location = new System.Drawing.Point(1095, 593);
-            this.button_luu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_luu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_luu.Location = new System.Drawing.Point(821, 482);
             this.button_luu.Name = "button_luu";
-            this.button_luu.Size = new System.Drawing.Size(187, 46);
+            this.button_luu.Size = new System.Drawing.Size(140, 37);
             this.button_luu.TabIndex = 54;
             this.button_luu.TabStop = false;
             this.button_luu.Text = "Lưu";
@@ -302,11 +297,10 @@
             this.button_xoa.BackColor = System.Drawing.Color.LightSkyBlue;
             this.button_xoa.FlatAppearance.BorderSize = 0;
             this.button_xoa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_xoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_xoa.Location = new System.Drawing.Point(1095, 198);
-            this.button_xoa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_xoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_xoa.Location = new System.Drawing.Point(821, 161);
             this.button_xoa.Name = "button_xoa";
-            this.button_xoa.Size = new System.Drawing.Size(187, 46);
+            this.button_xoa.Size = new System.Drawing.Size(140, 37);
             this.button_xoa.TabIndex = 58;
             this.button_xoa.TabStop = false;
             this.button_xoa.Text = "Xóa";
@@ -315,18 +309,16 @@
             // 
             // textBox_ten
             // 
-            this.textBox_ten.Location = new System.Drawing.Point(179, 130);
-            this.textBox_ten.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_ten.Location = new System.Drawing.Point(134, 106);
             this.textBox_ten.Name = "textBox_ten";
-            this.textBox_ten.Size = new System.Drawing.Size(647, 22);
+            this.textBox_ten.Size = new System.Drawing.Size(486, 20);
             this.textBox_ten.TabIndex = 1;
             // 
             // textBox_masp
             // 
-            this.textBox_masp.Location = new System.Drawing.Point(179, 84);
-            this.textBox_masp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_masp.Location = new System.Drawing.Point(134, 68);
             this.textBox_masp.Name = "textBox_masp";
-            this.textBox_masp.Size = new System.Drawing.Size(273, 22);
+            this.textBox_masp.Size = new System.Drawing.Size(206, 20);
             this.textBox_masp.TabIndex = 0;
             // 
             // button_fullsp
@@ -334,11 +326,10 @@
             this.button_fullsp.BackColor = System.Drawing.Color.LightSkyBlue;
             this.button_fullsp.FlatAppearance.BorderSize = 0;
             this.button_fullsp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_fullsp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_fullsp.Location = new System.Drawing.Point(1095, 128);
-            this.button_fullsp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_fullsp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_fullsp.Location = new System.Drawing.Point(821, 104);
             this.button_fullsp.Name = "button_fullsp";
-            this.button_fullsp.Size = new System.Drawing.Size(187, 46);
+            this.button_fullsp.Size = new System.Drawing.Size(140, 37);
             this.button_fullsp.TabIndex = 61;
             this.button_fullsp.TabStop = false;
             this.button_fullsp.Text = "Toàn bộ sản phẩm";
@@ -352,10 +343,9 @@
             this.button_back.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button_back.FlatAppearance.BorderSize = 0;
             this.button_back.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_back.Location = new System.Drawing.Point(59, 2);
-            this.button_back.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_back.Location = new System.Drawing.Point(44, 2);
             this.button_back.Name = "button_back";
-            this.button_back.Size = new System.Drawing.Size(56, 49);
+            this.button_back.Size = new System.Drawing.Size(42, 40);
             this.button_back.TabIndex = 55;
             this.button_back.TabStop = false;
             this.button_back.UseVisualStyleBackColor = false;
@@ -367,10 +357,9 @@
             this.button_menu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button_menu.FlatAppearance.BorderSize = 0;
             this.button_menu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_menu.Location = new System.Drawing.Point(3, 2);
-            this.button_menu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_menu.Location = new System.Drawing.Point(2, 2);
             this.button_menu.Name = "button_menu";
-            this.button_menu.Size = new System.Drawing.Size(56, 49);
+            this.button_menu.Size = new System.Drawing.Size(42, 40);
             this.button_menu.TabIndex = 41;
             this.button_menu.TabStop = false;
             this.button_menu.UseVisualStyleBackColor = true;
@@ -381,20 +370,19 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(172, 11);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(129, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(139, 31);
+            this.label1.Size = new System.Drawing.Size(111, 25);
             this.label1.TabIndex = 75;
             this.label1.Text = "Sản Phẩm";
             // 
             // sanPham
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1320, 695);
+            this.ClientSize = new System.Drawing.Size(990, 565);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button_fullsp);
             this.Controls.Add(this.textBox_masp);
@@ -412,10 +400,10 @@
             this.Controls.Add(this.button_timKiem);
             this.Controls.Add(this.button_xuatFile);
             this.Controls.Add(this.button_menu);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "sanPham";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sản phẩm";
+            this.Load += new System.EventHandler(this.sanPham_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_danhSachSanPham)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -436,6 +424,11 @@
         private System.Windows.Forms.Button button_menu;
         private System.Windows.Forms.Button button_luu;
         private System.Windows.Forms.Button button_back;
+        private System.Windows.Forms.Button button_xoa;
+        private System.Windows.Forms.TextBox textBox_ten;
+        private System.Windows.Forms.TextBox textBox_masp;
+        private System.Windows.Forms.Button button_fullsp;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_stt;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_maSanPham;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_ten;
@@ -444,10 +437,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_giaBanLe;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_hsd;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column_nhaCungCap;
-        private System.Windows.Forms.Button button_xoa;
-        private System.Windows.Forms.TextBox textBox_ten;
-        private System.Windows.Forms.TextBox textBox_masp;
-        private System.Windows.Forms.Button button_fullsp;
-        private System.Windows.Forms.Label label1;
     }
 }

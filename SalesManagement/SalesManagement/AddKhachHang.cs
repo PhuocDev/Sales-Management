@@ -38,7 +38,7 @@ namespace SalesManagement
             {
                 if (dataReader.Read() == false) break;
                 int j = Convert.ToInt32(dataReader.GetString(0).Substring(2));
-                if ( j != i+1)
+                if ( j != i)
                 {
                     connection.Close();
                     this.MAKH += ("0000" + (i+1).ToString()).Substring(("0000" + (i + 1).ToString()).Length -5);
@@ -47,7 +47,7 @@ namespace SalesManagement
                 i++;
             }
             if (i == 99999) return false;
-            this.MAKH += ("0000" + (i + 1).ToString()).Substring(("0000" + (i + 1).ToString()).Length - 5);
+            this.MAKH += ("0000" + (i).ToString()).Substring(("0000" + (i).ToString()).Length - 5);
             connection.Close();
             return true;
         }

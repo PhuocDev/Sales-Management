@@ -226,7 +226,7 @@ namespace SalesManagement
             }
             catch (Exception ex)
             {
-                MessageBox.Show("kết nối xảy ra lỗi hoặc ghi dữ liệu bị lỗi");
+                MessageBox.Show("Error:" + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -262,7 +262,7 @@ namespace SalesManagement
         {
             label_warning.Text = "*Không thể thay đổi mã nhân viên";
         }
-
+        //-----------------------------------------------------------------------------------------------------------------------------------------------//
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -320,7 +320,7 @@ namespace SalesManagement
                         }
                         workbook.SaveAs(sfd.FileName);
                         app.Quit();
-                        MessageBox.Show("Xuất file excel thành công", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Xuất file thành công", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {
@@ -329,7 +329,7 @@ namespace SalesManagement
                 }
             }
         }
-
+        //-------------------------------------------------------------------------------------------------------------------------------------//
         private void comboBox_gioiTinh_Leave(object sender, EventArgs e)
         {
             if (comboBox_gioiTinh.Text != "Nam" && comboBox_gioiTinh.Text != "Nữ")
@@ -337,6 +337,14 @@ namespace SalesManagement
                 MessageBox.Show("Giới tính không hợp lệ", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 comboBox_gioiTinh.Text = "";
                 this.ActiveControl = comboBox_gioiTinh;
+            }
+        }
+
+        private void txbSDT_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsNumber(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
     }

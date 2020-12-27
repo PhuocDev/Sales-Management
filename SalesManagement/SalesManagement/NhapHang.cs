@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,6 +17,7 @@ namespace SalesManagement
     public partial class NhapHang : Form
     {
         public changeform change;
+        CultureInfo cultureInfo;
         public NhapHang()
         {
             InitializeComponent();
@@ -22,9 +25,21 @@ namespace SalesManagement
         public NhapHang(changeform change)
         {
             InitializeComponent();
+            SetCulture();
             this.change = change;
         }
         SqlConnection connection = new SqlConnection(global.conString);
+        private void SetCulture()
+        {
+            NumberFormatInfo nfi = new CultureInfo("vn-VN", false).NumberFormat;
+            nfi.CurrencyPositivePattern = 3;
+            nfi.CurrencyNegativePattern = 3;
+            nfi.NumberDecimalSeparator = ".";
+            nfi.NumberGroupSeparator = ",";
+            cultureInfo = new CultureInfo("vn-VN", false);
+            cultureInfo.NumberFormat = nfi;
+            Thread.CurrentThread.CurrentCulture = cultureInfo;
+        }
 
         //-------------------------------------------------------------thêm----------------------------------------------------------------------------//
 
@@ -52,6 +67,15 @@ namespace SalesManagement
             dataGridView_danhSachSanPham.Rows.Add(dataGridView_danhSachSanPham.Rows.Count + 1, textBox_masp.Text, 
                 textBox_tensp.Text, textBox_sluong.Text, textBox_dvt.Text, textBox_giaNhap.Text, textBox_giaBan.Text, 
                 dateTimePicker1_hsd.Value.ToString().Substring(0, dateTimePicker1_hsd.Value.ToString().IndexOf(" ")), textBox_nhacc.Text, textBox_ghiChu.Text);
+
+            textBox_masp.Text = "";
+            textBox_tensp.Text = "";
+            textBox_sluong.Text = "";
+            textBox_dvt.Text = "";
+            textBox_giaNhap.Text = "";
+            textBox_giaBan.Text = "";
+            textBox_nhacc.Text = "";
+            textBox_ghiChu.Text = "";
         }
         //--------------------------------------------------------------------chỉnh_sửa----------------------------------------------------------------------//
         private void button_chinhSua_Click(object sender, EventArgs e)
@@ -88,6 +112,7 @@ namespace SalesManagement
                 if (cell == null) return;
                 int index = cell.RowIndex;
                 dataGridView_danhSachSanPham.Rows.RemoveAt(index);
+                if (index == 0) return;
                 for(int i = dataGridView_danhSachSanPham.CurrentCell.RowIndex; i< dataGridView_danhSachSanPham.Rows.Count; i++)
                 {
                     DataGridViewRow row = dataGridView_danhSachSanPham.Rows[i];
@@ -175,7 +200,8 @@ namespace SalesManagement
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show("Error: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
             finally
             {
@@ -209,8 +235,12 @@ namespace SalesManagement
                         command.Parameters.Add("@ten", SqlDbType.NVarChar).Value = dataGridView_danhSachSanPham.Rows[i].Cells[2].Value.ToString();
                         command.Parameters.AddWithValue("@sl", SqlDbType.NVarChar).Value = Convert.ToInt32(dataGridView_danhSachSanPham.Rows[i].Cells[3].Value);
                         command.Parameters.AddWithValue("@dvt", SqlDbType.NVarChar).Value = dataGridView_danhSachSanPham.Rows[i].Cells[4].Value.ToString();
-                        command.Parameters.AddWithValue("@giaNhap", SqlDbType.NVarChar).Value = Convert.ToInt32(dataGridView_danhSachSanPham.Rows[i].Cells[5].Value);
-                        command.Parameters.AddWithValue("@giaBanLe", SqlDbType.NVarChar).Value = Convert.ToInt32(dataGridView_danhSachSanPham.Rows[i].Cells[6].Value);
+                        //command.Parameters.AddWithValue("@giaNhap", SqlDbType.NVarChar).Value = Convert.ToInt32(dataGridView_danhSachSanPham.Rows[i].Cells[5].Value);
+                        //command.Parameters.AddWithValue("@giaBanLe", SqlDbType.NVarChar).Value = Convert.ToInt32(dataGridView_danhSachSanPham.Rows[i].Cells[6].Value);
+                        command.Parameters.AddWithValue("@giaNhap", SqlDbType.NVarChar).Value = int.Parse(dataGridView_danhSachSanPham.Rows[i].Cells[5].Value.ToString(), NumberStyles.Currency);
+                        command.Parameters.AddWithValue("@giaBanLe", SqlDbType.NVarChar).Value = int.Parse(dataGridView_danhSachSanPham.Rows[i].Cells[6].Value.ToString(), NumberStyles.Currency);
+                        //int.Parse(textBox_giaBanLe.Text, NumberStyles.Currency).ToString()
+
                         command.Parameters.AddWithValue("@hsd", SqlDbType.NVarChar).Value = dataGridView_danhSachSanPham.Rows[i].Cells[7].Value.ToString();
                         command.Parameters.AddWithValue("@nhacc", SqlDbType.NVarChar).Value = dataGridView_danhSachSanPham.Rows[i].Cells[8].Value.ToString();
                         command.Parameters.AddWithValue("@ghichu", SqlDbType.NVarChar).Value = dataGridView_danhSachSanPham.Rows[i].Cells[9].Value.ToString();
@@ -222,10 +252,11 @@ namespace SalesManagement
                         }
                     } 
                 }
+                MessageBox.Show("Đã Lưu");
             }
             catch (Exception ex)
             {
-               MessageBox.Show("kết nối xảy ra lỗi hoặc ghi dữ liệu bị lỗi");
+               MessageBox.Show("Error:" + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -236,23 +267,25 @@ namespace SalesManagement
         List<string> update_list = new List<string>();
         private bool Check_MaSP(string masp)
         {
-            connection.Open();
-            string sqlQuery = "select MASP from SANPHAM";
-            SqlCommand command = new SqlCommand(sqlQuery, connection);
-            SqlDataReader dataReader = command.ExecuteReader();
-            while (dataReader.HasRows)
-            {
-                if (dataReader.Read() == false) break;
-                if (dataReader.GetString(0) == masp)
+            
+                connection.Open();
+                string sqlQuery = "select MASP from SANPHAM";
+                SqlCommand command = new SqlCommand(sqlQuery, connection);
+                SqlDataReader dataReader = command.ExecuteReader();
+                while (dataReader.HasRows)
                 {
-                    connection.Close();
-                    return true;
+                    if (dataReader.Read() == false) break;
+                    if (dataReader.GetString(0) == masp)
+                    {
+                        connection.Close();
+                        return true;
+                    }
                 }
-            }
             connection.Close();
             return false;
         }
 
+        //------------------------------------------------------------------------------------------------------------------------------------------//
         private void button_xuatFile_Click(object sender, EventArgs e)
         {
             if (dataGridView_danhSachSanPham.Rows.Count == 0)
@@ -306,7 +339,7 @@ namespace SalesManagement
                         }
                         workbook.SaveAs(sfd.FileName);
                         app.Quit();
-                        MessageBox.Show("Xuất file excel thành công");
+                        MessageBox.Show("Xuất file thành công", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {
@@ -314,6 +347,47 @@ namespace SalesManagement
                     }
                 }
             }
+        }
+        //--------------------------------------------------------------------------------------------------------------------------------------------//
+        private void textBox_giaNhap_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string stringSoTien = textBox_giaNhap.Text.Replace(".", "").Replace(",", "").Replace("₫", "").Replace(" ", "");
+                if (stringSoTien == "") stringSoTien = "0";
+                int soTien = int.Parse(stringSoTien);
+                textBox_giaNhap.TextChanged -= textBox_giaNhap_TextChanged;
+                textBox_giaNhap.Text = string.Format(cultureInfo, "{0:C0}", soTien);
+                textBox_giaNhap.TextChanged += textBox_giaNhap_TextChanged;
+                textBox_giaNhap.Select(textBox_giaNhap.Text.Length - 2, 0);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message,"", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        //------------------------------------------------------------------------------------------------------------------------------------------//
+        private void textBox_giaBan_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string stringSoTien = textBox_giaBan.Text.Replace(".", "").Replace(",", "").Replace("₫", "").Replace(" ", "");
+                if (stringSoTien == "") stringSoTien = "0";
+                int soTien = int.Parse(stringSoTien);
+                textBox_giaBan.TextChanged -= textBox_giaBan_TextChanged;
+                textBox_giaBan.Text = string.Format(cultureInfo, "{0:C0}", soTien);
+                textBox_giaBan.TextChanged += textBox_giaBan_TextChanged;
+                textBox_giaBan.Select(textBox_giaBan.Text.Length - 2, 0);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button_taoMoi_Click(object sender, EventArgs e)//////////////////////////////////////////////////////////////
+        {
+            this.dataGridView_danhSachSanPham.Rows.Clear();
         }
     }
 }

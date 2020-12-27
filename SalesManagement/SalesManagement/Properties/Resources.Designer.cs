@@ -183,6 +183,16 @@ namespace SalesManagement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap output_onlinepngtools__4_ {
+            get {
+                object obj = ResourceManager.GetObject("output-onlinepngtools (4)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap sản_phẩm_2 {
             get {
                 object obj = ResourceManager.GetObject("sản phẩm 2", resourceCulture);

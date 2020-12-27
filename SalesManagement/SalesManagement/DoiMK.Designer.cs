@@ -74,6 +74,7 @@
             this.textBox_matKhau.PasswordChar = '*';
             this.textBox_matKhau.Size = new System.Drawing.Size(229, 26);
             this.textBox_matKhau.TabIndex = 1;
+            this.textBox_matKhau.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_matKhau_KeyDown);
             // 
             // textBox_mkCu
             // 
@@ -84,6 +85,7 @@
             this.textBox_mkCu.PasswordChar = '*';
             this.textBox_mkCu.Size = new System.Drawing.Size(229, 26);
             this.textBox_mkCu.TabIndex = 0;
+            this.textBox_mkCu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_mkCu_KeyDown);
             // 
             // label4
             // 

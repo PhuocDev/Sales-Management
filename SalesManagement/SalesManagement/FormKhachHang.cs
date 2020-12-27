@@ -312,7 +312,7 @@ namespace SalesManagement
                         }
                         workbook.SaveAs(sfd.FileName);
                         app.Quit();
-                        MessageBox.Show("Xuất file excel thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Xuất file thành công", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {
@@ -329,6 +329,22 @@ namespace SalesManagement
                 MessageBox.Show("Giới tính không hợp lệ", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 comboBox_gioiTinh.Text = "";
                 this.ActiveControl = comboBox_gioiTinh;
+            }
+        }
+
+        private void txbSDT_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsNumber(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txbDiem_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsNumber(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
     }
