@@ -91,7 +91,7 @@ namespace SalesManagement
             txbMaNV.Text = dataGridView1.Rows[index].Cells[1].Value.ToString();
             txbHoTen.Text = dataGridView1.Rows[index].Cells[2].Value.ToString();
             dateTimePicker1.Text = dataGridView1.Rows[index].Cells[3].Value.ToString();
-            txbGioiTinh.Text = dataGridView1.Rows[index].Cells[4].Value.ToString();
+            comboBox_gioiTinh.Text = dataGridView1.Rows[index].Cells[4].Value.ToString();
             txbSDT.Text = dataGridView1.Rows[index].Cells[5].Value.ToString();
             txbDiaChi.Text = dataGridView1.Rows[index].Cells[6].Value.ToString();
         }
@@ -102,7 +102,7 @@ namespace SalesManagement
         {
             if (Login.Current_user.ID.Substring(0, 2) == "QL")
             {
-                if(txbHoTen.Text == "" || txbGioiTinh.Text == "" || txbSDT.Text == "" || txbDiaChi.Text == "")
+                if(txbHoTen.Text == "" || comboBox_gioiTinh.Text == "" || txbSDT.Text == "" || txbDiaChi.Text == "")
                 {
                     MessageBox.Show("Bạn cần nhập đủ thông tin");
                     return;
@@ -111,7 +111,7 @@ namespace SalesManagement
                 int index = cell.RowIndex;
                 dataGridView1.Rows[index].Cells[2].Value = txbHoTen.Text;
                 dataGridView1.Rows[index].Cells[3].Value = dateTimePicker1.Value.ToString().Substring(0, dateTimePicker1.Value.ToString().IndexOf(" "));
-                dataGridView1.Rows[index].Cells[4].Value = txbGioiTinh.Text;
+                dataGridView1.Rows[index].Cells[4].Value = comboBox_gioiTinh.Text;
                 dataGridView1.Rows[index].Cells[5].Value = txbSDT.Text;
                 dataGridView1.Rows[index].Cells[6].Value = txbDiaChi.Text;
                 id_changes.Add(dataGridView1.Rows[index].Cells[1].Value.ToString());// thêm vào danh sách nhân viên bị thay đổi thông tin
@@ -146,7 +146,7 @@ namespace SalesManagement
                 txbMaNV.Text = "";
                 txbHoTen.Text = "";
                 dateTimePicker1.Text = "";
-                txbGioiTinh.Text = "";
+                comboBox_gioiTinh.Text = "";
                 txbSDT.Text = "";
                 txbDiaChi.Text = "";
             }
@@ -244,7 +244,7 @@ namespace SalesManagement
             txbMaNV.Text = dataGridView1.Rows[index].Cells[1].Value.ToString();
             txbHoTen.Text = dataGridView1.Rows[index].Cells[2].Value.ToString();
             dateTimePicker1.Text = dataGridView1.Rows[index].Cells[3].Value.ToString();
-            txbGioiTinh.Text = dataGridView1.Rows[index].Cells[4].Value.ToString();
+            comboBox_gioiTinh.Text = dataGridView1.Rows[index].Cells[4].Value.ToString();
             txbSDT.Text = dataGridView1.Rows[index].Cells[5].Value.ToString();
             txbDiaChi.Text = dataGridView1.Rows[index].Cells[6].Value.ToString();
             this.ActiveControl = dataGridView1;
@@ -272,7 +272,7 @@ namespace SalesManagement
         {
             if (dataGridView1.Rows.Count == 0)
             {
-                MessageBox.Show("Không có dữ liệu để xuất file");
+                MessageBox.Show("Bảng dữ liệu trống");
                 return;
             }
             SaveFileDialog sfd = new SaveFileDialog();
@@ -320,13 +320,23 @@ namespace SalesManagement
                         }
                         workbook.SaveAs(sfd.FileName);
                         app.Quit();
-                        MessageBox.Show("Xuất file excel thành công");
+                        MessageBox.Show("Xuất file excel thành công", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Error: " + ex.Message);
+                        MessageBox.Show("Error: " + ex.Message , "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+            }
+        }
+
+        private void comboBox_gioiTinh_Leave(object sender, EventArgs e)
+        {
+            if (comboBox_gioiTinh.Text != "Nam" && comboBox_gioiTinh.Text != "Nữ")
+            {
+                MessageBox.Show("Giới tính không hợp lệ", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                comboBox_gioiTinh.Text = "";
+                this.ActiveControl = comboBox_gioiTinh;
             }
         }
     }

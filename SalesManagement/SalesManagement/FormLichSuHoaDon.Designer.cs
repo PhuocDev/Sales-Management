@@ -42,15 +42,17 @@
             this.button_menu = new System.Windows.Forms.Button();
             this.button_back = new System.Windows.Forms.Button();
             this.dgvLichSuHD = new System.Windows.Forms.DataGridView();
-            this.dtpFromDate = new System.Windows.Forms.DateTimePicker();
-            this.dtpToDate = new System.Windows.Forms.DateTimePicker();
-            this.btnTimKiem = new System.Windows.Forms.Button();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtpFromDate = new System.Windows.Forms.DateTimePicker();
+            this.dtpToDate = new System.Windows.Forms.DateTimePicker();
+            this.btnTimKiem = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCTHD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLichSuHD)).BeginInit();
             this.SuspendLayout();
@@ -59,7 +61,7 @@
             // 
             this.dgvCTHD.AllowUserToResizeColumns = false;
             this.dgvCTHD.AllowUserToResizeRows = false;
-            this.dgvCTHD.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.dgvCTHD.BackgroundColor = System.Drawing.Color.White;
             this.dgvCTHD.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCTHD.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColSTT,
@@ -69,14 +71,14 @@
             this.ColDVT,
             this.ColDonGia,
             this.ColThanhTien});
-            this.dgvCTHD.Location = new System.Drawing.Point(46, 388);
-            this.dgvCTHD.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dgvCTHD.Location = new System.Drawing.Point(34, 326);
+            this.dgvCTHD.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvCTHD.Name = "dgvCTHD";
             this.dgvCTHD.ReadOnly = true;
             this.dgvCTHD.RowHeadersVisible = false;
             this.dgvCTHD.RowHeadersWidth = 51;
             this.dgvCTHD.RowTemplate.Height = 24;
-            this.dgvCTHD.Size = new System.Drawing.Size(1246, 293);
+            this.dgvCTHD.Size = new System.Drawing.Size(934, 238);
             this.dgvCTHD.TabIndex = 32;
             this.dgvCTHD.TabStop = false;
             // 
@@ -156,25 +158,28 @@
             // 
             // button_menu
             // 
-            this.button_menu.BackgroundImage = global::SalesManagement.Properties.Resources.home;
+            this.button_menu.BackColor = System.Drawing.Color.Transparent;
+            this.button_menu.BackgroundImage = global::SalesManagement.Properties.Resources.home2;
             this.button_menu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button_menu.Location = new System.Drawing.Point(-1, -1);
-            this.button_menu.Margin = new System.Windows.Forms.Padding(4);
+            this.button_menu.FlatAppearance.BorderSize = 0;
+            this.button_menu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_menu.Location = new System.Drawing.Point(1, 1);
             this.button_menu.Name = "button_menu";
-            this.button_menu.Size = new System.Drawing.Size(61, 52);
+            this.button_menu.Size = new System.Drawing.Size(42, 40);
             this.button_menu.TabIndex = 51;
             this.button_menu.TabStop = false;
-            this.button_menu.UseVisualStyleBackColor = true;
+            this.button_menu.UseVisualStyleBackColor = false;
             this.button_menu.Click += new System.EventHandler(this.button_menu_Click);
             // 
             // button_back
             // 
-            this.button_back.BackgroundImage = global::SalesManagement.Properties.Resources.back1;
+            this.button_back.BackgroundImage = global::SalesManagement.Properties.Resources.output_onlinepngtools;
             this.button_back.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button_back.Location = new System.Drawing.Point(59, -1);
-            this.button_back.Margin = new System.Windows.Forms.Padding(4);
+            this.button_back.FlatAppearance.BorderSize = 0;
+            this.button_back.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_back.Location = new System.Drawing.Point(45, 2);
             this.button_back.Name = "button_back";
-            this.button_back.Size = new System.Drawing.Size(63, 52);
+            this.button_back.Size = new System.Drawing.Size(42, 40);
             this.button_back.TabIndex = 52;
             this.button_back.TabStop = false;
             this.button_back.UseVisualStyleBackColor = true;
@@ -184,7 +189,7 @@
             // 
             this.dgvLichSuHD.AllowUserToResizeColumns = false;
             this.dgvLichSuHD.AllowUserToResizeRows = false;
-            this.dgvLichSuHD.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.dgvLichSuHD.BackgroundColor = System.Drawing.Color.White;
             this.dgvLichSuHD.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvLichSuHD.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -193,49 +198,18 @@
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5});
-            this.dgvLichSuHD.Location = new System.Drawing.Point(46, 123);
-            this.dgvLichSuHD.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dgvLichSuHD.Location = new System.Drawing.Point(34, 100);
+            this.dgvLichSuHD.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dgvLichSuHD.Name = "dgvLichSuHD";
             this.dgvLichSuHD.ReadOnly = true;
             this.dgvLichSuHD.RowHeadersVisible = false;
             this.dgvLichSuHD.RowHeadersWidth = 51;
             this.dgvLichSuHD.RowTemplate.Height = 24;
-            this.dgvLichSuHD.Size = new System.Drawing.Size(1246, 222);
+            this.dgvLichSuHD.Size = new System.Drawing.Size(934, 180);
             this.dgvLichSuHD.TabIndex = 53;
             this.dgvLichSuHD.TabStop = false;
             this.dgvLichSuHD.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLichSuHD_CellClick);
             this.dgvLichSuHD.Sorted += new System.EventHandler(this.dgvLichSuHD_Sorted);
-            // 
-            // dtpFromDate
-            // 
-            this.dtpFromDate.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpFromDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpFromDate.Location = new System.Drawing.Point(156, 56);
-            this.dtpFromDate.Name = "dtpFromDate";
-            this.dtpFromDate.Size = new System.Drawing.Size(277, 27);
-            this.dtpFromDate.TabIndex = 54;
-            // 
-            // dtpToDate
-            // 
-            this.dtpToDate.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpToDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpToDate.Location = new System.Drawing.Point(907, 57);
-            this.dtpToDate.Name = "dtpToDate";
-            this.dtpToDate.Size = new System.Drawing.Size(277, 27);
-            this.dtpToDate.TabIndex = 57;
-            // 
-            // btnTimKiem
-            // 
-            this.btnTimKiem.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnTimKiem.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTimKiem.Location = new System.Drawing.Point(593, 44);
-            this.btnTimKiem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnTimKiem.Name = "btnTimKiem";
-            this.btnTimKiem.Size = new System.Drawing.Size(155, 55);
-            this.btnTimKiem.TabIndex = 58;
-            this.btnTimKiem.Text = "Tìm kiếm";
-            this.btnTimKiem.UseVisualStyleBackColor = false;
-            this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -294,12 +268,66 @@
             this.dataGridViewTextBoxColumn5.ReadOnly = true;
             this.dataGridViewTextBoxColumn5.Width = 150;
             // 
+            // dtpFromDate
+            // 
+            this.dtpFromDate.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFromDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFromDate.Location = new System.Drawing.Point(117, 38);
+            this.dtpFromDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpFromDate.Name = "dtpFromDate";
+            this.dtpFromDate.Size = new System.Drawing.Size(209, 23);
+            this.dtpFromDate.TabIndex = 54;
+            // 
+            // dtpToDate
+            // 
+            this.dtpToDate.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpToDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpToDate.Location = new System.Drawing.Point(680, 38);
+            this.dtpToDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpToDate.Name = "dtpToDate";
+            this.dtpToDate.Size = new System.Drawing.Size(209, 23);
+            this.dtpToDate.TabIndex = 57;
+            // 
+            // btnTimKiem
+            // 
+            this.btnTimKiem.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.btnTimKiem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTimKiem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTimKiem.Location = new System.Drawing.Point(445, 28);
+            this.btnTimKiem.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnTimKiem.Name = "btnTimKiem";
+            this.btnTimKiem.Size = new System.Drawing.Size(116, 45);
+            this.btnTimKiem.TabIndex = 58;
+            this.btnTimKiem.Text = "Tìm kiếm";
+            this.btnTimKiem.UseVisualStyleBackColor = false;
+            this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(16, 301);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(971, 276);
+            this.groupBox1.TabIndex = 59;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Chi Tiết Hóa Đơn";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(15, 78);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(971, 221);
+            this.groupBox2.TabIndex = 60;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Danh Sách Hóa Đơn";
+            // 
             // FormLichSuHoaDon
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::SalesManagement.Properties.Resources.background2;
-            this.ClientSize = new System.Drawing.Size(1341, 721);
+            this.BackColor = System.Drawing.Color.AliceBlue;
+            this.ClientSize = new System.Drawing.Size(1006, 586);
             this.Controls.Add(this.btnTimKiem);
             this.Controls.Add(this.dtpToDate);
             this.Controls.Add(this.dtpFromDate);
@@ -307,9 +335,12 @@
             this.Controls.Add(this.button_menu);
             this.Controls.Add(this.button_back);
             this.Controls.Add(this.dgvCTHD);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBox2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormLichSuHoaDon";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormLichSuHoaDon";
+            this.Text = "Lịch Sử Hóa Đơn";
             ((System.ComponentModel.ISupportInitialize)(this.dgvCTHD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLichSuHD)).EndInit();
             this.ResumeLayout(false);
@@ -338,5 +369,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }
