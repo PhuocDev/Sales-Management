@@ -67,6 +67,15 @@ namespace SalesManagement
             dataGridView_danhSachSanPham.Rows.Add(dataGridView_danhSachSanPham.Rows.Count + 1, textBox_masp.Text, 
                 textBox_tensp.Text, textBox_sluong.Text, textBox_dvt.Text, textBox_giaNhap.Text, textBox_giaBan.Text, 
                 dateTimePicker1_hsd.Value.ToString().Substring(0, dateTimePicker1_hsd.Value.ToString().IndexOf(" ")), textBox_nhacc.Text, textBox_ghiChu.Text);
+
+            textBox_masp.Text = "";
+            textBox_tensp.Text = "";
+            textBox_sluong.Text = "";
+            textBox_dvt.Text = "";
+            textBox_giaNhap.Text = "";
+            textBox_giaBan.Text = "";
+            textBox_nhacc.Text = "";
+            textBox_ghiChu.Text = "";
         }
         //--------------------------------------------------------------------chỉnh_sửa----------------------------------------------------------------------//
         private void button_chinhSua_Click(object sender, EventArgs e)
@@ -103,6 +112,7 @@ namespace SalesManagement
                 if (cell == null) return;
                 int index = cell.RowIndex;
                 dataGridView_danhSachSanPham.Rows.RemoveAt(index);
+                if (index == 0) return;
                 for(int i = dataGridView_danhSachSanPham.CurrentCell.RowIndex; i< dataGridView_danhSachSanPham.Rows.Count; i++)
                 {
                     DataGridViewRow row = dataGridView_danhSachSanPham.Rows[i];
@@ -190,7 +200,8 @@ namespace SalesManagement
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show("Erro: " + ex.ToString(), "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
             finally
             {
@@ -226,8 +237,8 @@ namespace SalesManagement
                         command.Parameters.AddWithValue("@dvt", SqlDbType.NVarChar).Value = dataGridView_danhSachSanPham.Rows[i].Cells[4].Value.ToString();
                         //command.Parameters.AddWithValue("@giaNhap", SqlDbType.NVarChar).Value = Convert.ToInt32(dataGridView_danhSachSanPham.Rows[i].Cells[5].Value);
                         //command.Parameters.AddWithValue("@giaBanLe", SqlDbType.NVarChar).Value = Convert.ToInt32(dataGridView_danhSachSanPham.Rows[i].Cells[6].Value);
-                        command.Parameters.AddWithValue("@giaNhap", SqlDbType.NVarChar).Value = int.Parse(dataGridView_danhSachSanPham.Rows[i].Cells[5].Value.ToString(), NumberStyles.Currency).ToString();
-                        command.Parameters.AddWithValue("@giaBanLe", SqlDbType.NVarChar).Value = int.Parse(dataGridView_danhSachSanPham.Rows[i].Cells[6].Value.ToString(), NumberStyles.Currency).ToString();
+                        command.Parameters.AddWithValue("@giaNhap", SqlDbType.NVarChar).Value = int.Parse(dataGridView_danhSachSanPham.Rows[i].Cells[5].Value.ToString(), NumberStyles.Currency);
+                        command.Parameters.AddWithValue("@giaBanLe", SqlDbType.NVarChar).Value = int.Parse(dataGridView_danhSachSanPham.Rows[i].Cells[6].Value.ToString(), NumberStyles.Currency);
                         //int.Parse(textBox_giaBanLe.Text, NumberStyles.Currency).ToString()
 
                         command.Parameters.AddWithValue("@hsd", SqlDbType.NVarChar).Value = dataGridView_danhSachSanPham.Rows[i].Cells[7].Value.ToString();
@@ -241,10 +252,11 @@ namespace SalesManagement
                         }
                     } 
                 }
+                MessageBox.Show("Đã Lưu");
             }
             catch (Exception ex)
             {
-               MessageBox.Show("kết nối xảy ra lỗi hoặc ghi dữ liệu bị lỗi");
+               MessageBox.Show("Erro:" + ex.ToString(), "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -255,23 +267,25 @@ namespace SalesManagement
         List<string> update_list = new List<string>();
         private bool Check_MaSP(string masp)
         {
-            connection.Open();
-            string sqlQuery = "select MASP from SANPHAM";
-            SqlCommand command = new SqlCommand(sqlQuery, connection);
-            SqlDataReader dataReader = command.ExecuteReader();
-            while (dataReader.HasRows)
-            {
-                if (dataReader.Read() == false) break;
-                if (dataReader.GetString(0) == masp)
+            
+                connection.Open();
+                string sqlQuery = "select MASP from SANPHAM";
+                SqlCommand command = new SqlCommand(sqlQuery, connection);
+                SqlDataReader dataReader = command.ExecuteReader();
+                while (dataReader.HasRows)
                 {
-                    connection.Close();
-                    return true;
+                    if (dataReader.Read() == false) break;
+                    if (dataReader.GetString(0) == masp)
+                    {
+                        connection.Close();
+                        return true;
+                    }
                 }
-            }
             connection.Close();
             return false;
         }
 
+        //------------------------------------------------------------------------------------------------------------------------------------------//
         private void button_xuatFile_Click(object sender, EventArgs e)
         {
             if (dataGridView_danhSachSanPham.Rows.Count == 0)
@@ -334,7 +348,7 @@ namespace SalesManagement
                 }
             }
         }
-
+        //--------------------------------------------------------------------------------------------------------------------------------------------//
         private void textBox_giaNhap_TextChanged(object sender, EventArgs e)
         {
             try
@@ -349,10 +363,10 @@ namespace SalesManagement
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Error: " + ex.Message,"", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        //------------------------------------------------------------------------------------------------------------------------------------------//
         private void textBox_giaBan_TextChanged(object sender, EventArgs e)
         {
             try
@@ -367,8 +381,13 @@ namespace SalesManagement
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Error: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void button_taoMoi_Click(object sender, EventArgs e)//////////////////////////////////////////////////////////////
+        {
+            this.dataGridView_danhSachSanPham.Rows.Clear();
         }
     }
 }

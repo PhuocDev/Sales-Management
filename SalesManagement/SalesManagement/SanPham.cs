@@ -151,6 +151,11 @@ namespace SalesManagement
                         sqlQuery = string.Format("SELECT * FROM SANPHAM WHERE dbo.fuConvertToUnsign1(TEN) LIKE N'%' + dbo.fuConvertToUnsign1(N'{0}') + '%' AND MASP LIKE '%{1}%' AND GIABANLE > 10000000", name, masp);
                         break;
                     }
+                case "Hết HSD":
+                    {
+                        sqlQuery = string.Format("SELECT * FROM SANPHAM WHERE dbo.fuConvertToUnsign1(TEN) LIKE N'%' + dbo.fuConvertToUnsign1(N'{0}') + '%' AND MASP LIKE '%{1}%' AND HSD < GETDATE()", name, masp);
+                        break;
+                    }
                 default:
                     {
                         sqlQuery = string.Format("SELECT * FROM SANPHAM WHERE dbo.fuConvertToUnsign1(TEN) LIKE N'%' + dbo.fuConvertToUnsign1(N'{0}') + '%' AND MASP LIKE '%{1}%'", name, masp);
@@ -182,7 +187,7 @@ namespace SalesManagement
             }
             else
             {
-                MessageBox.Show("Tài khoản không được cấp quyền xóa nhân viên");
+                MessageBox.Show("Tài khoản không được cấp quyền xóa");
             }
         }
 
@@ -314,6 +319,14 @@ namespace SalesManagement
                         MessageBox.Show("Error: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+            }
+        }
+        //-----------------------------------------------------------------------------------------------------------------------------------//
+        private void sanPham_Load(object sender, EventArgs e)
+        {
+            if(Login.Current_user.ToString().Substring(0,2) != "QL")
+            {
+                this.button_nhapHang.Visible = false;
             }
         }
     }
