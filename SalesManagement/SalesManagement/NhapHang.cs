@@ -257,7 +257,7 @@ namespace SalesManagement
         {
             if (dataGridView_danhSachSanPham.Rows.Count == 0)
             {
-                MessageBox.Show("Không có dữ liệu để xuất file");
+                MessageBox.Show("Bảng dữ liệu trống", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             SaveFileDialog sfd = new SaveFileDialog();
@@ -310,7 +310,7 @@ namespace SalesManagement
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Error: " + ex.Message);
+                        MessageBox.Show("Error: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }

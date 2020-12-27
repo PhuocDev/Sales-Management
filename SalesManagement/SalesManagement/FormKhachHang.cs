@@ -78,7 +78,7 @@ namespace SalesManagement
             txbMaKH.Text = dataGridView1.Rows[index].Cells[1].Value.ToString();
             txbHoTen.Text = dataGridView1.Rows[index].Cells[2].Value.ToString();
             dateTimePicker1.Text = dataGridView1.Rows[index].Cells[3].Value.ToString();
-            txbGioiTinh.Text = dataGridView1.Rows[index].Cells[4].Value.ToString();
+            comboBox_gioiTinh.Text = dataGridView1.Rows[index].Cells[4].Value.ToString();
             txbSDT.Text = dataGridView1.Rows[index].Cells[5].Value.ToString();
             txbDiaChi.Text = dataGridView1.Rows[index].Cells[6].Value.ToString();
             txbDiem.Text = dataGridView1.Rows[index].Cells[7].Value.ToString();
@@ -93,10 +93,10 @@ namespace SalesManagement
             int index = cell.RowIndex;
             dataGridView1.Rows[index].Cells[2].Value = txbHoTen.Text;
             dataGridView1.Rows[index].Cells[3].Value = dateTimePicker1.Value.ToString().Substring(0, dateTimePicker1.Value.ToString().IndexOf(" "));
-            dataGridView1.Rows[index].Cells[4].Value = txbGioiTinh.Text;
+            dataGridView1.Rows[index].Cells[4].Value = comboBox_gioiTinh.Text;
             dataGridView1.Rows[index].Cells[5].Value = txbSDT.Text;
             dataGridView1.Rows[index].Cells[6].Value = txbDiaChi.Text;
-            dataGridView1.Rows[index].Cells[6].Value = txbDiem.Text;
+            dataGridView1.Rows[index].Cells[7].Value = txbDiem.Text;
             id_changes.Add(dataGridView1.Rows[index].Cells[1].Value.ToString());// thêm vào danh sách khách hàng bị thay đổi thông tin
         }
 
@@ -122,7 +122,7 @@ namespace SalesManagement
             txbMaKH.Text = "";
             txbHoTen.Text = "";
             dateTimePicker1.Text = "";
-            txbGioiTinh.Text = "";
+            comboBox_gioiTinh.Text = "";
             txbSDT.Text = "";
             txbDiaChi.Text = "";
             txbDiem.Text = "";
@@ -201,7 +201,7 @@ namespace SalesManagement
             }
             catch (Exception ex)
             {
-                MessageBox.Show("kết nối xảy ra lỗi hoặc ghi dữ liệu bị lỗi");
+                MessageBox.Show("kết nối xảy ra lỗi hoặc ghi dữ liệu bị lỗi", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -222,7 +222,7 @@ namespace SalesManagement
             txbMaKH.Text = dataGridView1.Rows[index].Cells[1].Value.ToString();
             txbHoTen.Text = dataGridView1.Rows[index].Cells[2].Value.ToString();
             dateTimePicker1.Text = dataGridView1.Rows[index].Cells[3].Value.ToString();
-            txbGioiTinh.Text = dataGridView1.Rows[index].Cells[4].Value.ToString();
+            comboBox_gioiTinh.Text = dataGridView1.Rows[index].Cells[4].Value.ToString();
             txbSDT.Text = dataGridView1.Rows[index].Cells[5].Value.ToString();
             txbDiaChi.Text = dataGridView1.Rows[index].Cells[6].Value.ToString();
             txbDiem.Text = dataGridView1.Rows[index].Cells[7].Value.ToString();
@@ -259,11 +259,12 @@ namespace SalesManagement
             this.dataGridView1.Rows.Add(this.dataGridView1.Rows.Count + 1, makh, ten, ngaysinh, gioitinh, sdt, diachi, Convert.ToInt32(diem));
         }
 
+        //---------------------------------------------------------------xuất_file---------------------------------------------------------------//
         private void btnXuatFile_Click(object sender, EventArgs e)
         {
             if (dataGridView1.Rows.Count == 0)
             {
-                MessageBox.Show("Không có dữ liệu để xuất file");
+                MessageBox.Show("Bảng dữ liệu trống", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             SaveFileDialog sfd = new SaveFileDialog();
@@ -311,13 +312,23 @@ namespace SalesManagement
                         }
                         workbook.SaveAs(sfd.FileName);
                         app.Quit();
-                        MessageBox.Show("Xuất file excel thành công");
+                        MessageBox.Show("Xuất file excel thành công", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Error: " + ex.Message);
+                        MessageBox.Show("Error: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+            }
+        }
+        //-------------------------------------------------------------------------------------------------------------------------------------//
+        private void comboBox_gioiTinh_Leave(object sender, EventArgs e)
+        {
+            if (comboBox_gioiTinh.Text != "Nam" && comboBox_gioiTinh.Text != "Nữ")
+            {
+                MessageBox.Show("Giới tính không hợp lệ", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                comboBox_gioiTinh.Text = "";
+                this.ActiveControl = comboBox_gioiTinh;
             }
         }
     }

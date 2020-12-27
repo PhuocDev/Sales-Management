@@ -32,11 +32,14 @@ namespace SalesManagement
             txbMaNV.Text = nguoiDung[0].manv;
             txbHoTen.Text = nguoiDung[0].ten;
             dateTimePicker1.Text = nguoiDung[0].ngaysinh;
-            txbGioiTinh.Text = nguoiDung[0].gioitinh;
+            comboBox_gioiTinh.Text = nguoiDung[0].gioitinh;
             txbSDT.Text = nguoiDung[0].sdt;
             txbDiaChi.Text = nguoiDung[0].diachi;
             button1.Focus();
         }
+
+        //-------------------------------------------------------------------------------------------------------------------------------------------//
+
         private void UpdateNhanVien()
         {
             connection.Open();
@@ -66,29 +69,53 @@ namespace SalesManagement
             }
             connection.Close();
         }
+        //--------------------------------------------------------------------------------------------------------------------------------------------//
         private void FormNhanVien_Load(object sender, EventArgs e)
         {
             UpdateNhanVien();
             txbMaNV.Text = nguoiDung[0].manv;
             txbHoTen.Text = nguoiDung[0].ten;
             dateTimePicker1.Text = nguoiDung[0].ngaysinh;
-            txbGioiTinh.Text = nguoiDung[0].gioitinh;
+            comboBox_gioiTinh.Text = nguoiDung[0].gioitinh;
             txbSDT.Text = nguoiDung[0].sdt;
             txbDiaChi.Text = nguoiDung[0].diachi;
             
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        //------------------------------------------------------------------------------------------------------------------------------------------//
+
+        private void button_DoiMK_Click(object sender, EventArgs e)
         {
             DoiMK doimk = new DoiMK();
             doimk.ShowDialog();
         }
+ 
+        //------------------------------------------------------------------------------------------------------------------------------------------//
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void thongTinCaNhan_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.Control == true && e.KeyCode == Keys.S))
+            {
+                button_save.PerformClick();
+
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                button1.PerformClick();
+            }
+        }
+
+        //--------------------------------------------------------------------------------------------------------------------------------------------------//
+
         private bool changed()
         {
-            if (txbMaNV.Text != nguoiDung[0].manv ||
-            txbHoTen.Text != nguoiDung[0].ten ||
+            if (txbHoTen.Text != nguoiDung[0].ten ||
             dateTimePicker1.Text != nguoiDung[0].ngaysinh ||
-            txbGioiTinh.Text != nguoiDung[0].gioitinh ||
+            comboBox_gioiTinh.Text != nguoiDung[0].gioitinh ||
             txbSDT.Text != nguoiDung[0].sdt ||
             txbDiaChi.Text != nguoiDung[0].diachi)
             {
@@ -96,10 +123,16 @@ namespace SalesManagement
             }
             else return false;
         }
-        private void button2_Click(object sender, EventArgs e)
+
+        private void button_save_Click(object sender, EventArgs e)
         {
             if (changed())
             {
+                if (txbHoTen.Text == "" || comboBox_gioiTinh.Text == "" || txbSDT.Text == "" || txbDiaChi.Text == "")
+                {
+                    MessageBox.Show("Bạn cần nhập đủ thông tin");
+                    return;
+                }
                 try
                 {
                     connection.Open();
@@ -107,7 +140,7 @@ namespace SalesManagement
                     SqlCommand command = new SqlCommand(sqlQuery, connection);
                     command.Parameters.AddWithValue("@ten", txbHoTen.Text);
                     command.Parameters.AddWithValue("@ngaysinh", dateTimePicker1.Value.ToString());
-                    command.Parameters.AddWithValue("@gioitinh", txbGioiTinh.Text);
+                    command.Parameters.AddWithValue("@gioitinh", comboBox_gioiTinh.Text);
                     command.Parameters.AddWithValue("@sdt", txbSDT.Text);
                     command.Parameters.AddWithValue("@diachi", txbDiaChi.Text);
                     command.Parameters.AddWithValue("@manv", txbMaNV.Text);
@@ -118,7 +151,6 @@ namespace SalesManagement
                         throw new Exception("Failed Query");
                     }
                     MessageBox.Show("Đã lưu!", "Thông báo");
-                    this.Close();
                 }
                 catch (Exception ex)
                 {
@@ -132,25 +164,24 @@ namespace SalesManagement
             else
             {
                 MessageBox.Show("Không có gì thay đổi", "Thông báo");
-                this.Close();
+            }
+        }
+        //-----------------------------------------------------------------------------------------------------------------------------------------//
+        private void txbSDT_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsNumber(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void comboBox_gioiTinh_Leave(object sender, EventArgs e)
         {
-            this.Close();
-        }
-
-        private void thongTinCaNhan_KeyDown(object sender, KeyEventArgs e)
-        {
-            if ((e.Control == true && e.KeyCode == Keys.S))
+            if(comboBox_gioiTinh.Text != "Nam" && comboBox_gioiTinh.Text != "Nữ")
             {
-                button2.PerformClick();
-
-            }
-            else if (e.KeyCode == Keys.Escape)
-            {
-                button1.PerformClick();
+                MessageBox.Show("Giới tính không hợp lệ", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                comboBox_gioiTinh.Text = "";
+                this.ActiveControl = comboBox_gioiTinh;
             }
         }
     }
