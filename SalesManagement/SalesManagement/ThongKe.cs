@@ -8,12 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using iTextSharp.text;
-using itextsharp.pdfa;
 using System.IO;
-
-using iTextSharp.text.html.simpleparser;
-using iTextSharp.text.pdf;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Web;
 namespace SalesManagement
@@ -304,43 +299,43 @@ namespace SalesManagement
             }
         }
         
+        private void screenPanel()
+        {
+            using (var bmp  = new Bitmap(panel1.Width, panel1.Height))
+            {
+                String fileName = Login.Current_user.ID + Path.GetRandomFileName().Substring(0,5) + "Chart";
+                panel1.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
+                bmp.Save(@"Charts/" + fileName +".bmp");
+                MessageBox.Show("Đã lưu!", "Thông báo");
+            }
+        }
         private void button1_Click(object sender, EventArgs e)
         {
+            screenPanel();
+        }
 
-            // button in ra màn hình
-            Document Doc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
-            
-            PdfWriter.GetInstance(Doc, HttpContext.Current.Response.OutputStream);
-            string status = "";
-            try
-            {
-                Doc.Open();
-                using (MemoryStream memoryStream = new MemoryStream())
-                {
-                    var chartImage = new MemoryStream();
-                    chart1.SaveImage(chartImage, ChartImageFormat.Png);
-                    iTextSharp.text.Image chart_image = iTextSharp.text.Image.GetInstance(chartImage.GetBuffer());
-                    chart_image.ScalePercent(200f);
-                    Doc.Add(chart_image);
-                    Doc.Close();
-                    String fileName = DateTime.Now.ToString() + "Report.pdf";
-                    HttpContext.Current.Response.ContentType = "application/pdf";
-                    HttpContext.Current.Response.AddHeader("content-disposition", "attachment;filename= " + fileName);
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
 
-                    HttpContext.Current.Response.Cache.SetCacheability(HttpCacheability.NoCache);
-                    HttpContext.Current.Response.WriteFile(@"D://");  // file path
-                    HttpContext.Current.Response.Write(Doc);
-                    HttpContext.Current.Response.End();
-                }
-            }
-            catch (DocumentException de)
+        }
+
+        private void chart1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox_tKTheoNam_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_thongKe_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
             {
-                System.Web.HttpContext.Current.Response.Write(de.Message);
+                button_thongKe.PerformClick();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi!");
-            }
+           
         }
     }
     public class month
