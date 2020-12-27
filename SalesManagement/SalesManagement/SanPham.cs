@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Office.Interop.Excel;
@@ -20,24 +22,43 @@ namespace SalesManagement
         public sanPham()
         {
             InitializeComponent();
+            SetCulture();
             ImportSanPham();
         }
         private void ImportSanPham()
         {
-            connection.Open();
-            string sqlQuery = "select * from SANPHAM";
-            SqlCommand command = new SqlCommand(sqlQuery, connection);
-            SqlDataReader dataReader = command.ExecuteReader();
-            int stt = 1;
-            while (dataReader.HasRows)
+            try
             {
-                if (dataReader.Read() == false) break;
-                dataGridView_danhSachSanPham.Rows.Add(stt, dataReader.GetString(0), 
-                    dataReader.GetString(1),dataReader.GetInt32(2), dataReader.GetString(3), dataReader.GetInt32(5),
-                    dataReader.GetDateTime(6).ToString().Substring(0, dataReader.GetDateTime(6).ToString().IndexOf(" ")), dataReader.GetString(7));
-                stt++;
+                connection.Open();
+                string sqlQuery = "select * from SANPHAM";
+                SqlCommand command = new SqlCommand(sqlQuery, connection);
+                SqlDataReader dataReader = command.ExecuteReader();
+                int stt = 1;
+                while (dataReader.HasRows)
+                {
+                    if (dataReader.Read() == false) break;
+                    dataGridView_danhSachSanPham.Rows.Add(stt, dataReader.GetString(0),
+                        dataReader.GetString(1), dataReader.GetInt32(2), dataReader.GetString(3), dataReader.GetInt32(5),
+                        dataReader.GetDateTime(6).ToString().Substring(0, dataReader.GetDateTime(6).ToString().IndexOf(" ")), dataReader.GetString(7));
+                    stt++;
+                }
+                connection.Close();
             }
-            connection.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+        private void SetCulture()
+        {
+            NumberFormatInfo nfi = new CultureInfo("vn-VN", false).NumberFormat;
+            nfi.CurrencyPositivePattern = 3;
+            nfi.CurrencyNegativePattern = 3;
+            nfi.NumberDecimalSeparator = ".";
+            nfi.NumberGroupSeparator = ",";
+            CultureInfo cultureInfo = new CultureInfo("vn-VN", false);
+            cultureInfo.NumberFormat = nfi;
+            Thread.CurrentThread.CurrentCulture = cultureInfo;
         }
 
         //-----------------------------------------------------------chuyển_form--------------------------------------------------------------------//
@@ -57,6 +78,7 @@ namespace SalesManagement
         private void NhapHang_FormClose(object sender, FormClosedEventArgs e)
         {
             this.Show();
+            button_fullsp.PerformClick();
         }
         private void change(){// được gọi khi click button menu của form Nhập hàng
             this.Close();

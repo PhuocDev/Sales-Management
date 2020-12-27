@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,6 +17,7 @@ namespace SalesManagement
     public partial class NhapHang : Form
     {
         public changeform change;
+        CultureInfo cultureInfo;
         public NhapHang()
         {
             InitializeComponent();
@@ -22,9 +25,21 @@ namespace SalesManagement
         public NhapHang(changeform change)
         {
             InitializeComponent();
+            SetCulture();
             this.change = change;
         }
         SqlConnection connection = new SqlConnection(global.conString);
+        private void SetCulture()
+        {
+            NumberFormatInfo nfi = new CultureInfo("vn-VN", false).NumberFormat;
+            nfi.CurrencyPositivePattern = 3;
+            nfi.CurrencyNegativePattern = 3;
+            nfi.NumberDecimalSeparator = ".";
+            nfi.NumberGroupSeparator = ",";
+            cultureInfo = new CultureInfo("vn-VN", false);
+            cultureInfo.NumberFormat = nfi;
+            Thread.CurrentThread.CurrentCulture = cultureInfo;
+        }
 
         //-------------------------------------------------------------thêm----------------------------------------------------------------------------//
 
@@ -209,8 +224,12 @@ namespace SalesManagement
                         command.Parameters.Add("@ten", SqlDbType.NVarChar).Value = dataGridView_danhSachSanPham.Rows[i].Cells[2].Value.ToString();
                         command.Parameters.AddWithValue("@sl", SqlDbType.NVarChar).Value = Convert.ToInt32(dataGridView_danhSachSanPham.Rows[i].Cells[3].Value);
                         command.Parameters.AddWithValue("@dvt", SqlDbType.NVarChar).Value = dataGridView_danhSachSanPham.Rows[i].Cells[4].Value.ToString();
-                        command.Parameters.AddWithValue("@giaNhap", SqlDbType.NVarChar).Value = Convert.ToInt32(dataGridView_danhSachSanPham.Rows[i].Cells[5].Value);
-                        command.Parameters.AddWithValue("@giaBanLe", SqlDbType.NVarChar).Value = Convert.ToInt32(dataGridView_danhSachSanPham.Rows[i].Cells[6].Value);
+                        //command.Parameters.AddWithValue("@giaNhap", SqlDbType.NVarChar).Value = Convert.ToInt32(dataGridView_danhSachSanPham.Rows[i].Cells[5].Value);
+                        //command.Parameters.AddWithValue("@giaBanLe", SqlDbType.NVarChar).Value = Convert.ToInt32(dataGridView_danhSachSanPham.Rows[i].Cells[6].Value);
+                        command.Parameters.AddWithValue("@giaNhap", SqlDbType.NVarChar).Value = int.Parse(dataGridView_danhSachSanPham.Rows[i].Cells[5].Value.ToString(), NumberStyles.Currency).ToString();
+                        command.Parameters.AddWithValue("@giaBanLe", SqlDbType.NVarChar).Value = int.Parse(dataGridView_danhSachSanPham.Rows[i].Cells[6].Value.ToString(), NumberStyles.Currency).ToString();
+                        //int.Parse(textBox_giaBanLe.Text, NumberStyles.Currency).ToString()
+
                         command.Parameters.AddWithValue("@hsd", SqlDbType.NVarChar).Value = dataGridView_danhSachSanPham.Rows[i].Cells[7].Value.ToString();
                         command.Parameters.AddWithValue("@nhacc", SqlDbType.NVarChar).Value = dataGridView_danhSachSanPham.Rows[i].Cells[8].Value.ToString();
                         command.Parameters.AddWithValue("@ghichu", SqlDbType.NVarChar).Value = dataGridView_danhSachSanPham.Rows[i].Cells[9].Value.ToString();
@@ -313,6 +332,42 @@ namespace SalesManagement
                         MessageBox.Show("Error: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+            }
+        }
+
+        private void textBox_giaNhap_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string stringSoTien = textBox_giaNhap.Text.Replace(".", "").Replace(",", "").Replace("₫", "").Replace(" ", "");
+                if (stringSoTien == "") stringSoTien = "0";
+                int soTien = int.Parse(stringSoTien);
+                textBox_giaNhap.TextChanged -= textBox_giaNhap_TextChanged;
+                textBox_giaNhap.Text = string.Format(cultureInfo, "{0:C0}", soTien);
+                textBox_giaNhap.TextChanged += textBox_giaNhap_TextChanged;
+                textBox_giaNhap.Select(textBox_giaNhap.Text.Length - 2, 0);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void textBox_giaBan_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string stringSoTien = textBox_giaBan.Text.Replace(".", "").Replace(",", "").Replace("₫", "").Replace(" ", "");
+                if (stringSoTien == "") stringSoTien = "0";
+                int soTien = int.Parse(stringSoTien);
+                textBox_giaBan.TextChanged -= textBox_giaBan_TextChanged;
+                textBox_giaBan.Text = string.Format(cultureInfo, "{0:C0}", soTien);
+                textBox_giaBan.TextChanged += textBox_giaBan_TextChanged;
+                textBox_giaBan.Select(textBox_giaBan.Text.Length - 2, 0);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
     }

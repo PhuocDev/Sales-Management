@@ -53,6 +53,7 @@
             this.btnTimKiem = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnXuatFile = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCTHD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLichSuHD)).BeginInit();
             this.SuspendLayout();
@@ -71,14 +72,14 @@
             this.ColDVT,
             this.ColDonGia,
             this.ColThanhTien});
-            this.dgvCTHD.Location = new System.Drawing.Point(34, 326);
-            this.dgvCTHD.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvCTHD.Location = new System.Drawing.Point(45, 401);
+            this.dgvCTHD.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvCTHD.Name = "dgvCTHD";
             this.dgvCTHD.ReadOnly = true;
             this.dgvCTHD.RowHeadersVisible = false;
             this.dgvCTHD.RowHeadersWidth = 51;
             this.dgvCTHD.RowTemplate.Height = 24;
-            this.dgvCTHD.Size = new System.Drawing.Size(934, 238);
+            this.dgvCTHD.Size = new System.Drawing.Size(1245, 293);
             this.dgvCTHD.TabIndex = 32;
             this.dgvCTHD.TabStop = false;
             // 
@@ -164,8 +165,9 @@
             this.button_menu.FlatAppearance.BorderSize = 0;
             this.button_menu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_menu.Location = new System.Drawing.Point(1, 1);
+            this.button_menu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_menu.Name = "button_menu";
-            this.button_menu.Size = new System.Drawing.Size(42, 40);
+            this.button_menu.Size = new System.Drawing.Size(56, 49);
             this.button_menu.TabIndex = 51;
             this.button_menu.TabStop = false;
             this.button_menu.UseVisualStyleBackColor = false;
@@ -177,9 +179,10 @@
             this.button_back.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button_back.FlatAppearance.BorderSize = 0;
             this.button_back.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_back.Location = new System.Drawing.Point(45, 2);
+            this.button_back.Location = new System.Drawing.Point(60, 2);
+            this.button_back.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_back.Name = "button_back";
-            this.button_back.Size = new System.Drawing.Size(42, 40);
+            this.button_back.Size = new System.Drawing.Size(56, 49);
             this.button_back.TabIndex = 52;
             this.button_back.TabStop = false;
             this.button_back.UseVisualStyleBackColor = true;
@@ -198,14 +201,14 @@
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5});
-            this.dgvLichSuHD.Location = new System.Drawing.Point(34, 100);
-            this.dgvLichSuHD.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvLichSuHD.Location = new System.Drawing.Point(45, 123);
+            this.dgvLichSuHD.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvLichSuHD.Name = "dgvLichSuHD";
             this.dgvLichSuHD.ReadOnly = true;
             this.dgvLichSuHD.RowHeadersVisible = false;
             this.dgvLichSuHD.RowHeadersWidth = 51;
             this.dgvLichSuHD.RowTemplate.Height = 24;
-            this.dgvLichSuHD.Size = new System.Drawing.Size(934, 180);
+            this.dgvLichSuHD.Size = new System.Drawing.Size(1245, 222);
             this.dgvLichSuHD.TabIndex = 53;
             this.dgvLichSuHD.TabStop = false;
             this.dgvLichSuHD.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLichSuHD_CellClick);
@@ -272,31 +275,32 @@
             // 
             this.dtpFromDate.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpFromDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpFromDate.Location = new System.Drawing.Point(117, 38);
-            this.dtpFromDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpFromDate.Location = new System.Drawing.Point(218, 47);
+            this.dtpFromDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtpFromDate.Name = "dtpFromDate";
-            this.dtpFromDate.Size = new System.Drawing.Size(209, 23);
+            this.dtpFromDate.Size = new System.Drawing.Size(277, 27);
             this.dtpFromDate.TabIndex = 54;
             // 
             // dtpToDate
             // 
             this.dtpToDate.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpToDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpToDate.Location = new System.Drawing.Point(680, 38);
-            this.dtpToDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtpToDate.Location = new System.Drawing.Point(735, 47);
+            this.dtpToDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtpToDate.Name = "dtpToDate";
-            this.dtpToDate.Size = new System.Drawing.Size(209, 23);
+            this.dtpToDate.Size = new System.Drawing.Size(277, 27);
             this.dtpToDate.TabIndex = 57;
             // 
             // btnTimKiem
             // 
             this.btnTimKiem.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.btnTimKiem.FlatAppearance.BorderSize = 0;
             this.btnTimKiem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTimKiem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTimKiem.Location = new System.Drawing.Point(445, 28);
-            this.btnTimKiem.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnTimKiem.Location = new System.Drawing.Point(548, 33);
+            this.btnTimKiem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTimKiem.Name = "btnTimKiem";
-            this.btnTimKiem.Size = new System.Drawing.Size(116, 45);
+            this.btnTimKiem.Size = new System.Drawing.Size(136, 55);
             this.btnTimKiem.TabIndex = 58;
             this.btnTimKiem.Text = "Tìm kiếm";
             this.btnTimKiem.UseVisualStyleBackColor = false;
@@ -305,9 +309,11 @@
             // groupBox1
             // 
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(16, 301);
+            this.groupBox1.Location = new System.Drawing.Point(21, 370);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(971, 276);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(1295, 340);
             this.groupBox1.TabIndex = 59;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Chi Tiết Hóa Đơn";
@@ -315,19 +321,37 @@
             // groupBox2
             // 
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(15, 78);
+            this.groupBox2.Location = new System.Drawing.Point(20, 96);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(971, 221);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Size = new System.Drawing.Size(1295, 272);
             this.groupBox2.TabIndex = 60;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Danh Sách Hóa Đơn";
             // 
+            // btnXuatFile
+            // 
+            this.btnXuatFile.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.btnXuatFile.FlatAppearance.BorderSize = 0;
+            this.btnXuatFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnXuatFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXuatFile.Location = new System.Drawing.Point(1154, 33);
+            this.btnXuatFile.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnXuatFile.Name = "btnXuatFile";
+            this.btnXuatFile.Size = new System.Drawing.Size(136, 55);
+            this.btnXuatFile.TabIndex = 61;
+            this.btnXuatFile.Text = "Xuất File";
+            this.btnXuatFile.UseVisualStyleBackColor = false;
+            this.btnXuatFile.Click += new System.EventHandler(this.btnXuatFile_Click);
+            // 
             // FormLichSuHoaDon
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
-            this.ClientSize = new System.Drawing.Size(1006, 586);
+            this.ClientSize = new System.Drawing.Size(1341, 721);
+            this.Controls.Add(this.btnXuatFile);
             this.Controls.Add(this.btnTimKiem);
             this.Controls.Add(this.dtpToDate);
             this.Controls.Add(this.dtpFromDate);
@@ -337,7 +361,7 @@
             this.Controls.Add(this.dgvCTHD);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormLichSuHoaDon";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Lịch Sử Hóa Đơn";
@@ -371,5 +395,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button btnXuatFile;
     }
 }
