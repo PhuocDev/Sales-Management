@@ -684,7 +684,77 @@ namespace SalesManagement
         }
         public void XuatPDF()
         {
-            try
+            if (dgvHoaDon.Rows.Count > 0)
+            {
+                try
+                {
+                    iTextSharp.text.Font font = FontFactory.GetFont("Arial", 14.0f, BaseColor.BLACK);
+                    PdfPTable pdfTable = new PdfPTable(dgvHoaDon.Columns.Count);
+                    pdfTable.DefaultCell.Padding = 3;
+                    pdfTable.WidthPercentage = 100;
+                    pdfTable.HorizontalAlignment = Element.ALIGN_CENTER;
+
+                    foreach (DataGridViewColumn column in dgvHoaDon.Columns)
+                    {
+                        PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText, font));
+                        pdfTable.AddCell(cell);
+                    }
+
+                    foreach (DataGridViewRow row in dgvHoaDon.Rows)
+                    {
+                        if (row.Index == dgvHoaDon.Rows.Count - 1) continue;
+                        foreach (DataGridViewCell cell in row.Cells)
+                        {
+                            PdfPCell cellWithFont = new PdfPCell(new Phrase(cell.Value.ToString(), font));
+                            pdfTable.AddCell(cellWithFont);
+                        }
+                    }
+                    string fileName = Path.Combine(@"D:\\SalesManagement\Receipts\", txbMaHD.Text + ".pdf");
+                    if (!Directory.Exists(@"D:\\SalesManagement\Receipts\")) Directory.CreateDirectory(@"D:\\SalesManagement\Receipts\");
+                    using (FileStream stream = new FileStream(fileName, FileMode.Create))
+                    {
+                        Document pdfDoc = new Document(PageSize.A4, 10f, 20f, 20f, 10f);
+                        PdfWriter.GetInstance(pdfDoc, stream);
+                        pdfDoc.Open();
+                        Phrase phrase = new Phrase();
+                        Chunk chunk = new Chunk("Mã hóa đơn: " + txbMaHD.Text, font);
+                        phrase.Add(chunk);
+                        phrase.Add(Environment.NewLine);
+                        chunk = new Chunk("Thời gian: " + txbThoiGian.Text, font);
+                        phrase.Add(chunk);
+                        phrase.Add(Environment.NewLine);
+                        chunk = new Chunk("Nhân viên: " + txbNhanVien.Text, font);
+                        phrase.Add(chunk);
+                        phrase.Add(Environment.NewLine);
+                        chunk = new Chunk("Tổng thanh toán: " + txbTongThanhToan.Text, font);
+                        phrase.Add(chunk);
+                        phrase.Add(Environment.NewLine);
+                        chunk = new Chunk("Tiền khách đưa: " + txbTienKhachDua.Text, font);
+                        phrase.Add(chunk);
+                        phrase.Add(Environment.NewLine);
+                        chunk = new Chunk("Trả lại khách: " + txbTraLaiKhach.Text, font);
+                        phrase.Add(chunk);
+                        phrase.Add(Environment.NewLine);
+                        pdfDoc.Add(phrase);
+                        pdfDoc.Add(pdfTable);
+                        pdfDoc.Close();
+                        stream.Close();
+
+                    }
+
+                    //MessageBox.Show("Data Exported Successfully !!!", "Info");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error :" + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Không có dữ liệu hóa đơn", "Info");
+            }
+
+            /*try
             {
                 ReportViewer viewer = new ReportViewer();
                 viewer.ProcessingMode = ProcessingMode.Local;
@@ -703,7 +773,7 @@ namespace SalesManagement
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
+            }*/
 
             /*Warning[] warnings;
             string[] streamIds;
