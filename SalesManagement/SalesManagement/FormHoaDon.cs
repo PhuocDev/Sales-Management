@@ -484,7 +484,7 @@ namespace SalesManagement
                 //command.Parameters.AddWithValue("@maNV", user.MaNV);
                 command.Parameters.AddWithValue("@maNV", Login.Current_user.ID);  //Chưa đổi MANV
                                                                                   // ------------------------------------------------------------------------------------------------
-                if (cbbMaKH.FindString(cbbMaKH.Text) == -1 || cbbMaKH.Text == "") command.Parameters.AddWithValue("@maKH", "KH000");
+                if (cbbMaKH.FindString(cbbMaKH.Text) == -1 || cbbMaKH.Text == "") command.Parameters.AddWithValue("@maKH", "KH00000");
                 else command.Parameters.AddWithValue("@maKH", cbbMaKH.Text);
                 command.Parameters.AddWithValue("@thoiGian", Convert.ToDateTime(txbThoiGian.Text));
                 command.Parameters.AddWithValue("@tongGiaTri", int.Parse(txbTongThanhToan.Text, NumberStyles.Currency));
@@ -522,8 +522,8 @@ namespace SalesManagement
                         MessageBox.Show("Failed query UPDATE SANPHAM\nMã sản phẩm: " + dgvHoaDon.Rows[i].Cells[1].Value.ToString());
                     }
                 }
-                MessageBox.Show("Thanh toán thành công");
                 XuatPDF();
+                MessageBox.Show("Thanh toán thành công");
                 btnTaoHD.PerformClick();
                 connection.Close();
             }
@@ -693,7 +693,9 @@ namespace SalesManagement
                 viewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", GetReceiptInfo()));
                 viewer.RefreshReport();
                 var bytes = viewer.LocalReport.Render("PDF");
-                string fileName = @".\Receipts\" + txbMaHD.Text + ".pdf";
+                //string fileName = @".\Receipts\" + txbMaHD.Text + ".pdf";
+                string fileName = Path.Combine(Directory.GetCurrentDirectory(), txbMaHD.Text + ".pdf");
+                MessageBox.Show(fileName);
                 if (!Directory.Exists(@".\Receipts\")) Directory.CreateDirectory(@".\Receipts\");
                 if (!File.Exists(fileName)) File.Delete(fileName);
                 File.WriteAllBytes(fileName, bytes);
@@ -702,6 +704,32 @@ namespace SalesManagement
             {
                 MessageBox.Show(ex.Message);
             }
+
+            /*Warning[] warnings;
+            string[] streamIds;
+            string deviceInfo = @"<DeviceInfo>              
+                <OutputFormat>PDF</OutputFormat>              
+                 <PageWidth>7.0n</PageWidth>              
+                 <PageHeight>10.0in</PageHeight>          
+                 </DeviceInfo>";
+            string mimeType = string.Empty;
+            string encoding = string.Empty;
+            string extension = string.Empty;
+            ReportViewer viewer = new ReportViewer();
+            viewer.ProcessingMode = ProcessingMode.Local;
+            viewer.LocalReport.ReportPath = "ReceiptReport.rdlc";
+            viewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet2", GetSanPhamThanhToan()));
+            viewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", GetReceiptInfo()));
+            viewer.RefreshReport();
+            MessageBox.Show("Before Render");
+            var bytes = viewer.LocalReport.Render("Image", "", out mimeType, out encoding, out extension, out streamIds, out warnings);
+            MessageBox.Show("After Render");
+            //string fileName = @".\Receipts\" + txbMaHD.Text + ".pdf";
+            string fileName = Path.Combine(Directory.GetCurrentDirectory(), txbMaHD.Text + ".png");
+            MessageBox.Show(fileName);
+            //if (!Directory.Exists(@".\Receipts\")) Directory.CreateDirectory(@".\Receipts\");
+            if (!File.Exists(fileName)) File.Delete(fileName);
+            File.WriteAllBytes(fileName, bytes);*/
 
         }
     }
