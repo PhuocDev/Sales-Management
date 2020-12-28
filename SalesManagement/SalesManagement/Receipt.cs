@@ -20,7 +20,7 @@ namespace SalesManagement
     public class SanPhamThanhToan
     {
         public string TenSP { get; set; }
-        public string SoLuong { get; set; }
-        public string ThanhTien { get; set; }
+        public int SoLuong { get; set; }
+        public int ThanhTien { get; set; }
     }
 }

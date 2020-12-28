@@ -10,8 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
+//using iTextSharp.text;
+//using iTextSharp.text.pdf;
 using System.Threading;
 using Microsoft.Reporting.WinForms;
 
@@ -658,11 +658,21 @@ namespace SalesManagement
         public List<SanPhamThanhToan> GetSanPhamThanhToan()
         {
             List<SanPhamThanhToan> list = new List<SanPhamThanhToan>();
-            for (int i = 0; i < dgvHoaDon.Rows.Count - 1; i++)
+            try
             {
-                list.Add(new SanPhamThanhToan { TenSP = dgvHoaDon.Rows[i].Cells[2].Value.ToString(), 
-                    SoLuong = dgvHoaDon.Rows[i].Cells[3].Value.ToString(), 
-                    ThanhTien = dgvHoaDon.Rows[i].Cells[6].Value.ToString() });
+                for (int i = 0; i < dgvHoaDon.Rows.Count - 1; i++)
+                {
+                    list.Add(new SanPhamThanhToan
+                    {
+                        TenSP = dgvHoaDon.Rows[i].Cells[2].Value.ToString(),
+                        SoLuong = int.Parse(dgvHoaDon.Rows[i].Cells[3].Value.ToString()),
+                        ThanhTien = int.Parse(dgvHoaDon.Rows[i].Cells[6].Value.ToString(), NumberStyles.Currency)
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return list;
         }
@@ -684,7 +694,7 @@ namespace SalesManagement
         }
         public void XuatPDF()
         {
-            if (dgvHoaDon.Rows.Count > 0)
+            /*if (dgvHoaDon.Rows.Count > 0)
             {
                 try
                 {
@@ -752,9 +762,9 @@ namespace SalesManagement
             else
             {
                 MessageBox.Show("Không có dữ liệu hóa đơn", "Info");
-            }
+            }*/
 
-            /*try
+            try
             {
                 ReportViewer viewer = new ReportViewer();
                 viewer.ProcessingMode = ProcessingMode.Local;
@@ -764,16 +774,17 @@ namespace SalesManagement
                 viewer.RefreshReport();
                 var bytes = viewer.LocalReport.Render("PDF");
                 //string fileName = @".\Receipts\" + txbMaHD.Text + ".pdf";
-                string fileName = Path.Combine(Directory.GetCurrentDirectory(), txbMaHD.Text + ".pdf");
-                MessageBox.Show(fileName);
-                if (!Directory.Exists(@".\Receipts\")) Directory.CreateDirectory(@".\Receipts\");
+                //string fileName = Path.Combine(Directory.GetCurrentDirectory(), txbMaHD.Text + ".pdf");
+                string fileName = Path.Combine(@"D:\\SalesManagement\Receipts\", txbMaHD.Text + ".pdf");
+                if (!Directory.Exists(@"D:\\SalesManagement\Receipts\")) Directory.CreateDirectory(@"D:\\SalesManagement\Receipts\");
+                //if (!Directory.Exists(@".\Receipts\")) Directory.CreateDirectory(@".\Receipts\");
                 if (!File.Exists(fileName)) File.Delete(fileName);
                 File.WriteAllBytes(fileName, bytes);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }*/
+            }
 
             /*Warning[] warnings;
             string[] streamIds;

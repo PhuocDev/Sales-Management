@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Security.Cryptography;
-using System.Text;
+//using System.Text;
 namespace SalesManagement
 {
     public partial class Login : Form
