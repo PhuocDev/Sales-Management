@@ -10,7 +10,8 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Security.Cryptography;
-using System.Text;
+using System.IO;
+
 
 namespace SalesManagement
 {
@@ -39,7 +40,7 @@ namespace SalesManagement
         }
 
         //-------------------------------------------------------------------------------------------------------------------------------------------//
-
+        
         private void UpdateNhanVien()
         {
             connection.Open();
@@ -66,8 +67,45 @@ namespace SalesManagement
                 t.sdt = dataReader.GetString(5);
                 t.diachi = dataReader.GetString(6);
                 nguoiDung.Add(t);
+
             }
             connection.Close();
+            loadImg(Login.Current_user.ID);
+        }
+
+        private void loadImg(string id)
+        {
+            //load ảnh của nhân viên 
+            connection.Open();
+            string sqlQuery2;
+            try
+            {
+                if (id.Substring(0, 2) == "NV")
+                {
+                    sqlQuery2 = "select MANV, ISNULL(ANH, '" + globalPic.anhYeuCau + "') AS ANH from NHANVIEN WHERE MANV = '" + id + "'";
+                }
+                else
+                {
+                    sqlQuery2 = "select MAQL, ISNULL(ANH, '" + globalPic.anhYeuCau + "') AS ANH from QUANLY WHERE MAQL = '" + id + "'";
+                }
+                SqlCommand command2 = new SqlCommand(sqlQuery2, connection);
+                SqlDataReader dataReader2 = command2.ExecuteReader();
+                while (dataReader2.HasRows)
+                {
+                    if (dataReader2.Read() == false) break;
+                    else
+                        pictureBox_AnhNV.Image = ByteToImg(dataReader2.GetString(1));
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Lỗi cập nhật ảnh");
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
         //--------------------------------------------------------------------------------------------------------------------------------------------//
         private void FormNhanVien_Load(object sender, EventArgs e)
@@ -117,7 +155,7 @@ namespace SalesManagement
             dateTimePicker1.Text != nguoiDung[0].ngaysinh ||
             comboBox_gioiTinh.Text != nguoiDung[0].gioitinh ||
             txbSDT.Text != nguoiDung[0].sdt ||
-            txbDiaChi.Text != nguoiDung[0].diachi)
+            txbDiaChi.Text != nguoiDung[0].diachi || changePic == true)
             {
                 return true;
             }
@@ -139,11 +177,11 @@ namespace SalesManagement
                     string sqlQuery = "";
                     if (Login.Current_user.ID.ToString().Substring(0,2) == "QL")
                     {
-                        sqlQuery = "update QUANLY set TEN = @ten, NGAYSINH = @ngaysinh, GIOITINH = @gioitinh, SDT = @sdt, DIACHI = @diachi where MAQL = @manv";
+                        sqlQuery = "update QUANLY set TEN = @ten, NGAYSINH = @ngaysinh, GIOITINH = @gioitinh, SDT = @sdt, DIACHI = @diachi, ANH = @ANH where MAQL = @manv";
                     }
                     else
                     {
-                        sqlQuery = "update NHANVIEN set TEN = @ten, NGAYSINH = @ngaysinh, GIOITINH = @gioitinh, SDT = @sdt, DIACHI = @diachi where MANV = @manv";
+                        sqlQuery = "update NHANVIEN set TEN = @ten, NGAYSINH = @ngaysinh, GIOITINH = @gioitinh, SDT = @sdt, DIACHI = @diachi, ANH = @ANH where MANV = @manv";
                     }
                     SqlCommand command = new SqlCommand(sqlQuery, connection);
                     command.Parameters.AddWithValue("@ten", txbHoTen.Text);
@@ -152,7 +190,13 @@ namespace SalesManagement
                     command.Parameters.AddWithValue("@sdt", txbSDT.Text);
                     command.Parameters.AddWithValue("@diachi", txbDiaChi.Text);
                     command.Parameters.AddWithValue("@manv", txbMaNV.Text);
-
+                    try
+                    {
+                        command.Parameters.AddWithValue("@ANH", chuyenDoiAnh_Byte(imgPath));
+                    } catch (Exception)
+                    {
+                        MessageBox.Show("Lỗi cập nhật ảnh", "error");
+                    }
                     int rs = command.ExecuteNonQuery();
                     if (rs != 1)
                     {
@@ -191,6 +235,71 @@ namespace SalesManagement
                 comboBox_gioiTinh.Text = "";
                 this.ActiveControl = comboBox_gioiTinh;
             }
+        }
+
+        // --------------------- xử lý hình ảnh -----------------------------//
+        // button chọn ảnh
+        public string imgPath = "";
+        public bool changePic = false;   // kiểmm tra có thay đổi ảnh hay không
+        private void button_UpdateImage_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.Filter = "Pictures files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png)|*.jpg; *.jpeg; *.jpe; *.jfif; *.png|All files (*.*)|*.*";
+            openFile.FilterIndex = 1;
+            openFile.RestoreDirectory = true;
+            if (openFile.ShowDialog() == DialogResult.OK)
+            {
+                imgPath = openFile.FileName;
+            }
+            //labelFileName.Text = Path.GetFileName(textBox_linkToImage.Text);
+            pictureBox_AnhNV.Image = ByteToImg(chuyenDoiAnh_Byte(imgPath));
+        }
+        private string chuyenDoiAnh_Byte(string path)
+        {
+            // chuỗi dùng để lưu vào database
+            string byteOfImag = Convert.ToBase64String(converImgToByte(path));
+            return byteOfImag;
+            // Để cover đoạn chuỗi trên trở lại kiểu Byte hình ảnh thì dùng đoạn code sau:
+            //Convert.FromBase64String(Đoạn_String_đã_cover);
+        }
+        //code chuyển từ byte sang hình ảnh
+        private Image ByteToImg(string byteString)    // chứa đoạn string byte của images
+        {
+            Image image1 = null;
+            try
+            {
+                byte[] imgBytes = Convert.FromBase64String(byteString);
+                MemoryStream ms = new MemoryStream(imgBytes, 0, imgBytes.Length);
+                ms.Write(imgBytes, 0, imgBytes.Length);
+                image1 = Image.FromStream(ms, true);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            return image1;
+        }
+        // code chuyển từ ảnh sang byte
+        private byte[] converImgToByte(string path)
+        {
+            
+            FileStream fs = null;
+            byte[] picbyte = { 1, 2 };
+            // lưu ý đã mở ra là phải chọn, nếu không chọn ấn Cancel sẽ bị lỗi
+            try
+            {
+                fs = new FileStream(path, FileMode.Open, FileAccess.Read);
+                picbyte = new byte[fs.Length];
+                fs.Read(picbyte, 0, System.Convert.ToInt32(fs.Length));
+                fs.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Vui lòng chọn hình ảnh", "Error");
+            }
+            changePic = true;
+           
+            return picbyte;
         }
     }
 }
