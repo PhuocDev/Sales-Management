@@ -220,5 +220,7 @@ where makh= 'KH00000'
 
 select * from KHACHHANG
 
+alter table nhanvien
+add ANH text
 alter table quanly
 add ANH text

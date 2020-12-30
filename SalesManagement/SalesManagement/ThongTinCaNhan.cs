@@ -155,7 +155,7 @@ namespace SalesManagement
             dateTimePicker1.Text != nguoiDung[0].ngaysinh ||
             comboBox_gioiTinh.Text != nguoiDung[0].gioitinh ||
             txbSDT.Text != nguoiDung[0].sdt ||
-            txbDiaChi.Text != nguoiDung[0].diachi || changePic == true)
+            txbDiaChi.Text != nguoiDung[0].diachi)
             {
                 return true;
             }
@@ -177,11 +177,11 @@ namespace SalesManagement
                     string sqlQuery = "";
                     if (Login.Current_user.ID.ToString().Substring(0,2) == "QL")
                     {
-                        sqlQuery = "update QUANLY set TEN = @ten, NGAYSINH = @ngaysinh, GIOITINH = @gioitinh, SDT = @sdt, DIACHI = @diachi, ANH = @ANH where MAQL = @manv";
+                        sqlQuery = "update QUANLY set TEN = @ten, NGAYSINH = @ngaysinh, GIOITINH = @gioitinh, SDT = @sdt, DIACHI = @diachi where MAQL = @manv";
                     }
                     else
                     {
-                        sqlQuery = "update NHANVIEN set TEN = @ten, NGAYSINH = @ngaysinh, GIOITINH = @gioitinh, SDT = @sdt, DIACHI = @diachi, ANH = @ANH where MANV = @manv";
+                        sqlQuery = "update NHANVIEN set TEN = @ten, NGAYSINH = @ngaysinh, GIOITINH = @gioitinh, SDT = @sdt, DIACHI = @diachi where MANV = @manv";
                     }
                     SqlCommand command = new SqlCommand(sqlQuery, connection);
                     command.Parameters.AddWithValue("@ten", txbHoTen.Text);
@@ -192,6 +192,7 @@ namespace SalesManagement
                     command.Parameters.AddWithValue("@manv", txbMaNV.Text);
                     try
                     {
+                        if(changePic == true)
                         command.Parameters.AddWithValue("@ANH", chuyenDoiAnh_Byte(imgPath));
                     } catch (Exception)
                     {
@@ -215,7 +216,7 @@ namespace SalesManagement
             }
             else
             {
-                MessageBox.Show("Không có gì thay đổi", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Đã lưu. Không có gì thay đổi", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         //-----------------------------------------------------------------------------------------------------------------------------------------//
@@ -253,6 +254,35 @@ namespace SalesManagement
             }
             //labelFileName.Text = Path.GetFileName(textBox_linkToImage.Text);
             pictureBox_AnhNV.Image = ByteToImg(chuyenDoiAnh_Byte(imgPath));
+            updateAnh_toSQL(imgPath);
+        }
+        private void updateAnh_toSQL(string imgPath)
+        {
+            connection.Open();
+            try
+            {
+                string sqlQuery = "";
+                if (Login.Current_user.ID.ToString().Substring(0, 2) == "QL")
+                {
+                    sqlQuery = "update QUANLY set ANH = @ANH where MAQL = '" + Login.Current_user.ID + "' ";
+                }
+                else
+                {
+                    sqlQuery = "update NHANVIEN set ANH = @ANH where MANV = '" + Login.Current_user.ID + "' ";
+                }
+                SqlCommand command = new SqlCommand(sqlQuery, connection);
+                command.Parameters.AddWithValue("@ANH", chuyenDoiAnh_Byte(imgPath));
+                int rs = command.ExecuteNonQuery();
+                if (rs != 1)
+                {
+                    throw new Exception("Failed Query");
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            connection.Close();
         }
         private string chuyenDoiAnh_Byte(string path)
         {
@@ -285,7 +315,6 @@ namespace SalesManagement
             
             FileStream fs = null;
             byte[] picbyte = { 1, 2 };
-            // lưu ý đã mở ra là phải chọn, nếu không chọn ấn Cancel sẽ bị lỗi
             try
             {
                 fs = new FileStream(path, FileMode.Open, FileAccess.Read);
