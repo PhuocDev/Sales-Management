@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNhanVien));
             this.btnXoaNV = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.ColSTT = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,8 +59,8 @@
             this.label_warning = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox_gioiTinh = new System.Windows.Forms.ComboBox();
             this.button_UpdateImage = new System.Windows.Forms.Button();
+            this.comboBox_gioiTinh = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -369,7 +370,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackgroundImage = global::SalesManagement.Properties.Resources.nhan_vien;
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pictureBox1.Location = new System.Drawing.Point(60, 34);
@@ -387,7 +388,7 @@
             this.button_back.FlatAppearance.BorderSize = 0;
             this.button_back.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_back.Location = new System.Drawing.Point(1, 1);
-            this.button_back.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_back.Margin = new System.Windows.Forms.Padding(4);
             this.button_back.Name = "button_back";
             this.button_back.Size = new System.Drawing.Size(56, 49);
             this.button_back.TabIndex = 44;
@@ -427,7 +428,7 @@
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker1.Location = new System.Drawing.Point(528, 164);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(344, 26);
             this.dateTimePicker1.TabIndex = 2;
@@ -439,29 +440,13 @@
             this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(73, 25);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(859, 364);
             this.groupBox1.TabIndex = 49;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Nhân viên";
-            // 
-            // comboBox_gioiTinh
-            // 
-            this.comboBox_gioiTinh.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.comboBox_gioiTinh.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBox_gioiTinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox_gioiTinh.FormattingEnabled = true;
-            this.comboBox_gioiTinh.Items.AddRange(new object[] {
-            "Nam",
-            "Nữ"});
-            this.comboBox_gioiTinh.Location = new System.Drawing.Point(455, 193);
-            this.comboBox_gioiTinh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox_gioiTinh.Name = "comboBox_gioiTinh";
-            this.comboBox_gioiTinh.Size = new System.Drawing.Size(344, 28);
-            this.comboBox_gioiTinh.TabIndex = 0;
-            this.comboBox_gioiTinh.Leave += new System.EventHandler(this.comboBox_gioiTinh_Leave);
             // 
             // button_UpdateImage
             // 
@@ -479,6 +464,22 @@
             this.button_UpdateImage.Text = "Chọn ảnh";
             this.button_UpdateImage.UseVisualStyleBackColor = false;
             this.button_UpdateImage.Click += new System.EventHandler(this.button_UpdateImage_Click);
+            // 
+            // comboBox_gioiTinh
+            // 
+            this.comboBox_gioiTinh.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBox_gioiTinh.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBox_gioiTinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox_gioiTinh.FormattingEnabled = true;
+            this.comboBox_gioiTinh.Items.AddRange(new object[] {
+            "Nam",
+            "Nữ"});
+            this.comboBox_gioiTinh.Location = new System.Drawing.Point(455, 193);
+            this.comboBox_gioiTinh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox_gioiTinh.Name = "comboBox_gioiTinh";
+            this.comboBox_gioiTinh.Size = new System.Drawing.Size(344, 28);
+            this.comboBox_gioiTinh.TabIndex = 0;
+            this.comboBox_gioiTinh.Leave += new System.EventHandler(this.comboBox_gioiTinh_Leave);
             // 
             // FormNhanVien
             // 
