@@ -684,7 +684,7 @@ namespace SalesManagement
         }
         public void XuatPDF()
         {
-            if (dgvHoaDon.Rows.Count > 0)
+            /*if (dgvHoaDon.Rows.Count > 0)
             {
                 try
                 {
@@ -752,9 +752,9 @@ namespace SalesManagement
             else
             {
                 MessageBox.Show("Không có dữ liệu hóa đơn", "Info");
-            }
+            }*/
 
-            /*try
+            try
             {
                 ReportViewer viewer = new ReportViewer();
                 viewer.ProcessingMode = ProcessingMode.Local;
@@ -764,16 +764,15 @@ namespace SalesManagement
                 viewer.RefreshReport();
                 var bytes = viewer.LocalReport.Render("PDF");
                 //string fileName = @".\Receipts\" + txbMaHD.Text + ".pdf";
-                string fileName = Path.Combine(Directory.GetCurrentDirectory(), txbMaHD.Text + ".pdf");
-                MessageBox.Show(fileName);
-                if (!Directory.Exists(@".\Receipts\")) Directory.CreateDirectory(@".\Receipts\");
+                string fileName = Path.Combine(@"D:\\SalesManagement\Receipts\", txbMaHD.Text + ".pdf");
+                if (!Directory.Exists(@"D:\\SalesManagement\Receipts\")) Directory.CreateDirectory(@"D:\\SalesManagement\Receipts\");
                 if (!File.Exists(fileName)) File.Delete(fileName);
                 File.WriteAllBytes(fileName, bytes);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }*/
+            }
 
             /*Warning[] warnings;
             string[] streamIds;

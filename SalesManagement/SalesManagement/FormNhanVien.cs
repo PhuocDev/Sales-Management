@@ -52,14 +52,14 @@ namespace SalesManagement
             {
                 connection.Open();
                 //load ảnh của nhân viên đầu tiên
-                string sqlQuery2 = "select top(1)* from NHANVIEN";
+                string sqlQuery2 = "select top(1) MaNV, ISNULL(ANH, '" + globalPic.anhYeuCau + "') AS ANH from NHANVIEN ";
                 SqlCommand command2 = new SqlCommand(sqlQuery2, connection);
                 SqlDataReader dataReader2 = command2.ExecuteReader();
                 while (dataReader2.HasRows)
                 {
                     if (dataReader2.Read() == false) break;
                     else
-                        pictureBox1.Image = ByteToImg(dataReader2.GetString(7));
+                        pictureBox1.Image = ByteToImg(dataReader2.GetString(1));
                 }
 
             }
@@ -402,14 +402,22 @@ namespace SalesManagement
         private byte[] converImgToByte(string path)
         {
 
-                FileStream fs;
-                // lưu ý đã mở ra là phải chọn, nếu không chọn ấn Cancel sẽ bị lỗi
+            FileStream fs = null;
+            byte[] picbyte = { 1, 2 };
+            try
+            {
                 fs = new FileStream(path, FileMode.Open, FileAccess.Read);
-                byte[] picbyte = new byte[fs.Length];
+                picbyte = new byte[fs.Length];
                 fs.Read(picbyte, 0, System.Convert.ToInt32(fs.Length));
                 fs.Close();
-                return picbyte;
-            
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Vui lòng chọn hình ảnh", "Error");
+            }
+
+            return picbyte;
+
         }
         //code chuyển từ byte sang hình ảnh
         private Image ByteToImg(string byteString)    // chứa đoạn string byte của images
