@@ -40,12 +40,39 @@ namespace SalesManagement
             while (dataReader.HasRows)
             {
                 if (dataReader.Read() == false) break;
-                dataGridView1.Rows.Add(stt, dataReader.GetString(0), dataReader.GetString(2), dataReader.GetDateTime(3).ToString().Substring(0, dataReader.GetDateTime(3).ToString().IndexOf(" ")),
+                else
+                {
+                    dataGridView1.Rows.Add(stt, dataReader.GetString(0), dataReader.GetString(2), dataReader.GetDateTime(3).ToString().Substring(0, dataReader.GetDateTime(3).ToString().IndexOf(" ")),
                     dataReader.GetString(4), dataReader.GetString(5), dataReader.GetString(6));
-                stt++;
+                    stt++;
+                }
             }
             connection.Close();
-        }
+            try
+            {
+                connection.Open();
+                //load ảnh của nhân viên đầu tiên
+                string sqlQuery2 = "select top(1) MaNV, ISNULL(ANH, '" + globalPic.anhYeuCau + "') AS ANH from NHANVIEN ";
+                SqlCommand command2 = new SqlCommand(sqlQuery2, connection);
+                SqlDataReader dataReader2 = command2.ExecuteReader();
+                while (dataReader2.HasRows)
+                {
+                    if (dataReader2.Read() == false) break;
+                    else
+                        pictureBox1.Image = ByteToImg(dataReader2.GetString(1));
+                }
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Lỗi load ảnh nhân viên đầu tiên");
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            }
 
         //-------------------------------------------------chuyển-form----------------------------------------------------------//
 
@@ -94,6 +121,24 @@ namespace SalesManagement
             comboBox_gioiTinh.Text = dataGridView1.Rows[index].Cells[4].Value.ToString();
             txbSDT.Text = dataGridView1.Rows[index].Cells[5].Value.ToString();
             txbDiaChi.Text = dataGridView1.Rows[index].Cells[6].Value.ToString();
+            pictureBox1.Image = ByteToImg(getByteDataOfImg(txbMaNV.Text));
+        }
+        // hình ảnh mặc định
+
+        private string getByteDataOfImg(string id)  // id là mã nhân viên để lấy data ảnh
+         {
+            connection.Open();
+            string sqlQuery = "select MANV, ISNULL(ANH, '" + globalPic.anhYeuCau + "') from NHANVIEN WHERE MANV = '" + id + "'";
+            SqlCommand command = new SqlCommand(sqlQuery, connection);
+            SqlDataReader dataReader = command.ExecuteReader();
+            string dataImg = "";
+            while (dataReader.HasRows)
+            {
+                if (dataReader.Read() == false) break;
+                else dataImg = dataReader.GetString(1);
+            }
+            connection.Close();
+            return dataImg;
         }
         //-----------------------------------------------------chỉnh sửa_click-------------------------------------------------//
 
@@ -192,7 +237,7 @@ namespace SalesManagement
                 for (int i = 0; i < id_changes.Count(); i++)
                 {
 
-                    string sqlQuery = "update NHANVIEN set TEN = @ten, NGAYSINH = @ngaysinh, GIOITINH = @gioitinh, SDT = @sdt, DIACHI = @diachi where MANV = @manv";
+                    string sqlQuery = "update NHANVIEN set TEN = @ten, NGAYSINH = @ngaysinh, GIOITINH = @gioitinh, SDT = @sdt, DIACHI = @diachi, ANH = @anh where MANV = @manv";
                     SqlCommand command = new SqlCommand(sqlQuery, connection);
 
                     int index = find(id_changes[i]);
@@ -202,6 +247,7 @@ namespace SalesManagement
                     command.Parameters.AddWithValue("@sdt", dataGridView1.Rows[index].Cells[5].Value.ToString());
                     command.Parameters.AddWithValue("@diachi", dataGridView1.Rows[index].Cells[6].Value.ToString());
                     command.Parameters.AddWithValue("@manv", dataGridView1.Rows[index].Cells[1].Value.ToString());
+                    command.Parameters.AddWithValue("@anh", chuyenDoiAnh_Byte(imgPath));
 
                     int rs = command.ExecuteNonQuery();
                     if (rs != 1)
@@ -209,7 +255,8 @@ namespace SalesManagement
                         throw new Exception("Failed Query");
                     }
                 }
-
+                connection.Close();
+                connection.Open();
                 id_changes.Clear();// xóa danh sách bị thay đổi cũ
 
                 for(int i = 0; i < id_remove.Count(); i++)
@@ -346,6 +393,72 @@ namespace SalesManagement
             {
                 e.Handled = true;
             }
+        }
+
+
+
+        // ----------------------------------- phần code dành cho việc xử lý hình ảnh ------------------------------------//
+        // code chuyển từ ảnh sang byte
+        private byte[] converImgToByte(string path)
+        {
+
+            FileStream fs = null;
+            byte[] picbyte = { 1, 2 };
+            try
+            {
+                fs = new FileStream(path, FileMode.Open, FileAccess.Read);
+                picbyte = new byte[fs.Length];
+                fs.Read(picbyte, 0, System.Convert.ToInt32(fs.Length));
+                fs.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Vui lòng chọn hình ảnh", "Error");
+            }
+
+            return picbyte;
+
+        }
+        //code chuyển từ byte sang hình ảnh
+        private Image ByteToImg(string byteString)    // chứa đoạn string byte của images
+        {
+            Image image1 = null;
+            try
+            {
+                byte[] imgBytes = Convert.FromBase64String(byteString);
+                MemoryStream ms = new MemoryStream(imgBytes, 0, imgBytes.Length);
+                ms.Write(imgBytes, 0, imgBytes.Length);
+                image1 = Image.FromStream(ms, true);
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            return image1;
+        }
+
+        private string chuyenDoiAnh_Byte(string path)
+        {
+            // chuỗi dùng để lưu vào database
+            string byteOfImag = Convert.ToBase64String(converImgToByte(path));
+            return byteOfImag;
+            // Để cover đoạn chuỗi trên trở lại kiểu Byte hình ảnh thì dùng đoạn code sau:
+            //Convert.FromBase64String(Đoạn_String_đã_cover);
+        }
+        public string imgPath = "";
+        private void button_UpdateImage_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.Filter = "Pictures files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png)|*.jpg; *.jpeg; *.jpe; *.jfif; *.png|All files (*.*)|*.*";
+            openFile.FilterIndex = 1;
+            openFile.RestoreDirectory = true;
+            if (openFile.ShowDialog() == DialogResult.OK)
+            {
+                imgPath = openFile.FileName;
+            }
+            //labelFileName.Text = Path.GetFileName(textBox_linkToImage.Text);
+            pictureBox1.Image = ByteToImg(chuyenDoiAnh_Byte(imgPath));
+            
         }
     }
 }

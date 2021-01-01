@@ -120,15 +120,15 @@ namespace SalesManagement
                 try
                 {
                     sqlCon.Open();
-                    string commandString = "INSERT INTO NHANVIEN VALUES('" + textBox5_MaNV.Text.ToString() + "', '" + Hash_pass(textBox2_matKhau.Text).ToString() + "', N'" + textBox4_HoTen.Text.ToString() + "', '" + dateTimePicker1.Value.ToString().Substring(0, dateTimePicker1.Value.ToString().IndexOf(" ")) + "', N'" + comboBox2.Text.ToString() + "', '" + textBox_DienThoai.Text.ToString() + "', N'" + textBox_diaChi.Text.ToString() + "')";
+                    string commandString = "INSERT INTO NHANVIEN VALUES('" + textBox5_MaNV.Text.ToString() + "', '" + Hash_pass(textBox2_matKhau.Text).ToString() + "', N'" + textBox4_HoTen.Text.ToString() + "', '" + dateTimePicker1.Value.ToString().Substring(0, dateTimePicker1.Value.ToString().IndexOf(" ")) + "', N'" + comboBox2.Text.ToString() + "', '" + textBox_DienThoai.Text.ToString() + "', N'" + textBox_diaChi.Text.ToString() + "', NULL)";
                     SqlCommand sqlCmd = new SqlCommand(commandString, sqlCon);
                     sqlCmd.ExecuteNonQuery();
-                    MessageBox.Show("Dang ki thanh cong");
+                    MessageBox.Show("Đăng kí thành công");
                     this.parent.add_datagridview(textBox5_MaNV.Text, textBox4_HoTen.Text, dateTimePicker1.Value.ToString().Substring(0, dateTimePicker1.Value.ToString().IndexOf(" ")), comboBox2.Text.ToString(), textBox_DienThoai.Text, textBox_diaChi.Text);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("kết nối xảy ra lỗi hoặc ghi dữ liệu bị lỗi");
+                    MessageBox.Show("Error: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 finally
                 {

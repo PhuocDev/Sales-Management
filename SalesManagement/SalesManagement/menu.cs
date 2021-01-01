@@ -7,11 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.IO;
+using System.Runtime.InteropServices.WindowsRuntime;
+
 
 namespace SalesManagement
 {
     public partial class menu : Form
     {
+        SqlConnection connection = new SqlConnection(global.conString);
         public menu()
         {
             InitializeComponent();
@@ -85,8 +90,97 @@ namespace SalesManagement
                 this.label_nv_kh.Text = "Khách hàng";
                 this.button_nv_kh2.Text = "Khách hàng";
             }
-            this.label_tenDangNhap.Text = Login.Current_user.NAME;
+            Update_Ten(Login.Current_user.ID);
+            loadImg(Login.Current_user.ID);
         }
+        //------------------ code cập nhật ảnh ----------------//
+        private void loadImg(string id)
+        {
+            connection.Open();
+            try
+            {
+                if (id.Substring(0, 2) == "NV")
+                {
+                    //load ảnh của nhân viên 
+                    string sqlQuery2 = "select MANV, ISNULL(ANH, '" + globalPic.anhNVdefault + "') from NHANVIEN WHERE MANV = '" + id + "'";
+                    SqlCommand command2 = new SqlCommand(sqlQuery2, connection);
+                    SqlDataReader dataReader2 = command2.ExecuteReader();
+                    while (dataReader2.HasRows)
+                    {
+                        if (dataReader2.Read() == false) break;
+                        else
+                            pictureBox_AnhNV.Image = ByteToImg(dataReader2.GetString(1));
+                    }
+                }
+                else
+                {
+                    //load ảnh của nhân viên 
+                    string sqlQuery2 = "select MAQL, ISNULL(ANH, '" + globalPic.anhQLdefault + "') from QUANLY WHERE MAQL = '" + id + "'";
+                    SqlCommand command2 = new SqlCommand(sqlQuery2, connection);
+                    SqlDataReader dataReader2 = command2.ExecuteReader();
+                    while (dataReader2.HasRows)
+                    {
+                        if (dataReader2.Read() == false) break;
+                        else
+                            pictureBox_AnhNV.Image = ByteToImg(dataReader2.GetString(1));
+                    }
+
+                }
+            }
+            catch (Exception loi)
+            {
+                // khối này thực thi khi bắt được lỗi
+                MessageBox.Show("Lỗi khi kết nối với hình ảnh của nhân viên");
+                MessageBox.Show(loi.Message);
+            }
+
+            connection.Close();
+        }
+        
+        //code chuyển từ byte sang hình ảnh
+        private Image ByteToImg(string byteString)    // chứa đoạn string byte của images
+        {
+            byte[] imgBytes = Convert.FromBase64String(byteString);
+            MemoryStream ms = new MemoryStream(imgBytes, 0, imgBytes.Length);
+            ms.Write(imgBytes, 0, imgBytes.Length);
+            Image image = Image.FromStream(ms, true);
+            return image;
+        }
+        //Cập nhật tên nhân viên trên label
+        private void Update_Ten(string id)
+        {
+            connection.Open();
+            if (id.Substring(0, 2) == "NV")
+            {
+                string sqlQuery = "select * from NHANVIEN where MANV = '" + id + "'";
+                SqlCommand command = new SqlCommand(sqlQuery, connection);
+                SqlDataReader dataReader = command.ExecuteReader();
+                while (dataReader.HasRows)
+                {
+                    if (dataReader.Read() == false) break;
+                    else
+                    {
+                        this.label_tenDangNhap.Text = dataReader.GetString(2);
+                    }
+                }
+            } else
+            {
+                string sqlQuery = "select * from QUANLY where MAQL = '" + id + "'";
+                SqlCommand command = new SqlCommand(sqlQuery, connection);
+                SqlDataReader dataReader = command.ExecuteReader();
+                while (dataReader.HasRows)
+                {
+                    if (dataReader.Read() == false) break;
+                    else
+                    {
+                        this.label_tenDangNhap.Text = dataReader.GetString(2);
+                    }
+                }
+            }
+            connection.Close();
+        }
+
+
         //---------------------------------------------------thoát-chương-trình-------------------------------------------------------------//
         private void button_thoat_Click(object sender, EventArgs e)
         {
@@ -169,7 +263,9 @@ namespace SalesManagement
         private void button_taiKhoan_Click(object sender, EventArgs e)
         {
             thongTinCaNhan thongTinCaNhan = new thongTinCaNhan();
-            thongTinCaNhan.Show();
+            thongTinCaNhan.ShowDialog();
+            Update_Ten(Login.Current_user.ID);
+            loadImg(Login.Current_user.ID);
         }
 
         private void button_info_ungDung_Click(object sender, EventArgs e)

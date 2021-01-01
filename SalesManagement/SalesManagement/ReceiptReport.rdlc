@@ -9,24 +9,11 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>RECEIPT</Value>
-                <Style>
-                  <FontFamily>Microsoft Sans Serif</FontFamily>
-                  <FontSize>16pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
                 <Value>AURORA SUPERMARKET</Value>
                 <Style>
                   <FontFamily>Microsoft Sans Serif</FontFamily>
+                  <FontSize>14pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -76,61 +63,11 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value xml:space="preserve">                                        </Value>
+                <Value>RECEIPT</Value>
                 <Style>
                   <FontFamily>Microsoft Sans Serif</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value xml:space="preserve">                                           </Value>
-                <Style>
-                  <FontFamily>Microsoft Sans Serif</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value xml:space="preserve">                                              </Value>
-                <Style>
-                  <FontFamily>Microsoft Sans Serif</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value />
-                <Style>
-                  <FontFamily>Microsoft Sans Serif</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</Value>
-                <Style>
-                  <FontFamily>Microsoft Sans Serif</FontFamily>
+                  <FontSize>14pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -141,7 +78,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
         <Top>0.19667in</Top>
-        <Height>1.88056in</Height>
+        <Height>1.01389in</Height>
         <Width>6.76335in</Width>
         <Style>
           <Border>
@@ -170,8 +107,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox7</rd:DefaultName>
-        <Top>1.075in</Top>
-        <Left>2.72167in</Left>
+        <Top>1.28001in</Top>
+        <Left>2.7411in</Left>
         <Height>0.21667in</Height>
         <Width>1.67501in</Width>
         <ZIndex>1</ZIndex>
@@ -202,8 +139,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox7</rd:DefaultName>
-        <Top>1.30556in</Top>
-        <Left>2.72167in</Left>
+        <Top>1.51057in</Top>
+        <Left>2.7411in</Left>
         <Height>0.21667in</Height>
         <Width>1.675in</Width>
         <ZIndex>2</ZIndex>
@@ -234,8 +171,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox7</rd:DefaultName>
-        <Top>1.53612in</Top>
-        <Left>2.72167in</Left>
+        <Top>1.74113in</Top>
+        <Left>2.7411in</Left>
         <Height>0.21667in</Height>
         <Width>1.67501in</Width>
         <ZIndex>3</ZIndex>
@@ -268,9 +205,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox57</rd:DefaultName>
-        <Top>2.70778in</Top>
+        <Top>2.89725in</Top>
+        <Left>0.0361in</Left>
         <Height>0.23945in</Height>
-        <Width>6.76335in</Width>
+        <Width>6.9689in</Width>
         <ZIndex>4</ZIndex>
         <Style>
           <Border>
@@ -286,13 +224,13 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.52222in</Width>
+              <Width>2.42222in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.21112in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.70832in</Width>
+              <Width>1.75832in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -517,10 +455,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet2</DataSetName>
-        <Top>2.14667in</Top>
-        <Left>0.66333in</Left>
+        <Top>2.33614in</Top>
+        <Left>0.78277in</Left>
         <Height>0.49166in</Height>
-        <Width>5.44166in</Width>
+        <Width>5.39166in</Width>
         <ZIndex>5</ZIndex>
         <Style>
           <Border>
@@ -532,18 +470,18 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.50556in</Width>
+              <Width>2.42222in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.21667in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.71667in</Width>
+              <Width>1.76667in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>0.25in</Height>
+              <Height>0.24583in</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -766,10 +704,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>3.04667in</Top>
-        <Left>0.68in</Left>
-        <Height>0.75in</Height>
-        <Width>5.43889in</Width>
+        <Top>3.20614in</Top>
+        <Left>0.78277in</Left>
+        <Height>0.74583in</Height>
+        <Width>5.40556in</Width>
         <ZIndex>6</ZIndex>
         <Style>
           <Border>
@@ -792,8 +730,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox94</rd:DefaultName>
-        <Top>1.075in</Top>
-        <Left>2.1661in</Left>
+        <Top>1.28001in</Top>
+        <Left>2.18553in</Left>
         <Height>0.21667in</Height>
         <Width>0.54168in</Width>
         <ZIndex>7</ZIndex>
@@ -822,8 +760,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox94</rd:DefaultName>
-        <Top>1.30556in</Top>
-        <Left>2.1661in</Left>
+        <Top>1.51057in</Top>
+        <Left>2.18553in</Left>
         <Height>0.21667in</Height>
         <Width>0.54168in</Width>
         <ZIndex>8</ZIndex>
@@ -852,8 +790,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox94</rd:DefaultName>
-        <Top>1.53612in</Top>
-        <Left>2.1661in</Left>
+        <Top>1.74113in</Top>
+        <Left>2.18553in</Left>
         <Height>0.21667in</Height>
         <Width>0.54168in</Width>
         <ZIndex>9</ZIndex>
@@ -867,11 +805,45 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
+      <Textbox Name="Textbox59">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</Value>
+                <Style>
+                  <FontFamily>Microsoft Sans Serif</FontFamily>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox57</rd:DefaultName>
+        <Top>2.02724in</Top>
+        <Left>0.00972in</Left>
+        <Height>0.23945in</Height>
+        <Width>6.9689in</Width>
+        <ZIndex>10</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
-    <Height>4.075in</Height>
+    <Height>4.25833in</Height>
     <Style />
   </Body>
-  <Width>6.98833in</Width>
+  <Width>7.005in</Width>
   <Page>
     <PageFooter>
       <Height>0.755in</Height>
