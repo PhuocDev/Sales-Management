@@ -11,6 +11,8 @@ using System.Data.SqlClient;
 using System.Security.Cryptography;
 using System.Text;
 using System.Runtime.CompilerServices;
+using System.Configuration;
+using System.IO;
 
 namespace SalesManagement
 {
@@ -124,6 +126,7 @@ namespace SalesManagement
                     SqlCommand sqlCmd = new SqlCommand(commandString, sqlCon);
                     sqlCmd.ExecuteNonQuery();
                     MessageBox.Show("Đăng kí thành công");
+                    updateAnh_toSQL(imgPath);
                     this.parent.add_datagridview(textBox5_MaNV.Text, textBox4_HoTen.Text, dateTimePicker1.Value.ToString().Substring(0, dateTimePicker1.Value.ToString().IndexOf(" ")), comboBox2.Text.ToString(), textBox_DienThoai.Text, textBox_diaChi.Text);
                 }
                 catch (Exception ex)
@@ -136,6 +139,7 @@ namespace SalesManagement
                     this.Close();
                 }
             }
+
         }
 
 
@@ -161,6 +165,94 @@ namespace SalesManagement
             {
                 e.Handled = true;
             }
+        }
+
+        private void button_UpdateImage_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.Filter = "Pictures files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png)|*.jpg; *.jpeg; *.jpe; *.jfif; *.png|All files (*.*)|*.*";
+            openFile.FilterIndex = 1;
+            openFile.RestoreDirectory = true;
+            if (openFile.ShowDialog() == DialogResult.OK)
+            {
+                imgPath = openFile.FileName;
+            }
+            //labelFileName.Text = Path.GetFileName(textBox_linkToImage.Text);
+            pictureBox_AnhNV.Image = ByteToImg(chuyenDoiAnh_Byte(imgPath));
+            
+        }
+        // --------------------- xử lý hình ảnh -----------------------------//
+        // button chọn ảnh
+        public string imgPath = "";
+        public bool changePic = false;   // kiểmm tra có thay đổi ảnh hay không
+        
+        private void updateAnh_toSQL(string imgPath)
+        {
+            connection.Open();
+            try
+            {
+                string sqlQuery = "";
+                sqlQuery = "update NHANVIEN set ANH = @ANH where MANV = '" + textBox5_MaNV + "' ";
+                
+                SqlCommand command = new SqlCommand(sqlQuery, connection);
+                command.Parameters.AddWithValue("@ANH", chuyenDoiAnh_Byte(imgPath));
+                int rs = command.ExecuteNonQuery();
+                if (rs != 1)
+                {
+                    throw new Exception("Failed Query");
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            connection.Close();
+        }
+        private string chuyenDoiAnh_Byte(string path)
+        {
+            // chuỗi dùng để lưu vào database
+            string byteOfImag = Convert.ToBase64String(converImgToByte(path));
+            return byteOfImag;
+            // Để cover đoạn chuỗi trên trở lại kiểu Byte hình ảnh thì dùng đoạn code sau:
+            //Convert.FromBase64String(Đoạn_String_đã_cover);
+        }
+        //code chuyển từ byte sang hình ảnh
+        private Image ByteToImg(string byteString)    // chứa đoạn string byte của images
+        {
+            Image image1 = null;
+            try
+            {
+                byte[] imgBytes = Convert.FromBase64String(byteString);
+                MemoryStream ms = new MemoryStream(imgBytes, 0, imgBytes.Length);
+                ms.Write(imgBytes, 0, imgBytes.Length);
+                image1 = Image.FromStream(ms, true);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            return image1;
+        }
+        // code chuyển từ ảnh sang byte
+        private byte[] converImgToByte(string path)
+        {
+
+            FileStream fs = null;
+            byte[] picbyte = { 1, 2 };
+            try
+            {
+                fs = new FileStream(path, FileMode.Open, FileAccess.Read);
+                picbyte = new byte[fs.Length];
+                fs.Read(picbyte, 0, System.Convert.ToInt32(fs.Length));
+                fs.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Vui lòng chọn hình ảnh", "Error");
+            }
+            changePic = true;
+
+            return picbyte;
         }
     }
 }

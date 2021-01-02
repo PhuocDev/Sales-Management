@@ -30,26 +30,18 @@ namespace SalesManagement
             checkBox_tKTheoThang.Checked = true;
             checkBox_tKTheoNam.Checked = false;
             dateTimePicker1.Value = DateTime.Now;
-            data(DateTime.Now.Year.ToString());
-            fillChart();
+            dataThang(DateTime.Now.Year.ToString());
+            fillChartThang();
         }
-
-        private void button_menu_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void button_back_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void ThongKe_Load(object sender, EventArgs e)
         {
-            data(DateTime.Now.Year.ToString());
-            fillChart();
+            dataThang(DateTime.Now.Year.ToString());
+            fillChartThang();
         }
-        private void fillChart()
+
+
+        //----------- Load dữ liệu theo ngày tháng năm  ------------//
+        private void fillChartThang()
         {
             chart1.ChartAreas["ChartArea1"].AxisX.Interval = 1;     // Để hiển thị tất cả các label cột x
 
@@ -80,13 +72,6 @@ namespace SalesManagement
                     chart1.Series["Doanh Thu"].Points[Convert.ToInt32(dataYear[i].nam) - (dateTimePicker1.Value.Year - 6) - 1].YValues = new Double[] { Convert.ToDouble(dataYear[i].doanhThu) };
             }
         }
-        private int soNgayTrongThang(int month, int year)
-        {
-            int[] soNgayTrongThang = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-            if (month != 2) return soNgayTrongThang[month - 1];
-            if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) return 29;
-            else return 28;
-        }
         private void fillChartNgay()
         {
             chart1.ChartAreas["ChartArea1"].AxisX.Interval = 1;     // Để hiển thị tất cả các label cột x
@@ -102,7 +87,10 @@ namespace SalesManagement
                 chart1.Series["Doanh Thu"].Points[Convert.ToInt32(dataDay[i].ngay) - 1].YValues = new Double[] { Convert.ToDouble(dataDay[i].doanhThu) };
             }
         }
-        protected void data(string year)
+
+
+        //----------- Lưu dữ liệu theo ngày tháng năm   ------------//
+        protected void dataThang(string year)
         {
             foreach (var series in chart1.Series)
             {
@@ -151,6 +139,49 @@ namespace SalesManagement
 
             //MessageBox.Show(Convert.ToString(dataMonth.Count()));
         }
+        
+        private string getDataThang(int thang, string year)
+        {
+            thang = 0;
+            string temp = "";
+            SqlCommand cmd;
+            SqlConnection conn = new SqlConnection(global.conString);
+
+
+            cmd = new SqlCommand("SELECT ISNULL(sum(TONGGIATRI), '0') AS doanhThu "
+                                            + "FROM HOADON WHERE year(THOIGIAN) =" + year
+                                            + " and month(thoigian) = " + thang.ToString(), conn);
+
+            SqlDataReader dr;
+            //int sum = 0, i = 0;
+            try
+            {
+                conn.Open();
+                SqlDataReader dataReader = cmd.ExecuteReader();
+                while (dataReader.HasRows)
+                {
+                    if (dataReader.Read() == false) break;
+                    else
+                    {
+                        temp = dataReader.GetString(0);
+                    }
+                }
+                //MessageBox.Show(sum.ToString());
+
+                dataReader.Close();
+            }
+            catch (Exception exp)
+            {
+
+                MessageBox.Show("Error: " + exp.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conn.Close();
+                
+            }
+            return (temp);
+        }
         protected void dataNgay()
         {
             foreach (var series in chart1.Series)
@@ -198,7 +229,7 @@ namespace SalesManagement
                 conn.Close();
             }
 
-        }
+        }   
         public void dataNam()
         {
             SqlCommand cmd;
@@ -243,68 +274,10 @@ namespace SalesManagement
             }
         }
 
-        private void button_thongKe_Click(object sender, EventArgs e)
-        {
-            if (checkBox_tKTheoNam.Checked == false && (checkBox_tKTheoThang.Checked == true))
-            {
-                string year = dateTimePicker1.Value.Year.ToString();
-                data(year);
-                fillChart();
-            }
-            else if (checkBox_tKTheoNam.Checked == true && checkBox_tKTheoThang.Checked == false)
-            {
-                dataNam();
-                fillChartNam();
-            }
-            else if (checkBox_Ngay.Checked == true && checkBox_tKTheoNam.Checked == false && checkBox_tKTheoThang.Checked == false)
-            {
-                string day = dateTimePicker1.Value.Day.ToString();
-                dataNgay();
-                fillChartNgay();
-            }
-            else
-            {
-                MessageBox.Show("Vui lòng xem lại ô checkbox!");
-            }
-        }
+        
 
-        private void checkBox_tKTheoNam_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (checkBox_tKTheoThang.Checked == true)
-            {
-                checkBox_tKTheoThang.Checked = !checkBox_tKTheoThang.Checked;
-            }
-            if (checkBox_Ngay.Checked == true)
-            {
-                checkBox_Ngay.Checked = !checkBox_Ngay.Checked;
-            }
 
-        }
-
-        private void checkBox_tKTheoThang_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (checkBox_Ngay.Checked == true)
-            {
-                checkBox_Ngay.Checked = !checkBox_Ngay.Checked;
-            }
-            if (checkBox_tKTheoNam.Checked == true)
-            {
-                checkBox_tKTheoNam.Checked = !checkBox_tKTheoNam.Checked;
-            }
-        }
-
-        private void checkBox_Ngay_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (checkBox_tKTheoThang.Checked == true)
-            {
-                checkBox_tKTheoThang.Checked = !checkBox_tKTheoThang.Checked;
-            }
-            if (checkBox_tKTheoNam.Checked == true)
-            {
-                checkBox_tKTheoNam.Checked = !checkBox_tKTheoNam.Checked;
-            }
-        }
-
+        // ------ in biểu đồ dạng BMP  ------------------------//
         private void screenPanel()
         {
             SaveFileDialog sfd = new SaveFileDialog();
@@ -343,11 +316,93 @@ namespace SalesManagement
                 }
             }
         }
+
+
+        //------------ điều kiện checkbox --------------------//
+        private void checkBox_tKTheoNam_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (checkBox_tKTheoThang.Checked == true)
+            {
+                checkBox_tKTheoThang.Checked = !checkBox_tKTheoThang.Checked;
+            }
+            if (checkBox_Ngay.Checked == true)
+            {
+                checkBox_Ngay.Checked = !checkBox_Ngay.Checked;
+            }
+
+        }
+        private void checkBox_tKTheoThang_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (checkBox_Ngay.Checked == true)
+            {
+                checkBox_Ngay.Checked = !checkBox_Ngay.Checked;
+            }
+            if (checkBox_tKTheoNam.Checked == true)
+            {
+                checkBox_tKTheoNam.Checked = !checkBox_tKTheoNam.Checked;
+            }
+        }
+        private void checkBox_Ngay_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (checkBox_tKTheoThang.Checked == true)
+            {
+                checkBox_tKTheoThang.Checked = !checkBox_tKTheoThang.Checked;
+            }
+            if (checkBox_tKTheoNam.Checked == true)
+            {
+                checkBox_tKTheoNam.Checked = !checkBox_tKTheoNam.Checked;
+            }
+        }
+
+
+        //---------------- các sự kiện ----------------------//
+        private void button_menu_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button_back_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private int soNgayTrongThang(int month, int year)
+        {
+            int[] soNgayTrongThang = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+            if (month != 2) return soNgayTrongThang[month - 1];
+            if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) return 29;
+            else return 28;
+        }
+        private void button_thongKe_Click(object sender, EventArgs e)
+        {
+            if (checkBox_tKTheoNam.Checked == false && (checkBox_tKTheoThang.Checked == true))
+            {
+                dataThang(dateTimePicker1.Value.Year.ToString());
+                fillChartThang();
+            }
+            else if (checkBox_tKTheoNam.Checked == true && checkBox_tKTheoThang.Checked == false)
+            {
+                dataNam();
+                fillChartNam();
+            }
+            else if (checkBox_Ngay.Checked == true && checkBox_tKTheoNam.Checked == false && checkBox_tKTheoThang.Checked == false)
+            {
+                string day = dateTimePicker1.Value.Day.ToString();
+                dataNgay();
+                fillChartNgay();
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng xem lại ô checkbox!");
+            }
+        }
+
+
+
         private void button1_Click(object sender, EventArgs e)
         {
             screenPanel();
         }
-
         private void button_thongKe_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -356,6 +411,55 @@ namespace SalesManagement
             }
 
         }
+
+        //private void button_test_Click(object sender, EventArgs e)
+        //{
+        //    if (dateTimePicker1.Value >= dateTimePicker2.Value)
+        //    {
+        //        MessageBox.Show("Sai điều kiện");
+        //    }
+        //    else
+        //    {
+        //        DateTime FirstDate = dateTimePicker1.Value;
+        //        DateTime SecondDate = dateTimePicker2.Value;
+
+        //        // Difference in days, hours, and minutes.
+        //        TimeSpan ts = SecondDate - FirstDate;
+        //        // Difference in days.
+        //        int TotalDays = ts.Days;
+        //        int month1 = dateTimePicker1.Value.Month;
+        //        int month2 = dateTimePicker2.Value.Month;
+        //        int year1 = dateTimePicker2.Value.Year;
+        //        int year2 = dateTimePicker2.Value.Year;
+
+        //        //------- llại
+        //        if (year1 == year2)
+        //        {
+        //            if (TotalDays < 32)
+        //            {
+        //                if (month1 == month2)
+        //                {
+        //                    MessageBox.Show("Thống kê tháng " + dateTimePicker1.Value.Month.ToString() + " theo ngày. Tổng là " + TotalDays.ToString());
+        //                } else if (month2 - month1 == 1)
+        //                {
+        //                    MessageBox.Show("2 tháng liền nhau từ tháng" + dateTimePicker1.Value.Month.ToString());
+        //                }
+        //            }
+        //            else
+        //            {
+        //                MessageBox.Show("Thống kê năm " + year1.ToString() + " theo tháng. Số tháng là  " + (month2 - month1).ToString());
+        //            }
+        //        }
+        //        else if ((year2 - year1 == 1) && (TotalDays < 365))
+        //        {
+        //            MessageBox.Show(" 2 năm liền nhau, thống kê theo tháng ");
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show("thống kê 10 năm ");
+        //        }
+        //    }
+        //}
     }
     public class month
     {

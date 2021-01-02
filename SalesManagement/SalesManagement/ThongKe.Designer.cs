@@ -65,7 +65,7 @@
             this.checkBox_tKTheoThang.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_tKTheoThang.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_tKTheoThang.Location = new System.Drawing.Point(891, 57);
-            this.checkBox_tKTheoThang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox_tKTheoThang.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_tKTheoThang.Name = "checkBox_tKTheoThang";
             this.checkBox_tKTheoThang.Size = new System.Drawing.Size(165, 22);
             this.checkBox_tKTheoThang.TabIndex = 2;
@@ -79,7 +79,7 @@
             this.checkBox_tKTheoNam.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_tKTheoNam.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_tKTheoNam.Location = new System.Drawing.Point(891, 86);
-            this.checkBox_tKTheoNam.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox_tKTheoNam.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_tKTheoNam.Name = "checkBox_tKTheoNam";
             this.checkBox_tKTheoNam.Size = new System.Drawing.Size(158, 22);
             this.checkBox_tKTheoNam.TabIndex = 3;
@@ -92,7 +92,7 @@
             this.button_thongKe.BackColor = System.Drawing.Color.PowderBlue;
             this.button_thongKe.Font = new System.Drawing.Font("Lucida Fax", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_thongKe.Location = new System.Drawing.Point(888, 410);
-            this.button_thongKe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_thongKe.Margin = new System.Windows.Forms.Padding(4);
             this.button_thongKe.Name = "button_thongKe";
             this.button_thongKe.Size = new System.Drawing.Size(184, 66);
             this.button_thongKe.TabIndex = 4;
@@ -121,7 +121,7 @@
             this.button_menu.FlatAppearance.BorderSize = 0;
             this.button_menu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_menu.Location = new System.Drawing.Point(4, 2);
-            this.button_menu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_menu.Margin = new System.Windows.Forms.Padding(4);
             this.button_menu.Name = "button_menu";
             this.button_menu.Size = new System.Drawing.Size(56, 49);
             this.button_menu.TabIndex = 47;
@@ -136,7 +136,7 @@
             this.button_back.FlatAppearance.BorderSize = 0;
             this.button_back.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_back.Location = new System.Drawing.Point(61, 2);
-            this.button_back.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_back.Margin = new System.Windows.Forms.Padding(4);
             this.button_back.Name = "button_back";
             this.button_back.Size = new System.Drawing.Size(56, 49);
             this.button_back.TabIndex = 46;
@@ -177,7 +177,7 @@
             this.checkBox_Ngay.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_Ngay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Ngay.Location = new System.Drawing.Point(891, 116);
-            this.checkBox_Ngay.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox_Ngay.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_Ngay.Name = "checkBox_Ngay";
             this.checkBox_Ngay.Size = new System.Drawing.Size(251, 22);
             this.checkBox_Ngay.TabIndex = 50;
@@ -190,7 +190,7 @@
             this.button1_In.BackColor = System.Drawing.Color.PowderBlue;
             this.button1_In.Font = new System.Drawing.Font("Lucida Fax", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1_In.Location = new System.Drawing.Point(1088, 410);
-            this.button1_In.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1_In.Margin = new System.Windows.Forms.Padding(4);
             this.button1_In.Name = "button1_In";
             this.button1_In.Size = new System.Drawing.Size(73, 66);
             this.button1_In.TabIndex = 51;
@@ -226,7 +226,7 @@
             this.Controls.Add(this.button_menu);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button_back);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ThongKe";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Thống kê";

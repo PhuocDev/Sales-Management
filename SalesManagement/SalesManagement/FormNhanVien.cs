@@ -458,7 +458,30 @@ namespace SalesManagement
             }
             //labelFileName.Text = Path.GetFileName(textBox_linkToImage.Text);
             pictureBox1.Image = ByteToImg(chuyenDoiAnh_Byte(imgPath));
-            
+            updateAnh_toSQL(imgPath);
+        }
+        private void updateAnh_toSQL(string imgPath)
+        {
+            connection.Open();
+            try
+            {
+                string sqlQuery = "";
+                
+                sqlQuery = "update NHANVIEN set ANH = @ANH where MANV = '" + txbMaNV.Text + "' ";
+                
+                SqlCommand command = new SqlCommand(sqlQuery, connection);
+                command.Parameters.AddWithValue("@ANH", chuyenDoiAnh_Byte(imgPath));
+                int rs = command.ExecuteNonQuery();
+                if (rs != 1)
+                {
+                    throw new Exception("Failed Query");
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            connection.Close();
         }
     }
 }
