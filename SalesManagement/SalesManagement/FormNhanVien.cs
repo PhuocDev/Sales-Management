@@ -264,7 +264,7 @@ namespace SalesManagement
                     string sqlQuery = "delete from NHANVIEN where MANV = '" + id_remove[i] + "'";
                     SqlCommand command = new SqlCommand(sqlQuery, connection);
                     int rs = command.ExecuteNonQuery();
-                    if (rs != 1)
+                    if (rs < 1)
                     {
                         throw new Exception("Failed Query");
                     }

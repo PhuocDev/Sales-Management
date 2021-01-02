@@ -79,7 +79,7 @@
         <rd:DefaultName>Textbox2</rd:DefaultName>
         <Top>0.19667in</Top>
         <Height>1.01389in</Height>
-        <Width>6.76335in</Width>
+        <Width>6.97862in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -172,7 +172,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox7</rd:DefaultName>
         <Top>1.74113in</Top>
-        <Left>2.7411in</Left>
+        <Left>2.74109in</Left>
         <Height>0.21667in</Height>
         <Width>1.67501in</Width>
         <ZIndex>3</ZIndex>
@@ -205,7 +205,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox57</rd:DefaultName>
-        <Top>2.89725in</Top>
+        <Top>3.11392in</Top>
         <Left>0.0361in</Left>
         <Height>0.23945in</Height>
         <Width>6.9689in</Width>
@@ -246,7 +246,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Ten SP</Value>
+                              <Value>Tên Sản Phẩm</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -276,7 +276,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>So Luong</Value>
+                              <Value>Số Lượng</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -308,7 +308,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Thanh Tien</Value>
+                              <Value>Thành Tiền</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -444,9 +444,6 @@
         <TablixRowHierarchy>
           <TablixMembers>
             <TablixMember>
-              <Visibility>
-                <Hidden>true</Hidden>
-              </Visibility>
               <KeepWithGroup>After</KeepWithGroup>
             </TablixMember>
             <TablixMember>
@@ -455,7 +452,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet2</DataSetName>
-        <Top>2.33614in</Top>
+        <Top>2.55281in</Top>
         <Left>0.78277in</Left>
         <Height>0.49166in</Height>
         <Width>5.39166in</Width>
@@ -704,7 +701,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>3.20614in</Top>
+        <Top>3.42281in</Top>
         <Left>0.78277in</Left>
         <Height>0.74583in</Height>
         <Width>5.40556in</Width>
@@ -791,7 +788,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox94</rd:DefaultName>
         <Top>1.74113in</Top>
-        <Left>2.18553in</Left>
+        <Left>2.18552in</Left>
         <Height>0.21667in</Height>
         <Width>0.54168in</Width>
         <ZIndex>9</ZIndex>
@@ -824,7 +821,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox57</rd:DefaultName>
-        <Top>2.02724in</Top>
+        <Top>2.24391in</Top>
         <Left>0.00972in</Left>
         <Height>0.23945in</Height>
         <Width>6.9689in</Width>
@@ -839,8 +836,70 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
+      <Textbox Name="Textbox10">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!MaKH.Value, "DataSet1")</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox7</rd:DefaultName>
+        <Top>1.97169in</Top>
+        <Left>2.74109in</Left>
+        <Height>0.21667in</Height>
+        <Width>1.67501in</Width>
+        <ZIndex>11</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox97">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>KH:</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox94</rd:DefaultName>
+        <Top>1.97169in</Top>
+        <Left>2.18552in</Left>
+        <Height>0.21667in</Height>
+        <Width>0.54168in</Width>
+        <ZIndex>12</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
-    <Height>4.25833in</Height>
+    <Height>4.44166in</Height>
     <Style />
   </Body>
   <Width>7.005in</Width>
@@ -897,7 +956,7 @@
           <rd:DefaultName>Textbox26</rd:DefaultName>
           <Top>0.06944in</Top>
           <Height>0.61055in</Height>
-          <Width>6.76335in</Width>
+          <Width>7.005in</Width>
           <Style>
             <Border>
               <Style>None</Style>
