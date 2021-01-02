@@ -44,27 +44,39 @@ namespace SalesManagement
 
         private void UpdateDanhSachHD()
         {
-            dgvLichSuHD.Rows.Clear();
-            SqlConnection connection = new SqlConnection(global.conString);
-            connection.Open();
-            string sqlQuery = "SELECT * FROM HOADON WHERE THOIGIAN >= @thoiGianBatDau AND THOIGIAN <= @thoiGianKetThuc ORDER BY THOIGIAN DESC";
-            SqlCommand command = new SqlCommand(sqlQuery, connection);
-            command.Parameters.AddWithValue("@thoiGianBatDau", Convert.ToDateTime(dtpFromDate.Value.ToString()));
-            command.Parameters.AddWithValue("@thoiGianKetThuc", Convert.ToDateTime(dtpToDate.Value.ToString()));
-            SqlDataReader dataReader = command.ExecuteReader();
-            while (dataReader.HasRows)
+            try
             {
-                if (dataReader.Read() == false) break;
-                dgvLichSuHD.Rows.Add(0, dataReader.GetString(0), dataReader.GetInt32(4), dataReader.GetDateTime(3).ToString(),
-                    dataReader.GetString(2), dataReader.GetString(1));
+                dgvLichSuHD.Rows.Clear();
+                SqlConnection connection = new SqlConnection(global.conString);
+                connection.Open();
+                string sqlQuery = "SELECT * FROM HOADON WHERE THOIGIAN >= @thoiGianBatDau AND THOIGIAN <= @thoiGianKetThuc ORDER BY THOIGIAN DESC";
+                SqlCommand command = new SqlCommand(sqlQuery, connection);
+                command.Parameters.AddWithValue("@thoiGianBatDau", Convert.ToDateTime(dtpFromDate.Value.ToString()));
+                command.Parameters.AddWithValue("@thoiGianKetThuc", Convert.ToDateTime(dtpToDate.Value.ToString()));
+                SqlDataReader dataReader = command.ExecuteReader();
+                while (dataReader.HasRows)
+                {
+                    if (dataReader.Read() == false) break;
+                    dgvLichSuHD.Rows.Add(0, dataReader.GetString(0), dataReader.GetInt32(4), dataReader.GetDateTime(3).ToString(),
+                        dataReader.GetString(2), dataReader.GetString(1));
+                }
+                for (int i = 0; i < dgvLichSuHD.Rows.Count - 1; i++)
+                {
+                    dgvLichSuHD.Rows[i].Cells[0].Value = i + 1;
+                    if (dgvLichSuHD.Rows[i].Cells[4].Value.ToString() == "KH00000")
+                        dgvLichSuHD.Rows[i].Cells[4].Value = "";
+                }
+                dgvLichSuHD.Rows[0].Selected = true;
+                connection.Close();
             }
-            for (int i = 0; i < dgvLichSuHD.Rows.Count - 1; i++) dgvLichSuHD.Rows[i].Cells[0].Value = i + 1;
-            dgvLichSuHD.Rows[0].Selected = true;
-            connection.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
         private void UpdateCTHD()
         {
-            dgvCTHD.Rows.Clear();
+            /*dgvCTHD.Rows.Clear();
             if (dgvLichSuHD.Rows.Count < 2) return;
             if (dgvLichSuHD.SelectedRows.Count != 1) return;
             SqlConnection connection = new SqlConnection(global.conString);
@@ -80,7 +92,32 @@ namespace SalesManagement
                 dgvCTHD.Rows.Add(0, dataReader.GetString(0), dataReader.GetString(1), dataReader.GetInt32(2),
                     dataReader.GetString(3), dataReader.GetInt32(4), dataReader.GetInt32(2) * dataReader.GetInt32(4));
             }
-            for (int i = 0; i < dgvCTHD.Rows.Count - 1; i++) dgvCTHD.Rows[i].Cells[0].Value = i + 1;
+            for (int i = 0; i < dgvCTHD.Rows.Count - 1; i++) dgvCTHD.Rows[i].Cells[0].Value = i + 1;*/
+
+            try
+            {
+                dgvCTHD.Rows.Clear();
+                if (dgvLichSuHD.Rows.Count < 2) return;
+                if (dgvLichSuHD.SelectedRows.Count != 1) return;
+                SqlConnection connection = new SqlConnection(global.conString);
+                connection.Open();
+                string sqlQuery = "SELECT MASP, TEN, SOLUONG, DVT, DONGIA, TRIGIA FROM CTHD WHERE MAHD = '" + dgvLichSuHD.SelectedRows[0].Cells[1].Value.ToString() + "'";
+                SqlCommand command = new SqlCommand(sqlQuery, connection);
+                SqlDataReader dataReader = command.ExecuteReader();
+                while (dataReader.HasRows)
+                {
+                    if (dataReader.Read() == false) break;
+                    dgvCTHD.Rows.Add(0, dataReader.GetString(0), dataReader.GetString(1), dataReader.GetInt32(2),
+                        dataReader.GetString(3), dataReader.GetInt32(4), dataReader.GetInt32(5));
+                }
+                for (int i = 0; i < dgvCTHD.Rows.Count - 1; i++) dgvCTHD.Rows[i].Cells[0].Value = i + 1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+
+
         }
 
         private void button_back_Click(object sender, EventArgs e)

@@ -10,8 +10,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
 using System.Threading;
 using Microsoft.Reporting.WinForms;
 
@@ -22,7 +20,7 @@ namespace SalesManagement
         List<ClassSanPham> listSanPham;
         List<string> listMaKH;
         CultureInfo cultureInfo;
-        //string conString = @"Server=LAPTOP-8IL3N9B7\SQL;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
+        //string conString = @"Server=LAPTOP-8IL3N9B7\SQLEXPRESS;Database=SALES_MANAGEMENT;User Id=sa;Password=quang17102001;";
         public FormHoaDon()
         {
             InitializeComponent();
@@ -109,7 +107,7 @@ namespace SalesManagement
             {
                 SqlConnection connection = new SqlConnection(global.conString);
                 connection.Open();
-                string sqlQuery = "SELECT * FROM HOADON WHERE THOIGIAN IN (SELECT MAX(THOIGIAN) FROM HOADON)";
+                string sqlQuery = "SELECT * FROM HOADON WHERE THOIGIAN IN (SELECT MAX(THOIGIAN) FROM HOADON) ORDER BY MAHD DESC";
                 SqlCommand command = new SqlCommand(sqlQuery, connection);
                 SqlDataReader dataReader = command.ExecuteReader();
                 string maHD;
@@ -119,6 +117,7 @@ namespace SalesManagement
                 if (dataReader.HasRows == false)
                 {
                     maHD = stringYear[2].ToString() + stringYear[3].ToString() + months[dateTime.Month] + "0001";
+                    connection.Close();
                     return maHD;
                 }
                 maHD = stringYear[2].ToString() + stringYear[3].ToString() + months[dateTime.Month];
@@ -129,11 +128,13 @@ namespace SalesManagement
                     string soThuTuHD = "0000" + Convert.ToString(Convert.ToInt32(maHDTruoc.Substring(5)) + 1);
                     soThuTuHD = soThuTuHD.Substring(soThuTuHD.Length - 4);
                     maHD = maHD + soThuTuHD;
+                    connection.Close();
                     return maHD;
                 }
                 else
                 {
                     maHD = maHD + "0001";
+                    connection.Close();
                     return maHD;
                 }
             }
@@ -480,10 +481,7 @@ namespace SalesManagement
                 string sqlQuery = "INSERT INTO HOADON(MAHD, MANV, MAKH, THOIGIAN, TONGGIATRI) VALUES (@maHD, @maNV, @maKH, @thoiGian, @tongGiaTri)";
                 SqlCommand command = new SqlCommand(sqlQuery, connection);
                 command.Parameters.AddWithValue("@maHD", txbMaHD.Text);
-                // ------------------------------------------------------------------------------------------------
-                //command.Parameters.AddWithValue("@maNV", user.MaNV);
-                command.Parameters.AddWithValue("@maNV", Login.Current_user.ID);  //Chưa đổi MANV
-                                                                                  // ------------------------------------------------------------------------------------------------
+                command.Parameters.AddWithValue("@maNV", Login.Current_user.ID);
                 if (cbbMaKH.FindString(cbbMaKH.Text) == -1 || cbbMaKH.Text == "") command.Parameters.AddWithValue("@maKH", "KH00000");
                 else command.Parameters.AddWithValue("@maKH", cbbMaKH.Text);
                 command.Parameters.AddWithValue("@thoiGian", Convert.ToDateTime(txbThoiGian.Text));
@@ -495,14 +493,18 @@ namespace SalesManagement
                     connection.Close();
                     return;
                 }
-                sqlQuery = "INSERT INTO CTHD(MAHD, MASP, SOLUONG) VALUES (@maHD, @maSP, @soLuong)";
+                sqlQuery = "INSERT INTO CTHD(MAHD, MASP, TEN, SOLUONG, DVT, DONGIA, TRIGIA) VALUES (@maHD, @maSP, @ten, @soLuong, @DVT, @donGia, @triGia)";
                 command = new SqlCommand(sqlQuery, connection);
                 for (int i = 0; i < dgvHoaDon.Rows.Count - 1; i++)
                 {
                     command.Parameters.Clear();
                     command.Parameters.AddWithValue("@maHD", txbMaHD.Text);
                     command.Parameters.AddWithValue("@maSP", dgvHoaDon.Rows[i].Cells[1].Value.ToString());
+                    command.Parameters.AddWithValue("@ten", dgvHoaDon.Rows[i].Cells[2].Value.ToString());
                     command.Parameters.AddWithValue("@soLuong", dgvHoaDon.Rows[i].Cells[3].Value);
+                    command.Parameters.AddWithValue("@DVT", dgvHoaDon.Rows[i].Cells[4].Value.ToString());
+                    command.Parameters.AddWithValue("@donGia", int.Parse(dgvHoaDon.Rows[i].Cells[5].Value.ToString(), NumberStyles.Currency));
+                    command.Parameters.AddWithValue("@triGia", int.Parse(dgvHoaDon.Rows[i].Cells[6].Value.ToString(), NumberStyles.Currency));
                     check = command.ExecuteNonQuery();
                     if (check != 1)
                     {
@@ -531,6 +533,8 @@ namespace SalesManagement
             {
                 MessageBox.Show(ex.Message);
             }
+
+
         }
 
         private void cbbMaKH_Leave(object sender, EventArgs e)
@@ -562,93 +566,6 @@ namespace SalesManagement
         {
             this.Show();
         }
-
-        /*private void btnIn_Click(object sender, EventArgs e)
-        {
-            if (dgvHoaDon.Rows.Count > 0)
-            {
-                SaveFileDialog sfd = new SaveFileDialog();
-                sfd.Filter = "PDF (*.pdf)|*.pdf";
-                sfd.FileName = txbMaHD.Text + ".pdf";
-                bool fileError = false;
-                if (sfd.ShowDialog() == DialogResult.OK)
-                {
-                    if (File.Exists(sfd.FileName))
-                    {
-                        try
-                        {
-                            File.Delete(sfd.FileName);
-                        }
-                        catch (IOException ex)
-                        {
-                            fileError = true;
-                            MessageBox.Show("It wasn't possible to write the data to the disk." + ex.Message);
-                        }
-                    }
-                    if (!fileError)
-                    {
-                        try
-                        {
-                            iTextSharp.text.Font font = FontFactory.GetFont("Arial", 14.0f, BaseColor.BLACK);
-                            PdfPTable pdfTable = new PdfPTable(dgvHoaDon.Columns.Count);
-                            pdfTable.DefaultCell.Padding = 3;
-                            pdfTable.WidthPercentage = 100;
-                            pdfTable.HorizontalAlignment = Element.ALIGN_CENTER;
-
-                            foreach (DataGridViewColumn column in dgvHoaDon.Columns)
-                            {
-                                PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText, font));
-                                pdfTable.AddCell(cell);
-                            }
-
-                            foreach (DataGridViewRow row in dgvHoaDon.Rows)
-                            {
-                                if (row.Index == dgvHoaDon.Rows.Count - 1) continue;
-                                foreach (DataGridViewCell cell in row.Cells)
-                                {
-                                    PdfPCell cellWithFont = new PdfPCell(new Phrase(cell.Value.ToString(), font));
-                                    pdfTable.AddCell(cellWithFont);
-                                }
-                            }
-
-                            using (FileStream stream = new FileStream(sfd.FileName, FileMode.Create))
-                            {
-                                Document pdfDoc = new Document(PageSize.A4, 10f, 20f, 20f, 10f);
-                                PdfWriter.GetInstance(pdfDoc, stream);
-                                pdfDoc.Open();
-                                Phrase phrase = new Phrase();
-                                Chunk chunk = new Chunk("Mã hóa đơn: " + txbMaHD.Text, font);
-                                phrase.Add(chunk);
-                                phrase.Add(Environment.NewLine);
-                                chunk = new Chunk("Thời gian: " + txbThoiGian.Text, font);
-                                phrase.Add(chunk);
-                                phrase.Add(Environment.NewLine);
-                                chunk = new Chunk("Tổng thanh toán: " + txbTongThanhToan.Text, font);
-                                phrase.Add(chunk);
-                                phrase.Add(Environment.NewLine);
-                                pdfDoc.Add(phrase);
-                                pdfDoc.Add(pdfTable);
-                                pdfDoc.Close();
-                                stream.Close();
-                                
-                            }
-
-                            MessageBox.Show("Data Exported Successfully !!!", "Info");
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Error :" + ex.Message);
-                        }
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("No Record To Export !!!", "Info");
-            }
-            //XuatPDF();
-        }*/
-
         private void btnTaoKHMoi_Click(object sender, EventArgs e)
         {
             AddKhachHang addKhachHang = new AddKhachHang();
@@ -662,7 +579,9 @@ namespace SalesManagement
             {
                 list.Add(new SanPhamThanhToan { TenSP = dgvHoaDon.Rows[i].Cells[2].Value.ToString(), 
                     SoLuong = dgvHoaDon.Rows[i].Cells[3].Value.ToString(), 
-                    ThanhTien = dgvHoaDon.Rows[i].Cells[6].Value.ToString() });
+                    //ThanhTien = dgvHoaDon.Rows[i].Cells[6].Value.ToString() });
+                    ThanhTien = string.Format(cultureInfo, "{0:C0}", dgvHoaDon.Rows[i].Cells[6].Value)
+                });
             }
             return list;
         }
@@ -673,7 +592,7 @@ namespace SalesManagement
                 new Receipt
                 {
                     MaHD = txbMaHD.Text,
-                    MaKH = cbbMaKH.Text,
+                    MaKH = GetTenKH(cbbMaKH.Text),
                     TenNV = txbNhanVien.Text,
                     StringThoiGian = txbThoiGian.Text,
                     StringTongThanhToan = txbTongThanhToan.Text,
@@ -681,6 +600,35 @@ namespace SalesManagement
                     StringTraLaiKhach = txbTraLaiKhach.Text
                 }
             };
+        }
+        public string GetTenKH(string maKH)
+        {
+            try
+            {
+                if (maKH == "" || maKH == "KH00000") return "";
+                SqlConnection connection = new SqlConnection(global.conString);
+                connection.Open();
+                string sqlQuery = "SELECT TEN FROM KHACHHANG WHERE MAKH = '" + cbbMaKH.Text + "'";
+                SqlCommand command = new SqlCommand(sqlQuery, connection);
+                SqlDataReader dataReader = command.ExecuteReader();
+                string tenKH = "";
+                if (dataReader.HasRows)
+                {
+                    if (dataReader.Read() == false)
+                    {
+                        connection.Close();
+                        return "";
+                    }
+                    tenKH = dataReader.GetString(0);
+                }
+                connection.Close();
+                return tenKH;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return "";
+            }
         }
         public void XuatPDF()
         {
@@ -773,33 +721,6 @@ namespace SalesManagement
             {
                 MessageBox.Show(ex.Message);
             }
-
-            /*Warning[] warnings;
-            string[] streamIds;
-            string deviceInfo = @"<DeviceInfo>              
-                <OutputFormat>PDF</OutputFormat>              
-                 <PageWidth>7.0n</PageWidth>              
-                 <PageHeight>10.0in</PageHeight>          
-                 </DeviceInfo>";
-            string mimeType = string.Empty;
-            string encoding = string.Empty;
-            string extension = string.Empty;
-            ReportViewer viewer = new ReportViewer();
-            viewer.ProcessingMode = ProcessingMode.Local;
-            viewer.LocalReport.ReportPath = "ReceiptReport.rdlc";
-            viewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet2", GetSanPhamThanhToan()));
-            viewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", GetReceiptInfo()));
-            viewer.RefreshReport();
-            MessageBox.Show("Before Render");
-            var bytes = viewer.LocalReport.Render("Image", "", out mimeType, out encoding, out extension, out streamIds, out warnings);
-            MessageBox.Show("After Render");
-            //string fileName = @".\Receipts\" + txbMaHD.Text + ".pdf";
-            string fileName = Path.Combine(Directory.GetCurrentDirectory(), txbMaHD.Text + ".png");
-            MessageBox.Show(fileName);
-            //if (!Directory.Exists(@".\Receipts\")) Directory.CreateDirectory(@".\Receipts\");
-            if (!File.Exists(fileName)) File.Delete(fileName);
-            File.WriteAllBytes(fileName, bytes);*/
-
         }
     }
 }
