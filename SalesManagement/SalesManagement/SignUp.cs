@@ -186,8 +186,6 @@ namespace SalesManagement
         // --------------------- xử lý hình ảnh -----------------------------//
         // button chọn ảnh
         public string imgPath = "";
-        public bool changePic = false;   // kiểmm tra có thay đổi ảnh hay không
-        
         private void updateAnh_toSQL(string imgPath)
         {
             if (!File.Exists(imgPath)) return;
@@ -195,8 +193,7 @@ namespace SalesManagement
             try
             {
                 string sqlQuery = "";
-                sqlQuery = "update NHANVIEN set ANH = @ANH where MANV = '" + textBox5_MaNV.Text + "' ";
-                
+                sqlQuery = "update NHANVIEN set ANH = @ANH where MANV = '" + textBox5_MaNV.Text + "'";
                 SqlCommand command = new SqlCommand(sqlQuery, connection);
                 command.Parameters.AddWithValue("@ANH", chuyenDoiAnh_Byte(imgPath));
                 int rs = command.ExecuteNonQuery();
@@ -254,8 +251,6 @@ namespace SalesManagement
             {
                 MessageBox.Show("Vui lòng chọn hình ảnh", "Error");
             }
-            changePic = true;
-
             return picbyte;
         }
     }

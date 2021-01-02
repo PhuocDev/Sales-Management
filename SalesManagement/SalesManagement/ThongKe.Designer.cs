@@ -31,6 +31,7 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ThongKe));
             this.label1 = new System.Windows.Forms.Label();
             this.checkBox_tKTheoThang = new System.Windows.Forms.CheckBox();
             this.checkBox_tKTheoNam = new System.Windows.Forms.CheckBox();
@@ -226,6 +227,7 @@
             this.Controls.Add(this.button_menu);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button_back);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ThongKe";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

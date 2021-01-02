@@ -82,11 +82,11 @@ namespace SalesManagement
             {
                 if (id.Substring(0, 2) == "NV")
                 {
-                    sqlQuery2 = "select MANV, ISNULL(ANH, '" + globalPic.anhYeuCau + "') AS ANH from NHANVIEN WHERE MANV = '" + id + "'";
+                    sqlQuery2 = "select MANV, ISNULL(ANH, '" + globalPic.anhNVdefault + "') AS ANH from NHANVIEN WHERE MANV = '" + id + "'";
                 }
                 else
                 {
-                    sqlQuery2 = "select MAQL, ISNULL(ANH, '" + globalPic.anhYeuCau + "') AS ANH from QUANLY WHERE MAQL = '" + id + "'";
+                    sqlQuery2 = "select MAQL, ISNULL(ANH, '" + globalPic.anhQLdefault + "') AS ANH from QUANLY WHERE MAQL = '" + id + "'";
                 }
                 SqlCommand command2 = new SqlCommand(sqlQuery2, connection);
                 SqlDataReader dataReader2 = command2.ExecuteReader();
@@ -190,14 +190,6 @@ namespace SalesManagement
                     command.Parameters.AddWithValue("@sdt", txbSDT.Text);
                     command.Parameters.AddWithValue("@diachi", txbDiaChi.Text);
                     command.Parameters.AddWithValue("@manv", txbMaNV.Text);
-                    try
-                    {
-                        if(changePic == true)
-                        command.Parameters.AddWithValue("@ANH", chuyenDoiAnh_Byte(imgPath));
-                    } catch (Exception)
-                    {
-                        MessageBox.Show("Lỗi cập nhật ảnh", "error");
-                    }
                     int rs = command.ExecuteNonQuery();
                     if (rs != 1)
                     {
@@ -252,7 +244,14 @@ namespace SalesManagement
             {
                 if (!File.Exists(openFile.FileName)) return;
                 imgPath = openFile.FileName;
+                Image tempImage = pictureBox_AnhNV.Image;
                 pictureBox_AnhNV.Image = ByteToImg(chuyenDoiAnh_Byte(imgPath));
+                DialogResult result = MessageBox.Show("Bạn có muốn lưu ảnh?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.No)
+                {
+                    pictureBox_AnhNV.Image = tempImage;
+                    return;
+                }
                 updateAnh_toSQL(imgPath);
             }
             //labelFileName.Text = Path.GetFileName(textBox_linkToImage.Text);

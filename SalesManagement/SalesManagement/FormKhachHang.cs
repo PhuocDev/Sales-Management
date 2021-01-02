@@ -41,6 +41,43 @@ namespace SalesManagement
                 stt++;
             }
             connection.Close();
+            connection.Open();
+            try
+            {
+                //load ảnh của khách hàng đầu tiên
+                string sqlQuery2 = "select top(2) MaKH, ISNULL(ANH, '" + globalPic.anhKHdefault + "') AS ANH from KHACHHANG ";
+                SqlCommand command2 = new SqlCommand(sqlQuery2, connection);
+                SqlDataReader dataReader2 = command2.ExecuteReader();
+                while (dataReader2.HasRows)
+                {
+                    if (dataReader2.Read() == false) break;
+                    else
+                        pictureBox1.Image = ByteToImg(dataReader2.GetString(1));
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Lỗi load ảnh khách hàng đầu tiên");
+            }
+            connection.Close();
+
+        }
+
+        private Image ByteToImg(string byteString)    // chứa đoạn string byte của images
+        {
+            Image image1 = null;
+            try
+            {
+                byte[] imgBytes = Convert.FromBase64String(byteString);
+                MemoryStream ms = new MemoryStream(imgBytes, 0, imgBytes.Length);
+                ms.Write(imgBytes, 0, imgBytes.Length);
+                image1 = Image.FromStream(ms, true);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            return image1;
         }
 
         //---------------------------------------------------chuyển_form-------------------------------------------------------------------------//
@@ -81,6 +118,37 @@ namespace SalesManagement
             txbSDT.Text = dataGridView1.Rows[index].Cells[5].Value.ToString();
             txbDiaChi.Text = dataGridView1.Rows[index].Cells[6].Value.ToString();
             txbDiem.Text = dataGridView1.Rows[index].Cells[7].Value.ToString();
+            try
+            {
+                pictureBox1.Image = ByteToImg(getByteDataOfImg(txbMaKH.Text));
+            }
+            catch
+            {
+                pictureBox1.Image = ByteToImg(globalPic.anhKHdefault);
+            }
+        }
+
+        private string getByteDataOfImg(string id)  // id là mã khách hàng để lấy data ảnh
+        {
+            try
+            {
+                connection.Open();
+                string sqlQuery = "select MAKH, ISNULL(ANH, '" + globalPic.anhKHdefault + "') from KHACHHANG WHERE MAKH = '" + id + "'";
+                SqlCommand command = new SqlCommand(sqlQuery, connection);
+                SqlDataReader dataReader = command.ExecuteReader();
+                string dataImg = "";
+                while (dataReader.HasRows)
+                {
+                    if (dataReader.Read() == false) break;
+                    else dataImg = dataReader.GetString(1);
+                }
+                connection.Close();
+                return dataImg;
+            }
+            catch
+            {
+                return globalPic.anhKHdefault;
+            }
         }
 
         //-------------------------------------------------------Chỉnh_sửa_click-------------------------------------------------------------------//
@@ -344,6 +412,80 @@ namespace SalesManagement
             if (!char.IsControl(e.KeyChar) && !char.IsNumber(e.KeyChar))
             {
                 e.Handled = true;
+            }
+        }
+
+        private byte[] converImgToByte(string path)
+        {
+
+            FileStream fs = null;
+            byte[] picbyte = { 1, 2 };
+            try
+            {
+                fs = new FileStream(path, FileMode.Open, FileAccess.Read);
+                picbyte = new byte[fs.Length];
+                fs.Read(picbyte, 0, System.Convert.ToInt32(fs.Length));
+                fs.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Vui lòng chọn hình ảnh", "Error");
+            }
+
+            return picbyte;
+
+        }
+        private string chuyenDoiAnh_Byte(string path)
+        {
+            if (!File.Exists(path)) return null;
+            // chuỗi dùng để lưu vào database
+            string byteOfImag = Convert.ToBase64String(converImgToByte(path));
+            return byteOfImag;
+            // Để cover đoạn chuỗi trên trở lại kiểu Byte hình ảnh thì dùng đoạn code sau:
+            //Convert.FromBase64String(Đoạn_String_đã_cover);
+        }
+        private void updateAnh_toSQL(string imgPath)
+        {
+            if (!File.Exists(imgPath)) return;
+            connection.Open();
+            try
+            {
+                string sqlQuery = "";
+                sqlQuery = "update KHACHHANG set ANH = @ANH where MAKH = '" + txbMaKH.Text + "'";
+                SqlCommand command = new SqlCommand(sqlQuery, connection);
+                command.Parameters.AddWithValue("@ANH", chuyenDoiAnh_Byte(imgPath));
+                int rs = command.ExecuteNonQuery();
+                if (rs != 1)
+                {
+                    throw new Exception("Failed Query");
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            connection.Close();
+        }
+        public string imgPath = "";
+        private void button_UpdateImage_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.Filter = "Pictures files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png)|*.jpg; *.jpeg; *.jpe; *.jfif; *.png|All files (*.*)|*.*";
+            openFile.FilterIndex = 1;
+            openFile.RestoreDirectory = true;
+            if (openFile.ShowDialog() == DialogResult.OK)
+            {
+                if (!File.Exists(openFile.FileName)) return;
+                imgPath = openFile.FileName;
+                Image tempImage = pictureBox1.Image;
+                pictureBox1.Image = ByteToImg(chuyenDoiAnh_Byte(imgPath));
+                DialogResult result = MessageBox.Show("Bạn có muốn lưu ảnh?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.No)
+                {
+                    pictureBox1.Image = tempImage;
+                    return;
+                }
+                updateAnh_toSQL(imgPath);
             }
         }
     }
