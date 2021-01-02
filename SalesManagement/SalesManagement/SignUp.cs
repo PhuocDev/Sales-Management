@@ -125,8 +125,8 @@ namespace SalesManagement
                     string commandString = "INSERT INTO NHANVIEN VALUES('" + textBox5_MaNV.Text.ToString() + "', '" + Hash_pass(textBox2_matKhau.Text).ToString() + "', N'" + textBox4_HoTen.Text.ToString() + "', '" + dateTimePicker1.Value.ToString().Substring(0, dateTimePicker1.Value.ToString().IndexOf(" ")) + "', N'" + comboBox2.Text.ToString() + "', '" + textBox_DienThoai.Text.ToString() + "', N'" + textBox_diaChi.Text.ToString() + "', NULL)";
                     SqlCommand sqlCmd = new SqlCommand(commandString, sqlCon);
                     sqlCmd.ExecuteNonQuery();
-                    MessageBox.Show("Đăng kí thành công");
                     updateAnh_toSQL(imgPath);
+                    MessageBox.Show("Đăng kí thành công");
                     this.parent.add_datagridview(textBox5_MaNV.Text, textBox4_HoTen.Text, dateTimePicker1.Value.ToString().Substring(0, dateTimePicker1.Value.ToString().IndexOf(" ")), comboBox2.Text.ToString(), textBox_DienThoai.Text, textBox_diaChi.Text);
                 }
                 catch (Exception ex)
@@ -175,10 +175,12 @@ namespace SalesManagement
             openFile.RestoreDirectory = true;
             if (openFile.ShowDialog() == DialogResult.OK)
             {
+                if (!File.Exists(openFile.FileName)) return;
                 imgPath = openFile.FileName;
+                pictureBox_AnhNV.Image = ByteToImg(chuyenDoiAnh_Byte(imgPath));
             }
             //labelFileName.Text = Path.GetFileName(textBox_linkToImage.Text);
-            pictureBox_AnhNV.Image = ByteToImg(chuyenDoiAnh_Byte(imgPath));
+            
             
         }
         // --------------------- xử lý hình ảnh -----------------------------//
@@ -188,11 +190,12 @@ namespace SalesManagement
         
         private void updateAnh_toSQL(string imgPath)
         {
+            if (!File.Exists(imgPath)) return;
             connection.Open();
             try
             {
                 string sqlQuery = "";
-                sqlQuery = "update NHANVIEN set ANH = @ANH where MANV = '" + textBox5_MaNV + "' ";
+                sqlQuery = "update NHANVIEN set ANH = @ANH where MANV = '" + textBox5_MaNV.Text + "' ";
                 
                 SqlCommand command = new SqlCommand(sqlQuery, connection);
                 command.Parameters.AddWithValue("@ANH", chuyenDoiAnh_Byte(imgPath));
@@ -210,6 +213,7 @@ namespace SalesManagement
         }
         private string chuyenDoiAnh_Byte(string path)
         {
+            if (!File.Exists(path)) return null;
             // chuỗi dùng để lưu vào database
             string byteOfImag = Convert.ToBase64String(converImgToByte(path));
             return byteOfImag;

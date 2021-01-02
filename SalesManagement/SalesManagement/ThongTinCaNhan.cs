@@ -250,14 +250,16 @@ namespace SalesManagement
             openFile.RestoreDirectory = true;
             if (openFile.ShowDialog() == DialogResult.OK)
             {
+                if (!File.Exists(openFile.FileName)) return;
                 imgPath = openFile.FileName;
+                pictureBox_AnhNV.Image = ByteToImg(chuyenDoiAnh_Byte(imgPath));
+                updateAnh_toSQL(imgPath);
             }
             //labelFileName.Text = Path.GetFileName(textBox_linkToImage.Text);
-            pictureBox_AnhNV.Image = ByteToImg(chuyenDoiAnh_Byte(imgPath));
-            updateAnh_toSQL(imgPath);
         }
         private void updateAnh_toSQL(string imgPath)
         {
+            if (!File.Exists(imgPath)) return;
             connection.Open();
             try
             {
@@ -286,6 +288,7 @@ namespace SalesManagement
         }
         private string chuyenDoiAnh_Byte(string path)
         {
+            if (!File.Exists(path)) return null;
             // chuỗi dùng để lưu vào database
             string byteOfImag = Convert.ToBase64String(converImgToByte(path));
             return byteOfImag;

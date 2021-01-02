@@ -309,12 +309,9 @@ namespace SalesManagement
         {
             label_warning.Text = "*Không thể thay đổi mã nhân viên";
         }
+
         //-----------------------------------------------------------------------------------------------------------------------------------------------//
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
+        
         private void btnXuatFile_Click(object sender, EventArgs e)
         {
             if (dataGridView1.Rows.Count == 0)
@@ -439,6 +436,7 @@ namespace SalesManagement
 
         private string chuyenDoiAnh_Byte(string path)
         {
+            if (!File.Exists(path)) return null;
             // chuỗi dùng để lưu vào database
             string byteOfImag = Convert.ToBase64String(converImgToByte(path));
             return byteOfImag;
@@ -454,14 +452,23 @@ namespace SalesManagement
             openFile.RestoreDirectory = true;
             if (openFile.ShowDialog() == DialogResult.OK)
             {
+                if (!File.Exists(openFile.FileName)) return;
                 imgPath = openFile.FileName;
+                Image tempImage = pictureBox1.Image;
+                pictureBox1.Image = ByteToImg(chuyenDoiAnh_Byte(imgPath));
+                DialogResult result = MessageBox.Show("Bạn có muốn lưu ảnh?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.No)
+                {
+                    pictureBox1.Image = tempImage;
+                    return;
+                }
+                updateAnh_toSQL(imgPath);
             }
             //labelFileName.Text = Path.GetFileName(textBox_linkToImage.Text);
-            pictureBox1.Image = ByteToImg(chuyenDoiAnh_Byte(imgPath));
-            updateAnh_toSQL(imgPath);
         }
         private void updateAnh_toSQL(string imgPath)
         {
+            if (!File.Exists(imgPath)) return;
             connection.Open();
             try
             {
