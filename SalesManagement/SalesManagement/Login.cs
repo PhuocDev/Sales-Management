@@ -40,44 +40,52 @@ namespace SalesManagement
         //--------------------------------------VerifyUser----------------------------------------------------------//
         private bool VerifyUser(string name, string pass)//kiểm tra TK_MK
         {
-            connection.Open();
-            if (name.Substring(0, 2) == "NV")
+            try
             {
-                string sqlQuery = "select MANV, PASSWORD from NHANVIEN";
-                SqlCommand command = new SqlCommand(sqlQuery, connection);
-                SqlDataReader dataReader = command.ExecuteReader();
-                while (dataReader.HasRows)
+                connection.Open();
+                if (name.Substring(0, 2) == "NV")
                 {
-                    if (dataReader.Read() == false) break;
-                    if (dataReader.GetString(0) == name && dataReader.GetString(1) == Hash_pass(pass))
+                    string sqlQuery = "select MANV, PASSWORD from NHANVIEN";
+                    SqlCommand command = new SqlCommand(sqlQuery, connection);
+                    SqlDataReader dataReader = command.ExecuteReader();
+                    while (dataReader.HasRows)
                     {
-                        connection.Close();
-                        return true;
+                        if (dataReader.Read() == false) break;
+                        if (dataReader.GetString(0) == name && dataReader.GetString(1) == Hash_pass(pass))
+                        {
+                            connection.Close();
+                            return true;
+                        }
                     }
+                    connection.Close();
+                    return false;
                 }
-                connection.Close();
-                return false;
-            }
-            else if (name.Substring(0, 2) == "QL")
-            {
-                string sqlQuery = "select MAQL, PASSWORD from QUANLY";
-                SqlCommand command = new SqlCommand(sqlQuery, connection);
-                SqlDataReader dataReader = command.ExecuteReader();
-                while (dataReader.HasRows)
+                else if (name.Substring(0, 2) == "QL")
                 {
-                    if (dataReader.Read() == false) break;
-                    if (dataReader.GetString(0) == name && dataReader.GetString(1) == Hash_pass(pass))
+                    string sqlQuery = "select MAQL, PASSWORD from QUANLY";
+                    SqlCommand command = new SqlCommand(sqlQuery, connection);
+                    SqlDataReader dataReader = command.ExecuteReader();
+                    while (dataReader.HasRows)
                     {
-                        connection.Close();
-                        return true;
+                        if (dataReader.Read() == false) break;
+                        if (dataReader.GetString(0) == name && dataReader.GetString(1) == Hash_pass(pass))
+                        {
+                            connection.Close();
+                            return true;
+                        }
                     }
+                    connection.Close();
+                    return false;
                 }
-                connection.Close();
-                return false;
+                else
+                {
+                    connection.Close();
+                    return false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                connection.Close();
+                MessageBox.Show("Lỗi kết nối database:" + ex.Message);
                 return false;
             }
         }
