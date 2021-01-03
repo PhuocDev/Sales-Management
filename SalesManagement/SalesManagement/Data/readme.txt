@@ -2,8 +2,10 @@ Sales-Management - Quản lý bán hàng siêu thị
 Hướng dẫn cài đặt: 
  - Nháy đúp chuột vào file SalesManagement.exe, nhấn next và Chọn thư mục lưu ứng dụng, sau đó nhấn finish
 để hoàn tất.
- - Tiếp theo,chạy file "Create database.bat" trong thư mục data tại nơi cài đặt ứng dụng. Lưu ý, 
-phiên bản SQL của người sử dụng phải là bản SQLExpress 2012. 
+ - Tiếp theo, mở file "SalesManagement.exe.config" trong thư mục đã cài đặt, tại dòng số 5, đổi lại
+connectionString đúng với địa chỉ của máy chủ dữ liệu server.
+ - Nếu máy chủ dữ liệu server chưa có dữ liệu, chạy file "Create database.bat" trong thư mục "Data" tại nơi
+cài đặt ứng dụng.
  
 Người dùng
 	- Nhân viên quản lý siêu thị.

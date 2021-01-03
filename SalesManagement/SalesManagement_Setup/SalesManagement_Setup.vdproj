@@ -33,6 +33,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_0A0C0AA8C1464ACD89C200812675602C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_0E80EC0E2CEDA1054468198E9FB55A29"
         "OwnerKey" = "8:_E53AC680AD65D346B5928CD40125E865"
         "MsmSig" = "8:_UNDEFINED"
@@ -184,6 +190,12 @@
         "Entry"
         {
         "MsmKey" = "8:_36FCF3FB38F5E58F98DC679866DBCC01"
+        "OwnerKey" = "8:_E53AC680AD65D346B5928CD40125E865"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_36FCF3FB38F5E58F98DC679866DBCC01"
         "OwnerKey" = "8:_BDA32927729E36DEBFEF6CE22E750290"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -311,6 +323,24 @@
         {
         "MsmKey" = "8:_537288AF864DC3969FDB5904CFE21880"
         "OwnerKey" = "8:_63663E0FB7FF4922834D69B0DF32212F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_537288AF864DC3969FDB5904CFE21880"
+        "OwnerKey" = "8:_DF530BA272F077F4DD3AD7D17BACF79D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_537288AF864DC3969FDB5904CFE21880"
+        "OwnerKey" = "8:_750EFF846B6ABED44EE1195C442BBE08"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_537288AF864DC3969FDB5904CFE21880"
+        "OwnerKey" = "8:_5F10615F234B71CC8E01BF4D3FF439A3"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -531,12 +561,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_6FA5D9309F745D7D559737D28B1C18AD"
-        "OwnerKey" = "8:_E53AC680AD65D346B5928CD40125E865"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_6FFF42B910384495AFA198DF553DED6A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -580,12 +604,6 @@
         "Entry"
         {
         "MsmKey" = "8:_764552B09FED4CC5B05D622325060792"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_79D0D071E84E46BE94A20BB3B3F28BEF"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2002,12 +2020,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6FA5D9309F745D7D559737D28B1C18AD"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_5F10615F234B71CC8E01BF4D3FF439A3"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2383,6 +2395,26 @@
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_B179DDE6AD134F67A05BF4A04E4C42F6"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0A0C0AA8C1464ACD89C200812675602C"
+            {
+            "SourcePath" = "8:..\\SalesManagement\\Data\\readme.txt"
+            "TargetName" = "8:readme.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_83A2771B16314434B5CEF0D50464DD48"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3569,37 +3601,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6FA5D9309F745D7D559737D28B1C18AD"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:TRUE"
-            "AssemblyAsmDisplayName" = "8:Microsoft.SqlServer.Types, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_6FA5D9309F745D7D559737D28B1C18AD"
-                    {
-                    "Name" = "8:Microsoft.SqlServer.Types.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Microsoft.SqlServer.Types.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_B179DDE6AD134F67A05BF4A04E4C42F6"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6FFF42B910384495AFA198DF553DED6A"
             {
             "AssemblyRegister" = "3:1"
@@ -3730,26 +3731,6 @@
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_B179DDE6AD134F67A05BF4A04E4C42F6"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_79D0D071E84E46BE94A20BB3B3F28BEF"
-            {
-            "SourcePath" = "8:..\\SalesManagement\\Data\\readme.txt"
-            "TargetName" = "8:readme.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_83A2771B16314434B5CEF0D50464DD48"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -5863,7 +5844,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:SalesManagement"
         "ProductCode" = "8:{D2D780D8-6B04-4B67-AE50-2C87EB67A6E2}"
-        "PackageCode" = "8:{6BE30711-851F-4AD5-B312-0315EB90CB08}"
+        "PackageCode" = "8:{CB8DCB57-9442-4C4A-89FE-BA920239B644}"
         "UpgradeCode" = "8:{B7C886B8-CB21-4D4C-B00B-AEDAEC35F545}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
