@@ -79,7 +79,7 @@
             this.button_them.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_them.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_them.Location = new System.Drawing.Point(1193, 240);
-            this.button_them.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_them.Margin = new System.Windows.Forms.Padding(4);
             this.button_them.Name = "button_them";
             this.button_them.Size = new System.Drawing.Size(207, 49);
             this.button_them.TabIndex = 9;
@@ -107,7 +107,7 @@
             this.Column_nhaCungCap,
             this.Column_ghiChu});
             this.dataGridView_danhSachSanPham.Location = new System.Drawing.Point(16, 240);
-            this.dataGridView_danhSachSanPham.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView_danhSachSanPham.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView_danhSachSanPham.Name = "dataGridView_danhSachSanPham";
             this.dataGridView_danhSachSanPham.ReadOnly = true;
             this.dataGridView_danhSachSanPham.RowHeadersWidth = 51;
@@ -218,7 +218,7 @@
             this.button_chinhSua.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_chinhSua.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_chinhSua.Location = new System.Drawing.Point(1193, 313);
-            this.button_chinhSua.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_chinhSua.Margin = new System.Windows.Forms.Padding(4);
             this.button_chinhSua.Name = "button_chinhSua";
             this.button_chinhSua.Size = new System.Drawing.Size(207, 49);
             this.button_chinhSua.TabIndex = 46;
@@ -234,7 +234,7 @@
             this.button_xoa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_xoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_xoa.Location = new System.Drawing.Point(1193, 385);
-            this.button_xoa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_xoa.Margin = new System.Windows.Forms.Padding(4);
             this.button_xoa.Name = "button_xoa";
             this.button_xoa.Size = new System.Drawing.Size(207, 49);
             this.button_xoa.TabIndex = 45;
@@ -251,7 +251,7 @@
             this.button_xuatFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_xuatFile.ForeColor = System.Drawing.SystemColors.Desktop;
             this.button_xuatFile.Location = new System.Drawing.Point(1193, 532);
-            this.button_xuatFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_xuatFile.Margin = new System.Windows.Forms.Padding(4);
             this.button_xuatFile.Name = "button_xuatFile";
             this.button_xuatFile.Size = new System.Drawing.Size(207, 49);
             this.button_xuatFile.TabIndex = 44;
@@ -267,7 +267,7 @@
             this.button_luuKho.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_luuKho.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_luuKho.Location = new System.Drawing.Point(1193, 631);
-            this.button_luuKho.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_luuKho.Margin = new System.Windows.Forms.Padding(4);
             this.button_luuKho.Name = "button_luuKho";
             this.button_luuKho.Size = new System.Drawing.Size(207, 49);
             this.button_luuKho.TabIndex = 55;
@@ -279,7 +279,7 @@
             // textBox_masp
             // 
             this.textBox_masp.Location = new System.Drawing.Point(128, 135);
-            this.textBox_masp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_masp.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_masp.Name = "textBox_masp";
             this.textBox_masp.Size = new System.Drawing.Size(272, 22);
             this.textBox_masp.TabIndex = 1;
@@ -287,7 +287,7 @@
             // textBox_tensp
             // 
             this.textBox_tensp.Location = new System.Drawing.Point(128, 81);
-            this.textBox_tensp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_tensp.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_tensp.Name = "textBox_tensp";
             this.textBox_tensp.Size = new System.Drawing.Size(603, 22);
             this.textBox_tensp.TabIndex = 0;
@@ -295,7 +295,7 @@
             // textBox_giaBan
             // 
             this.textBox_giaBan.Location = new System.Drawing.Point(867, 180);
-            this.textBox_giaBan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_giaBan.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_giaBan.Name = "textBox_giaBan";
             this.textBox_giaBan.Size = new System.Drawing.Size(216, 22);
             this.textBox_giaBan.TabIndex = 7;
@@ -305,7 +305,7 @@
             // textBox_giaNhap
             // 
             this.textBox_giaNhap.Location = new System.Drawing.Point(867, 135);
-            this.textBox_giaNhap.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_giaNhap.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_giaNhap.Name = "textBox_giaNhap";
             this.textBox_giaNhap.Size = new System.Drawing.Size(216, 22);
             this.textBox_giaNhap.TabIndex = 6;
@@ -315,7 +315,7 @@
             // textBox_sluong
             // 
             this.textBox_sluong.Location = new System.Drawing.Point(515, 135);
-            this.textBox_sluong.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_sluong.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_sluong.Name = "textBox_sluong";
             this.textBox_sluong.Size = new System.Drawing.Size(216, 22);
             this.textBox_sluong.TabIndex = 2;
@@ -324,7 +324,7 @@
             // textBox_nhacc
             // 
             this.textBox_nhacc.Location = new System.Drawing.Point(867, 78);
-            this.textBox_nhacc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_nhacc.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_nhacc.Name = "textBox_nhacc";
             this.textBox_nhacc.Size = new System.Drawing.Size(551, 22);
             this.textBox_nhacc.TabIndex = 5;
@@ -332,7 +332,7 @@
             // textBox_ghiChu
             // 
             this.textBox_ghiChu.Location = new System.Drawing.Point(1140, 135);
-            this.textBox_ghiChu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_ghiChu.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_ghiChu.Multiline = true;
             this.textBox_ghiChu.Name = "textBox_ghiChu";
             this.textBox_ghiChu.Size = new System.Drawing.Size(277, 73);
@@ -341,7 +341,7 @@
             // textBox_dvt
             // 
             this.textBox_dvt.Location = new System.Drawing.Point(515, 185);
-            this.textBox_dvt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_dvt.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_dvt.Name = "textBox_dvt";
             this.textBox_dvt.Size = new System.Drawing.Size(216, 22);
             this.textBox_dvt.TabIndex = 4;
@@ -458,7 +458,7 @@
             // 
             this.dateTimePicker1_hsd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker1_hsd.Location = new System.Drawing.Point(128, 187);
-            this.dateTimePicker1_hsd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePicker1_hsd.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker1_hsd.Name = "dateTimePicker1_hsd";
             this.dateTimePicker1_hsd.Size = new System.Drawing.Size(272, 22);
             this.dateTimePicker1_hsd.TabIndex = 3;
@@ -470,7 +470,7 @@
             this.button_menu.FlatAppearance.BorderSize = 0;
             this.button_menu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_menu.Location = new System.Drawing.Point(3, 2);
-            this.button_menu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_menu.Margin = new System.Windows.Forms.Padding(4);
             this.button_menu.Name = "button_menu";
             this.button_menu.Size = new System.Drawing.Size(55, 49);
             this.button_menu.TabIndex = 43;
@@ -485,7 +485,7 @@
             this.button_back.FlatAppearance.BorderSize = 0;
             this.button_back.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_back.Location = new System.Drawing.Point(60, 2);
-            this.button_back.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_back.Margin = new System.Windows.Forms.Padding(4);
             this.button_back.Name = "button_back";
             this.button_back.Size = new System.Drawing.Size(56, 49);
             this.button_back.TabIndex = 42;
@@ -513,7 +513,7 @@
             this.button_taoMoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_taoMoi.ForeColor = System.Drawing.SystemColors.Desktop;
             this.button_taoMoi.Location = new System.Drawing.Point(1193, 458);
-            this.button_taoMoi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_taoMoi.Margin = new System.Windows.Forms.Padding(4);
             this.button_taoMoi.Name = "button_taoMoi";
             this.button_taoMoi.Size = new System.Drawing.Size(207, 49);
             this.button_taoMoi.TabIndex = 75;
@@ -528,7 +528,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1371, 695);
+            this.ClientSize = new System.Drawing.Size(1435, 695);
             this.Controls.Add(this.button_taoMoi);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dateTimePicker1_hsd);
@@ -558,7 +558,7 @@
             this.Controls.Add(this.button_menu);
             this.Controls.Add(this.button_back);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "NhapHang";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nhập hàng";
