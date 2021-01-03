@@ -114,7 +114,7 @@ namespace SalesManagement
                 }
                 else
                 {
-                    //load ảnh của nhân viên 
+                    //load ảnh của quản lý
                     string sqlQuery2 = "select MAQL, ISNULL(ANH, '" + globalPic.anhQLdefault + "') from QUANLY WHERE MAQL = '" + id + "'";
                     SqlCommand command2 = new SqlCommand(sqlQuery2, connection);
                     SqlDataReader dataReader2 = command2.ExecuteReader();
@@ -130,8 +130,7 @@ namespace SalesManagement
             catch (Exception loi)
             {
                 // khối này thực thi khi bắt được lỗi
-                MessageBox.Show("Lỗi khi kết nối với hình ảnh của nhân viên");
-                MessageBox.Show(loi.Message);
+                MessageBox.Show("Lỗi khi kết nối với hình ảnh của người dùng: " + loi.Message);
             }
 
             connection.Close();

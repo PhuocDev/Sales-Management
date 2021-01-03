@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace SalesManagement
 {
@@ -86,9 +87,10 @@ namespace SalesManagement
                 try
                 {
                     sqlCon.Open();
-                    string commandString = "INSERT INTO KHACHHANG VALUES('" + textBox5_MaKH.Text.ToString() + "', N'" + textBox4_HoTen.Text.ToString() + "', '" + dateTimePicker1.Value.ToString().Substring(0, dateTimePicker1.Value.ToString().IndexOf(" ")) + "', N'" + comboBox_gioiTinh.Text.ToString() + "', '" + textBox_DienThoai.Text.ToString() + "', N'" + textBox_diaChi.Text.ToString() + "','" + textBox_diem.Text.ToString() + "')";
+                    string commandString = "INSERT INTO KHACHHANG VALUES('" + textBox5_MaKH.Text.ToString() + "', N'" + textBox4_HoTen.Text.ToString() + "', '" + dateTimePicker1.Value.ToString().Substring(0, dateTimePicker1.Value.ToString().IndexOf(" ")) + "', N'" + comboBox_gioiTinh.Text.ToString() + "', '" + textBox_DienThoai.Text.ToString() + "', N'" + textBox_diaChi.Text.ToString() + "','" + textBox_diem.Text.ToString() + "', NULL)";
                     SqlCommand sqlCmd = new SqlCommand(commandString, sqlCon);
                     sqlCmd.ExecuteNonQuery();
+                    updateAnh_toSQL(imgPath);
                     MessageBox.Show("Dang ki thanh cong");
                    // this.parent.add_datagridview(textBox5_MaKH.Text, textBox4_HoTen.Text, dateTimePicker1.Value.ToString().Substring(0, dateTimePicker1.Value.ToString().IndexOf(" ")), comboBox_gioiTinh.Text.ToString(), textBox_DienThoai.Text, textBox_diaChi.Text, textBox_diem.Text);
                 }
@@ -136,6 +138,87 @@ namespace SalesManagement
             {
                 e.Handled = true;
             }
+        }
+
+        public string imgPath = "";
+        private void button_UpdateImage_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.Filter = "Pictures files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png)|*.jpg; *.jpeg; *.jpe; *.jfif; *.png|All files (*.*)|*.*";
+            openFile.FilterIndex = 1;
+            openFile.RestoreDirectory = true;
+            if (openFile.ShowDialog() == DialogResult.OK)
+            {
+                if (!File.Exists(openFile.FileName)) return;
+                imgPath = openFile.FileName;
+                pictureBox_AnhNV.Image = ByteToImg(chuyenDoiAnh_Byte(imgPath));
+            }
+        }
+        private void updateAnh_toSQL(string imgPath)
+        {
+            if (!File.Exists(imgPath)) return;
+            connection.Open();
+            try
+            {
+                string sqlQuery = "";
+                sqlQuery = "update KHACHHANG set ANH = @ANH where MAKH = '" + textBox5_MaKH.Text + "'";
+                SqlCommand command = new SqlCommand(sqlQuery, connection);
+                command.Parameters.AddWithValue("@ANH", chuyenDoiAnh_Byte(imgPath));
+                int rs = command.ExecuteNonQuery();
+                if (rs != 1)
+                {
+                    throw new Exception("Failed Query");
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            connection.Close();
+        }
+        private string chuyenDoiAnh_Byte(string path)
+        {
+            if (!File.Exists(path)) return null;
+            // chuỗi dùng để lưu vào database
+            string byteOfImag = Convert.ToBase64String(converImgToByte(path));
+            return byteOfImag;
+            // Để cover đoạn chuỗi trên trở lại kiểu Byte hình ảnh thì dùng đoạn code sau:
+            //Convert.FromBase64String(Đoạn_String_đã_cover);
+        }
+        private Image ByteToImg(string byteString)    // chứa đoạn string byte của images
+        {
+            Image image1 = null;
+            try
+            {
+                byte[] imgBytes = Convert.FromBase64String(byteString);
+                MemoryStream ms = new MemoryStream(imgBytes, 0, imgBytes.Length);
+                ms.Write(imgBytes, 0, imgBytes.Length);
+                image1 = Image.FromStream(ms, true);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            return image1;
+        }
+        // code chuyển từ ảnh sang byte
+        private byte[] converImgToByte(string path)
+        {
+
+            FileStream fs = null;
+            byte[] picbyte = { 1, 2 };
+            try
+            {
+                fs = new FileStream(path, FileMode.Open, FileAccess.Read);
+                picbyte = new byte[fs.Length];
+                fs.Read(picbyte, 0, System.Convert.ToInt32(fs.Length));
+                fs.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Vui lòng chọn hình ảnh", "Error");
+            }
+            return picbyte;
         }
     }
 }

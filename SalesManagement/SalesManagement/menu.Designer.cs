@@ -34,6 +34,7 @@
             this.label_tk = new System.Windows.Forms.Label();
             this.label_nv_kh = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pictureBox_AnhNV = new System.Windows.Forms.PictureBox();
             this.button_thoat = new System.Windows.Forms.Button();
             this.label_tenDangNhap = new System.Windows.Forms.Label();
             this.button_dangXuat = new System.Windows.Forms.Button();
@@ -50,10 +51,9 @@
             this.button_TKTC = new System.Windows.Forms.Button();
             this.button_nhanVien = new System.Windows.Forms.Button();
             this.button_SanPham = new System.Windows.Forms.Button();
-            this.pictureBox_AnhNV = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_AnhNV)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label_sp
@@ -127,13 +127,24 @@
             this.groupBox1.Controls.Add(this.button_taiKhoan);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(16, 7);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(267, 395);
             this.groupBox1.TabIndex = 60;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tài khoản";
+            // 
+            // pictureBox_AnhNV
+            // 
+            this.pictureBox_AnhNV.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox_AnhNV.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_AnhNV.Image")));
+            this.pictureBox_AnhNV.Location = new System.Drawing.Point(76, 29);
+            this.pictureBox_AnhNV.Name = "pictureBox_AnhNV";
+            this.pictureBox_AnhNV.Size = new System.Drawing.Size(120, 160);
+            this.pictureBox_AnhNV.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox_AnhNV.TabIndex = 10;
+            this.pictureBox_AnhNV.TabStop = false;
             // 
             // button_thoat
             // 
@@ -143,7 +154,7 @@
             this.button_thoat.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_thoat.ForeColor = System.Drawing.Color.Black;
             this.button_thoat.Location = new System.Drawing.Point(5, 342);
-            this.button_thoat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_thoat.Margin = new System.Windows.Forms.Padding(4);
             this.button_thoat.Name = "button_thoat";
             this.button_thoat.Size = new System.Drawing.Size(256, 37);
             this.button_thoat.TabIndex = 9;
@@ -169,7 +180,7 @@
             this.button_dangXuat.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_dangXuat.ForeColor = System.Drawing.Color.Black;
             this.button_dangXuat.Location = new System.Drawing.Point(5, 304);
-            this.button_dangXuat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_dangXuat.Margin = new System.Windows.Forms.Padding(4);
             this.button_dangXuat.Name = "button_dangXuat";
             this.button_dangXuat.Size = new System.Drawing.Size(256, 37);
             this.button_dangXuat.TabIndex = 7;
@@ -185,7 +196,7 @@
             this.button_doiMK.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_doiMK.ForeColor = System.Drawing.Color.Black;
             this.button_doiMK.Location = new System.Drawing.Point(5, 266);
-            this.button_doiMK.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_doiMK.Margin = new System.Windows.Forms.Padding(4);
             this.button_doiMK.Name = "button_doiMK";
             this.button_doiMK.Size = new System.Drawing.Size(256, 37);
             this.button_doiMK.TabIndex = 6;
@@ -201,7 +212,7 @@
             this.button_taiKhoan.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_taiKhoan.ForeColor = System.Drawing.Color.Black;
             this.button_taiKhoan.Location = new System.Drawing.Point(5, 228);
-            this.button_taiKhoan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_taiKhoan.Margin = new System.Windows.Forms.Padding(4);
             this.button_taiKhoan.Name = "button_taiKhoan";
             this.button_taiKhoan.Size = new System.Drawing.Size(256, 37);
             this.button_taiKhoan.TabIndex = 5;
@@ -213,9 +224,9 @@
             // 
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(291, 7);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(781, 615);
             this.groupBox2.TabIndex = 61;
             this.groupBox2.TabStop = false;
@@ -229,7 +240,7 @@
             this.button_bh2.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_bh2.ForeColor = System.Drawing.Color.Black;
             this.button_bh2.Location = new System.Drawing.Point(5, 50);
-            this.button_bh2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_bh2.Margin = new System.Windows.Forms.Padding(4);
             this.button_bh2.Name = "button_bh2";
             this.button_bh2.Size = new System.Drawing.Size(256, 37);
             this.button_bh2.TabIndex = 0;
@@ -245,7 +256,7 @@
             this.button_sp2.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_sp2.ForeColor = System.Drawing.Color.Black;
             this.button_sp2.Location = new System.Drawing.Point(5, 89);
-            this.button_sp2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_sp2.Margin = new System.Windows.Forms.Padding(4);
             this.button_sp2.Name = "button_sp2";
             this.button_sp2.Size = new System.Drawing.Size(256, 37);
             this.button_sp2.TabIndex = 1;
@@ -261,7 +272,7 @@
             this.button_nv_kh2.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_nv_kh2.ForeColor = System.Drawing.Color.Black;
             this.button_nv_kh2.Location = new System.Drawing.Point(5, 127);
-            this.button_nv_kh2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_nv_kh2.Margin = new System.Windows.Forms.Padding(4);
             this.button_nv_kh2.Name = "button_nv_kh2";
             this.button_nv_kh2.Size = new System.Drawing.Size(256, 37);
             this.button_nv_kh2.TabIndex = 2;
@@ -277,7 +288,7 @@
             this.button_tk2.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_tk2.ForeColor = System.Drawing.Color.Black;
             this.button_tk2.Location = new System.Drawing.Point(5, 165);
-            this.button_tk2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_tk2.Margin = new System.Windows.Forms.Padding(4);
             this.button_tk2.Name = "button_tk2";
             this.button_tk2.Size = new System.Drawing.Size(256, 37);
             this.button_tk2.TabIndex = 3;
@@ -295,9 +306,9 @@
             this.groupBox3.Controls.Add(this.button_bh2);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(16, 409);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox3.Size = new System.Drawing.Size(267, 214);
             this.groupBox3.TabIndex = 62;
             this.groupBox3.TabStop = false;
@@ -310,7 +321,7 @@
             this.button_info_ungDung.FlatAppearance.BorderSize = 0;
             this.button_info_ungDung.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_info_ungDung.Location = new System.Drawing.Point(231, 15);
-            this.button_info_ungDung.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_info_ungDung.Margin = new System.Windows.Forms.Padding(4);
             this.button_info_ungDung.Name = "button_info_ungDung";
             this.button_info_ungDung.Size = new System.Drawing.Size(28, 28);
             this.button_info_ungDung.TabIndex = 64;
@@ -380,17 +391,6 @@
             this.button_SanPham.UseVisualStyleBackColor = false;
             this.button_SanPham.Click += new System.EventHandler(this.button_SanPham_Click);
             // 
-            // pictureBox_AnhNV
-            // 
-            this.pictureBox_AnhNV.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox_AnhNV.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_AnhNV.Image")));
-            this.pictureBox_AnhNV.Location = new System.Drawing.Point(76, 29);
-            this.pictureBox_AnhNV.Name = "pictureBox_AnhNV";
-            this.pictureBox_AnhNV.Size = new System.Drawing.Size(120, 160);
-            this.pictureBox_AnhNV.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox_AnhNV.TabIndex = 10;
-            this.pictureBox_AnhNV.TabStop = false;
-            // 
             // menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -410,6 +410,7 @@
             this.Controls.Add(this.button_SanPham);
             this.Controls.Add(this.groupBox2);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "menu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -417,8 +418,8 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.menu_FormClosing);
             this.Load += new System.EventHandler(this.menu_Load);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_AnhNV)).EndInit();
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

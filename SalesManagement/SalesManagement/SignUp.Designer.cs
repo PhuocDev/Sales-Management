@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SignUp));
             this.button_huyBo = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -59,7 +60,7 @@
             this.button_huyBo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_huyBo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_huyBo.ForeColor = System.Drawing.Color.Black;
-            this.button_huyBo.Location = new System.Drawing.Point(391, 565);
+            this.button_huyBo.Location = new System.Drawing.Point(616, 547);
             this.button_huyBo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button_huyBo.Name = "button_huyBo";
             this.button_huyBo.Size = new System.Drawing.Size(117, 43);
@@ -152,10 +153,10 @@
             this.button_signup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_signup.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_signup.ForeColor = System.Drawing.Color.Black;
-            this.button_signup.Location = new System.Drawing.Point(216, 565);
+            this.button_signup.Location = new System.Drawing.Point(337, 547);
             this.button_signup.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button_signup.Name = "button_signup";
-            this.button_signup.Size = new System.Drawing.Size(139, 43);
+            this.button_signup.Size = new System.Drawing.Size(213, 43);
             this.button_signup.TabIndex = 8;
             this.button_signup.Text = "Đăng Ký";
             this.button_signup.UseVisualStyleBackColor = false;
@@ -303,7 +304,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(834, 651);
+            this.ClientSize = new System.Drawing.Size(834, 613);
             this.Controls.Add(this.button_UpdateImage);
             this.Controls.Add(this.pictureBox_AnhNV);
             this.Controls.Add(this.dateTimePicker1);
@@ -325,6 +326,7 @@
             this.Controls.Add(this.textBox2_matKhau);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "SignUp";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -31,6 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLichSuHoaDon));
             this.dgvCTHD = new System.Windows.Forms.DataGridView();
             this.ColSTT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColMaSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -165,7 +166,7 @@
             this.button_menu.FlatAppearance.BorderSize = 0;
             this.button_menu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_menu.Location = new System.Drawing.Point(1, 1);
-            this.button_menu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_menu.Margin = new System.Windows.Forms.Padding(4);
             this.button_menu.Name = "button_menu";
             this.button_menu.Size = new System.Drawing.Size(56, 49);
             this.button_menu.TabIndex = 51;
@@ -180,7 +181,7 @@
             this.button_back.FlatAppearance.BorderSize = 0;
             this.button_back.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_back.Location = new System.Drawing.Point(60, 2);
-            this.button_back.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_back.Margin = new System.Windows.Forms.Padding(4);
             this.button_back.Name = "button_back";
             this.button_back.Size = new System.Drawing.Size(56, 49);
             this.button_back.TabIndex = 52;
@@ -310,9 +311,9 @@
             // 
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(21, 370);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(1295, 340);
             this.groupBox1.TabIndex = 59;
             this.groupBox1.TabStop = false;
@@ -322,9 +323,9 @@
             // 
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(20, 96);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(1295, 272);
             this.groupBox2.TabIndex = 60;
             this.groupBox2.TabStop = false;
@@ -361,6 +362,7 @@
             this.Controls.Add(this.dgvCTHD);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormLichSuHoaDon";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

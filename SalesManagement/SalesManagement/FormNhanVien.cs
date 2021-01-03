@@ -48,11 +48,11 @@ namespace SalesManagement
                 }
             }
             connection.Close();
+            connection.Open();
             try
             {
-                connection.Open();
                 //load ảnh của nhân viên đầu tiên
-                string sqlQuery2 = "select top(1) MaNV, ISNULL(ANH, '" + globalPic.anhYeuCau + "') AS ANH from NHANVIEN ";
+                string sqlQuery2 = "select top(1) MaNV, ISNULL(ANH, '" + globalPic.anhNVdefault + "') AS ANH from NHANVIEN ";
                 SqlCommand command2 = new SqlCommand(sqlQuery2, connection);
                 SqlDataReader dataReader2 = command2.ExecuteReader();
                 while (dataReader2.HasRows)
@@ -61,18 +61,13 @@ namespace SalesManagement
                     else
                         pictureBox1.Image = ByteToImg(dataReader2.GetString(1));
                 }
-
             }
             catch (Exception e)
             {
                 MessageBox.Show("Lỗi load ảnh nhân viên đầu tiên");
             }
-            finally
-            {
-                connection.Close();
-            }
-
-            }
+            connection.Close();
+        }
 
         //-------------------------------------------------chuyển-form----------------------------------------------------------//
 
@@ -121,24 +116,38 @@ namespace SalesManagement
             comboBox_gioiTinh.Text = dataGridView1.Rows[index].Cells[4].Value.ToString();
             txbSDT.Text = dataGridView1.Rows[index].Cells[5].Value.ToString();
             txbDiaChi.Text = dataGridView1.Rows[index].Cells[6].Value.ToString();
-            pictureBox1.Image = ByteToImg(getByteDataOfImg(txbMaNV.Text));
+            try
+            {
+                pictureBox1.Image = ByteToImg(getByteDataOfImg(txbMaNV.Text));
+            }
+            catch
+            {
+                pictureBox1.Image = ByteToImg(globalPic.anhNVdefault);
+            }
         }
         // hình ảnh mặc định
 
         private string getByteDataOfImg(string id)  // id là mã nhân viên để lấy data ảnh
          {
-            connection.Open();
-            string sqlQuery = "select MANV, ISNULL(ANH, '" + globalPic.anhYeuCau + "') from NHANVIEN WHERE MANV = '" + id + "'";
-            SqlCommand command = new SqlCommand(sqlQuery, connection);
-            SqlDataReader dataReader = command.ExecuteReader();
-            string dataImg = "";
-            while (dataReader.HasRows)
+            try
             {
-                if (dataReader.Read() == false) break;
-                else dataImg = dataReader.GetString(1);
+                connection.Open();
+                string sqlQuery = "select MANV, ISNULL(ANH, '" + globalPic.anhNVdefault + "') from NHANVIEN WHERE MANV = '" + id + "'";
+                SqlCommand command = new SqlCommand(sqlQuery, connection);
+                SqlDataReader dataReader = command.ExecuteReader();
+                string dataImg = "";
+                while (dataReader.HasRows)
+                {
+                    if (dataReader.Read() == false) break;
+                    else dataImg = dataReader.GetString(1);
+                }
+                connection.Close();
+                return dataImg;
             }
-            connection.Close();
-            return dataImg;
+            catch
+            {
+                return globalPic.anhNVdefault;
+            }
         }
         //-----------------------------------------------------chỉnh sửa_click-------------------------------------------------//
 
@@ -309,12 +318,9 @@ namespace SalesManagement
         {
             label_warning.Text = "*Không thể thay đổi mã nhân viên";
         }
+
         //-----------------------------------------------------------------------------------------------------------------------------------------------//
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
+        
         private void btnXuatFile_Click(object sender, EventArgs e)
         {
             if (dataGridView1.Rows.Count == 0)
@@ -439,6 +445,7 @@ namespace SalesManagement
 
         private string chuyenDoiAnh_Byte(string path)
         {
+            if (!File.Exists(path)) return null;
             // chuỗi dùng để lưu vào database
             string byteOfImag = Convert.ToBase64String(converImgToByte(path));
             return byteOfImag;
@@ -454,21 +461,28 @@ namespace SalesManagement
             openFile.RestoreDirectory = true;
             if (openFile.ShowDialog() == DialogResult.OK)
             {
+                if (!File.Exists(openFile.FileName)) return;
                 imgPath = openFile.FileName;
+                Image tempImage = pictureBox1.Image;
+                pictureBox1.Image = ByteToImg(chuyenDoiAnh_Byte(imgPath));
+                DialogResult result = MessageBox.Show("Bạn có muốn lưu ảnh?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.No)
+                {
+                    pictureBox1.Image = tempImage;
+                    return;
+                }
+                updateAnh_toSQL(imgPath);
             }
             //labelFileName.Text = Path.GetFileName(textBox_linkToImage.Text);
-            pictureBox1.Image = ByteToImg(chuyenDoiAnh_Byte(imgPath));
-            updateAnh_toSQL(imgPath);
         }
         private void updateAnh_toSQL(string imgPath)
         {
+            if (!File.Exists(imgPath)) return;
             connection.Open();
             try
             {
                 string sqlQuery = "";
-                
-                sqlQuery = "update NHANVIEN set ANH = @ANH where MANV = '" + txbMaNV.Text + "' ";
-                
+                sqlQuery = "update NHANVIEN set ANH = @ANH where MANV = '" + txbMaNV.Text + "'";
                 SqlCommand command = new SqlCommand(sqlQuery, connection);
                 command.Parameters.AddWithValue("@ANH", chuyenDoiAnh_Byte(imgPath));
                 int rs = command.ExecuteNonQuery();

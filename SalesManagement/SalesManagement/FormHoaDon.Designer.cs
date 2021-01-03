@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormHoaDon));
             this.dgvHoaDon = new System.Windows.Forms.DataGridView();
             this.ColSTT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColMaSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -469,7 +470,7 @@
             this.button_menu.FlatAppearance.BorderSize = 0;
             this.button_menu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_menu.Location = new System.Drawing.Point(4, 2);
-            this.button_menu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_menu.Margin = new System.Windows.Forms.Padding(4);
             this.button_menu.Name = "button_menu";
             this.button_menu.Size = new System.Drawing.Size(56, 49);
             this.button_menu.TabIndex = 0;
@@ -485,7 +486,7 @@
             this.button_back.FlatAppearance.BorderSize = 0;
             this.button_back.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_back.Location = new System.Drawing.Point(61, 2);
-            this.button_back.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_back.Margin = new System.Windows.Forms.Padding(4);
             this.button_back.Name = "button_back";
             this.button_back.Size = new System.Drawing.Size(56, 49);
             this.button_back.TabIndex = 50;
@@ -600,6 +601,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormHoaDon";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

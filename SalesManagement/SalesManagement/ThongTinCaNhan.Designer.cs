@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(thongTinCaNhan));
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.txbDiaChi = new System.Windows.Forms.TextBox();
             this.txbSDT = new System.Windows.Forms.TextBox();
@@ -40,12 +41,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button_UpdateImage = new System.Windows.Forms.Button();
             this.pictureBox_AnhNV = new System.Windows.Forms.PictureBox();
             this.comboBox_gioiTinh = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button_save = new System.Windows.Forms.Button();
             this.button_DoiMK = new System.Windows.Forms.Button();
-            this.button_UpdateImage = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_AnhNV)).BeginInit();
             this.SuspendLayout();
@@ -178,6 +179,23 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
+            // button_UpdateImage
+            // 
+            this.button_UpdateImage.BackColor = System.Drawing.Color.Transparent;
+            this.button_UpdateImage.FlatAppearance.BorderSize = 0;
+            this.button_UpdateImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_UpdateImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_UpdateImage.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.button_UpdateImage.Location = new System.Drawing.Point(85, 325);
+            this.button_UpdateImage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_UpdateImage.Name = "button_UpdateImage";
+            this.button_UpdateImage.Size = new System.Drawing.Size(122, 30);
+            this.button_UpdateImage.TabIndex = 22;
+            this.button_UpdateImage.TabStop = false;
+            this.button_UpdateImage.Text = "Chọn ảnh";
+            this.button_UpdateImage.UseVisualStyleBackColor = false;
+            this.button_UpdateImage.Click += new System.EventHandler(this.button_UpdateImage_Click);
+            // 
             // pictureBox_AnhNV
             // 
             this.pictureBox_AnhNV.BackgroundImage = global::SalesManagement.Properties.Resources.nhan_vien;
@@ -255,23 +273,6 @@
             this.button_DoiMK.UseVisualStyleBackColor = false;
             this.button_DoiMK.Click += new System.EventHandler(this.button_DoiMK_Click);
             // 
-            // button_UpdateImage
-            // 
-            this.button_UpdateImage.BackColor = System.Drawing.Color.Transparent;
-            this.button_UpdateImage.FlatAppearance.BorderSize = 0;
-            this.button_UpdateImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_UpdateImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_UpdateImage.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.button_UpdateImage.Location = new System.Drawing.Point(85, 325);
-            this.button_UpdateImage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button_UpdateImage.Name = "button_UpdateImage";
-            this.button_UpdateImage.Size = new System.Drawing.Size(122, 30);
-            this.button_UpdateImage.TabIndex = 22;
-            this.button_UpdateImage.TabStop = false;
-            this.button_UpdateImage.Text = "Chọn ảnh";
-            this.button_UpdateImage.UseVisualStyleBackColor = false;
-            this.button_UpdateImage.Click += new System.EventHandler(this.button_UpdateImage_Click);
-            // 
             // thongTinCaNhan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -294,6 +295,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "thongTinCaNhan";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
