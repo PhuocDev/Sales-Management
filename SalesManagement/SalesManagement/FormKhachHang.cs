@@ -237,6 +237,7 @@ namespace SalesManagement
                     SqlCommand command = new SqlCommand(sqlQuery, connection);
 
                     int index = find(id_changes[i]);
+                    if (index == -1) continue;
                     command.Parameters.AddWithValue("@ten", dataGridView1.Rows[index].Cells[2].Value.ToString());
                     command.Parameters.AddWithValue("@ngaysinh", dataGridView1.Rows[index].Cells[3].Value.ToString());
                     command.Parameters.AddWithValue("@gioitinh", dataGridView1.Rows[index].Cells[4].Value.ToString());
