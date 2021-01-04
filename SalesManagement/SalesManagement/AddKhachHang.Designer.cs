@@ -56,7 +56,7 @@
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker1.Location = new System.Drawing.Point(469, 201);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(181, 26);
             this.dateTimePicker1.TabIndex = 1;
@@ -242,9 +242,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(177, 31);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(263, 31);
+            this.label1.Size = new System.Drawing.Size(419, 31);
             this.label1.TabIndex = 73;
-            this.label1.Text = "Đăng Ký Thành Viên";
+            this.label1.Text = "Đăng Ký Khách Hàng Thành Viên";
             // 
             // button_UpdateImage
             // 
@@ -303,10 +303,10 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.button_signup);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AddKhachHang";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Đăng Ký Thành Viên";
+            this.Text = "Đăng Ký Khách Hàng Thành Viên";
             this.Load += new System.EventHandler(this.AddKhachHang_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_AnhNV)).EndInit();
             this.ResumeLayout(false);

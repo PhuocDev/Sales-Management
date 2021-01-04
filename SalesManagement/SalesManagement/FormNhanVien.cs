@@ -246,17 +246,18 @@ namespace SalesManagement
                 for (int i = 0; i < id_changes.Count(); i++)
                 {
 
-                    string sqlQuery = "update NHANVIEN set TEN = @ten, NGAYSINH = @ngaysinh, GIOITINH = @gioitinh, SDT = @sdt, DIACHI = @diachi, ANH = @anh where MANV = @manv";
+                    string sqlQuery = "update NHANVIEN set TEN = @ten, NGAYSINH = @ngaysinh, GIOITINH = @gioitinh, SDT = @sdt, DIACHI = @diachi where MANV = @manv";
                     SqlCommand command = new SqlCommand(sqlQuery, connection);
 
                     int index = find(id_changes[i]);
+                    if (index == -1) continue;
                     command.Parameters.AddWithValue("@ten", dataGridView1.Rows[index].Cells[2].Value.ToString());
                     command.Parameters.AddWithValue("@ngaysinh", dataGridView1.Rows[index].Cells[3].Value.ToString());
                     command.Parameters.AddWithValue("@gioitinh", dataGridView1.Rows[index].Cells[4].Value.ToString());
                     command.Parameters.AddWithValue("@sdt", dataGridView1.Rows[index].Cells[5].Value.ToString());
                     command.Parameters.AddWithValue("@diachi", dataGridView1.Rows[index].Cells[6].Value.ToString());
                     command.Parameters.AddWithValue("@manv", dataGridView1.Rows[index].Cells[1].Value.ToString());
-                    command.Parameters.AddWithValue("@anh", chuyenDoiAnh_Byte(imgPath));
+                    //command.Parameters.AddWithValue("@anh", chuyenDoiAnh_Byte(imgPath));
 
                     int rs = command.ExecuteNonQuery();
                     if (rs != 1)
